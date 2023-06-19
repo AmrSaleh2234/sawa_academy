@@ -113,7 +113,6 @@ export default {
       v-if="alert_text!= null "
       class="mb-8"
   >
-cfdtdtdsfgd
   </v-alert>
   <div class="back-back">
     <div  class="back">
