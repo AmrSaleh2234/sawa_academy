@@ -30,6 +30,9 @@ export default {
     questionComponent
   },
   methods: {
+    goBack() {
+        this.$router.go(-1)
+      },
    async submit() {
 
         // if(!this.isFormValid && this.evaluation.title !="" && this.evaluation.side_profile_id !="") {
@@ -101,59 +104,67 @@ export default {
 <template>
   <!--  <v-alert v-if="alert_text!= null " color="green" :text="alert_text" class="mb-5"></v-alert>-->
 
-
-  <v-sheet max-width="1200" class="mx-auto">
-    <v-alert
-        type="success"
-        variant="tonal"
-        border="start"
-        elevation="2"
-        closable
-        :close-label="$t('close')"
-        :text="alert_text"
-        v-if="alert_text!= null "
-        class="mb-8"
-    >
-
-    </v-alert>
-    <v-form fast-fail @submit.prevent ref="form">
-      <v-text-field
-          v-model="evaluation.title"
-          :label="$t('evaluation_title')"
-          :rules="NameRules"
-      ></v-text-field>
-      <v-select
-          :label="$t('side_profile_title')"
-          v-model="evaluation.side_profile_id"
-          :items="sideProfile"
-      ></v-select>
-      <v-checkbox
-          v-model="evaluation.six_month"
-          :label="$t('evaluation_exception')"
-      ></v-checkbox>
-      <v-container fluid>
-
-        <v-expansion-panels>
-          <v-expansion-panel
-              v-for="head in headers"
-              :key="head.id">
-
-            <questionComponent
-                :header="head"
-                v-if="headerAndQuestions"
-                :questionsAndHeader="headerAndQuestions[head.id]"
-                @question-inputs="addQuestion"
-            />
-
-          </v-expansion-panel>
-
-
-        </v-expansion-panels>
-      </v-container>
-
-
-      <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
-
-    </v-form>
-  </v-sheet>
+  <div>
+    <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+      <v-icon
+        start
+        icon="mdi-arrow-left"
+      ></v-icon>
+      Back
+    </v-btn>
+    <v-sheet max-width="1200" class="mx-auto">
+      <v-alert
+          type="success"
+          variant="tonal"
+          border="start"
+          elevation="2"
+          closable
+          :close-label="$t('close')"
+          :text="alert_text"
+          v-if="alert_text!= null "
+          class="mb-8"
+      >
+  
+      </v-alert>
+      <v-form fast-fail @submit.prevent ref="form">
+        <v-text-field
+            v-model="evaluation.title"
+            :label="$t('evaluation_title')"
+            :rules="NameRules"
+        ></v-text-field>
+        <v-select
+            :label="$t('side_profile_title')"
+            v-model="evaluation.side_profile_id"
+            :items="sideProfile"
+        ></v-select>
+        <v-checkbox
+            v-model="evaluation.six_month"
+            :label="$t('evaluation_exception')"
+        ></v-checkbox>
+        <v-container fluid>
+  
+          <v-expansion-panels>
+            <v-expansion-panel
+                v-for="head in headers"
+                :key="head.id">
+  
+              <questionComponent
+                  :header="head"
+                  v-if="headerAndQuestions"
+                  :questionsAndHeader="headerAndQuestions[head.id]"
+                  @question-inputs="addQuestion"
+              />
+  
+            </v-expansion-panel>
+  
+  
+          </v-expansion-panels>
+        </v-container>
+  
+  
+        <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
+  
+      </v-form>
+    </v-sheet>
+  </div>
 </template>

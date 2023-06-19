@@ -57,6 +57,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  
   <v-card class="mx-auto pa-12 pb-8" elevation="8">
     <v-alert
       class="custom-alert-class"

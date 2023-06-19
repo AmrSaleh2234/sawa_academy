@@ -11,7 +11,9 @@ const form = ref({
   name: "",
   permissions: [],
 });
-
+ const back =function goBack() {
+        this.$router.go(-1)
+      };
 const valid = ref(false);
 
 const rules = ref({
@@ -44,6 +46,13 @@ onMounted(async () => {
 </script>
 
 <template>
+  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="back">
+    <v-icon
+      start
+      icon="mdi-arrow-left"
+    ></v-icon>
+    Back
+  </v-btn>
   <v-card class="mx-auto pa-12 pb-8" elevation="8">
     <v-alert
       class="custom-alert-class"

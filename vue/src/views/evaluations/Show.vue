@@ -30,6 +30,9 @@ export default {
     examDate:'',
   }),
   methods: {
+    goBack() {
+        this.$router.go(-1)
+      },
     getQuestions() {
       axios.get(`/api/evaluations/${this.$route.params.id}`).then(res => {
         this.headerAndQuestions = res.data.evaluation
@@ -194,65 +197,74 @@ export default {
 </script>
 
 <template>
-  <v-sheet max-width="1200" class="mx-auto">
-    <v-alert
-        :type="type"
-        variant="tonal"
-        border="start"
-        elevation="2"
-        closable
-        :close-label="$t('close')"
-        :text="alert_text"
-        v-if="alert_text != '' "
-        class="mb-8"
-    >
-    </v-alert>
-    <h1 class="text-center"> {{ title }}</h1>
-
-
-    <v-form fast-fail ref="form" @submit.prevent="submit">
-      <v-select
-          label="Child"
-          v-model="child_id"
-          @update:modelValue="getSpecificChildren"
-          :items="selectBox"
-          :rules="NameRules"
-      ></v-select>
-      <v-text-field
-          v-model="examDate"
-          :label="$t('examDate')"
-          type="datetime-local"
-
-      ></v-text-field>
-      <div v-for="questions in Object.values(headerAndQuestions).reverse()">
-
-        <div v-if="questions[0].min_age <= this.child.childInMonths">
-          <ul>
-            <li class="font-weight-bold mb-3 mx-7">{{ questions[0].title }}</li>
-          </ul>
-
-          <div v-for=" question  in questions" class="border border-1 rounded pa-5">
-
-            <div class="mb-3">
-              {{ question.questions.title }}
+  <div>
+    <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+      <v-icon
+        start
+        icon="mdi-arrow-left"
+      ></v-icon>
+      Back
+    </v-btn>
+    <v-sheet max-width="1200" class="mx-auto">
+      <v-alert
+          :type="type"
+          variant="tonal"
+          border="start"
+          elevation="2"
+          closable
+          :close-label="$t('close')"
+          :text="alert_text"
+          v-if="alert_text != '' "
+          class="mb-8"
+      >
+      </v-alert>
+      <h1 class="text-center"> {{ title }}</h1>
+  
+  
+      <v-form fast-fail ref="form" @submit.prevent="submit">
+        <v-select
+            label="Child"
+            v-model="child_id"
+            @update:modelValue="getSpecificChildren"
+            :items="selectBox"
+            :rules="NameRules"
+        ></v-select>
+        <v-text-field
+            v-model="examDate"
+            :label="$t('examDate')"
+            type="datetime-local"
+  
+        ></v-text-field>
+        <div v-for="questions in Object.values(headerAndQuestions).reverse()">
+  
+          <div v-if="questions[0].min_age <= this.child.childInMonths">
+            <ul>
+              <li class="font-weight-bold mb-3 mx-7">{{ questions[0].title }}</li>
+            </ul>
+  
+            <div v-for=" question  in questions" class="border border-1 rounded pa-5">
+  
+              <div class="mb-3">
+                {{ question.questions.title }}
+              </div>
+              <v-radio-group v-model="selected[question.questions.id]"
+                             @change="radioChange(selected[question.questions.id],question.questions.evaluation_header_id,question.questions.id)"
+                             :rules="NameRules">
+                <v-radio label="True" value="1"></v-radio>
+                <v-radio label="False" value="0"></v-radio>
+              </v-radio-group>
+  
             </div>
-            <v-radio-group v-model="selected[question.questions.id]"
-                           @change="radioChange(selected[question.questions.id],question.questions.evaluation_header_id,question.questions.id)"
-                           :rules="NameRules">
-              <v-radio label="True" value="1"></v-radio>
-              <v-radio label="False" value="0"></v-radio>
-            </v-radio-group>
-
           </div>
+          <div class="mb-7">
+  
+          </div>
+  
         </div>
-        <div class="mb-7">
-
-        </div>
-
-      </div>
-      <v-btn type="submit" block class="mt-2">{{ $t('submit') }}</v-btn>
-
-    </v-form>
-  </v-sheet>
-
+        <v-btn type="submit" block class="mt-2">{{ $t('submit') }}</v-btn>
+  
+      </v-form>
+    </v-sheet>
+  
+  </div>
 </template>
