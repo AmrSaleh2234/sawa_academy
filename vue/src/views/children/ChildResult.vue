@@ -324,6 +324,7 @@ print(){
         {key: 'diff_age', title: this.$t('diff_age')},
         {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'basal_age', title: this.$t('basal_age')},
+        {key: 'child_age', title: this.$t('child_age')},
         {key: 'result_created_at', title: this.$t('created_at')},
         {title: this.$t('operation')}
 
@@ -467,6 +468,7 @@ print(){
           <td>{{ item.columns.diff_age }}</td>
           <td>{{ Math.round(item.columns.late_percentage)  }} %</td>
           <td>{{ item.columns.basal_age }} months</td>
+          <td>{{ item.columns.child_age }} months</td>
           <td>{{ formateDate(item.columns.result_created_at) }}</td>
           <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
           <!--          <td>-->
@@ -518,6 +520,7 @@ print(){
         <td>{{ item.columns.diff_age }}</td>
         <td>{{ Math.round(item.columns.late_percentage) }} %</td>
         <td>{{ item.columns.basal_age }} months</td>
+        <td>{{ item.columns.child_age }} months</td>
         <td>{{ formateDate(item.columns.result_created_at) }}</td>
         <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
         <!--          <td>-->

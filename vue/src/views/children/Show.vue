@@ -9,7 +9,7 @@ export default {
       search: '',
       headers: [
 
-        {key: 'evaluation_title', title: 'Evaluation Title'},
+        {key: 'evaluation_title', title: this.$t('evaluation_title')},
         { title: this.$t('operation')},
       ],
       sideProfile: [],
@@ -57,7 +57,16 @@ export default {
   },
   mounted() {
     this.getSideProfile()
-  }
+  },
+  computed: {
+    header() {
+      return this.headers = [
+        {key: 'evaluation_title', title: this.$t('evaluation_title')},
+        { title: this.$t('operation')},
+
+      ];
+    }
+  },
 }
 </script>
 
@@ -100,7 +109,7 @@ export default {
       ></v-text-field>
     </v-card-title>
     <v-data-table
-        :headers="headers"
+        :headers="header"
         :items="sideProfile"
         :search="search"
         :group-by="groupBy"
