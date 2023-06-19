@@ -69,7 +69,7 @@ const routes = [
   {
     path: "/print-child-result/:child_id/:sideProfile_id/:evaluation_id",
     name: "printChildResult" ,
-    component: import("@/views/children/ChildResultPrint.vue"),
+    component: () =>import("@/views/children/ChildResultPrint.vue"),
   },
 ];
 
