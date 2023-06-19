@@ -50,7 +50,8 @@ export default {
         this.loading = false
         setTimeout(() => {
           window.print()
-        }, 1000)
+          this.$router.go(-1)
+        }, 500)
 
 
         console.log(this.result)
@@ -113,6 +114,7 @@ export default {
       v-if="alert_text!= null "
       class="mb-8"
   >
+
   </v-alert>
   <div class="back-back">
     <div  class="back">
