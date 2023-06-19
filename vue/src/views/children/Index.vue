@@ -68,7 +68,8 @@ export default {
 </script>
 
 <template>
-  <v-alert
+  <div>
+    <v-alert
       type="success"
       variant="tonal"
       border="start"
@@ -81,7 +82,7 @@ export default {
   >
 
   </v-alert>
-
+  
   <v-btn   text="Create" color="green" height="45"  class="mb-5 mt-5"   @click="create">
     {{$t('create_button')}}
   </v-btn>
@@ -121,7 +122,7 @@ export default {
         </tr>
 
       </template>
-
     </v-data-table>
   </v-card>
+  </div>
 </template>

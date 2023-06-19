@@ -74,6 +74,9 @@ export default {
     snackbar: true,
   }),
   methods: {
+    goBack() {
+        this.$router.go(-1)
+      },
     submit() {
       axios.post(`/api/evaluationheaders/create`, this.questionHeader)
           .then(res => {
@@ -105,49 +108,58 @@ export default {
 </script>
 <template>
   <!--  <v-alert v-if="alert_text!= null " color="green" :text="alert_text" class="mb-5"></v-alert>-->
-
-  <v-sheet max-width="1200" class="mx-auto">
-    <v-alert
-        :type="type"
-        variant="tonal"
-        border="start"
-        elevation="2"
-        closable
-        :close-label="$t('close')"
-        :text="alert_text"
-        v-if="alert_text != '' "
-        class="mb-8"
-    >
-    </v-alert>
-    <v-form fast-fail @submit.prevent class="py-4">
-      <v-text-field
-          v-model="questionHeader.title"
-          :label="$t('header_title')"
-          :rules="NameRules"
-      ></v-text-field>
-      <div>
-        <div class="v-container">
-          <div class="v-row">
-            <div class="v-col-6">
-              <v-select
-                  :label="$t('from')"
-                  v-model="questionHeader.from"
-                  :items="fromSelect"
-              ></v-select>
-            </div>
-
-            <div class="v-col-6">
-              <v-select
-                  :label="$t('to')"
-                  v-model="questionHeader.to"
-                  :items="toSelect"
-              ></v-select>
+  <div>
+    <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+      <v-icon
+        start
+        icon="mdi-arrow-left"
+      ></v-icon>
+      Back
+    </v-btn>
+    <v-sheet max-width="1200" class="mx-auto">
+      <v-alert
+          :type="type"
+          variant="tonal"
+          border="start"
+          elevation="2"
+          closable
+          :close-label="$t('close')"
+          :text="alert_text"
+          v-if="alert_text != '' "
+          class="mb-8"
+      >
+      </v-alert>
+      <v-form fast-fail @submit.prevent class="py-4">
+        <v-text-field
+            v-model="questionHeader.title"
+            :label="$t('header_title')"
+            :rules="NameRules"
+        ></v-text-field>
+        <div>
+          <div class="v-container">
+            <div class="v-row">
+              <div class="v-col-6">
+                <v-select
+                    :label="$t('from')"
+                    v-model="questionHeader.from"
+                    :items="fromSelect"
+                ></v-select>
+              </div>
+  
+              <div class="v-col-6">
+                <v-select
+                    :label="$t('to')"
+                    v-model="questionHeader.to"
+                    :items="toSelect"
+                ></v-select>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
-    </v-form>
-  </v-sheet>
-</template>
+  
+        <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
+      </v-form>
+    </v-sheet>
+  
+  </div>
+ </template>

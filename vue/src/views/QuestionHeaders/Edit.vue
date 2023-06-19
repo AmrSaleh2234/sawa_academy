@@ -72,6 +72,9 @@ export default {
     alert_type:"success"
   }),
   methods:{
+    goBack() {
+        this.$router.go(-1)
+      },
     submit(){
       axios.post(`/api/evaluationheaders/${this.$route.params.id }/update`,this.questionHeader).then(res =>{
         if(res.data.status == 200)
@@ -113,8 +116,14 @@ export default {
 
 <template>
   <!--  <v-alert v-if="alert_text!= null " color="green" :text="alert_text" class="mb-5"></v-alert>-->
-
-
+<div>
+  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+    <v-icon
+      start
+      icon="mdi-arrow-left"
+    ></v-icon>
+    Back
+  </v-btn>
   <v-sheet max-width="1200" class="mx-auto">
     <v-alert
         :type="alert_type"
@@ -160,4 +169,6 @@ export default {
       <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
     </v-form>
   </v-sheet>
-</template>
+
+</div>
+ </template>

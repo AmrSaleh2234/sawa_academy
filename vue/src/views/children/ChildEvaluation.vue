@@ -16,6 +16,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+        this.$router.go(-1)
+      },
     getResults() {
       axios.get(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/evaluations-child`).then(res => {
         this.evaluations = res.data.evaluations
@@ -53,6 +56,15 @@ export default {
 </script>
 
 <template>
+ <div>
+  <v-btn height="45" class="mb-5" color="red" @click="goBack">
+    <v-icon
+      start
+      icon="mdi-arrow-left"
+    ></v-icon>
+    Back
+  </v-btn>
+
   <v-alert
       type="success"
       variant="tonal"
@@ -94,7 +106,7 @@ export default {
           <td>{{ index + 1 }}</td>
           <td>{{ item.columns.evaluation_title }}</td>
           <td>
-            <v-icon small color="primary" class="mx-3" @click="showItem(item.raw.id)"> mdi-eye</v-icon>
+            <v-icon small color="#135C65" class="mx-3" @click="showItem(item.raw.id)"> mdi-eye</v-icon>
 
           </td>
         </tr>
@@ -103,4 +115,5 @@ export default {
 
     </v-data-table>
   </v-card>
+ </div>
 </template>

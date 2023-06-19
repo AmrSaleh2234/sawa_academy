@@ -1,6 +1,14 @@
 <template>
-
+ <div>
+  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+    <v-icon
+      start
+      icon="mdi-arrow-left"
+    ></v-icon>
+    Back
+  </v-btn>
   <FullCalendar ref="calendar" @change="refreshEvents()" :options="calendarOptions" />
+ </div>
 
 </template>
 
@@ -86,6 +94,9 @@ export default {
     }
   },
   methods:{
+    goBack() {
+        this.$router.go(-1)
+      },
     refreshEvents() {
       this.$refs.calendar.$emit('refetch-events')
     }

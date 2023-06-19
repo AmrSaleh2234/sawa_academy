@@ -53,6 +53,14 @@ export default {
 </script>
 
 <template>
+ <div>
+  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+    <v-icon
+      start
+      icon="mdi-arrow-left"
+    ></v-icon>
+    Back
+  </v-btn>
   <v-alert
       type="success"
       variant="tonal"
@@ -104,4 +112,5 @@ export default {
 
     </v-data-table>
   </v-card>
+ </div>
 </template>
