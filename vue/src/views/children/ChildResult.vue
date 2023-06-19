@@ -1,0 +1,554 @@
+<script>
+import axios from 'axios'
+import Chart from 'chart.js/auto';
+import moment from "moment";
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
+
+
+export default {
+
+  data() {
+    return {
+      search: '',
+      headers: [],
+      result: [],
+      alert_text: null,
+      ctx: null,
+      created_at: [],
+      latePercenteges: [],
+      growAge: [],
+      diffAge: [],
+      date1: '',
+      date2: '',
+      myCahrt: '',
+      selectX: null,
+      selectY: null,
+      visible: false,
+      examDate: '',
+      NameRules: [
+        value => {
+          if (value) return true
+          return "This field is required"
+
+        },
+      ],
+      examId:'',
+      loading:true,
+
+
+    }
+  },
+  methods: {
+    getResults() {
+      axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
+        'date1': this.date1,
+        'date2': this.date2
+      }).then(res => {
+        this.result = res.data.resultEvaluation
+        this.loading = false
+
+        console.log(this.result)
+        this.created_at = []
+        this.latePercenteges = []
+        this.growAge = []
+        this.diffAge = []
+        this.result.forEach((elem) => {
+          this.created_at.push(moment(elem.result_created_at).format("DD-MM-YYYY"))
+          this.latePercenteges.push(elem.late_percentage)
+          this.growAge.push(elem.grow_age)
+          this.diffAge.push(elem.diff_age)
+        })
+        console.log(this.latePercenteges)
+        this.ctx = document.getElementById('myChart').getContext("2d")
+        this.myCahrt = new Chart(this.ctx, {
+          type: 'bar',
+          data: {
+            datasets: [{
+              label: 'late percentages ',
+              data: this.latePercenteges,
+              borderWidth: 1,
+              backgroundColor: '#A9AB7F',
+              barPercentage: 0.5,
+              categoryPercentage: 0.2,
+            },
+              {
+                label: 'Different ages ',
+                data: this.diffAge,
+                borderWidth: 1,
+                backgroundColor: '#4c9499',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+              {
+                label: 'grow Age  ',
+                data: this.growAge,
+                borderWidth: 1,
+                backgroundColor: '#135C65',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+            ]
+          },
+          options: {
+            align: 'start',
+            scales: {
+              y: {
+                beginAtZero: true,
+
+              },
+              x: {
+                grid: {
+                  drawOnChartArea: false
+                },
+                type: 'category',
+                labels: this.created_at,
+
+              }
+
+            },
+            grid: {
+              top: '6',
+              right: '0',
+              bottom: '17',
+              left: '25',
+            },
+            animation: {
+              duration: 2000,
+            },
+          }
+        });
+        console.log(this.latePercenteges)
+
+      })
+    },
+    formateDate(date) {
+      return moment(date).format('DD-MM-YYYY HH:mm')
+    },
+print(){
+      document.getElementById('print').style.display="block";
+  setTimeout(()=>{
+    document.getElementById('print').style.display="none";
+  }, 1000)
+
+},
+    filter() {
+      axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
+        'date1': this.date1,
+        'date2': this.date2
+      }).then(res => {
+        this.result = res.data.resultEvaluation
+        console.log(this.result)
+        this.created_at = []
+        this.latePercenteges = []
+        this.growAge = []
+        this.diffAge = []
+        this.result.forEach((elem) => {
+          this.created_at.push(moment(elem.result_created_at).format("DD-MM-YYYY"))
+          this.latePercenteges.push(elem.late_percentage)
+          this.growAge.push(elem.grow_age)
+          this.diffAge.push(elem.diff_age)
+        })
+        console.log(this.latePercenteges)
+        this.ctx = document.getElementById('myChart')
+        this.myCahrt.destroy()
+        this.myCahrt = new Chart(this.ctx, {
+          type: 'bar',
+          data: {
+            datasets: [{
+              label: 'late percentages ',
+              data: this.latePercenteges,
+              borderWidth: 1,
+              backgroundColor: '#A9AB7F',
+              barPercentage: 0.5,
+              categoryPercentage: 0.2,
+            },
+              {
+                label: 'Different ages ',
+                data: this.diffAge,
+                borderWidth: 1,
+                backgroundColor: '#4c9499',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+              {
+                label: 'grow Age  ',
+                data: this.growAge,
+                borderWidth: 1,
+                backgroundColor: '#135C65',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+            ]
+          },
+          options: {
+            align: 'start',
+            scales: {
+              y: {
+                beginAtZero: true,
+
+              },
+              x: {
+                grid: {
+                  drawOnChartArea: false
+                },
+                type: 'category',
+                labels: this.created_at,
+
+              }
+
+            },
+            grid: {
+              top: '6',
+              right: '0',
+              bottom: '17',
+              left: '25',
+            },
+            animation: {
+              duration: 2000,
+            },
+          }
+        });
+        console.log(this.latePercenteges)
+
+      })
+    },
+
+    editChart() {
+
+      let arr = [
+        {title: this.$t('grow_age'), value: this.growAge},
+        {title: this.$t('diff_age'), value: this.diffAge},
+        {title: this.$t('late_percentage'), value: this.latePercenteges}
+      ]
+
+      this.myCahrt.destroy()
+      this.myCahrt = new Chart(this.ctx, {
+        type: 'bar',
+        data: {
+          datasets: [{
+            label: arr[this.selectY].title,
+            data: arr[this.selectY].value,
+            borderWidth: 1,
+            backgroundColor: '#135C65',
+            barPercentage: 0.5,
+            categoryPercentage: 0.2,
+          },
+
+          ]
+        },
+        options: {
+          align: 'start',
+          scales: {
+            y: {
+              beginAtZero: true,
+
+            },
+            x: {
+              grid: {
+                drawOnChartArea: false
+              },
+              type: 'category',
+              labels: arr[this.selectX].value,
+
+            }
+
+          },
+          grid: {
+            top: '6',
+            right: '0',
+            bottom: '17',
+            left: '25',
+          },
+          animation: {
+            duration: 2000,
+          },
+        }
+      });
+
+
+    },
+
+    editItem(date,evaluation_result_id) {
+      this.visible = true;
+      this.examDate = date
+      this.examId=evaluation_result_id
+
+
+    },
+    async submit(evaluationResult_id){
+      console.log(evaluationResult_id)
+
+      const { valid } = await this.$refs.form.validate()
+      if(!valid )
+        return
+
+      axios.post(`/api/evaluations/${this.examId}`, {date:this.examDate}).then(res => {
+
+          this.alert_text = "evaluation edited successfully  "
+        this.visible=false
+
+          this.type="success"
+        this.getResults()
+
+      }).catch((error)=>{
+        this.alert_text = error.response.data.message
+        this.type="error"
+        this.visible=false
+      })
+    }
+
+
+  },
+  components: {
+    Dialog,
+    Button
+  },
+  mounted() {
+    this.getResults()
+
+
+  },
+  computed: {
+    locale() {
+
+      return this.$i18n.locale;
+    },
+    header() {
+      return this.headers = [
+        {title: 'id'},
+
+        {key: 'therapist_name', title: this.$t('therapist_name')},
+        {key: 'grow_age', title: this.$t('grow_age')},
+        {key: 'diff_age', title: this.$t('diff_age')},
+        {key: 'late_percentage', title: this.$t('late_percentage')},
+        {key: 'basal_age', title: this.$t('basal_age')},
+        {key: 'result_created_at', title: this.$t('created_at')},
+        {title: this.$t('operation')}
+
+
+      ];
+    },
+    firstSelectBoxComputed() {
+
+      let title = [
+        {title: this.$t('grow_age'), value: 0},
+        {title: this.$t('diff_age'), value: 1},
+        {title: this.$t('late_percentage'), value: 2},
+      ]
+      let result = title.filter((elem) => {
+        return elem.value != this.selectY
+      })
+      return result;
+
+    },
+    secondSelectBoxComputed() {
+      let title = [
+        {title: this.$t('grow_age', this.locale), value: 0},
+        {title: this.$t('diff_age'), value: 1},
+        {title: this.$t('late_percentage'), value: 2},
+      ]
+      let result = title.filter((elem) => {
+        return elem.value != this.selectX
+      })
+      return result;
+    },
+
+  }, watch: {
+    selectX(value) {
+      if (this.selectX != null && this.selectY != null) {
+        this.editChart()
+      }
+    },
+    selectY(value) {
+      if (this.selectX != null && this.selectY != null) {
+        this.editChart()
+      }
+    }
+
+  }
+
+
+}
+</script>
+
+<template>
+  <v-alert
+      type="success"
+      variant="tonal"
+      border="start"
+      elevation="2"
+      closable
+      :close-label="$t('close')"
+      :text="alert_text"
+      v-if="alert_text!= null "
+      class="mb-8"
+  >
+
+  </v-alert>
+
+  <!--  <div class="v-row mb-5 mt-5  ">-->
+  <!--    <v-text-field-->
+  <!--        class="v-col-6"-->
+  <!--        v-model="date1"-->
+  <!--        :label="$t('start_date')"-->
+  <!--        type="date"-->
+  <!--        @change="filter"-->
+  <!--    ></v-text-field>-->
+
+
+  <!--    <v-text-field-->
+  <!--        class="v-col-6"-->
+  <!--        v-model="date2"-->
+  <!--        :label="$t('end_date')"-->
+  <!--        type="date"-->
+  <!--        @change="filter"-->
+  <!--    ></v-text-field>-->
+
+  <!--  </div>-->
+  <div class="v-row mb-5 mt-5  ">
+    <v-select
+        class="mx-9"
+        :label="$t('xAxis')"
+        v-model="selectX"
+        :items="firstSelectBoxComputed"
+    ></v-select>
+    <v-select
+        class="mx-9"
+        :label="$t('yAxis')"
+        v-model="selectY"
+        :items="secondSelectBoxComputed"
+    ></v-select>
+  </div>
+
+  <canvas id="myChart"></canvas>
+  <v-card>
+    <v-card-title>
+      Results
+      <v-spacer></v-spacer>
+
+      <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+      ></v-text-field>
+    </v-card-title>
+
+    <v-btn v-print="'#print'" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+      print
+    </v-btn>
+
+    <v-data-table
+        :headers="header"
+        :items="result"
+        :search="search"
+    >
+      <template #top>
+        <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+
+      </template>
+
+      <template #item="{ item ,index}">
+        <tr>
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.columns.therapist_name }}</td>
+          <td>{{ item.columns.grow_age }}</td>
+          <td>{{ item.columns.diff_age }}</td>
+          <td>{{ item.columns.late_percentage }} %</td>
+          <td>{{ item.columns.basal_age }} months</td>
+          <td>{{ formateDate(item.columns.result_created_at) }}</td>
+          <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
+          <!--          <td>-->
+          <td class="text-center">
+            <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">mdi-pencil</v-icon>
+
+            <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
+              <v-form fast-fail @submit.prevent ref="form">
+                <v-text-field
+                    v-model="examDate"
+                    :rules="NameRules"
+                    :label="$t('examDate')"
+                    type="datetime-local"
+
+                ></v-text-field>
+                <button class="bg-blue pa-3 rounded" @click="submit">{{$t('submit')}}</button>
+              </v-form>
+            </Dialog>
+          </td>
+
+        </tr>
+
+      </template>
+
+    </v-data-table>
+  </v-card>
+
+  <v-data-table
+      class="hidden-table"
+      :headers="header"
+      :items="result"
+      :search="search"
+      id="print"
+      hide-default-footer
+      disable-pagination
+
+
+  >
+    <template #top>
+      <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+
+    </template>
+
+    <template #item="{ item ,index}">
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td>{{ item.columns.therapist_name }}</td>
+        <td>{{ item.columns.grow_age }}</td>
+        <td>{{ item.columns.diff_age }}</td>
+        <td>{{ item.columns.late_percentage }} %</td>
+        <td>{{ item.columns.basal_age }} months</td>
+        <td>{{ formateDate(item.columns.result_created_at) }}</td>
+        <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
+        <!--          <td>-->
+        <td class="text-center">
+          <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">mdi-pencil</v-icon>
+
+          <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
+            <v-form fast-fail @submit.prevent ref="form">
+              <v-text-field
+                  v-model="examDate"
+                  :rules="NameRules"
+                  :label="$t('examDate')"
+                  type="datetime-local"
+
+              ></v-text-field>
+              <button class="bg-blue pa-3 rounded" @click="submit">{{$t('submit')}}</button>
+            </v-form>
+          </Dialog>
+        </td>
+
+      </tr>
+
+    </template>
+    <template #bottom >
+
+    </template>
+
+  </v-data-table>
+
+</template>
+<style>
+.hidden-table {
+  border:1px solid black;
+  display: none;
+  margin-top:200px
+}
+.hidden-table th {
+  border:1px solid black;
+}
+.hidden-table td {
+  border:1px solid black;
+}
+</style>
