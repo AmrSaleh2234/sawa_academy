@@ -50,7 +50,6 @@ export default {
         this.loading = false
         setTimeout(() => {
           window.print()
-          this.$router.go(-1)
         }, 500)
 
 
