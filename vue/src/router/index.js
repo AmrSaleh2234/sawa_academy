@@ -66,6 +66,11 @@ const routes = [
     name: "ResetPassword",
     component: () => import("@/components/ResetPassword.vue"),
   },
+  {
+    path: "/print-child-result/:child_id/:sideProfile_id/:evaluation_id",
+    name: "printChildResult" ,
+    component: import("../views/children/ChildResultPrint.vue"),
+  },
 ];
 
 const router = createRouter({

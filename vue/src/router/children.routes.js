@@ -47,6 +47,7 @@ const childrenRoutes = [
         name: "editChildResult" ,
         component: editResult,
     },
+
 ];
 
 export default {

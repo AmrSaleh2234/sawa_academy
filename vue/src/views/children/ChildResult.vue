@@ -126,11 +126,12 @@ export default {
       return moment(date).format('DD-MM-YYYY HH:mm')
     },
 print(){
-      document.getElementById('print').style.display="block";
-  setTimeout(()=>{
-    document.getElementById('print').style.display="none";
-  }, 1000)
-
+  //     document.getElementById('print').style.display="block";
+  // setTimeout(()=>{
+  //   document.getElementById('print').style.display="none";
+  // }, 1000)
+  this.$router.push({ name: 'printChildResult' , params: {child_id: this.$route.params.child_id,sideProfile_id:this.$route.params.sideProfile_id,evaluation_id:this.$route.params.evaluation_id} })
+  // window.open(route.href,"_blank")
 },
     filter() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
@@ -436,7 +437,7 @@ print(){
       ></v-text-field>
     </v-card-title>
 
-    <v-btn v-print="'#print'" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+    <v-btn  text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
       print
     </v-btn>
 
@@ -456,7 +457,7 @@ print(){
           <td>{{ item.columns.therapist_name }}</td>
           <td>{{ item.columns.grow_age }}</td>
           <td>{{ item.columns.diff_age }}</td>
-          <td>{{ item.columns.late_percentage }} %</td>
+          <td>{{ Math.round(item.columns.late_percentage)  }} %</td>
           <td>{{ item.columns.basal_age }} months</td>
           <td>{{ formateDate(item.columns.result_created_at) }}</td>
           <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
@@ -507,7 +508,7 @@ print(){
         <td>{{ item.columns.therapist_name }}</td>
         <td>{{ item.columns.grow_age }}</td>
         <td>{{ item.columns.diff_age }}</td>
-        <td>{{ item.columns.late_percentage }} %</td>
+        <td>{{ Math.round(item.columns.late_percentage) }} %</td>
         <td>{{ item.columns.basal_age }} months</td>
         <td>{{ formateDate(item.columns.result_created_at) }}</td>
         <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
@@ -539,7 +540,7 @@ print(){
   </v-data-table>
 
 </template>
-<style>
+<style scoped>
 .hidden-table {
   border:1px solid black;
   display: none;
@@ -551,4 +552,6 @@ print(){
 .hidden-table td {
   border:1px solid black;
 }
+
+
 </style>
