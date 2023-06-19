@@ -77,7 +77,7 @@ export default {
       start
       icon="mdi-arrow-left"
     ></v-icon>
-    Back
+    {{$t('back')}}
   </v-btn>
   <v-alert
       type="success"

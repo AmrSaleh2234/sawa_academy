@@ -39,7 +39,9 @@ export default {
     yAxis:"y-axis",
     examDate:"Exam Date",
     operation:"operations",
-    child_age:" child age"
+    child_age:" child age",
+    back:"back"
+
 
 
 }

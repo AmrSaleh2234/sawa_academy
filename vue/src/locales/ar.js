@@ -39,7 +39,8 @@ export default {
     yAxis:"محور الصادات",
     examDate:"تاريخ الامتحان",
     operation:"العمليات",
-    child_age:"عمر الطفل"
+    child_age:"عمر الطفل",
+    back:"رجوع"
 
 
 
