@@ -33,8 +33,8 @@ export default {
 
         },
       ],
-      examId:'',
-      loading:true,
+      examId: '',
+      loading: true,
 
 
     }
@@ -125,14 +125,20 @@ export default {
     formateDate(date) {
       return moment(date).format('DD-MM-YYYY HH:mm')
     },
-print(){
-  //     document.getElementById('print').style.display="block";
-  // setTimeout(()=>{
-  //   document.getElementById('print').style.display="none";
-  // }, 1000)
-  const route =this.$router.resolve({ name: 'printChildResult' , params: {child_id: this.$route.params.child_id,sideProfile_id:this.$route.params.sideProfile_id,evaluation_id:this.$route.params.evaluation_id} })
-  window.open(route.href,"_blank")
-},
+    print() {
+      //     document.getElementById('print').style.display="block";
+      // setTimeout(()=>{
+      //   document.getElementById('print').style.display="none";
+      // }, 1000)
+      this.$router.push({name: 'printChildResult',
+        params: {
+          child_id: this.$route.params.child_id,
+          sideProfile_id: this.$route.params.sideProfile_id,
+          evaluation_id: this.$route.params.evaluation_id
+        }
+      })
+      // window.open(route.href,"_blank")
+    },
     filter() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
         'date1': this.date1,
@@ -270,34 +276,37 @@ print(){
 
     },
 
-    editItem(date,evaluation_result_id) {
+    editItem(date, evaluation_result_id) {
       this.visible = true;
       this.examDate = date
-      this.examId=evaluation_result_id
+      this.examId = evaluation_result_id
 
 
     },
-    async submit(evaluationResult_id){
+    async submit(evaluationResult_id) {
       console.log(evaluationResult_id)
 
-      const { valid } = await this.$refs.form.validate()
-      if(!valid )
+      const {valid} = await this.$refs.form.validate()
+      if (!valid)
         return
 
-      axios.post(`/api/evaluations/${this.examId}`, {date:this.examDate}).then(res => {
+      axios.post(`/api/evaluations/${this.examId}`, {date: this.examDate}).then(res => {
 
-          this.alert_text = "evaluation edited successfully  "
-        this.visible=false
+        this.alert_text = "evaluation edited successfully  "
+        this.visible = false
 
-          this.type="success"
+        this.type = "success"
         this.getResults()
 
-      }).catch((error)=>{
+      }).catch((error) => {
         this.alert_text = error.response.data.message
-        this.type="error"
-        this.visible=false
+        this.type = "error"
+        this.visible = false
       })
-    }
+    },
+    goBack() {
+      this.$router.go(-1)
+    },
 
 
   },
@@ -355,9 +364,7 @@ print(){
       })
       return result;
     },
-    goBack() {
-      this.$router.go(-1)
-    },
+
 
   }, watch: {
     selectX(value) {
@@ -381,82 +388,136 @@ print(){
   <div>
     <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
       <v-icon
-        start
-        icon="mdi-arrow-left"
+          start
+          icon="mdi-arrow-left"
       ></v-icon>
-      {{$t('back')}}
+      {{ $t('back') }}
     </v-btn>
-  <v-alert
-      type="success"
-      variant="tonal"
-      border="start"
-      elevation="2"
-      closable
-      :close-label="$t('close')"
-      :text="alert_text"
-      v-if="alert_text!= null "
-      class="mb-8"
-  >
+    <v-alert
+        type="success"
+        variant="tonal"
+        border="start"
+        elevation="2"
+        closable
+        :close-label="$t('close')"
+        :text="alert_text"
+        v-if="alert_text!= null "
+        class="mb-8"
+    >
 
-  </v-alert>
+    </v-alert>
 
-  <!--  <div class="v-row mb-5 mt-5  ">-->
-  <!--    <v-text-field-->
-  <!--        class="v-col-6"-->
-  <!--        v-model="date1"-->
-  <!--        :label="$t('start_date')"-->
-  <!--        type="date"-->
-  <!--        @change="filter"-->
-  <!--    ></v-text-field>-->
+    <!--  <div class="v-row mb-5 mt-5  ">-->
+    <!--    <v-text-field-->
+    <!--        class="v-col-6"-->
+    <!--        v-model="date1"-->
+    <!--        :label="$t('start_date')"-->
+    <!--        type="date"-->
+    <!--        @change="filter"-->
+    <!--    ></v-text-field>-->
 
 
-  <!--    <v-text-field-->
-  <!--        class="v-col-6"-->
-  <!--        v-model="date2"-->
-  <!--        :label="$t('end_date')"-->
-  <!--        type="date"-->
-  <!--        @change="filter"-->
-  <!--    ></v-text-field>-->
+    <!--    <v-text-field-->
+    <!--        class="v-col-6"-->
+    <!--        v-model="date2"-->
+    <!--        :label="$t('end_date')"-->
+    <!--        type="date"-->
+    <!--        @change="filter"-->
+    <!--    ></v-text-field>-->
 
-  <!--  </div>-->
-  <div class="v-row mb-5 mt-5  ">
-    <v-select
-        class="mx-9"
-        :label="$t('xAxis')"
-        v-model="selectX"
-        :items="firstSelectBoxComputed"
-    ></v-select>
-    <v-select
-        class="mx-9"
-        :label="$t('yAxis')"
-        v-model="selectY"
-        :items="secondSelectBoxComputed"
-    ></v-select>
-  </div>
+    <!--  </div>-->
+    <div class="v-row mb-5 mt-5  ">
+      <v-select
+          class="mx-9"
+          :label="$t('xAxis')"
+          v-model="selectX"
+          :items="firstSelectBoxComputed"
+      ></v-select>
+      <v-select
+          class="mx-9"
+          :label="$t('yAxis')"
+          v-model="selectY"
+          :items="secondSelectBoxComputed"
+      ></v-select>
+    </div>
 
-  <canvas id="myChart"></canvas>
-  <v-card>
-    <v-card-title>
-      Results
-      <v-spacer></v-spacer>
+    <canvas id="myChart"></canvas>
+    <v-card>
+      <v-card-title>
+        Results
+        <v-spacer></v-spacer>
 
-      <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-      ></v-text-field>
-    </v-card-title>
+        <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+        ></v-text-field>
+      </v-card-title>
 
-    <v-btn  text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
-      print
-    </v-btn>
+      <v-btn text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+        print
+      </v-btn>
+
+      <v-data-table
+          :headers="header"
+          :items="result"
+          :search="search"
+      >
+        <template #top>
+          <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+
+        </template>
+
+        <template #item="{ item ,index}">
+          <tr>
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.columns.therapist_name }}</td>
+            <td>{{ item.columns.grow_age }}</td>
+            <td>{{ item.columns.diff_age }}</td>
+            <td>{{ Math.round(item.columns.late_percentage) }} %</td>
+            <td>{{ item.columns.basal_age }} months</td>
+            <td>{{ item.columns.child_age }} months</td>
+            <td>{{ formateDate(item.columns.result_created_at) }}</td>
+            <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
+            <!--          <td>-->
+            <td class="text-center">
+              <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
+                mdi-pencil
+              </v-icon>
+
+              <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
+                <v-form fast-fail @submit.prevent ref="form">
+                  <v-text-field
+                      v-model="examDate"
+                      :rules="NameRules"
+                      :label="$t('examDate')"
+                      type="datetime-local"
+
+                  ></v-text-field>
+                  <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
+                </v-form>
+              </Dialog>
+            </td>
+
+          </tr>
+
+        </template>
+
+      </v-data-table>
+    </v-card>
 
     <v-data-table
+        class="hidden-table"
         :headers="header"
         :items="result"
         :search="search"
+        id="print"
+        hide-default-footer
+        disable-pagination
+
+
     >
       <template #top>
         <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
@@ -469,14 +530,16 @@ print(){
           <td>{{ item.columns.therapist_name }}</td>
           <td>{{ item.columns.grow_age }}</td>
           <td>{{ item.columns.diff_age }}</td>
-          <td>{{ Math.round(item.columns.late_percentage)  }} %</td>
+          <td>{{ Math.round(item.columns.late_percentage) }} %</td>
           <td>{{ item.columns.basal_age }} months</td>
           <td>{{ item.columns.child_age }} months</td>
           <td>{{ formateDate(item.columns.result_created_at) }}</td>
           <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
           <!--          <td>-->
           <td class="text-center">
-            <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">mdi-pencil</v-icon>
+            <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
+              mdi-pencil
+            </v-icon>
 
             <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
               <v-form fast-fail @submit.prevent ref="form">
@@ -487,7 +550,7 @@ print(){
                     type="datetime-local"
 
                 ></v-text-field>
-                <button class="bg-blue pa-3 rounded" @click="submit">{{$t('submit')}}</button>
+                <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
               </v-form>
             </Dialog>
           </td>
@@ -495,77 +558,27 @@ print(){
         </tr>
 
       </template>
+      <template #bottom>
+
+      </template>
 
     </v-data-table>
-  </v-card>
-
-  <v-data-table
-      class="hidden-table"
-      :headers="header"
-      :items="result"
-      :search="search"
-      id="print"
-      hide-default-footer
-      disable-pagination
-
-
-  >
-    <template #top>
-      <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
-
-    </template>
-
-    <template #item="{ item ,index}">
-      <tr>
-        <td>{{ index + 1 }}</td>
-        <td>{{ item.columns.therapist_name }}</td>
-        <td>{{ item.columns.grow_age }}</td>
-        <td>{{ item.columns.diff_age }}</td>
-        <td>{{ Math.round(item.columns.late_percentage) }} %</td>
-        <td>{{ item.columns.basal_age }} months</td>
-        <td>{{ item.columns.child_age }} months</td>
-        <td>{{ formateDate(item.columns.result_created_at) }}</td>
-        <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
-        <!--          <td>-->
-        <td class="text-center">
-          <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">mdi-pencil</v-icon>
-
-          <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
-            <v-form fast-fail @submit.prevent ref="form">
-              <v-text-field
-                  v-model="examDate"
-                  :rules="NameRules"
-                  :label="$t('examDate')"
-                  type="datetime-local"
-
-              ></v-text-field>
-              <button class="bg-blue pa-3 rounded" @click="submit">{{$t('submit')}}</button>
-            </v-form>
-          </Dialog>
-        </td>
-
-      </tr>
-
-    </template>
-    <template #bottom >
-
-    </template>
-
-  </v-data-table>
   </div>
 
 </template>
 <style scoped>
 .hidden-table {
-  border:1px solid black;
+  border: 1px solid black;
   display: none;
-  margin-top:200px
+  margin-top: 200px
 }
+
 .hidden-table th {
-  border:1px solid black;
+  border: 1px solid black;
 }
+
 .hidden-table td {
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 
