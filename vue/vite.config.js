@@ -38,15 +38,15 @@ export default defineConfig({
   /**
    * when build can be used to define admin entry point and forntend website entry point
    */
-  // build: {
-  //   rollupOptions: {
-  //     input: {
-  //       main: resolve(__dirname, "index.html"),
-  //       // admin: resolve(__dirname, 'admin/index.html'),
-  //     },
-  //   },
-  // },
   build: {
-    outDir: '../laravel/public'
-  }
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        // admin: resolve(__dirname, 'admin/index.html'),
+      },
+    },
+  },
+  // build: {
+  //   outDir: '../laravel/public'
+  // }
 });
