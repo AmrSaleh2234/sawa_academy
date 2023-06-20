@@ -355,6 +355,9 @@ print(){
       })
       return result;
     },
+    goBack() {
+      this.$router.go(-1)
+    },
 
   }, watch: {
     selectX(value) {

@@ -40,6 +40,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     getResults() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
         'date1': this.date1,
@@ -49,8 +52,11 @@ export default {
         this.result = res.data.resultEvaluation
         this.loading = false
         setTimeout(() => {
+
           window.print()
-        }, 500)
+          this.$router.go(-1)
+
+        }, 1500)
 
 
         console.log(this.result)
