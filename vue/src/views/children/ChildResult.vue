@@ -130,8 +130,8 @@ print(){
   // setTimeout(()=>{
   //   document.getElementById('print').style.display="none";
   // }, 1000)
-  this.$router.push({ name: 'printChildResult' , params: {child_id: this.$route.params.child_id,sideProfile_id:this.$route.params.sideProfile_id,evaluation_id:this.$route.params.evaluation_id} })
-  // window.open(route.href,"_blank")
+  const route =this.$router.resolve({ name: 'printChildResult' , params: {child_id: this.$route.params.child_id,sideProfile_id:this.$route.params.sideProfile_id,evaluation_id:this.$route.params.evaluation_id} })
+  window.open(route.href,"_blank")
 },
     filter() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
