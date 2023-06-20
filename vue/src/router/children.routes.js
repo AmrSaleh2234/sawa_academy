@@ -7,6 +7,7 @@ const Create = () => import("../views/children/Create.vue");
 const evaluation = () => import("../views/children/ChildEvaluation.vue");
 const result = () => import("../views/children/ChildResult.vue");
 const editResult = () => import("../views/children/evaluationResultEdit.vue");
+const res = () => import("../views/children/Resultr.vue");
 
 const childrenRoutes = [
     {
@@ -14,6 +15,7 @@ const childrenRoutes = [
         name: "Children",
         component: Index,
     },
+
     // create
     {
         path: "children/create",
@@ -31,6 +33,11 @@ const childrenRoutes = [
         path: "children/:id/edit",
         name: "EditChildren",
         component: Edit,
+    },
+    {
+        path: "children/mo",
+        name: "resulte",
+        component: res,
     },
     {
         path: "children/:child_id/:sideProfile_id",

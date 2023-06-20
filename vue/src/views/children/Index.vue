@@ -18,7 +18,7 @@ export default {
     }
   },computed:{
     header(){
-      return this.headers=[ { key: 'id', title: this.$t('index') },
+        return this.headers=[ { key: 'id', title: this.$t('index') },
         { key: 'name', title: this.$t('child_name') },
         { key: 'birth_date', title: this.$t('birth_date') },
         { key: 'actions', title: this.$t('actions') },
@@ -68,8 +68,7 @@ export default {
 </script>
 
 <template>
-  <div>
-    <v-alert
+  <v-alert
       type="success"
       variant="tonal"
       border="start"
@@ -122,7 +121,7 @@ export default {
         </tr>
 
       </template>
+
     </v-data-table>
   </v-card>
-  </div>
 </template>

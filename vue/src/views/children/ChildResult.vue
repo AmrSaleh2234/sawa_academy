@@ -443,7 +443,7 @@ print(){
           hide-details
       ></v-text-field>
     </v-card-title>
-
+<!-- /////////////////////////////////////////////////// -->
     <v-btn v-print="'#print'" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
       print
     </v-btn>
@@ -464,7 +464,7 @@ print(){
           <td>{{ item.columns.therapist_name }}</td>
           <td>{{ item.columns.grow_age }}</td>
           <td>{{ item.columns.diff_age }}</td>
-          <td>{{ item.columns.late_percentage }} %</td>
+          <td>{{ Math.rounded(item.columns.late_percentage) }} %</td>
           <td>{{ item.columns.basal_age }} months</td>
           <td>{{ formateDate(item.columns.result_created_at) }}</td>
           <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
