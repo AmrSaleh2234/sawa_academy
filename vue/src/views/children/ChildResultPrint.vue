@@ -51,12 +51,10 @@ export default {
         console.log(res.data)
         this.result = res.data.resultEvaluation
         this.loading = false
-        setTimeout(() => {
 
           window.print()
-          this.$router.go(-1)
 
-        }, 1500)
+
 
 
         console.log(this.result)
