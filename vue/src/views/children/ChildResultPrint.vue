@@ -51,10 +51,11 @@ export default {
         console.log(res.data)
         this.result = res.data.resultEvaluation
         this.loading = false
+        setTimeout(() => {
 
           window.print()
 
-
+        }, 1400)
 
 
         console.log(this.result)
