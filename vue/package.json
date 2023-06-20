@@ -24,6 +24,7 @@
     "primevue": "^3.29.2",
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.2.45",
+    "vue-html-to-paper": "^2.0.3",
     "vue-i18n": "^9.2.2",
     "vue-loader": "^17.0.1",
     "vue-router": "^4.1.6",

@@ -4,6 +4,7 @@ import router from "./router";
 // i18n
 import i18n from "@/plugins/i18n";
 import PrimeVue from 'primevue/config';
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 // Vuetify
 import "vuetify/styles";
@@ -39,5 +40,6 @@ app.use(vuetify);
 app.use(router);
 app.use(PrimeVue);
 app.use(print)
+app.use(VueHtmlToPaper)
 
 app.mount("#app");

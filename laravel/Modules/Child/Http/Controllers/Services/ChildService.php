@@ -12,9 +12,9 @@ class ChildService
           return  ChildRepository::getChildWithSideProfile($child);
     }
 
-    public function calcChildAgeInMonths($child,$date)
+    public function calcChildAgeInMonths($child)
     {
-        $childAgeInMonth=(Carbon::parse($child->birth_date)->diffInMonths($date));
+        $childAgeInMonth=(Carbon::parse($child->birth_date)->diffInMonths(Carbon::now('EET')));
         if((int)Carbon::parse($child->birth_date)->diff(Carbon::now())->format('%d')>=15)
             $childAgeInMonth++;
         return $childAgeInMonth;

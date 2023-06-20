@@ -75,7 +75,9 @@ class EavlautionRepository
          evaluation_results.diff_age diff_age ,
           evaluation_results.id id ,
           evaluation_results.basal_age basal_age ,
-           evaluation_results.created_at result_created_at")
+           evaluation_results.created_at result_created_at,
+           evaluation_results.child_age child_age
+           ")
             ->join("evaluations", "evaluation_results.evaluation_id", '=', 'evaluations.id')
             ->join("children", "evaluation_results.child_id", '=', 'children.id')
             ->join("users", "evaluation_results.therapist_id", '=', 'users.id')

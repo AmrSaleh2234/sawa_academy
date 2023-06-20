@@ -38,7 +38,9 @@ export default {
     xAxis:"محور السينات",
     yAxis:"محور الصادات",
     examDate:"تاريخ الامتحان",
-    operation:"العمليات"
+    operation:"العمليات",
+    child_age:"عمر الطفل",
+    back:"رجوع"
 
 
 

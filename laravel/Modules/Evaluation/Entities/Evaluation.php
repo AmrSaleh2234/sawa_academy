@@ -35,7 +35,7 @@ class evaluation extends Model
 
     public function child()
     {
-        return $this->belongsToMany(Child::class,'evaluation_results')->withTimestamps()->withPivot("id","therapist_id","grow_age","diff_age","late_percentage")->as("result");
+        return $this->belongsToMany(Child::class,'evaluation_results')->withTimestamps()->withPivot("id","therapist_id","grow_age","diff_age","late_percentage","child_age")->as("result");
     }
 
     public function sideProfile()

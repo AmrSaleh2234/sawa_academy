@@ -73,6 +73,7 @@ class EvaluationService
             "late_percentage"=>$latePercenatage,
             "created_at"=>$request->date,//time zone Amman
             "basal_age"=>$basalAge==null?$basalAge:$basalAge->min_age+ $basalAge->type,
+            "child_age"=>$childAge
         ]);
 
 

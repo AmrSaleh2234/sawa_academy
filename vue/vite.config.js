@@ -46,4 +46,7 @@ export default defineConfig({
       },
     },
   },
+  // build: {
+  //   outDir: '../laravel/public'
+  // }
 });
