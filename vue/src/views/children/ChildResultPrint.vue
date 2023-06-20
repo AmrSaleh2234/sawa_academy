@@ -54,9 +54,8 @@ export default {
         setTimeout(() => {
 
           window.print()
-          this.$router.go(-1)
 
-        }, 1500)
+        }, 1400)
 
 
         console.log(this.result)
