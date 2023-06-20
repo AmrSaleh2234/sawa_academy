@@ -24,6 +24,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/create', [ChildController::class, 'store'])->name('child.create');
 
         Route::get('/{child}/{evaluation}', [ChildController::class, 'childAndEvaluation'])->name('child.childAndEvaluation');
+        Route::post('/results', [ChildController::class, 'getResultsWithSideprofile'])->name('child.results');
         Route::get('/{child}', [ChildController::class, 'show'])->name('child.show');
         Route::post('/{child}/update', [ChildController::class, 'update'])->name('child.update');
         Route::delete('/{child}/delete', [ChildController::class, 'destroy'])->name('child.delete');

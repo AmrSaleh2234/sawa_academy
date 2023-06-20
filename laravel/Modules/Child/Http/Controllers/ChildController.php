@@ -100,4 +100,10 @@ class ChildController extends Controller
     }
 
 
+    public function getResultsWithSideprofile(Request $request)
+    {
+        return $this->ControllerHandler->show('evaluation_results', ChildRepository::getResultsWithSideProfile($request));
+    }
+
+
 }
