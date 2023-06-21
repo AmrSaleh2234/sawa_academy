@@ -3,9 +3,9 @@ import axios from "axios";
 import InputText from 'primevue/inputtext';
 
 export default {
-  comments:{InputText},
+  components:{InputText},
   data: () => ({
-    valu: null,
+    valu:'',
     NameRules: [
       value => {
         if (value?.length >= 3) return true
@@ -75,13 +75,14 @@ export default {
           :label="$t('child_name')"
           :rules="NameRules"
       ></v-text-field>
-
-      <v-text-field
+      <div style="width: 100%;" class="card flex  justify-content-center">
+        <InputText style="width: 100%;" type="date" :rules="NameRules" showIcon dateFormat="dd/mm/yy" v-model="child.birth_date" />
+    </div>
+      <!-- <v-text-field
           v-model="child.birth_date"
           :label="$t('birth_date')"
           type="date"
-      ></v-text-field>
-
+      ></v-text-field> -->
       <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
     </v-form>
   </v-sheet>
