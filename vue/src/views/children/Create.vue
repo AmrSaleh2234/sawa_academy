@@ -1,9 +1,11 @@
 <script>
 import axios from "axios";
+import InputText from 'primevue/inputtext';
 
 export default {
+  comments:{InputText},
   data: () => ({
-
+    valu: null,
     NameRules: [
       value => {
         if (value?.length >= 3) return true

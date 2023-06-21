@@ -136,7 +136,7 @@ export default {
       <div> <p class="w-[100%] text-h4 text-center ma-4" v-for="item in print_results">{{item.evaluation_title }}</p></div>
      <div>
       <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_name}}</p>
-      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_age}}</p>
+      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.birth_date}}</p>
      
       
      </div>
