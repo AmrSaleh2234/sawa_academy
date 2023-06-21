@@ -455,7 +455,7 @@ export default {
       ></v-select>
     </div>
 
-    <canvas id="myChart"></canvas>
+    <canvas id="myChart" style="height: 70vh"></canvas>
     <v-card>
       <v-card-title>
         Results
