@@ -160,7 +160,6 @@ export default {
               <td>{{ item.columns.child_age }} months</td>
               <td>{{ formateDate(item.columns.result_created_at) }}</td>
 
-
             </tr>
 
           </template>

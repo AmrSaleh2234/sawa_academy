@@ -38,6 +38,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{child}/{sideProfile}/evaluations-child', [EvaluationController::class, 'showEvaluationsForChildWithSpecificSideProfile'])->name('evaluation.showEvaluationsForChildWithSpecificSideProfile');
         Route::post('/{evaluationResults}',[EvaluationController::class,'editDateEvaluations'])->name('evaluationResult.edit');
     });
+
+
     Route::group(['prefix' => 'side-profiles'], function () {
         Route::get('/', [\Modules\Evaluation\Http\Controllers\SideProfileController::class, 'index'])->name('sideProfile.index');
         Route::get('/all-evaluations', [\Modules\Evaluation\Http\Controllers\SideProfileController::class, 'getSideprofileWithEvalautions']);
