@@ -9,7 +9,7 @@ export default {
       search: '',
       headers: [
 
-        {key: 'evaluation_title', title: this.$t('evaluation_title')},
+        {key: 'evaluation_title', title: 'Evaluation Title'},
         { title: this.$t('operation')},
       ],
       sideProfile: [],
@@ -20,6 +20,13 @@ export default {
     }
   },
   methods: {
+    showside(id){
+      // console.log(id)
+      // this.$router.push({ name: 'showChildEvaluation' , params: {id: id} })
+      this.$router.push({ name: 'resulte', params: {child_id:this.$route.params.id ,sideProfile_id: id}})
+      // this.$router.push({ name: 'resulte' })
+      // this.$router.push({ name: 'resulte' })
+    },
     goBack() {
         this.$router.go(-1)
       },
@@ -57,16 +64,7 @@ export default {
   },
   mounted() {
     this.getSideProfile()
-  },
-  computed: {
-    header() {
-      return this.headers = [
-        {key: 'evaluation_title', title: this.$t('evaluation_title')},
-        { title: this.$t('operation')},
-
-      ];
-    }
-  },
+  }
 }
 </script>
 
@@ -77,7 +75,7 @@ export default {
       start
       icon="mdi-arrow-left"
     ></v-icon>
-    {{$t('back')}}
+    Back
   </v-btn>
   <v-alert
       type="success"
@@ -109,7 +107,7 @@ export default {
       ></v-text-field>
     </v-card-title>
     <v-data-table
-        :headers="header"
+        :headers="headers"
         :items="sideProfile"
         :search="search"
         :group-by="groupBy"
@@ -131,8 +129,8 @@ export default {
           </td>
           <td></td>
           <td>
-<!--            <v-icon small color="primary" class="mx-3" @click="createEvaluation(item.items[0].raw.evaluation_id)">mdi-plus-box</v-icon>-->
-<!--            <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-pencil</v-icon>-->
+           <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-plus-box</v-icon>
+           <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-</v-icon>
 
           </td>
         </tr>
