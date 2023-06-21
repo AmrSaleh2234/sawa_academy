@@ -40,7 +40,8 @@ export default {
     examDate:"Exam Date",
     operation:"operations",
     child_age:" child age",
-    back:"back"
+    back:"back",
+    print:"print"
 
 
 

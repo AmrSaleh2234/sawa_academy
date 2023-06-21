@@ -457,7 +457,7 @@ export default {
       </v-card-title>
 
       <v-btn text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
-        print
+        {{$t('print')}}
       </v-btn>
 
       <v-data-table

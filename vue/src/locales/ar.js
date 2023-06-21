@@ -40,7 +40,8 @@ export default {
     examDate:"تاريخ الامتحان",
     operation:"العمليات",
     child_age:"عمر الطفل",
-    back:"رجوع"
+    back:"رجوع",
+    print:"طباعة"
 
 
 
