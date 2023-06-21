@@ -13,6 +13,7 @@ export default {
       search: '',
       headers: [],
       result: [],
+      print_results:[],
       alert_text: null,
       ctx: null,
       created_at: [],
@@ -72,9 +73,16 @@ export default {
     Dialog,
     Button
   },
+ 
   beforeMount() {
     this.getResults()
-
+    axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
+        
+      }).then(res => {
+        
+        this.print_results=res.data.resultEvaluation
+        
+        })
 
   },
   computed: {
@@ -120,13 +128,19 @@ export default {
   >
 
   </v-alert>
+
+  
   <div class="back-back">
     <div  class="back">
-
-
+      <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
+      <div> <p class="w-[100%] text-h4 text-center ma-4" v-for="item in print_results">{{item.evaluation_title }}</p></div>
+     <div>
+      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_name}}</p>
+      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_age}}</p>
+     
+      
+     </div>
       <v-card>
-
-
         <v-data-table
             class="hidden-table"
             :headers="header"

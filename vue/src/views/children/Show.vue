@@ -129,8 +129,8 @@ export default {
           </td>
           <td></td>
           <td>
-           <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-plus-box</v-icon>
-           <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-</v-icon>
+           <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-eye</v-icon>
+           <!-- <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-eye</v-icon> -->
 
           </td>
         </tr>
