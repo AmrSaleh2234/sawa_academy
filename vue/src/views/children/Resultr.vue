@@ -24,7 +24,7 @@ import axios from 'axios'
   export default {
     data () {
       return {
-        sortBy: [{ key: 'calories', order: 'asc' }],
+        sortBy: [{ key: 'evaluation_title', order: 'asc' }],
         headers: [
           {
             title: 'id',
