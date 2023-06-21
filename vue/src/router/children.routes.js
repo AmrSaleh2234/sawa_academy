@@ -35,7 +35,7 @@ const childrenRoutes = [
         component: Edit,
     },
     {
-        path: "children/mo",
+        path: "children/Resultr/:child_id/:sideProfile_id",
         name: "resulte",
         component: res,
     },
