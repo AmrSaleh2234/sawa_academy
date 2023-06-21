@@ -68,6 +68,7 @@ class EavlautionRepository
     public static function getResultForSpecificChildWithSpecificSideProfile($child, $sideProfile, $evaluation)
     {
         return EvaluationResults::selectRaw("children.name child_name ,
+        children.birth_date birth_date ,
          users.name therapist_name ,
         evaluations.title evaluation_title ,
         evaluation_results.grow_age grow_age ,

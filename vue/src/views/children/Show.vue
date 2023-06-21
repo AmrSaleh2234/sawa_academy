@@ -15,7 +15,8 @@ export default {
       sideProfile: [],
       alert_text: null,
       groupBy: [{key: 'side_profile_title'}],
-      loading:true
+      loading:true,
+      childName:''
 
     }
   },
@@ -37,7 +38,16 @@ export default {
         console.log(res.data.sideProfile)
 
       })
-    }, editItem(id) {
+    },
+    getChildrenName(){
+      axios.get(`api/child/${this.$route.params.id}`).then(res => {
+        this.childName = res.data.child.name
+        // this.loading = false;
+
+
+      })
+    }
+    , editItem(id) {
       this.$router.push({name: 'EditSideProfiles', params: {id: id}})
     }
     , deleteItem(id) {
@@ -64,6 +74,7 @@ export default {
   },
   mounted() {
     this.getSideProfile()
+    this.getChildrenName()
   }
 }
 </script>
@@ -95,7 +106,7 @@ export default {
 
   <v-card>
     <v-card-title>
-      Side Profile
+      {{childName}}
       <v-spacer></v-spacer>
 
       <v-text-field

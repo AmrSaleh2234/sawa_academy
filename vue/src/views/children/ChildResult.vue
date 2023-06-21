@@ -35,7 +35,7 @@ export default {
       ],
       examId: '',
       loading: true,
-
+      side_profileName:''
 
     }
   },
@@ -138,6 +138,13 @@ export default {
         }
       })
       // window.open(route.href,"_blank")
+    },
+    getSideprofile(){
+      axios.get(`api/side-profiles/${this.$route.params.sideProfile_id}`).then(res => {
+        this.side_profileName = res.data.sideProfile.title
+        // this.loading = false;
+        console.log(res.data.sideProfile)
+      })
     },
     filter() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
@@ -316,7 +323,7 @@ export default {
   },
   mounted() {
     this.getResults()
-
+    this.getSideprofile()
 
   },
   computed: {
@@ -385,6 +392,13 @@ export default {
 </script>
 
 <template>
+  <div class="my-5" v-if="result[0] && side_profileName && locale == 'en'">
+    {{result[0].child_name}}/{{side_profileName}}/{{result[0].evaluation_title}}
+  </div>
+
+  <div class="my-5" v-if="result[0] && side_profileName && locale == 'ar'">
+    {{result[0].evaluation_title}} \{{side_profileName}}\{{result[0].child_name}}
+  </div>
   <div>
     <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
       <v-icon
