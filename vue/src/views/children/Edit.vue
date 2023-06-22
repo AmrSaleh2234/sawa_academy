@@ -1,7 +1,9 @@
 <script>
 import axios from "axios";
+import InputText from 'primevue/inputtext';
 
 export default {
+  components:{InputText},
   data: () => ({
 
     NameRules: [
@@ -74,12 +76,16 @@ export default {
             :label="$t('child_name')"
             :rules="NameRules"
         ></v-text-field>
+        <div style="width: 100%;" class="card flex  justify-content-center">
+          <InputText :label="$t('birth_date')" style="width: 100%;" type="date" :rules="NameRules"  dateFormat="dd/mm/yy" v-model="child.birth_date" />
+      </div>
+     
   
-        <v-text-field
+        <!-- <v-text-field
             v-model="child.birth_date"
             :label="$t('birth_date')"
            type="date"
-        ></v-text-field>
+        ></v-text-field> -->
   
         <v-btn type="submit" @click="submit" block class="mt-2">{{$t('submit')}}</v-btn>
       </v-form>

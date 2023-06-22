@@ -3,9 +3,12 @@ import axios from "axios";
 import {th} from "vuetify/locale";
 import {format, formatDistance, formatRelative, subDays, differenceInMonths} from 'date-fns'
 import moment from "moment";
+import InputText from 'primevue/inputtext';
 
 export default {
+  components:{InputText},
   data: () => ({
+    valu:"",
 
     NameRules: [
       value => {
@@ -186,6 +189,7 @@ export default {
     this.getChildren()
 
     this.examDate =  moment(new Date()).format("YYYY-MM-DDTHH:mm")
+    
     console.log(this.examDate)
   },
   components: {}
@@ -198,6 +202,7 @@ export default {
 
 <template>
   <div>
+    
     <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
       <v-icon
         start
@@ -233,7 +238,7 @@ export default {
             v-model="examDate"
             :label="$t('examDate')"
             type="datetime-local"
-  
+            
         ></v-text-field>
         <div v-for="questions in Object.values(headerAndQuestions).reverse()">
   

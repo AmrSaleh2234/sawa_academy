@@ -5,7 +5,7 @@ import InputText from 'primevue/inputtext';
 export default {
   components:{InputText},
   data: () => ({
-    valu:'',
+    
     NameRules: [
       value => {
         if (value?.length >= 3) return true

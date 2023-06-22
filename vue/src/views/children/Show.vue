@@ -123,12 +123,12 @@ export default {
       >
 
         <template #top>
-          <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+          <v-progress-linear v-if="loading" slot="progress" style="color:#F6F6F6" indeterminate></v-progress-linear>
         </template>
         <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
 
           <tr>
-            <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#EFEFEF;  ">
+            <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#F6F6F6;  ">
               <v-icon
               >{{ isGroupOpen(item) ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
               </v-icon>
@@ -136,8 +136,8 @@ export default {
               {{ item.value }}
 
             </td>
-            <td @click="toggleGroup(item)" style="background-color:#EFEFEF; cursor: pointer;"></td>
-            <td style="background-color:#EFEFEF">
+            <td @click="toggleGroup(item)" style="background-color:#F6F6F6; cursor: pointer;"></td>
+            <td style="background-color:#F6F6F6">
               <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-eye
               </v-icon>
               <!-- <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-eye</v-icon> -->
