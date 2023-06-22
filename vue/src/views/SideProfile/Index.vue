@@ -140,16 +140,16 @@ export default {
       <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
 
         <tr>
-          <td>
-            <v-icon @click="toggleGroup(item)"
+          <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#EFEFEF;  ">
+            <v-icon 
             >{{ isGroupOpen(item) ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
             </v-icon>
 
             {{ item.value}}
 
           </td>
-          <td></td>
-          <td>
+          <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#EFEFEF;  "></td>
+          <td style=" background-color:#EFEFEF; ">
             <v-icon small color="primary" class="mx-3" @click="createEvaluation(item.items[0].raw.evaluation_id)">mdi-plus-box</v-icon>
             <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-pencil</v-icon>
 

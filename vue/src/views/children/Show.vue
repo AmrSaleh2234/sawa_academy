@@ -119,6 +119,7 @@ export default {
           :items="sideProfile"
           :search="search"
           :group-by="groupBy"
+          style="padding:15px;"
       >
 
         <template #top>
@@ -127,16 +128,16 @@ export default {
         <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
 
           <tr>
-            <td>
-              <v-icon @click="toggleGroup(item)"
+            <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#EFEFEF;  ">
+              <v-icon
               >{{ isGroupOpen(item) ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
               </v-icon>
 
               {{ item.value }}
 
             </td>
-            <td></td>
-            <td>
+            <td @click="toggleGroup(item)" style="background-color:#EFEFEF; cursor: pointer;"></td>
+            <td style="background-color:#EFEFEF">
               <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-eye
               </v-icon>
               <!-- <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-eye</v-icon> -->
