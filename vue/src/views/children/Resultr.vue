@@ -10,7 +10,7 @@
   
         <v-data-table
           v-model:sort-by="sortBy"
-          :headers="headers"
+          :headers="header"
           :items="desserts"
           class="elevation-1"
         ></v-data-table>
@@ -21,29 +21,39 @@
 </template>
 <script>
 import axios from 'axios'
+
   export default {
     data () {
       return {
         sortBy: [{ key: 'evaluation_title', order: 'asc' }],
         headers: [
-          {
-            title: 'id',
-            align: 'start',
-            sortable: false,
-            key: 'id',
-          },
-          { title: 'evaluation_title', key: 'evaluation_title'},
-          { title: 'side_profile_title', key: 'side_profile_title' },
-          { title: 'child_age', key: 'child_age' },
-          { title: 'diff_age', key: 'diff_age' },
-          { title: 'grow_age', key: 'grow_age' },
-          { title: 'late_percentage', key: 'late_percentage' },
-          { title: 'result_created_at', key: 'result_created_at' },
-        
+         
         ],
         desserts: [],
       }
     },
+    computed: {
+    locale() {
+
+      return this.$i18n.locale;
+    },
+    header() {
+      return this.headers = [
+        {title: this.$t('id') ,key:'id'},
+
+        { title:this.$t('evaluation_title'), key: 'evaluation_title'},
+          { title:this.$t('side_profile_title'), key: 'side_profile_title' },
+          { title: this.$t('child_age'), key: 'child_age' },
+          { title: this.$t('diff_age'), key: 'diff_age' },
+          { title: this.$t('grow_age'), key: 'grow_age' },
+          { title: this.$t('late_percentage'), key: 'late_percentage' },
+          { title: this.$t('result_created_at'), key: 'result_created_at' },
+
+
+      ];
+    },
+  },
+    
     methods: {
         goBack() {
         this.$router.go(-1)
@@ -51,7 +61,7 @@ import axios from 'axios'
     },
     mounted() {
         console.log(this.$route.params.child_id,this.$route.params.sideProfile_id)
-        axios.post("/api/child/results/",{
+        axios.post("/api/child/results",{
           sideprofile_id:this.$route.params.sideProfile_id,child_id:this.$route.params.child_id
         }).then(res => {
           console.log(res.data.evaluation_results)

@@ -41,8 +41,11 @@ export default {
     operation:"العمليات",
     child_age:"عمر الطفل",
     back:"رجوع",
-    print:"طباعة"
-
+    print:"طباعة",
+    evaluation_title:" التقييم_العنوان",
+    side_profile_title:"عنوان_الملف_الشخصي",
+    result_created_at:" تم انشاء النتيجه في",
+    
 
 
 

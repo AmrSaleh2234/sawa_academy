@@ -41,7 +41,16 @@ export default {
     operation:"operations",
     child_age:" child age",
     back:"back",
-    print:"print"
+    print:"print",
+    evaluation_title:"evaluation_title",
+    child_age:"child_age",
+    diff_age:"diff_age",
+    grow_age:"grow_age",
+    late_percentage:"late_percentage",
+    result_created_at:"result_created_at"
+
+
+
 
 
 

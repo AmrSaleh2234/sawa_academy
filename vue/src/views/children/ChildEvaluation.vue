@@ -50,7 +50,6 @@ export default {
       return this.headers = [{title: "id"},
         {key: 'evaluation_title', title: this.$t('evaluation_title')},]
     }
-
   }
 }
 </script>
