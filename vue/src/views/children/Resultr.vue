@@ -53,7 +53,7 @@ import axios from 'axios'
     },
     mounted() {
         console.log(this.$route.params.child_id,this.$route.params.sideProfile_id)
-        axios.post("/api/child/results/",{
+        axios.post("/api/child/results",{
           sideprofile_id:this.$route.params.sideProfile_id,child_id:this.$route.params.child_id
         }).then(res => {
           console.log(res.data.evaluation_results)
