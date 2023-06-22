@@ -129,7 +129,14 @@ export default {
       <template #top>
         <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
       </template>
+      <template #headers="">
+        <tr>
+          <td>{{$t('evaluation_type')}}</td>
+          <td>{{headers[0].title}}</td>
+          <td>{{headers[1].title}}</td>
+        </tr>
 
+      </template>
       <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
 
         <tr>

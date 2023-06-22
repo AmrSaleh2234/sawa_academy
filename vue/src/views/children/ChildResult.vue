@@ -531,12 +531,14 @@ export default {
         hide-default-footer
         disable-pagination
 
-
     >
+
       <template #top>
         <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
 
       </template>
+
+
 
       <template #item="{ item ,index}">
         <tr>

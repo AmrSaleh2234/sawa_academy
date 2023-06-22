@@ -41,7 +41,8 @@ export default {
     operation:"operations",
     child_age:" child age",
     back:"back",
-    print:"print"
+    print:"print",
+    evaluation_type: "Evaluation Type"
 
 
 

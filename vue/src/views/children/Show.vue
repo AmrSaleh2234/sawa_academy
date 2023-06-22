@@ -1,4 +1,4 @@
- <script>
+<script>
 import axios from 'axios'
 import {th} from "vuetify/locale";
 
@@ -10,27 +10,27 @@ export default {
       headers: [
 
         {key: 'evaluation_title', title: 'Evaluation Title'},
-        { title: this.$t('operation')},
+        {title: this.$t('operation')},
       ],
       sideProfile: [],
       alert_text: null,
       groupBy: [{key: 'side_profile_title'}],
-      loading:true,
-      childName:''
+      loading: true,
+      childName: ''
 
     }
   },
   methods: {
-    showside(id){
+    showside(id) {
       // console.log(id)
       // this.$router.push({ name: 'showChildEvaluation' , params: {id: id} })
-      this.$router.push({ name: 'resulte', params: {child_id:this.$route.params.id ,sideProfile_id: id}})
+      this.$router.push({name: 'resulte', params: {child_id: this.$route.params.id, sideProfile_id: id}})
       // this.$router.push({ name: 'resulte' })
       // this.$router.push({ name: 'resulte' })
     },
     goBack() {
-        this.$router.go(-1)
-      },
+      this.$router.go(-1)
+    },
     getSideProfile() {
       axios.get(`api/child/${this.$route.params.id}/show-side-profiles`).then(res => {
         this.sideProfile = res.data.sideProfile
@@ -39,12 +39,10 @@ export default {
 
       })
     },
-    getChildrenName(){
+    getChildrenName() {
       axios.get(`api/child/${this.$route.params.id}`).then(res => {
         this.childName = res.data.child.name
         // this.loading = false;
-
-
       })
     }
     , editItem(id) {
@@ -61,7 +59,7 @@ export default {
       })
     },
 
-    showItem(evaluation_id,side_profile_id) {
+    showItem(evaluation_id, side_profile_id) {
       console.log(evaluation_id)
       this.$router.push({
         name: 'showChildResult', params: {
@@ -80,90 +78,100 @@ export default {
 </script>
 
 <template>
- <div>
-  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
-    <v-icon
-      start
-      icon="mdi-arrow-left"
-    ></v-icon>
-    Back
-  </v-btn>
-  <v-alert
-      type="success"
-      variant="tonal"
-      border="start"
-      elevation="2"
-      closable
-      :close-label="$t('close')"
-      :text="alert_text"
-      v-if="alert_text!= null "
-      class="mb-8"
-  >
-
-  </v-alert>
-
-
-
-  <v-card>
-    <v-card-title>
-      {{childName}}
-      <v-spacer></v-spacer>
-
-      <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-      ></v-text-field>
-    </v-card-title>
-    <v-data-table
-        :headers="headers"
-        :items="sideProfile"
-        :search="search"
-        :group-by="groupBy"
+  <div>
+    <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+      <v-icon
+          start
+          icon="mdi-arrow-left"
+      ></v-icon>
+      Back
+    </v-btn>
+    <v-alert
+        type="success"
+        variant="tonal"
+        border="start"
+        elevation="2"
+        closable
+        :close-label="$t('close')"
+        :text="alert_text"
+        v-if="alert_text!= null "
+        class="mb-8"
     >
 
-      <template #top>
-        <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
-      </template>
-      <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
-
-        <tr>
-          <td>
-            <v-icon @click="toggleGroup(item)"
-            >{{ isGroupOpen(item) ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
-            </v-icon>
-
-            {{ item.value}}
-
-          </td>
-          <td></td>
-          <td>
-           <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-eye</v-icon>
-           <!-- <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-eye</v-icon> -->
-
-          </td>
-        </tr>
-      </template>
+    </v-alert>
 
 
+    <v-card>
+      <v-card-title>
+        {{ childName }}
+        <v-spacer></v-spacer>
 
-      <template #item="{ item , index }">
+        <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table
+          :headers="headers"
+          :items="sideProfile"
+          :search="search"
+          :group-by="groupBy"
+      >
+
+        <template #top>
+          <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+        </template>
+        <template #group-header="{item, isGroupOpen, toggleGroup ,columns , props}">
+
+          <tr>
+            <td>
+              <v-icon @click="toggleGroup(item)"
+              >{{ isGroupOpen(item) ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
+              </v-icon>
+
+              {{ item.value }}
+
+            </td>
+            <td></td>
+            <td>
+              <v-icon small color="primary" class="mx-3" @click="showside(item.items[0].raw.side_profile_id)">mdi-eye
+              </v-icon>
+              <!-- <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-eye</v-icon> -->
+
+            </td>
+          </tr>
+        </template>
+
+        <template #headers="">
+          <tr>
+            <td>{{$t('evaluation_type')}}</td>
+            <td>{{headers[0].title}}</td>
+            <td>{{headers[1].title}}</td>
+
+          </tr>
+
+        </template>
+
+        <template #item="{ item , index }">
 
 
-        <tr>
-          <td>{{ colgroup }}</td>
-          <td>{{ item.columns.evaluation_title }}</td>
-          <td>
-            <v-icon small color="primary" class="mr-2" @click="showItem(item.raw.evaluations_id,item.raw.side_profile_id)">mdi-eye</v-icon>
+          <tr>
+            <td>{{ colgroup }}</td>
+            <td>{{ item.columns.evaluation_title }}</td>
+            <td>
+              <v-icon small color="primary" class="mr-2"
+                      @click="showItem(item.raw.evaluations_id,item.raw.side_profile_id)">mdi-eye
+              </v-icon>
 
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-      </template>
+        </template>
 
-    </v-data-table>
-  </v-card>
- </div>
+      </v-data-table>
+    </v-card>
+  </div>
 </template>
