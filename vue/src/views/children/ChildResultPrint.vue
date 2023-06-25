@@ -62,6 +62,76 @@ export default {
       }).then(res => {
         this.result = res.data.resultEvaluation
         this.loading = false
+        this.created_at = []
+        this.latePercenteges = []
+        this.growAge = []
+        this.diffAge = []
+        this.result.forEach((elem) => {
+          this.created_at.push(moment(elem.result_created_at).format("MM-DD-YYYY"))
+          this.latePercenteges.push(elem.late_percentage)
+          this.growAge.push(elem.grow_age)
+          this.diffAge.push(elem.diff_age)
+        })
+        console.log(this.latePercenteges)
+        this.ctx = document.getElementById('myChart').getContext("2d")
+        this.myCahrt = new Chart(this.ctx, {
+          type: 'bar',
+          data: {
+            datasets: [{
+              label: 'late percentages ',
+              data: this.latePercenteges,
+              borderWidth: 1,
+              backgroundColor: '#A9AB7F',
+              barPercentage: 0.5,
+              categoryPercentage: 0.2,
+            },
+              {
+                label: 'Different ages ',
+                data: this.diffAge,
+                borderWidth: 1,
+                backgroundColor: '#4c9499',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+              {
+                label: 'grow Age  ',
+                data: this.growAge,
+                borderWidth: 1,
+                backgroundColor: '#135C65',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+            ]
+          },
+          options: {
+            align: 'start',
+            scales: {
+              y: {
+                beginAtZero: true,
+
+              },
+              x: {
+                grid: {
+                  drawOnChartArea: false
+                },
+                type: 'category',
+                labels: this.created_at,
+
+              }
+
+            },
+            grid: {
+              top: '6',
+              right: '0',
+              bottom: '17',
+              left: '25',
+            },
+            animation: {
+              duration: 2000,
+            },
+          }
+        });
+        console.log(this.latePercenteges)
       })
     },
     formateDate(date) {
@@ -133,6 +203,8 @@ export default {
      
       
      </div>
+      <canvas id="myChart" style="height: 70vh !important; margin-bottom : 30px"></canvas>
+
       <v-card>
         <v-data-table
             class="hidden-table"
@@ -179,7 +251,6 @@ export default {
 
 .back {
   box-sizing: border-box;
-  height: 11in;
   margin: 0 auto;
   overflow: hidden;
   padding: 0.5in;

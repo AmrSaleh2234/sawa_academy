@@ -42,9 +42,9 @@ import axios from 'axios'
     header() {
       return this.headers = [
         {title: this.$t('id') ,key:'id'},
-
+        { title:this.$t('side_profile_title'), key: 'side_profile_title' },
         { title:this.$t('evaluation_title'), key: 'evaluation_title'},
-          { title:this.$t('side_profile_title'), key: 'side_profile_title' },
+
           { title: this.$t('child_age'), key: 'child_age' },
           { title: this.$t('diff_age'), key: 'diff_age' },
           { title: this.$t('grow_age'), key: 'grow_age' },
