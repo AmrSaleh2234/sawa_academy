@@ -90,11 +90,11 @@ export default {
         {title: 'id'},
 
         {key: 'therapist_name', title: this.$t('therapist_name')},
+        {key: 'child_age', title: this.$t('child_age')},
         {key: 'grow_age', title: this.$t('grow_age')},
         {key: 'diff_age', title: this.$t('diff_age')},
-        {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'basal_age', title: this.$t('basal_age')},
-        {key: 'child_age', title: this.$t('child_age')},
+        {key: 'late_percentage', title: this.$t('late_percentage')},       
         {key: 'result_created_at', title: this.$t('created_at')},
 
       ];
@@ -123,12 +123,10 @@ export default {
   >
 
   </v-alert>
-
-  
   <div class="back-back">
     <div  class="back">
       <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
-      <div> <p class="w-[100%] text-h4 text-center ma-4" v-for="item in print_results">{{item.evaluation_title }}</p></div>
+      <div> <p class="w-[100%] text-h4 text-center ma-4" v-if="item in print_results">{{item.evaluation_title }}</p></div>
      <div>
       <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_name}}</p>
       <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.birth_date}}</p>
@@ -148,11 +146,11 @@ export default {
             <tr>
               <td>{{ index + 1 }}</td>
               <td>{{ item.columns.therapist_name }}</td>
+              <td>{{ item.columns.child_age }} months</td>
               <td>{{ item.columns.grow_age }}</td>
               <td>{{ item.columns.diff_age }}</td>
-              <td>{{ Math.round(item.columns.late_percentage) }} %</td>
               <td>{{ item.columns.basal_age }} months</td>
-              <td>{{ item.columns.child_age }} months</td>
+              <td>{{ Math.round(item.columns.late_percentage) }} %</td>
               <td>{{ formateDate(item.columns.result_created_at) }}</td>
 
             </tr>
