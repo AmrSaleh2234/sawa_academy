@@ -133,10 +133,10 @@ export default {
   <div class="back-back">
     <div  class="back">
       <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
-      <div> <p class="w-[100%] text-h4 text-center ma-4" v-for="item in print_results">{{item.evaluation_title }}</p></div>
+      <div> <p class="w-[100%] text-h4 text-center ma-4" >{{print_results[0]?.evaluation_title }}</p></div>
      <div>
-      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_name}}</p>
-      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.birth_date}}</p>
+      <p class="w-[100%] text-right ma-4" >{{print_results[0]?.child_name}}</p>
+      <p class="w-[100%] text-right ma-4" >{{print_results[0]?.birth_date}}</p>
      
       
      </div>
