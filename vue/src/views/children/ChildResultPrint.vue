@@ -13,7 +13,7 @@ export default {
       search: '',
       headers: [],
       result: [],
-      print_results:[],
+      print_results: [],
       alert_text: null,
       ctx: null,
       created_at: [],
@@ -44,16 +44,16 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
-    async print(){
-     await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
+    async print() {
+      await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {}).then(res => {
 
-      }).then(res => {
+        this.print_results = res.data.resultEvaluation
 
-        this.print_results=res.data.resultEvaluation
+      })
+      setTimeout(() => {
+        window.print();
+      }, 500)
 
-        })
-
-       window.print();
     },
     getResults() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
@@ -144,7 +144,7 @@ export default {
     Dialog,
     Button
   },
- 
+
   beforeMount() {
     this.getResults()
     this.print()
@@ -194,22 +194,22 @@ export default {
 
   </v-alert>
   <div class="back-back">
-    <div  class="back">
+    <div class="back">
       <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
-      <div> <p class="w-[100%] text-h4 text-center ma-4" >{{print_results[0]?.evaluation_title }}</p></div>
-     <div>
-      <p class="w-[100%] text-right ma-4" >{{print_results[0]?.child_name}}</p>
-      <p class="w-[100%] text-right ma-4" >{{print_results[0]?.birth_date}}</p>
-     
-      
-     </div>
+      <div><p class="w-[100%] text-h4 text-center ma-4">{{ print_results[0]?.evaluation_title }}</p></div>
+      <div>
+        <p class="w-[100%] text-right ma-4">{{ print_results[0]?.child_name }}</p>
+        <p class="w-[100%] text-right ma-4">{{ print_results[0]?.birth_date }}</p>
+
+
+      </div>
       <canvas id="myChart" style="height: 70vh !important; margin-bottom : 30px"></canvas>
 
       <v-card>
         <v-data-table
             class="hidden-table"
             :headers="header"
-            :items="result"
+            :items="print_results"
             :search="search"
         >
 
@@ -238,8 +238,6 @@ export default {
 
     </div>
   </div>
-
-
 
 
 </template>
@@ -287,7 +285,7 @@ th, td {
 }
 
 th {
-border:1px solid;
+  border: 1px solid;
 }
 
 td {
