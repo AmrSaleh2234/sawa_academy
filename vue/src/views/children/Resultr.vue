@@ -10,7 +10,7 @@
 
 
 
-        <v-data-table
+        <v-data-table 
           v-model:sort-by="sortBy"
           :headers="header"
           :items="desserts"
@@ -73,3 +73,16 @@ import axios from 'axios'
     },
   }
 </script>
+<style  scoped>
+.elevation-1 {
+  display: inline-block;
+  margin: 0 0.5rem;
+
+  animation: fadeInUp; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+  border-style: groove;
+  border-color: rgb(43, 41, 40);
+
+  border-width: 3px;
+}
+</style>
