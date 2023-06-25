@@ -41,7 +41,8 @@ export default {
     operation:"العمليات",
     child_age:"عمر الطفل",
     back:"رجوع",
-    print:"طباعة"
+    print:"طباعة",
+    evaluation_type	:"نوع التقيم"
 
 
 
