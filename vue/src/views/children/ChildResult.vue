@@ -54,7 +54,7 @@ export default {
         this.growAge = []
         this.diffAge = []
         this.result.forEach((elem) => {
-          this.created_at.push(moment(elem.result_created_at).format("DD-MM-YYYY"))
+          this.created_at.push(moment(elem.result_created_at).format("MM-DD-YYYY"))
           this.latePercenteges.push(elem.late_percentage)
           this.growAge.push(elem.grow_age)
           this.diffAge.push(elem.diff_age)
@@ -336,11 +336,11 @@ export default {
         {title: 'id'},
 
         {key: 'therapist_name', title: this.$t('therapist_name')},
+        {key: 'child_age', title: this.$t('child_age')},
         {key: 'grow_age', title: this.$t('grow_age')},
         {key: 'diff_age', title: this.$t('diff_age')},
-        {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'basal_age', title: this.$t('basal_age')},
-        {key: 'child_age', title: this.$t('child_age')},
+        {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'result_created_at', title: this.$t('created_at')},
         {title: this.$t('operation')}
 
@@ -488,11 +488,11 @@ export default {
           <tr>
             <td>{{ index + 1 }}</td>
             <td>{{ item.columns.therapist_name }}</td>
+            <td>{{ item.columns.child_age }} months</td>
             <td>{{ item.columns.grow_age }}</td>
             <td>{{ item.columns.diff_age }}</td>
-            <td>{{ Math.round(item.columns.late_percentage) }} %</td>
             <td>{{ item.columns.basal_age }} months</td>
-            <td>{{ item.columns.child_age }} months</td>
+            <td>{{ Math.round(item.columns.late_percentage) }} %</td>
             <td>{{ formateDate(item.columns.result_created_at) }}</td>
             <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
             <!--          <td>-->
@@ -530,7 +530,6 @@ export default {
         id="print"
         hide-default-footer
         disable-pagination
-
     >
 
       <template #top>
@@ -564,7 +563,6 @@ export default {
                     :rules="NameRules"
                     :label="$t('examDate')"
                     type="datetime-local"
-
                 ></v-text-field>
                 <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
               </v-form>

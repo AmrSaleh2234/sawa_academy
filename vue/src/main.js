@@ -22,6 +22,7 @@ import "primevue/resources/primevue.min.css";
 import "@mdi/font/css/materialdesignicons.css";
 // pinia resetStore
 import resetStore from "@/plugins/reset-store";
+import 'animate.css';
 
 import "./axios";
 import "./style.css";
