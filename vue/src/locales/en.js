@@ -42,7 +42,7 @@ export default {
     child_age:" child age",
     back:"back",
     print:"print",
-    evaluation_type:"Evaluation Type"
+    evaluation_type	:"Evaluation Type"
 
 
 
