@@ -44,23 +44,24 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
+    async print(){
+     await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
+        
+      }).then(res => {
+        
+        this.print_results=res.data.resultEvaluation
+        
+        })
+
+       window.print();
+    },
     getResults() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
         'date1': this.date1,
         'date2': this.date2
       }).then(res => {
-        console.log(res.data)
         this.result = res.data.resultEvaluation
         this.loading = false
-        setTimeout(() => {
-
-          window.print()
-
-        }, 1400)
-
-
-        console.log(this.result)
-
       })
     },
     formateDate(date) {
@@ -76,14 +77,8 @@ export default {
  
   beforeMount() {
     this.getResults()
-    axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
-        
-      }).then(res => {
-        
-        this.print_results=res.data.resultEvaluation
-        
-        })
-
+    this.print()
+   
   },
   computed: {
     locale() {
