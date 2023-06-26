@@ -150,7 +150,7 @@ export default {
           </td>
           <td @click="toggleGroup(item)" style="cursor: pointer; background-color:#EFEFEF;  "></td>
           <td style=" background-color:#EFEFEF; ">
-            <v-icon small color="primary" class="mx-3" @click="createEvaluation(item.items[0].raw.evaluation_id)">mdi-plus-box</v-icon>
+            <v-icon small color="primary" class="mx-3" @click="createEvaluation(item.items[0].raw.side_profile_id)">mdi-plus-box</v-icon>
             <v-icon small color="primary" class="mx-3" @click="editItem(item.items[0].raw.side_profile_id)">mdi-pencil</v-icon>
 
           </td>

@@ -13,7 +13,7 @@ export default {
       search: '',
       headers: [],
       result: [],
-      print_results:[],
+      print_results: [],
       alert_text: null,
       ctx: null,
       created_at: [],
@@ -44,16 +44,16 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
-    async print(){
-     await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
-        
-      }).then(res => {
-        
-        this.print_results=res.data.resultEvaluation
-        
-        })
+    async print() {
+      await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {}).then(res => {
 
-       window.print();
+        this.print_results = res.data.resultEvaluation
+
+      })
+      setTimeout(() => {
+        window.print();
+      }, 500)
+
     },
     getResults() {
       axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {
@@ -62,6 +62,76 @@ export default {
       }).then(res => {
         this.result = res.data.resultEvaluation
         this.loading = false
+        this.created_at = []
+        this.latePercenteges = []
+        this.growAge = []
+        this.diffAge = []
+        this.result.forEach((elem) => {
+          this.created_at.push(moment(elem.result_created_at).format("MM-DD-YYYY"))
+          this.latePercenteges.push(elem.late_percentage)
+          this.growAge.push(elem.grow_age)
+          this.diffAge.push(elem.diff_age)
+        })
+        console.log(this.latePercenteges)
+        this.ctx = document.getElementById('myChart').getContext("2d")
+        this.myCahrt = new Chart(this.ctx, {
+          type: 'bar',
+          data: {
+            datasets: [{
+              label: 'late percentages ',
+              data: this.latePercenteges,
+              borderWidth: 1,
+              backgroundColor: '#A9AB7F',
+              barPercentage: 0.5,
+              categoryPercentage: 0.2,
+            },
+              {
+                label: 'Different ages ',
+                data: this.diffAge,
+                borderWidth: 1,
+                backgroundColor: '#4c9499',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+              {
+                label: 'grow Age  ',
+                data: this.growAge,
+                borderWidth: 1,
+                backgroundColor: '#135C65',
+                barPercentage: 0.5,
+                categoryPercentage: 0.2
+              },
+            ]
+          },
+          options: {
+            align: 'start',
+            scales: {
+              y: {
+                beginAtZero: true,
+
+              },
+              x: {
+                grid: {
+                  drawOnChartArea: false
+                },
+                type: 'category',
+                labels: this.created_at,
+
+              }
+
+            },
+            grid: {
+              top: '6',
+              right: '0',
+              bottom: '17',
+              left: '25',
+            },
+            animation: {
+              duration: 2000,
+            },
+          }
+        });
+        console.log(this.latePercenteges)
       })
     },
     formateDate(date) {
@@ -74,11 +144,11 @@ export default {
     Dialog,
     Button
   },
- 
+
   beforeMount() {
     this.getResults()
     this.print()
-   
+
   },
   computed: {
     locale() {
@@ -94,7 +164,7 @@ export default {
         {key: 'grow_age', title: this.$t('grow_age')},
         {key: 'diff_age', title: this.$t('diff_age')},
         {key: 'basal_age', title: this.$t('basal_age')},
-        {key: 'late_percentage', title: this.$t('late_percentage')},       
+        {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'result_created_at', title: this.$t('created_at')},
 
       ];
@@ -124,20 +194,22 @@ export default {
 
   </v-alert>
   <div class="back-back">
-    <div  class="back">
+    <div class="back">
       <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
-      <div> <p class="w-[100%] text-h4 text-center ma-4" v-if="item in print_results">{{item.evaluation_title }}</p></div>
-     <div>
-      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.child_name}}</p>
-      <p class="w-[100%] text-right ma-4" v-for="item in print_results">{{item.birth_date}}</p>
-     
-      
-     </div>
+      <div><p class="w-[100%] text-h4 text-center ma-4">{{ print_results[0]?.evaluation_title }}</p></div>
+      <div>
+        <p class="w-[100%] text-right ma-4">{{ print_results[0]?.child_name }}</p>
+        <p class="w-[100%] text-right ma-4">{{ print_results[0]?.birth_date }}</p>
+
+
+      </div>
+      <canvas id="myChart" style="height: 70vh !important; margin-bottom : 30px"></canvas>
+
       <v-card>
         <v-data-table
             class="hidden-table"
             :headers="header"
-            :items="result"
+            :items="print_results"
             :search="search"
         >
 
@@ -168,8 +240,6 @@ export default {
   </div>
 
 
-
-
 </template>
 <style scoped>
 .back-back {
@@ -179,7 +249,6 @@ export default {
 
 .back {
   box-sizing: border-box;
-  height: 11in;
   margin: 0 auto;
   overflow: hidden;
   padding: 0.5in;
@@ -216,7 +285,7 @@ th, td {
 }
 
 th {
-border:1px solid;
+  border: 1px solid;
 }
 
 td {
