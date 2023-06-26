@@ -3,7 +3,7 @@
     <div class="back-back">
       <div  class="back">
         <div class="text-center"><img src="../../assets/img/sawa_logo.svg" style="width:130px; "></div>
-      <div> <p class="w-[100%] text-h4 text-center ma-4" v-for="item in print_results" :key="item">{{item.evaluation_title }}</p></div>
+      <div> <p class="w-[100%] text-h4 text-center ma-4" >{{title }}</p></div>
      <div>
       <p class="w-[100%] text-right ma-4">{{child_Name}}</p>
       <p class="w-[100%] text-right ma-4">{{birth_date}}</p>
@@ -42,7 +42,8 @@ import axios from 'axios'
         headers: [],
         desserts: [],
         child_Name:'',
-        birth_date:[],
+        birth_date:'',
+        title:'',
       }
     },
     computed: {
@@ -88,6 +89,8 @@ import axios from 'axios'
         }).then(res => {
           
        this.desserts=res.data.evaluation_results
+       this.title=res.data.evaluation_results[0].evaluation_title
+      
       })
       window.print()
       
