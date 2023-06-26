@@ -7,7 +7,7 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 
 export default {
-  components:{InputText},
+  components:{InputText,  Dialog, Button},
 
   data() {
     return {
@@ -318,10 +318,7 @@ export default {
 
 
   },
-  components: {
-    Dialog,
-    Button
-  },
+
   mounted() {
     this.getResults()
     this.getSideprofile()
