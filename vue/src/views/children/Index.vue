@@ -11,7 +11,6 @@ export default {
       search: '',
       headers: [
 
-
       ],
       children: [],
       alert_text: null,
@@ -66,11 +65,13 @@ export default {
 
     this.getChildren()
   }
+  
 }
 </script>
 
 <template>
-  <v-alert
+  <div>
+    <v-alert
       type="success"
       variant="tonal"
       border="start"
@@ -109,12 +110,11 @@ export default {
       <template #top>
         <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
       </template>
-
       <template #item="{ item }">
         <tr>
           <td>{{ item.columns.id }}</td>
           <td>{{ item.columns.name }}</td>
-          <td>{{ item.columns.birth_date }}</td>
+          <td >{{ item.columns.birth_date}}</td>
           <td>
             <v-icon  small color="primary" class="mr-2" @click="showItem(item.columns.id)">mdi-eye</v-icon>
             <v-icon small color="primary" class="mr-2" @click="editItem(item.columns.id)">mdi-pencil</v-icon>
@@ -122,9 +122,8 @@ export default {
             <Button @click="confirm2($event)" icon="pi pi-times" label="Delete" outlined severity="danger"></Button>
           </td>
         </tr>
-
       </template>
-
     </v-data-table>
   </v-card>
+  </div>
 </template>

@@ -10,6 +10,7 @@ import sideProfileRoutes from "./side-profile.routes";
 import calender from "./calender.routes";
 
 
+
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
     return next({ name: "Login" });
@@ -71,6 +72,11 @@ const routes = [
     name: "printChildResult" ,
     component: () =>import("@/views/children/ChildResultPrint.vue"),
   },
+  {
+    path: "/ResultPrint/:child_id/:sideProfile_id",
+    name: "ResultPrint",
+    component: () => import("../views/children/ResultPrint.vue")
+},
 ];
 
 const router = createRouter({

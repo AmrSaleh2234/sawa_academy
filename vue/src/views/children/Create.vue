@@ -1,6 +1,8 @@
 <script>
 import axios from "axios";
 import InputText from 'primevue/inputtext';
+import moment from 'moment';
+
 
 export default {
   components:{InputText},
@@ -16,6 +18,7 @@ export default {
     child:{
       name:"",
       birth_date:""
+
     },
     alert_text: null,
     snackbar: true,
@@ -26,14 +29,14 @@ export default {
       },
     submit(){
       axios.post(`/api/child/create`,this.child).then(res =>{
+        
         if(res.data.status == 200)
         {
           this.child=[];
           this.alert_text="children added successfully "
         }
-
-
-      })
+        
+        })
     },
 
   },
@@ -47,7 +50,7 @@ export default {
 
  <div>
  
-  <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+  <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
   <v-icon
     start
     icon="mdi-arrow-left"
@@ -76,8 +79,9 @@ export default {
           :rules="NameRules"
       ></v-text-field>
       <div style="width: 100%;" class="card flex  justify-content-center">
-        <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="dd/mm/yy" v-model="child.birth_date" />
+        <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
     </div>
+   
       <!-- <v-text-field
           v-model="child.birth_date"
           :label="$t('birth_date')"

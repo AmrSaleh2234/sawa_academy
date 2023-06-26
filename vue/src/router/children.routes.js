@@ -9,6 +9,8 @@ const result = () => import("../views/children/ChildResult.vue");
 const editResult = () => import("../views/children/evaluationResultEdit.vue");
 const res = () => import("../views/children/Resultr.vue");
 
+
+
 const childrenRoutes = [
     {
         path: "children/:alert?",
@@ -54,6 +56,8 @@ const childrenRoutes = [
         name: "editChildResult" ,
         component: editResult,
     },
+   
+    
 
 ];
 

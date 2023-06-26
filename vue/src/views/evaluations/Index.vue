@@ -98,9 +98,7 @@ export default {
             <v-icon small color="error mx-3" @click="deleteItem(item.columns.id)">mdi-delete</v-icon>
           </td>
         </tr>
-
       </template>
-
     </v-data-table>
   </v-card>
 </template>

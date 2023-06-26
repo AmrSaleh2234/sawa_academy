@@ -1,13 +1,19 @@
 <template>
 <div>
-    <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goBack">
+    <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
         <v-icon
           start
           icon="mdi-arrow-left"
         ></v-icon>
           {{$t('back')}}
       </v-btn>
-
+      <div>
+        <v-btn height="45" class="mb-5 text-white" color="#A9AB7F" @click="goprint">
+          {{$t('print')}}
+      </v-btn>
+      </div>
+      
+  
 
 
         <v-data-table 
@@ -60,6 +66,9 @@ import axios from 'axios'
         goBack() {
         this.$router.go(-1)
       },
+      goprint(){
+        this.$router.push({name:'ResultPrint'})
+      }
     },
     mounted() {
         console.log(this.$route.params.child_id,this.$route.params.sideProfile_id)
