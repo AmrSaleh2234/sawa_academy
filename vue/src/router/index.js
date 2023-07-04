@@ -29,7 +29,7 @@ function guest(to, from, next) {
 
 const routes = [
   {
-    path: "/",
+    path: "/sawa-admin",
     component: Home,
     name: 'Home',
     beforeEnter: auth,
@@ -46,7 +46,7 @@ const routes = [
     ],
   },
   {
-    path: "/log more interactive way. We guarantee 100% interaction on your advertising campaigns. Only pay for successful participation. Free Sign up with M2M to start reaching new customers with online ads tailored to your business goals and budget through our website m2m.com.egin",
+    path: "/sawa-admin/login",
     name: "Login",
     beforeEnter: guest,
     component: () => import("@/components/Login.vue"),

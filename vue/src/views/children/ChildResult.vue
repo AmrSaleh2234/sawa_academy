@@ -2,13 +2,9 @@
 import axios from 'axios'
 import Chart from 'chart.js/auto';
 import moment from "moment";
-import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
-
+import Dialog from 'primevue/dialog';
 export default {
-  components:{InputText,  Dialog, Button},
-
   data() {
     return {
       search: '',
@@ -31,13 +27,11 @@ export default {
         value => {
           if (value) return true
           return "This field is required"
-
         },
       ],
       examId: '',
       loading: true,
       side_profileName:''
-
     }
   },
   methods: {
@@ -48,14 +42,13 @@ export default {
       }).then(res => {
         this.result = res.data.resultEvaluation
         this.loading = false
-
         console.log(this.result)
         this.created_at = []
         this.latePercenteges = []
         this.growAge = []
         this.diffAge = []
         this.result.forEach((elem) => {
-          this.created_at.push(moment(elem.result_created_at).format("DD-MM-YYYY"))
+          this.created_at.push(moment(elem.result_created_at).format("MM-DD-YYYY"))
           this.latePercenteges.push(elem.late_percentage)
           this.growAge.push(elem.grow_age)
           this.diffAge.push(elem.diff_age)
@@ -96,7 +89,6 @@ export default {
             scales: {
               y: {
                 beginAtZero: true,
-
               },
               x: {
                 grid: {
@@ -104,9 +96,7 @@ export default {
                 },
                 type: 'category',
                 labels: this.created_at,
-
               }
-
             },
             grid: {
               top: '6',
@@ -120,7 +110,6 @@ export default {
           }
         });
         console.log(this.latePercenteges)
-
       })
     },
     formateDate(date) {
@@ -201,7 +190,6 @@ export default {
             scales: {
               y: {
                 beginAtZero: true,
-
               },
               x: {
                 grid: {
@@ -209,9 +197,7 @@ export default {
                 },
                 type: 'category',
                 labels: this.created_at,
-
               }
-
             },
             grid: {
               top: '6',
@@ -225,18 +211,14 @@ export default {
           }
         });
         console.log(this.latePercenteges)
-
       })
     },
-
     editChart() {
-
       let arr = [
         {title: this.$t('grow_age'), value: this.growAge},
         {title: this.$t('diff_age'), value: this.diffAge},
         {title: this.$t('late_percentage'), value: this.latePercenteges}
       ]
-
       this.myCahrt.destroy()
       this.myCahrt = new Chart(this.ctx, {
         type: 'bar',
@@ -249,7 +231,6 @@ export default {
             barPercentage: 0.5,
             categoryPercentage: 0.2,
           },
-
           ]
         },
         options: {
@@ -257,7 +238,6 @@ export default {
           scales: {
             y: {
               beginAtZero: true,
-
             },
             x: {
               grid: {
@@ -265,9 +245,7 @@ export default {
               },
               type: 'category',
               labels: arr[this.selectX].value,
-
             }
-
           },
           grid: {
             top: '6',
@@ -280,32 +258,22 @@ export default {
           },
         }
       });
-
-
     },
-
     editItem(date, evaluation_result_id) {
       this.visible = true;
       this.examDate = date
       this.examId = evaluation_result_id
-
-
     },
     async submit(evaluationResult_id) {
       console.log(evaluationResult_id)
-
       const {valid} = await this.$refs.form.validate()
       if (!valid)
         return
-
       axios.post(`/api/evaluations/${this.examId}`, {date: this.examDate}).then(res => {
-
         this.alert_text = "evaluation edited successfully  "
         this.visible = false
-
         this.type = "success"
         this.getResults()
-
       }).catch((error) => {
         this.alert_text = error.response.data.message
         this.type = "error"
@@ -315,24 +283,22 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
-
-
   },
-
+  components: {
+    Dialog,
+    Button
+  },
   mounted() {
     this.getResults()
     this.getSideprofile()
-
   },
   computed: {
     locale() {
-
       return this.$i18n.locale;
     },
     header() {
       return this.headers = [
         {title: 'id'},
-
         {key: 'therapist_name', title: this.$t('therapist_name')},
         {key: 'child_age', title: this.$t('child_age')},
         {key: 'grow_age', title: this.$t('grow_age')},
@@ -341,12 +307,9 @@ export default {
         {key: 'late_percentage', title: this.$t('late_percentage')},
         {key: 'result_created_at', title: this.$t('created_at')},
         {title: this.$t('operation')}
-
-
       ];
     },
     firstSelectBoxComputed() {
-
       let title = [
         {title: this.$t('grow_age'), value: 0},
         {title: this.$t('diff_age'), value: 1},
@@ -356,7 +319,6 @@ export default {
         return elem.value != this.selectY
       })
       return result;
-
     },
     secondSelectBoxComputed() {
       let title = [
@@ -369,8 +331,6 @@ export default {
       })
       return result;
     },
-
-
   }, watch: {
     selectX(value) {
       if (this.selectX != null && this.selectY != null) {
@@ -382,18 +342,13 @@ export default {
         this.editChart()
       }
     }
-
   }
-
-
 }
 </script>
-
 <template>
   <div class="my-5" v-if="result[0] && side_profileName && locale == 'en'">
     {{result[0].child_name}}/{{side_profileName}}/{{result[0].evaluation_title}}
   </div>
-
   <div class="my-5" v-if="result[0] && side_profileName && locale == 'ar'">
     {{result[0].evaluation_title}} \{{side_profileName}}\{{result[0].child_name}}
   </div>
@@ -416,9 +371,7 @@ export default {
         v-if="alert_text!= null "
         class="mb-8"
     >
-
     </v-alert>
-
     <!--  <div class="v-row mb-5 mt-5  ">-->
     <!--    <v-text-field-->
     <!--        class="v-col-6"-->
@@ -427,8 +380,6 @@ export default {
     <!--        type="date"-->
     <!--        @change="filter"-->
     <!--    ></v-text-field>-->
-
-
     <!--    <v-text-field-->
     <!--        class="v-col-6"-->
     <!--        v-model="date2"-->
@@ -436,7 +387,6 @@ export default {
     <!--        type="date"-->
     <!--        @change="filter"-->
     <!--    ></v-text-field>-->
-
     <!--  </div>-->
     <div class="v-row mb-5 mt-5  ">
       <v-select
@@ -452,13 +402,11 @@ export default {
           :items="secondSelectBoxComputed"
       ></v-select>
     </div>
-
     <canvas id="myChart" style="height: 70vh !important;"></canvas>
     <v-card>
       <v-card-title>
         Results
         <v-spacer></v-spacer>
-
         <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
@@ -467,11 +415,9 @@ export default {
             hide-details
         ></v-text-field>
       </v-card-title>
-
       <v-btn text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
         {{$t('print')}}
       </v-btn>
-
       <v-data-table
           :headers="header"
           :items="result"
@@ -479,9 +425,7 @@ export default {
       >
         <template #top>
           <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
-
         </template>
-
         <template #item="{ item ,index}">
           <tr>
             <td>{{ index + 1 }}</td>
@@ -498,31 +442,22 @@ export default {
               <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
                 mdi-pencil
               </v-icon>
-
               <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
                 <v-form fast-fail @submit.prevent ref="form">
-                  <!-- <div style="width: 100%;" class="card flex  justify-content-center">
-                    <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
-                </div> -->
                   <v-text-field
                       v-model="examDate"
                       :rules="NameRules"
                       :label="$t('examDate')"
                       type="datetime-local"
-
                   ></v-text-field>
                   <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
                 </v-form>
               </Dialog>
             </td>
-
           </tr>
-
         </template>
-
       </v-data-table>
     </v-card>
-
     <v-data-table
         class="hidden-table"
         :headers="header"
@@ -531,16 +466,10 @@ export default {
         id="print"
         hide-default-footer
         disable-pagination
-
     >
-
       <template #top>
         <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
-
       </template>
-
-
-
       <template #item="{ item ,index}">
         <tr>
           <td>{{ index + 1 }}</td>
@@ -557,34 +486,24 @@ export default {
             <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
               mdi-pencil
             </v-icon>
-
             <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
               <v-form fast-fail @submit.prevent ref="form">
-                <div style="width: 100%;" class="card flex  justify-content-center">
-                  <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
-              </div>
                 <v-text-field
                     v-model="examDate"
                     :rules="NameRules"
                     :label="$t('examDate')"
                     type="datetime-local"
-
                 ></v-text-field>
                 <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
               </v-form>
             </Dialog>
           </td>
-
         </tr>
-
       </template>
       <template #bottom>
-
       </template>
-
     </v-data-table>
   </div>
-
 </template>
 <style scoped>
 .hidden-table {
@@ -592,14 +511,10 @@ export default {
   display: none;
   margin-top: 200px
 }
-
 .hidden-table th {
   border: 1px solid black;
 }
-
 .hidden-table td {
   border: 1px solid black;
 }
-
-
 </style>
