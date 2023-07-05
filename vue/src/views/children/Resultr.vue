@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
+    <v-btn height="45" class="mb-5 text-white" color="#135c65" @click="goBack">
         <v-icon
           start
           icon="mdi-arrow-left"

@@ -4,11 +4,10 @@ import Chart from 'chart.js/auto';
 import moment from "moment";
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
+import Calendar from 'primevue/calendar';
 
 export default {
-  components:{InputText,  Dialog, Button},
-
+ 
   data() {
     return {
       search: '',
@@ -55,7 +54,7 @@ export default {
         this.growAge = []
         this.diffAge = []
         this.result.forEach((elem) => {
-          this.created_at.push(moment(elem.result_created_at).format("DD-MM-YYYY"))
+          this.created_at.push(moment(elem.result_created_at).format("MM-DD-YYYY"))
           this.latePercenteges.push(elem.late_percentage)
           this.growAge.push(elem.grow_age)
           this.diffAge.push(elem.diff_age)
@@ -318,7 +317,11 @@ export default {
 
 
   },
-
+  components: {
+    Dialog,
+    Button,
+    Calendar
+  },
   mounted() {
     this.getResults()
     this.getSideprofile()
@@ -468,7 +471,7 @@ export default {
         ></v-text-field>
       </v-card-title>
 
-      <v-btn text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+      <v-btn style="color: rgb(255, 255, 255);" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
         {{$t('print')}}
       </v-btn>
 
@@ -501,16 +504,16 @@ export default {
 
               <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
                 <v-form fast-fail @submit.prevent ref="form">
-                  <!-- <div style="width: 100%;" class="card flex  justify-content-center">
-                    <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
-                </div> -->
-                  <v-text-field
+                  <!-- <v-text-field
                       v-model="examDate"
                       :rules="NameRules"
                       :label="$t('examDate')"
                       type="datetime-local"
 
-                  ></v-text-field>
+                  ></v-text-field> -->
+                  <div class="card flex justify-content-center">
+                    <Calendar style="width: 100%; margin: 10px;"  v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+                </div>
                   <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
                 </v-form>
               </Dialog>
@@ -531,7 +534,6 @@ export default {
         id="print"
         hide-default-footer
         disable-pagination
-
     >
 
       <template #top>
@@ -560,15 +562,11 @@ export default {
 
             <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
               <v-form fast-fail @submit.prevent ref="form">
-                <div style="width: 100%;" class="card flex  justify-content-center">
-                  <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
-              </div>
                 <v-text-field
                     v-model="examDate"
                     :rules="NameRules"
                     :label="$t('examDate')"
                     type="datetime-local"
-
                 ></v-text-field>
                 <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
               </v-form>

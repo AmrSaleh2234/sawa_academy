@@ -2,6 +2,7 @@
 import axios from 'axios'
 import {th} from "vuetify/locale";
 import ConfirmPopup from 'primevue/confirmpopup';
+import moment from 'moment';
 
 export default {
   components:{ConfirmPopup},
@@ -27,14 +28,21 @@ export default {
     }
   },
   methods:{
-    getChildren(){
+     getChildren(){
       axios.get("/api/child").then(res =>{
         this.children=res.data.children
         console.log(res.data.children)
+      // }
         this.loading=false
+        
 
       })
-    },editItem(id){
+    },
+    fomate(date){
+      return moment(date).format('DD-MM-yy ')
+
+    },
+    editItem(id){
       this.$router.push({ name: 'EditChildren' , params: {id: id} })
     }
     ,deleteItem(id){
@@ -55,7 +63,7 @@ export default {
       this.$router.push({ name: 'CreateChildren' })
     }
   },
-  mounted() {
+ async mounted() {
     if(this.$route.params.alert)
     {
       this.alert_text="done "
@@ -63,8 +71,10 @@ export default {
      }
 
 
-    this.getChildren()
-  }
+   this.getChildren()
+    
+  },
+ 
   
 }
 </script>
@@ -114,7 +124,7 @@ export default {
         <tr>
           <td>{{ item.columns.id }}</td>
           <td>{{ item.columns.name }}</td>
-          <td >{{ item.columns.birth_date}}</td>
+          <td> {{ fomate(item.columns.birth_date)}}</td>
           <td>
             <v-icon  small color="primary" class="mr-2" @click="showItem(item.columns.id)">mdi-eye</v-icon>
             <v-icon small color="primary" class="mr-2" @click="editItem(item.columns.id)">mdi-pencil</v-icon>
