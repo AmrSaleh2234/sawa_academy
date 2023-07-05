@@ -4,9 +4,10 @@ import {th} from "vuetify/locale";
 import {format, formatDistance, formatRelative, subDays, differenceInMonths} from 'date-fns'
 import moment from "moment";
 import InputText from 'primevue/inputtext';
+import Calendar from 'primevue/calendar';
 
 export default {
-  components:{InputText},
+  components:{InputText,Calendar},
   data: () => ({
     valu:"",
 
@@ -192,7 +193,7 @@ export default {
     
     console.log(this.examDate)
   },
-  components: {}
+  
 
 
 }
@@ -234,12 +235,16 @@ export default {
             :items="selectBox"
             :rules="NameRules"
         ></v-select>
-        <v-text-field
+        <!-- <v-text-field
             v-model="examDate"
             :label="$t('examDate')"
             type="datetime-local"
             
-        ></v-text-field>
+        ></v-text-field> -->
+        <div class="card flex justify-content-center">
+          <Calendar style="width: 100%;" v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+      </div>
+       
         <div v-for="questions in Object.values(headerAndQuestions).reverse()">
   
           <div v-if="questions[0].min_age <= this.child.childInMonths">
@@ -269,6 +274,7 @@ export default {
         <v-btn type="submit" block class="mt-2">{{ $t('submit') }}</v-btn>
   
       </v-form>
+      
     </v-sheet>
   
   </div>

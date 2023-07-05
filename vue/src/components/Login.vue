@@ -6,7 +6,6 @@ import { useAuthStore } from "../stores/Auth";
 
 // variables
 const authStore  = useAuthStore();
-
 const visible = ref(false);
 const form = ref({
   email: "admin@admin.com",

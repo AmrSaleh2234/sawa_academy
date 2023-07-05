@@ -2,10 +2,12 @@
 import axios from "axios";
 import InputText from 'primevue/inputtext';
 import moment from 'moment';
+import Calendar from 'primevue/calendar';
+import { max } from 'date-fns';
 
 
 export default {
-  components:{InputText},
+  components:{InputText,Calendar},
   data: () => ({
     
     NameRules: [
@@ -28,6 +30,11 @@ export default {
         this.$router.go(-1)
       },
     submit(){
+      this.child.birth_date=moment(this.child.birth_date).format('dd-MM-yy ')
+
+    
+      console.log(this.child.birth_date)
+      
       axios.post(`/api/child/create`,this.child).then(res =>{
         
         if(res.data.status == 200)
@@ -78,9 +85,14 @@ export default {
           :label="$t('child_name')"
           :rules="NameRules"
       ></v-text-field>
-      <div style="width: 100%;" class="card flex  justify-content-center">
-        <InputText style="width: 100%;" type="date" :rules="NameRules"  dateFormat="yy/mm/dd hh:mm" v-model="child.birth_date" />
-    </div>
+      <!-- <div style="width: 100%;" class="card flex  justify-content-center">
+        <InputText  style="width: 100%; padding: 10px; opacity: 70%;" type="date" :rules="NameRules"  v-model=" child.birth_date" />
+    </div> -->
+    <!-- <input type="text" sty placeholder="MM/DD/YY"
+                    onfocus="(this.type='date')"> -->
+    <div class="card flex justify-content-center">
+      <Calendar style="width: 100%;" v-model.number=" child.birth_date"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+  </div>
    
       <!-- <v-text-field
           v-model="child.birth_date"
