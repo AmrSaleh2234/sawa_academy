@@ -4,6 +4,7 @@ import Chart from 'chart.js/auto';
 import moment from "moment";
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
+import Calendar from 'primevue/calendar';
 export default {
   data() {
     return {
@@ -288,6 +289,11 @@ export default {
     Dialog,
     Button
   },
+  components: {
+    Dialog,
+    Button,
+    Calendar
+  },
   mounted() {
     this.getResults()
     this.getSideprofile()
@@ -415,7 +421,8 @@ export default {
             hide-details
         ></v-text-field>
       </v-card-title>
-      <v-btn text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+
+      <v-btn style="color: rgb(255, 255, 255);" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
         {{$t('print')}}
       </v-btn>
       <v-data-table
@@ -444,12 +451,16 @@ export default {
               </v-icon>
               <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
                 <v-form fast-fail @submit.prevent ref="form">
-                  <v-text-field
+                  <!-- <v-text-field
                       v-model="examDate"
                       :rules="NameRules"
                       :label="$t('examDate')"
                       type="datetime-local"
-                  ></v-text-field>
+
+                  ></v-text-field> -->
+                  <div class="card flex justify-content-center">
+                    <Calendar style="width: 100%; margin: 10px;"  v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+                </div>
                   <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
                 </v-form>
               </Dialog>
