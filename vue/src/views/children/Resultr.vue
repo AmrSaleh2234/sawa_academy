@@ -29,6 +29,7 @@
 </template>
 <script>
 import axios from 'axios'
+import moment from 'moment';
 
   export default {
     data () {
@@ -63,6 +64,17 @@ import axios from 'axios'
   },
     
     methods: {
+     async getruslte(){
+       await axios.post("/api/child/results",{
+          sideprofile_id:this.$route.params.sideProfile_id,child_id:this.$route.params.child_id
+        }).then(res => {
+          console.log(res.data.evaluation_results)
+       this.desserts=res.data.evaluation_results
+      })  
+      for(var i=0; i<this.desserts.length;i++){
+        this.desserts[i].result_created_at=moment(this.desserts[i].result_created_at).format('DD-MM-yy ')
+      }      
+      },
         goBack() {
         this.$router.go(-1)
       },
@@ -71,14 +83,8 @@ import axios from 'axios'
       }
     },
     mounted() {
-        console.log(this.$route.params.child_id,this.$route.params.sideProfile_id)
-        axios.post("/api/child/results",{
-          sideprofile_id:this.$route.params.sideProfile_id,child_id:this.$route.params.child_id
-        }).then(res => {
-          console.log(res.data.evaluation_results)
-       this.desserts=res.data.evaluation_results
-      })        
-
+        
+      this.getruslte()
     },
   }
 </script>

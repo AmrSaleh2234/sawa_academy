@@ -352,83 +352,132 @@ export default {
 }
 </script>
 <template>
-  <div class="my-5" v-if="result[0] && side_profileName && locale == 'en'">
-    {{result[0].child_name}}/{{side_profileName}}/{{result[0].evaluation_title}}
-  </div>
-  <div class="my-5" v-if="result[0] && side_profileName && locale == 'ar'">
-    {{result[0].evaluation_title}} \{{side_profileName}}\{{result[0].child_name}}
-  </div>
   <div>
-    <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
-      <v-icon
-          start
-          icon="mdi-arrow-left"
-      ></v-icon>
-      {{ $t('back') }}
-    </v-btn>
-    <v-alert
-        type="success"
-        variant="tonal"
-        border="start"
-        elevation="2"
-        closable
-        :close-label="$t('close')"
-        :text="alert_text"
-        v-if="alert_text!= null "
-        class="mb-8"
-    >
-    </v-alert>
-    <!--  <div class="v-row mb-5 mt-5  ">-->
-    <!--    <v-text-field-->
-    <!--        class="v-col-6"-->
-    <!--        v-model="date1"-->
-    <!--        :label="$t('start_date')"-->
-    <!--        type="date"-->
-    <!--        @change="filter"-->
-    <!--    ></v-text-field>-->
-    <!--    <v-text-field-->
-    <!--        class="v-col-6"-->
-    <!--        v-model="date2"-->
-    <!--        :label="$t('end_date')"-->
-    <!--        type="date"-->
-    <!--        @change="filter"-->
-    <!--    ></v-text-field>-->
-    <!--  </div>-->
-    <div class="v-row mb-5 mt-5  ">
-      <v-select
-          class="mx-9"
-          :label="$t('xAxis')"
-          v-model="selectX"
-          :items="firstSelectBoxComputed"
-      ></v-select>
-      <v-select
-          class="mx-9"
-          :label="$t('yAxis')"
-          v-model="selectY"
-          :items="secondSelectBoxComputed"
-      ></v-select>
+    <div class="my-5" v-if="result[0] && side_profileName && locale == 'en'">
+      {{result[0].child_name}}/{{side_profileName}}/{{result[0].evaluation_title}}
     </div>
-    <canvas id="myChart" style="height: 70vh !important;"></canvas>
-    <v-card>
-      <v-card-title>
-        Results
-        <v-spacer></v-spacer>
-        <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-        ></v-text-field>
-      </v-card-title>
-
-      <v-btn style="color: rgb(255, 255, 255);" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
-        {{$t('print')}}
+    <div class="my-5" v-if="result[0] && side_profileName && locale == 'ar'">
+      {{result[0].evaluation_title}} \{{side_profileName}}\{{result[0].child_name}}
+    </div>
+    <div>
+      <v-btn height="45" class="mb-5 text-white" color="#135C65" @click="goBack">
+        <v-icon
+            start
+            icon="mdi-arrow-left"
+        ></v-icon>
+        {{ $t('back') }}
       </v-btn>
+      <v-alert
+          type="success"
+          variant="tonal"
+          border="start"
+          elevation="2"
+          closable
+          :close-label="$t('close')"
+          :text="alert_text"
+          v-if="alert_text!= null "
+          class="mb-8"
+      >
+      </v-alert>
+      <!--  <div class="v-row mb-5 mt-5  ">-->
+      <!--    <v-text-field-->
+      <!--        class="v-col-6"-->
+      <!--        v-model="date1"-->
+      <!--        :label="$t('start_date')"-->
+      <!--        type="date"-->
+      <!--        @change="filter"-->
+      <!--    ></v-text-field>-->
+      <!--    <v-text-field-->
+      <!--        class="v-col-6"-->
+      <!--        v-model="date2"-->
+      <!--        :label="$t('end_date')"-->
+      <!--        type="date"-->
+      <!--        @change="filter"-->
+      <!--    ></v-text-field>-->
+      <!--  </div>-->
+      <div class="v-row mb-5 mt-5  ">
+        <v-select
+            class="mx-9"
+            :label="$t('xAxis')"
+            v-model="selectX"
+            :items="firstSelectBoxComputed"
+        ></v-select>
+        <v-select
+            class="mx-9"
+            :label="$t('yAxis')"
+            v-model="selectY"
+            :items="secondSelectBoxComputed"
+        ></v-select>
+      </div>
+      <canvas id="myChart" style="height: 70vh !important;"></canvas>
+      <v-card>
+        <v-card-title>
+          Results
+          <v-spacer></v-spacer>
+          <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+          ></v-text-field>
+        </v-card-title>
+  
+        <v-btn style="color: rgb(255, 255, 255);" text="print" color="#ACAE84" height="45" class="mb-5 mt-5" @click="print">
+          {{$t('print')}}
+        </v-btn>
+        <v-data-table
+            :headers="header"
+            :items="result"
+            :search="search"
+        >
+          <template #top>
+            <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
+          </template>
+          <template #item="{ item ,index}">
+            <tr>
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.columns.therapist_name }}</td>
+              <td>{{ item.columns.child_age }} months</td>
+              <td>{{ item.columns.grow_age }}</td>
+              <td>{{ item.columns.diff_age }}</td>
+              <td>{{ item.columns.basal_age }} months</td>
+              <td>{{ Math.round(item.columns.late_percentage) }} %</td>
+              <td>{{ formateDate(item.columns.result_created_at) }}</td>
+              <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
+              <!--          <td>-->
+              <td class="text-center">
+                <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
+                  mdi-pencil
+                </v-icon>
+                <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
+                  <v-form fast-fail @submit.prevent ref="form">
+                    <!-- <v-text-field
+                        v-model="examDate"
+                        :rules="NameRules"
+                        :label="$t('examDate')"
+                        type="datetime-local"
+  
+                    ></v-text-field> -->
+                    <div class="card flex justify-content-center">
+                      <Calendar style="width: 100%; margin: 10px;"  v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+                  </div>
+                    <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
+                  </v-form>
+                </Dialog>
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-card>
       <v-data-table
+          class="hidden-table"
           :headers="header"
           :items="result"
           :search="search"
+          id="print"
+          hide-default-footer
+          disable-pagination
       >
         <template #top>
           <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
@@ -437,11 +486,11 @@ export default {
           <tr>
             <td>{{ index + 1 }}</td>
             <td>{{ item.columns.therapist_name }}</td>
-            <td>{{ item.columns.child_age }} months</td>
             <td>{{ item.columns.grow_age }}</td>
             <td>{{ item.columns.diff_age }}</td>
-            <td>{{ item.columns.basal_age }} months</td>
             <td>{{ Math.round(item.columns.late_percentage) }} %</td>
+            <td>{{ item.columns.basal_age }} months</td>
+            <td>{{ item.columns.child_age }} months</td>
             <td>{{ formateDate(item.columns.result_created_at) }}</td>
             <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
             <!--          <td>-->
@@ -449,71 +498,24 @@ export default {
               <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
                 mdi-pencil
               </v-icon>
-              <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
+              <Dialog :visible="visible" modal header=" " :style="{ width: '50vw' }">
                 <v-form fast-fail @submit.prevent ref="form">
-                  <!-- <v-text-field
+                  <v-text-field
                       v-model="examDate"
                       :rules="NameRules"
                       :label="$t('examDate')"
                       type="datetime-local"
-
-                  ></v-text-field> -->
-                  <div class="card flex justify-content-center">
-                    <Calendar style="width: 100%; margin: 10px;"  v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
-                </div>
+                  ></v-text-field>
                   <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
                 </v-form>
               </Dialog>
             </td>
           </tr>
         </template>
+        <template #bottom>
+        </template>
       </v-data-table>
-    </v-card>
-    <v-data-table
-        class="hidden-table"
-        :headers="header"
-        :items="result"
-        :search="search"
-        id="print"
-        hide-default-footer
-        disable-pagination
-    >
-      <template #top>
-        <v-progress-linear v-if="loading" slot="progress" style="color:#135c65" indeterminate></v-progress-linear>
-      </template>
-      <template #item="{ item ,index}">
-        <tr>
-          <td>{{ index + 1 }}</td>
-          <td>{{ item.columns.therapist_name }}</td>
-          <td>{{ item.columns.grow_age }}</td>
-          <td>{{ item.columns.diff_age }}</td>
-          <td>{{ Math.round(item.columns.late_percentage) }} %</td>
-          <td>{{ item.columns.basal_age }} months</td>
-          <td>{{ item.columns.child_age }} months</td>
-          <td>{{ formateDate(item.columns.result_created_at) }}</td>
-          <!--          <td>{{ moment(item.raw.result_created_at).format('DD-MM-YYYY') }}</td>-->
-          <!--          <td>-->
-          <td class="text-center">
-            <v-icon small color="primary" class="mr-2" @click="editItem(item.raw.result_created_at,item.raw.id)">
-              mdi-pencil
-            </v-icon>
-            <Dialog v-model:visible="visible" modal header=" " :style="{ width: '50vw' }">
-              <v-form fast-fail @submit.prevent ref="form">
-                <v-text-field
-                    v-model="examDate"
-                    :rules="NameRules"
-                    :label="$t('examDate')"
-                    type="datetime-local"
-                ></v-text-field>
-                <button class="bg-blue pa-3 rounded" @click="submit">{{ $t('submit') }}</button>
-              </v-form>
-            </Dialog>
-          </td>
-        </tr>
-      </template>
-      <template #bottom>
-      </template>
-    </v-data-table>
+    </div>
   </div>
 </template>
 <style scoped>

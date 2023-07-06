@@ -242,7 +242,7 @@ export default {
             
         ></v-text-field> -->
         <div class="card flex justify-content-center">
-          <Calendar style="width: 100%;" v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+          <Calendar style="width: 100%;" v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="yy-dd-mm"  timeFormat="hh:mm:ss" />
       </div>
        
         <div v-for="questions in Object.values(headerAndQuestions).reverse()">
