@@ -104,6 +104,7 @@ export default {
   mounted() {
     axios.get("/api/calender").then(res =>{
      this.calendarOptions.events=res.data.calender
+     console.log(this.calendarOptions.events)
     })
 
     console.log(this.calendarOptions)

@@ -28,12 +28,16 @@ export default {
     selectBox: [],
     child_id: '',
     child: '',
+    
     numberOfMonth: '',
     skip: [],
     headerAndQuestions: [],
     examDate:'',
   }),
   methods: {
+    fomate(){
+    // this.examDate =  moment(new Date()).format("YYYY-MM-DD HH:mm")
+    },
     goBack() {
         this.$router.go(-1)
       },
@@ -58,7 +62,7 @@ export default {
       this.selected.forEach((value, question_id) => {
         this.answers.push({question_id, value})
       })
-
+      this.examDate =  moment(new Date()).format("YYYY-MM-DD HH:mm")
       axios.post(`/api/evaluations/${this.$route.params.id}/submit`, {
         'answers': this.answers,
         'child_id': this.child_id,
@@ -163,8 +167,7 @@ export default {
         }
 
       })
-
-    },
+    }, 
     getSpecificChildren() {
 
 
@@ -189,7 +192,7 @@ export default {
     this.getQuestions()
     this.getChildren()
 
-    this.examDate =  moment(new Date()).format("YYYY-MM-DDTHH:mm")
+    this.examDate =  moment(new Date()).format("YYYY-MM-DD HH:mm")
     
     console.log(this.examDate)
   },
@@ -242,7 +245,8 @@ export default {
             
         ></v-text-field> -->
         <div class="card flex justify-content-center">
-          <Calendar style="width: 100%;" v-model="examDate"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="yy-dd-mm"  timeFormat="hh:mm:ss" />
+          <Calendar style="width: 100%;" v-model="examDate" @change="fomate()" date-format="dd-mm-yy"  :rules="NameRules"  :show-time="true"  />
+        
       </div>
        
         <div v-for="questions in Object.values(headerAndQuestions).reverse()">
