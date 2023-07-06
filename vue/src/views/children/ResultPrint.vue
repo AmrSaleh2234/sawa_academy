@@ -9,12 +9,28 @@
       <p class="w-[100%] text-right ma-4">{{birth_date}}</p>
      </div>
         <v-card>
+         
+          
           <v-data-table
               class="hidden-table"
               :headers="header"
               :items="desserts"
               :search="search"
+              
           >
+          
+          <template v-slot:item="{ item }">
+            <tr>
+              <td>{{ item.columns.id }}</td>
+              <td>{{ item.columns.evaluation_title }}</td>
+              <td>{{ item.columns.side_profile_title }}</td>
+              <td>{{ item.columns.child_age }}</td>
+              <td>{{ item.columns.diff_age}}</td>
+              <td>{{ item.columns.grow_age }}</td>
+              <td>{{ item.columns.late_percentage }}</td>
+              <td>{{ item.columns.result_created_at}}</td>
+            </tr>
+          </template>
          
            
             <template #bottom>
@@ -92,7 +108,9 @@ import axios from 'axios'
        this.title=res.data.evaluation_results[0].evaluation_title
       
       })
-      window.print()
+      setTimeout(() => {
+        window.print();
+      }, 500)
       
     },
 },
@@ -124,13 +142,16 @@ import axios from 'axios'
     box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
   }
   
-  .hidden-table {
-    width: 100%;
-    font-size: 11px;
-  }
-  
-  .hidden-table {
+  .hidden-table  {
     border-collapse: separate;
     border-spacing: 2px;
+    width: 100%;
+    font-size: 11px;
+    
+    border: 2px solid rgb(61,129,137)
+  }
+  .hidden-table td  {
+   
+    border: 1px solid rgb(239, 239, 239)
   }
 </style>

@@ -224,7 +224,6 @@ export default {
               <td>{{ item.columns.basal_age }} months</td>
               <td>{{ Math.round(item.columns.late_percentage) }} %</td>
               <td>{{ formateDate(item.columns.result_created_at) }}</td>
-
             </tr>
 
           </template>

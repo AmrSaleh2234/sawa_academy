@@ -5,6 +5,7 @@ import moment from "moment";
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import Calendar from 'primevue/calendar';
+
 export default {
   data() {
     return {
@@ -287,7 +288,8 @@ export default {
   },
   components: {
     Dialog,
-    Button
+    Button,
+
   },
   components: {
     Dialog,
@@ -409,7 +411,7 @@ export default {
             :items="secondSelectBoxComputed"
         ></v-select>
       </div>
-      <canvas id="myChart" style="height: 70vh !important;"></canvas>
+      <canvas id="myChart" style="max-height:400px; !important;"></canvas>
       <v-card>
         <v-card-title>
           Results
