@@ -16,6 +16,10 @@ import print from 'vue3-print-nb'
 
 import "primevue/resources/primevue.min.css";
 
+/* import font awesome icon component */
+
+
+
 // import vuetify sass
 // import './main.scss'
 //import vueitfy icons
@@ -34,7 +38,7 @@ pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
 pinia.use(resetStore);
-const app = createApp(App);
+const app = createApp(App)
 app.use(pinia);
 app.use(i18n);
 app.use(vuetify);

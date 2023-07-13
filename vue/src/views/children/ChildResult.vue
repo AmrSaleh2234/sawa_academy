@@ -69,7 +69,7 @@ export default {
               categoryPercentage: 0.2,
             },
               {
-                label: 'Different ages ',
+                label:'Different_ages',
                 data: this.diffAge,
                 borderWidth: 1,
                 backgroundColor: '#4c9499',

@@ -43,7 +43,8 @@ export default {
     child_age:"عمر الطفل",
     back:"رجوع",
     print:"طباعة",
-    evaluation_type	:"نوع التقيم"
+    evaluation_type	:"نوع التقيم",
+   
 
 
 

@@ -91,7 +91,7 @@ export default {
     <!-- <input type="text" sty placeholder="MM/DD/YY"
                     onfocus="(this.type='date')"> -->
     <div class="card flex justify-content-center">
-      <Calendar style="width: 100%;" v-model.number=" child.birth_date"  :rules="NameRules" placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+      <Calendar style="width: 100%;" v-model.number=" child.birth_date"  placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
   </div>
    
       <!-- <v-text-field
