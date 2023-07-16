@@ -30,7 +30,7 @@ export default {
         this.$router.go(-1)
       },
     submit(){
-      this.child.birth_date=moment(this.child.birth_date).format(' YYYY-MM-DD')
+      this.child.birth_date=moment(this.child.birth_date).format(' YYYY-MM-d')
       console.log(this)
 
     
