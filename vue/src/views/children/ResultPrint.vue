@@ -27,7 +27,7 @@
               <td>{{ item.columns.child_age }}</td>
               <td>{{ item.columns.diff_age}}</td>
               <td>{{ item.columns.grow_age }}</td>
-              <td>{{ item.columns.late_percentage }}</td>
+              <td>{{Math.round(item.columns.late_percentage)}} %</td>
               <td>{{ item.columns.result_created_at}}</td>
             </tr>
           </template>
@@ -87,6 +87,7 @@ import axios from 'axios'
     methods: {
         getresulte(){
             axios.get(`/api/child/${this.$route.params.child_id}`).then(res => {
+              console.log(res.data)
           console.log(res.data.child)
        this.child_Name=res.data.child.name
        this.birth_date=res.data.child.birth_date
@@ -105,7 +106,8 @@ import axios from 'axios'
         }).then(res => {
           
        this.desserts=res.data.evaluation_results
-       this.title=res.data.evaluation_results[0].evaluation_title
+       this.title=res.data.evaluation_results[0].side_profile_title
+       console.log(res)
       
       })
       setTimeout(() => {

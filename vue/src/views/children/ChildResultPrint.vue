@@ -45,8 +45,21 @@ export default {
       this.$router.go(-1)
     },
     async print() {
+      // await axios.post("/api/child/results",{
+      //     sideprofile_id:this.$route.params.sideProfile_id,child_id:this.$route.params.child_id
+      //   }).then(res => {
+          
+      //  this.print_results=res.data.evaluation_results
+      //  this.title=res.data.evaluation_results[0].side_profile_title
+      //  console.log(res)
+      
+      // })
+      // setTimeout(() => {
+      //   window.print();
+      // }, 500)
+      
       await axios.post(`/api/evaluations/${this.$route.params.child_id}/${this.$route.params.sideProfile_id}/${this.$route.params.evaluation_id}/result`, {}).then(res => {
-
+        console.log(res)
         this.print_results = res.data.resultEvaluation
 
       })
