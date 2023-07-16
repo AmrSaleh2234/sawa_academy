@@ -30,7 +30,8 @@ export default {
         this.$router.go(-1)
       },
     submit(){
-      this.child.birth_date=moment(this.child.birth_date).format('dd-MM-yy ')
+      this.child.birth_date=moment(this.child.birth_date).format(' YYYY-MM-DD')
+      console.log(this)
 
     
       console.log(this.child.birth_date)
@@ -91,7 +92,7 @@ export default {
     <!-- <input type="text" sty placeholder="MM/DD/YY"
                     onfocus="(this.type='date')"> -->
     <div class="card flex justify-content-center">
-      <Calendar style="width: 100%;" v-model.number=" child.birth_date"  placeholder="dd/mm/yy" dateFormat="dd/mm/yy" />
+      <Calendar style="width: 100%;" v-model.number=" child.birth_date" showIcon placeholder="dd/mm/yy"  />
   </div>
    
       <!-- <v-text-field

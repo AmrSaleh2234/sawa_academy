@@ -91,10 +91,11 @@ export default {
          this.creat_event=true
          this.updat_event=false
          this.visible=true
+        
          console.log(event)
          this.start_event=moment(event.start).format(' YYYY-MM-DD')
          this.end_event= moment(event.end).format(' YYYY-MM-DD')
-         
+         console.log(event.backgroundColor)
         }.bind(this),
         
       }
@@ -104,12 +105,13 @@ export default {
     goBack() {
         this.$router.go(-1)
       },
-      deletevent(){
+      deletevent(event){
+        console.log(event)
         
               axios.delete(`/api/calender/${this.event_id}/delete`,{
 
                 }).then(res =>{
-                  console.log(res.data.k)
+                
                 })
                 this.update()
           setTimeout(() => {
@@ -164,7 +166,7 @@ export default {
       },
       update(){
         axios.get("/api/calender").then(res =>{
-      console.log()
+      console.log(res)
      this.opts.events=res.data.calender
     
     })

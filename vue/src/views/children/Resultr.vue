@@ -21,7 +21,19 @@
           :headers="header"
           :items="desserts"
           class="elevation-1"
-        ></v-data-table>
+        >
+        <template v-slot:item="{ item }">
+          <tr>
+            <td>{{ item.columns.id }}</td>
+            <td>{{ item.columns.evaluation_title }}</td>
+            <td>{{ item.columns.side_profile_title }}</td>
+            <td>{{ item.columns.child_age }}</td>
+            <td>{{ item.columns.diff_age}}</td>
+            <td>{{ item.columns.grow_age }}</td>
+            <td>{{ Math.round(item.columns.late_percentage) }} %</td>
+            <td>{{ item.columns.result_created_at}}</td>
+          </tr>
+        </template></v-data-table>
         
         
       

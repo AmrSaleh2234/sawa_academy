@@ -245,7 +245,7 @@ export default {
             
         ></v-text-field> -->
         <div class="card flex justify-content-center">
-          <Calendar style="width: 100%;" v-model="examDate" @change="fomate()" date-format="dd-mm-yy"  :rules="NameRules"  :show-time="true"  />
+          <Calendar style="width: 100%;" v-model="examDate" @change="fomate()" date-format="dd-mm-yy" showIcon :rules="NameRules"  :show-time="true"  />
         
       </div>
        
