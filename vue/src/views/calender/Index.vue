@@ -61,8 +61,8 @@ export default {
         {
           axios.post(`/api/calender/${event.event.id}/update`,{
             title:event.event.title,
-            start:moment(event.event.start).format('00:00:00 YYYY-MM-DD'),
-            end: moment(event.event.end).format('00:00:00 YYYY-MM-DD')
+            start:moment(event.event.start).format('00:00:00 YYYY-MM-d'),
+            end: moment(event.event.end).format('00:00:00 YYYY-MM-d')
           }).then(res =>{
             console.log(res.data.k)
           })
@@ -76,8 +76,8 @@ export default {
           this.creat_event=false
           this.updat_event=true
           this.visible=true
-          this.start_event=moment(event.event.start).format(' YYYY-MM-DD')
-         this.end_event= moment(event.event.end).format(' YYYY-MM-DD')
+          this.start_event=moment(event.event.start).format(' YYYY-MM-d')
+         this.end_event= moment(event.event.end).format(' YYYY-MM-d')
          console.log(this.start_event)
          
         
@@ -93,8 +93,8 @@ export default {
          this.visible=true
         
          console.log(event)
-         this.start_event=moment(event.start).format(' YYYY-MM-DD')
-         this.end_event= moment(event.end).format(' YYYY-MM-DD')
+         this.start_event=moment(event.start).format(' YYYY-MM-d')
+         this.end_event= moment(event.end).format(' YYYY-MM-d')
          console.log(event.backgroundColor)
         }.bind(this),
         
@@ -127,8 +127,8 @@ export default {
         
         axios.post(`/api/calender/${this.event_id}/update`,{
             title:this.event_title,
-            start:moment(this.start_event).format(' YYYY-MM-DD'),
-            end:moment(this.end_event ).format(' YYYY-MM-DD'),
+            start:moment(this.start_event).format(' YYYY-MM-d'),
+            end:moment(this.end_event ).format(' YYYY-MM-d'),
           
           }).then(res =>{
            
