@@ -10,24 +10,36 @@ const usersRoutes = [
     path: "users",
     name: "Users",
     component: Index,
+    meta: {
+      permissions: ["users.index"],
+    },
   },
   // create
   {
     path: "users/create",
     name: "CreateUser",
     component: Create,
+    meta: {
+      permissions: ["users.create"],
+    },
   },
   // show
   {
     path: "users/:id",
     name: "ShowUser",
     component: Show,
+    meta: {
+      permissions: ["users.show"],
+    },
   },
   // edit
   {
     path: "users/:id/edit",
     name: "EditUser",
     component: Edit,
+    meta: {
+      permissions: ["users.edit"],
+    },
   },
 ];
 

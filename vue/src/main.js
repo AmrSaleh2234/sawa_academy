@@ -43,4 +43,8 @@ app.use(PrimeVue);
 app.use(print)
 app.use(VueHtmlToPaper)
 
+
+
+
+
 app.mount("#app");

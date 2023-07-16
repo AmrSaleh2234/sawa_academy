@@ -8,14 +8,13 @@ import QuestionHeadersRoutes from "./question-headers.routes";
 import EvaluationsRoutes from "./evaluation.routes";
 import sideProfileRoutes from "./side-profile.routes";
 import calender from "./calender.routes";
-
-
+import page_403 from "../views/pages/page_403.vue";
 
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
     return next({ name: "Login" });
   }
- 
+
   next();
 }
 
@@ -23,7 +22,7 @@ function guest(to, from, next) {
   if (localStorage.getItem("token")) {
     return next({ name: "Home" });
   }
- 
+
   next();
 }
 
@@ -31,7 +30,7 @@ const routes = [
   {
     path: "/sawa-admin",
     component: Home,
-    name: 'Home',
+    name: "Home",
     beforeEnter: auth,
     children: [
       ...Object.values(permissionsRoutes),
@@ -42,7 +41,6 @@ const routes = [
       ...Object.values(EvaluationsRoutes),
       ...Object.values(sideProfileRoutes),
       ...Object.values(calender),
-
     ],
   },
   {
@@ -58,6 +56,11 @@ const routes = [
     component: () => import("@/components/Register.vue"),
   },
   {
+    path: "/unauthorized",
+    name: "unauthorized",
+    component: page_403,
+  },
+  {
     path: "/forgot-password",
     name: "ForgotPassword",
     component: () => import("@/components/ForgotPassword.vue"),
@@ -69,18 +72,38 @@ const routes = [
   },
   {
     path: "/print-child-result/:child_id/:sideProfile_id/:evaluation_id",
-    name: "printChildResult" ,
-    component: () =>import("@/views/children/ChildResultPrint.vue"),
+    name: "printChildResult",
+    component: () => import("@/views/children/ChildResultPrint.vue"),
   },
   {
     path: "/ResultPrint/:child_id/:sideProfile_id",
     name: "ResultPrint",
-    component: () => import("../views/children/ResultPrint.vue")
-},
+    component: () => import("../views/children/ResultPrint.vue"),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  let user_permissions = JSON.parse(localStorage.getItem("userPermissions"));
+  if (to.meta.hasOwnProperty("permissions")) {
+    if (
+      to.meta.permissions.some((to_permission) =>
+        user_permissions.includes(to_permission)
+      )
+    ) {
+      next();
+    } else {
+      next({
+        name: "unauthorized",
+      });
+    }
+  } else {
+    next();
+  }
+});
+
 export default router;

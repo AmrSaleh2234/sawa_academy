@@ -7,20 +7,22 @@ export const useAuthStore = defineStore("Auth", {
   state: () => ({
     authUser: useStorage("authUser", {}),
     authenticated: useStorage("authenticated", false),
+    userPermissions: useStorage("userPermissions", []),
     authErrors: [],
     token: useStorage("token", null),
     msg: "",
-    loading : ref(false),
+    loading: ref(false),
   }),
   getters: {
     user: (state) => state.authUser,
+    permissions: (state) => state.userPermissions,
     errors: (state) => state.authErrors,
     successMsg: (state) => state.msg,
   },
   actions: {
     async getUser() {
       if (this.authenticated == true && this.authUser) {
-        const response = await axios.get('api/get-user');
+        const response = await axios.get("api/get-user");
       }
     },
     async handleLogin(data) {
@@ -35,15 +37,16 @@ export const useAuthStore = defineStore("Auth", {
         this.authenticated = true;
         this.token = response.data.token;
         this.authUser = response.data.user;
+        this.userPermissions = response.data.user.permissions;
         this.router.push({ name: "Home" });
       } catch (error) {
         if (error.response.status === 422) {
-          console.log(error)
+          console.log(error);
           this.authErrors = error.response.data.errors;
         }
       } finally {
         this.loading = false;
-      };
+      }
     },
     async handleRegister(data) {
       if (this.loading) return;
@@ -65,8 +68,8 @@ export const useAuthStore = defineStore("Auth", {
           this.authErrors = error.response.data.errors;
         }
       } finally {
-      this.loading = false;
-    };
+        this.loading = false;
+      }
     },
     async handleLogout() {
       await axios.post("/api/logout");
@@ -108,6 +111,7 @@ export const useAuthStore = defineStore("Auth", {
       this.authUser = null;
       this.token = null;
       this.authenticated = false;
+      this.userPermissions = null;
       this.authErrors = [];
       this.msg = "";
       this.loading = false;
