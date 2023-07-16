@@ -22,8 +22,22 @@ class EvaluationController extends Controller
 
     public function __construct()
     {
-        $this->ControllerHandler = new ControllerHandler(new evaluation());
 
+        $this->middleware(
+            'permission:
+            evaluation.showEvaluationsForChildWithSpecificSideProfile|evaluations.index|evaluations.create|evaluations.show|
+                evaluations.update|sideProfile.evaluations|evaluations.showAllEvaluation',
+            ['only' => ['index', 'store']]
+        );
+
+        $this->middleware('permission:evaluations.create', ['only' => ['store']]);
+        $this->middleware('permission:evaluations.update', ['only' => ['update']]);
+        $this->middleware('permission:evaluations.show', ['only' => ['show']]);
+        $this->middleware('permission:evaluations.delete', ['only' => ['destroy']]);
+
+
+
+        $this->ControllerHandler = new ControllerHandler(new evaluation());
     }
 
     public function index()
@@ -31,12 +45,10 @@ class EvaluationController extends Controller
         return $this->ControllerHandler->getAll("evaluations");
     }
 
-
     public function show(evaluation $evaluation)
     {
 
         return $this->ControllerHandler->show("evaluation", EavlautionRepository::getEvalauationByIdWithHeaderAndQuestions($evaluation)->groupBy("id"));
-
     }
 
     public function EvaluationShow(evaluation $evaluation)
@@ -48,11 +60,10 @@ class EvaluationController extends Controller
     {
         return (new EvaluationService)
             ->createEvaluation($request)
-            ->evaluationAssignHeaderAndQuestions($request->questions);//create evaluation
+            ->evaluationAssignHeaderAndQuestions($request->questions); //create evaluation
 
         //assign headers and question to evaluation and return response
     }
-
 
     public function update(EvaluationRequest $request, evaluation $evaluation)
     {
@@ -61,15 +72,13 @@ class EvaluationController extends Controller
         return (new EvaluationService)
             ->deleteAssignedHeadersAndQuestions($evaluation)
             ->updateEvaluationTitle($request)
-            ->evaluationAssignHeaderAndQuestions($request->questions);//assign headers and question to evaluation and return response
+            ->evaluationAssignHeaderAndQuestions($request->questions); //assign headers and question to evaluation and return response
     }
-
 
     public function destroy(Evaluation $evaluation)
     {
         (new EvaluationService)->deleteAssignedHeadersAndQuestions($evaluation);
         return $this->ControllerHandler->destory("evaluations", $evaluation);
-
     }
 
     public function submitEvaluation(EvaluationSubmitRequest $request, Evaluation $evaluation)
@@ -77,35 +86,29 @@ class EvaluationController extends Controller
         return (new EvaluationService)->storeEvalautionResult($request, $evaluation);
     }
 
-    public function showResultExamForChildren(Child $child ,SideProfile $sideProfile , Evaluation $evaluation)
+    public function showResultExamForChildren(Child $child, SideProfile $sideProfile, Evaluation $evaluation)
     {
 
-        return $this->ControllerHandler->show("resultEvaluation", EavlautionRepository::getResultForSpecificChildWithSpecificSideProfile($child,$sideProfile,$evaluation));
-
-
+        return $this->ControllerHandler->show("resultEvaluation", EavlautionRepository::getResultForSpecificChildWithSpecificSideProfile($child, $sideProfile, $evaluation));
     }
-    public function showResultExamForChildrenWithDate(Child $child ,SideProfile $sideProfile , Evaluation $evaluation,Request $request)
+    public function showResultExamForChildrenWithDate(Child $child, SideProfile $sideProfile, Evaluation $evaluation, Request $request)
     {
 
-        return $this->ControllerHandler->show("resultEvaluation", EavlautionRepository::getResultForSpecificChildWithSpecificSideProfileWithDate($child,$sideProfile,$evaluation,$request->date1,$request->date2));
-
-
+        return $this->ControllerHandler->show("resultEvaluation", EavlautionRepository::getResultForSpecificChildWithSpecificSideProfileWithDate($child, $sideProfile, $evaluation, $request->date1, $request->date2));
     }
 
-    public function showEvaluationsForChildWithSpecificSideProfile(Child $child ,SideProfile $sideProfile)
+    public function showEvaluationsForChildWithSpecificSideProfile(Child $child, SideProfile $sideProfile)
     {
-        return $this->ControllerHandler->show("evaluations", EavlautionRepository::getEvaluationsForSpecificChildWithSpecificSideProfile($child,$sideProfile));
+        return $this->ControllerHandler->show("evaluations", EavlautionRepository::getEvaluationsForSpecificChildWithSpecificSideProfile($child, $sideProfile));
     }
 
-    public function basalAge(Evaluation $evaluation  ,EvaluationHeader $evaluationHeader,Request $request)
+    public function basalAge(Evaluation $evaluation, EvaluationHeader $evaluationHeader, Request $request)
     {
-        return (new EvaluationService)->storeEvalautionResult($request, $evaluation , $evaluationHeader );
-
+        return (new EvaluationService)->storeEvalautionResult($request, $evaluation, $evaluationHeader);
     }
 
-
-    public function editDateEvaluations(EvaluationResults $evaluationResults,Request $request)
+    public function editDateEvaluations(EvaluationResults $evaluationResults, Request $request)
     {
-        return EavlautionRepository::editDateEvaluationResult($evaluationResults,$request->date );
+        return EavlautionRepository::editDateEvaluationResult($evaluationResults, $request->date);
     }
 }

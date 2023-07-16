@@ -49,7 +49,7 @@ class EvaluationService
      */
     public function storeEvalautionResult($request, $evaluation, $basalAge=null)
     {
-//        return response(['k'=>$basalAge]);
+        //        return response(['k'=>$basalAge]);
         $score = 0;
         foreach ($request->answers as $answer) {
 
