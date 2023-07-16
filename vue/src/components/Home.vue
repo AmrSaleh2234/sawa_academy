@@ -185,6 +185,12 @@ onMounted(async () => {
                 value="roles"
                 :to="{name: 'Roles'}"
             ></v-list-item>
+            <v-list-item
+                prepend-icon="mdi-shield-account"
+                :title="$t('roles')"
+                value="roles"
+                :to="{name: 'Roles'}"
+            ></v-list-item>
           </v-list-group>
 
           <v-list-group value="Children">
