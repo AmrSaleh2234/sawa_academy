@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PassportAuthController;
-use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\PassportAuthController;
+use App\Http\Controllers\Api\FrontAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::post('/forgot-password', [PassportAuthController::class, 'forgotPassword'
 Route::post('/reset-password', [PassportAuthController::class, 'resetPassword'])->name('password.reset');
 
 Route::get('lookups/treatmentsType', [\App\Http\Controllers\LookupsController::class, 'treatmeantType']);
+
+
+Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->group(function () {
+    Route::post('register', 'register')->name('register');
+});
+
+
 Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo'])->name('users.get');
     Route::post('logout', [PassportAuthController::class, 'logout'])->name('logout.perform');

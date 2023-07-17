@@ -36,14 +36,18 @@ return [
     */
 
     'guards' => [
-        'web' => [ 
-            'driver' => 'session', 
-            'provider' => 'users', 
-        ], 
-        'api' => [ 
-            'driver' => 'passport', 
-            'provider' => 'users', 
-        ], 
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+        'parent' => [
+            'driver' => 'passport',
+            'provider' => 'parents',
+        ],
     ],
 
     /*
@@ -68,6 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        "parents" => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ChildParent::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
