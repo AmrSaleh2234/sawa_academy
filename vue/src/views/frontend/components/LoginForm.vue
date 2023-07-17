@@ -1,6 +1,5 @@
 <template>
   <section
-    style=""
     class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
   >
     <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
@@ -24,20 +23,26 @@
             يمكنك الان تسجيل الدخول للحساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
+        <div v-show="alert.show">
+          <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p>
+          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="alert.errors">
+            <p v-for="error in alert.errors" class="p-1">
+              <p v-for="err in error">{{ err }}</p>
+            </p>
+          </div>
+        </div>
         <div
           class="mb-24 backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
           <div class="p-2 md:space-y-6 sm:p-8">
-            <form
-              class="space-y-6 text-center rounded-2xl p-4 bg-none"
-              action="#"
-            >
+            <div class="space-y-6 text-center rounded-2xl p-4 bg-none">
               <div>
                 <input
                   class="backdrop-blur-md bg-white/30 px-16 p-2 text-center border-0 border-b-2 border-black border-solid"
                   type="email"
                   name="email"
                   placeholder=" الايميل الالكتروني"
+                  v-model="parent.email"
                 />
               </div>
               <div>
@@ -46,11 +51,15 @@
                   type="text"
                   name="email"
                   placeholder="كلمه السر"
+                  v-model="parent.password"
                 />
               </div>
 
-              <button class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]">
-                انشاء حساب
+              <button
+                class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
+                @click.prevent="login"
+              >
+                تسجيل دخول
               </button>
               <p>
                 اذا كنت تمتلك حساب اضغط هنا
@@ -58,10 +67,28 @@
                   انشاء حساب</router-link
                 >
               </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+<script>
+export default {
+  props: ["alert"],
+  data() {
+    return {
+      parent: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    login() {
+      this.$emit("submit", this.parent);
+    },
+  },
+};
+</script>

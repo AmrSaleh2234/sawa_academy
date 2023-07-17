@@ -16,11 +16,24 @@ class FrontAuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'string'],
-            'password' => ['required', 'string', 'confirmed'],
+            'password' => ['required', 'string'],
         ]);
 
+        $parent = ChildParent::where('email', $request->email)->first();
 
-        if (Auth::guard('parent')->attempt($request->only(['email', 'password']))) {
+        if ($parent) {
+            if (Hash::check($request->password, $parent->password)) {
+                $token = $parent->createToken('LaravelPassportAuth')->accessToken;
+                $response = [
+                    'token' => $token,
+                    'user' => $parent,
+                ];
+                return response($response, 202);
+            } else {
+                return response()->json(['message' => 'email or password does not match our records'], 401);
+            }
+        } else {
+            return response()->json(['message' => 'email or password does not match our records'], 401);
         }
     }
     public function register(Request $request)
@@ -42,8 +55,6 @@ class FrontAuthController extends Controller
         ]);
 
 
-
-
         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
 
         return response()->json([
@@ -59,5 +70,14 @@ class FrontAuthController extends Controller
     }
     public function logout(Request $request)
     {
+        $token = $request->user()->token();
+
+        $token->revoke();
+
+        $resposne = [
+            'message' => "You have successfully been logged out!"
+        ];
+
+        return response($resposne, 200);
     }
 }
