@@ -104,7 +104,7 @@
       </div>
       <div>
         <button class="p-2 bg-[#FFCF24] text-white rounded-lg">
-          <router-link :to="{ name: 'ParentLogin' }">تسجيل الدخول</router-link>
+          <router-link :to="{ name: 'parentLogin' }">تسجيل الدخول</router-link>
         </button>
       </div>
       <div>

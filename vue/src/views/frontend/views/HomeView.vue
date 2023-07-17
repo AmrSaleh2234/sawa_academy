@@ -11,7 +11,7 @@
     <card :carddeta="mycard" />
     <DoCard />
     <See />
-    <About /> 
+    <About />
 </div>
 
 
