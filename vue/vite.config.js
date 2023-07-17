@@ -9,7 +9,7 @@ import { resolve, dirname } from "node:path";
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      "@": resolve(__dirname, "./src"),
     },
   },
   plugins: [
@@ -17,18 +17,18 @@ export default defineConfig({
     // this plugin is imported for treeshaking -- small chunk size for build whenever its required
     vuetify({
       autoImport: true,
+      treeShake: true,
+
       // styles: { configFile: './src/settings.scss' }
       // styles: { configFile: 'src/settings.scss' }
       // styles: 'expose'
       // styles: 'sass'
-    },
-
-        ), // Enabled by default
+    }), // Enabled by default
     // added this vueI18nPlugin to define locales
     VueI18nPlugin({
       include: resolve(
         dirname(fileURLToPath(import.meta.url)),
-        "./src/locales/*.js",
+        "./src/locales/*.js"
       ),
     }),
   ],
