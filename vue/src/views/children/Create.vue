@@ -3,12 +3,12 @@ import axios from "axios";
 import InputText from 'primevue/inputtext';
 import moment from 'moment';
 import Calendar from 'primevue/calendar';
-import { max } from 'date-fns';
-
-
+import { max } from 'date-fns'; 
 export default {
   components:{InputText,Calendar},
   data: () => ({
+    minDate: new Date(1640426400000),
+    maxDate: new Date(),
     
     NameRules: [
       value => {
@@ -26,10 +26,12 @@ export default {
     snackbar: true,
   }),
   methods:{
+    
     goBack() {
         this.$router.go(-1)
       },
     submit(){
+      
       this.child.birth_date=moment(this.child.birth_date).format(' YYYY-MM-DD')
       console.log(this)
 
@@ -49,7 +51,7 @@ export default {
 
   },
   mounted() {
-
+console.log(moment(new Date).format(' YYYY-MM-DD'))
   }
 }
 </script>
@@ -92,7 +94,8 @@ export default {
     <!-- <input type="text" sty placeholder="MM/DD/YY"
                     onfocus="(this.type='date')"> -->
     <div class="card flex justify-content-center">
-      <Calendar style="width: 100%;" v-model.number=" child.birth_date" showIcon placeholder="dd/mm/yy"  />
+      <Calendar style="width: 100%;" showButtonBar v-model.number=" child.birth_date" showIcon placeholder="dd/mm/yy" :minDate="minDate"
+      :maxDate="maxDate" />
   </div>
    
       <!-- <v-text-field
