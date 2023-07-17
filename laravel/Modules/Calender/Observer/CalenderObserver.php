@@ -11,10 +11,10 @@ class CalenderObserver
      * @param Calender $calender
      * @return void
      */
-    public function saving (Calender $calender)
+    public function saving(Calender $calender)
     {
-        $calender->start=Carbon::parse($calender->start)->format('Y-m-d');
-        $calender->end=Carbon::parse($calender->end)->format('Y-m-d');
-        $calender->user_id = auth()->user()->id ;
+        $calender->start = Carbon::parse($calender->start);
+        $calender->end = Carbon::parse($calender->end);
+        $calender->user_id = auth()->user()->id;
     }
 }
