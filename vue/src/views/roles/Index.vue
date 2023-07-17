@@ -15,7 +15,6 @@ const headers = ref([
 ]);
 const pageSizes = ref([5, 10, 20]);
 
-
 const getItems = async () => {
   await rolesStore.fetchRoles();
   items.value = rolesStore.roles.map(getDisplayItem);
@@ -47,8 +46,8 @@ const editItem = (id) => {
 const deleteItem = (id) => {
   if (confirm("Are you sure you want to delete?")) {
     // yes
-    rolesStore.deleteRole(id)
-    getItems()
+    rolesStore.deleteRole(id);
+    getItems();
   }
 };
 onMounted(() => {
@@ -72,6 +71,7 @@ onMounted(() => {
     <v-col cols="12" sm="4">
       <v-btn color="success" :to="{ name: 'CreateRole' }"> Create </v-btn>
     </v-col>
+
     <v-col cols="12" sm="12">
       <v-row>
         <v-col cols="4" sm="3">

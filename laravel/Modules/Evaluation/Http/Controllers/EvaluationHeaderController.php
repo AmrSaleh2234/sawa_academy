@@ -13,8 +13,21 @@ use Modules\Evaluation\Http\Requests\EvaluationHeaderRequest;
 class EvaluationHeaderController extends Controller
 {
     private $ControllerHandler;
+    
     public function __construct()
     {
+
+        $this->middleware(
+            'permission:
+                evaluationheaders.index|evaluationheaders.create|evaluationheaders.show|
+                evaluationheaders.update',
+            ['only' => ['index','store']]
+        );
+
+        $this->middleware('permission:evaluationheaders.create',['only' => ['store']]);
+        $this->middleware('permission:evaluationheaders.update',['only' => ['update']]);
+        $this->middleware('permission:evaluationheaders.show',['only' => ['show']]);
+        $this->middleware('permission:evaluationheaders.delete',['only' => ['destroy']]);
 
         $this->ControllerHandler=new ControllerHandler(new EvaluationHeader());
     }
@@ -58,7 +71,7 @@ class EvaluationHeaderController extends Controller
     {
 
         // here some validation check parent or admin
-//
+        //
 
         $typeAndMinAge=EvaluationHeaderService::getTypeAndMinAge($request->from,$request->to);//calculate type of header and min age
         if($typeAndMinAge["status"]==412)  // if type is not 6 or 12 month return invalid (business role)

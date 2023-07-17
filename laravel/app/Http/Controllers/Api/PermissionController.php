@@ -15,11 +15,11 @@ class PermissionController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:permissions.index|permissions.create|permissions.show|permissions.edit|roles-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:permissions.create', ['only' => ['store']]);
-         $this->middleware('permission:permissions.show', ['only' => ['show']]);
-         $this->middleware('permission:permissions.edit', ['only' => ['update']]);
-         $this->middleware('permission:permissions.delete', ['only' => ['destroy']]);
+        $this->middleware('permission:permissions.index|permissions.create|permissions.show|permissions.edit|roles-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:permissions.create', ['only' => ['store']]);
+        $this->middleware('permission:permissions.show', ['only' => ['show']]);
+        $this->middleware('permission:permissions.edit', ['only' => ['update']]);
+        $this->middleware('permission:permissions.delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

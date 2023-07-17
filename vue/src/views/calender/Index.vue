@@ -1,13 +1,12 @@
-
 <script>
-import FullCalendar from '@fullcalendar/vue3'
-import TimeGridplugin from '@fullcalendar/timegrid'  
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import listPlugin from '@fullcalendar/list';
+import FullCalendar from "@fullcalendar/vue3";
+import TimeGridplugin from "@fullcalendar/timegrid";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from "@fullcalendar/list";
 import axios from "axios";
-import Dialog from 'primevue/dialog';
-import Button from 'primevue/button';
+import Dialog from "primevue/dialog";
+import Button from "primevue/button";
 import { ref } from "vue";
 import moment from 'moment';
 import Calendar from 'primevue/calendar';
@@ -35,12 +34,12 @@ export default {
      
 
       opts: {
-        plugins: [ dayGridPlugin, interactionPlugin,TimeGridplugin,listPlugin],
-        initialView: 'dayGridMonth',
-        footerToolbar:true,
-        valid:false,
-        buttonIcons:false,
-        selectable:true,
+        plugins: [dayGridPlugin, interactionPlugin, TimeGridplugin, listPlugin],
+        initialView: "dayGridMonth",
+        footerToolbar: true,
+        valid: false,
+        buttonIcons: false,
+        selectable: true,
         droppable: false,
         editable: true,
         selectHelper:true,
@@ -68,15 +67,16 @@ second: '2-digit',
             console.log(res.data.k)
           })
         },
-        eventDrop:function(event)
-        {
-          axios.post(`/api/calender/${event.event.id}/update`,{
-            title:event.event.title,
-            start:moment(event.event.start).format('00:00:00 YYYY-MM-DD'),
-            end: moment(event.event.end).format('00:00:00 YYYY-MM-DD')
-          }).then(res =>{
-            console.log(res.data.k)
-          })
+        eventDrop: function (event) {
+          axios
+            .post(`/api/calender/${event.event.id}/update`, {
+              title: event.event.title,
+              start: moment(event.event.start).format("00:00:00 YYYY-MM-d"),
+              end: moment(event.event.end).format("00:00:00 YYYY-MM-d"),
+            })
+            .then((res) => {
+              console.log(res.data.k);
+            });
         },
         slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
         minTime: '00:00:00', /* calendar start Timing */
@@ -110,18 +110,15 @@ second: '2-digit',
          this.end_event= moment(event.end).format(' YYYY-MM-DD')
        
         }.bind(this),
-        
-      }
-    }
+      },
+    };
   },
   methods: {
     goBack() {
-        this.$router.go(-1)
-      },
-      deletevent(event){
-        console.log(event)
-        
-              axios.delete(`/api/calender/${this.event_id}/delete`,{
+      this.$router.go(-1);
+    },
+    deletevent(event) {
+      console.log(event);
 
                 }).then(res =>{
                 
@@ -196,15 +193,61 @@ second: '2-digit',
       this.$refs.calendar.$emit('refetch-events')
     }
 
+    updateevent() {
+      axios
+        .post(`/api/calender/${this.event_id}/update`, {
+          title: this.event_title,
+          start: moment(this.start_event).format(" YYYY-MM-d"),
+          end: moment(this.end_event).format(" YYYY-MM-d"),
+        })
+        .then((res) => {});
+      this.update();
+      setTimeout(() => {
+        (this.visible = false),
+          (this.event_title = null),
+          (this.event_id = null),
+          (this.loading = false);
+      }, 700);
+    },
+    async createvent() {
+      this.loading = true;
+      axios
+        .post("/api/calender/create", {
+          title: this.event_title,
+          start: this.start_event,
+          end: this.end_event,
+        })
+        .then((res) => {
+          if (res.status != 200) {
+            this.valid = true;
+          }
+        });
+      await this.update();
+      setTimeout(() => {
+        (this.visible = false),
+          (this.event_title = null),
+          (this.start_event = null),
+          (this.end_event = null),
+          (this.create_visible = false),
+          (this.loading = false);
+      }, 700);
+    },
+    update() {
+      axios.get("/api/calender").then((res) => {
+        console.log(res);
+        this.opts.events = res.data.calender;
+      });
+    },
+    refreshEvents() {
+      this.$refs.calendar.$emit("refetch-events");
+    },
   },
   mounted() {
-   
-  this.update()
-  
+    this.update();
 
-    console.log(this.opts)
+    console.log(this.opts);
   },
-}
+};
 </script>
 <template>
   <div >
@@ -270,11 +313,11 @@ second: '2-digit',
          </form>
 
       </Dialog>
-  </div>
+    </div>
   </div>
 </template>
 <style scoped>
-input{
+input {
   width: 100%;
   font-size: 20px;
   text-align: center;
@@ -283,7 +326,7 @@ input{
   padding: 8px;
   border: 2px solid rgb(130, 130, 168);
 }
-p{
+p {
   color: red;
   width: 100%;
   font-size: 20px;
@@ -291,5 +334,4 @@ p{
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
 </style>

@@ -19,7 +19,15 @@ class SideProfileController extends Controller
     public function __construct()
     {
 
-        $this->ControllerHandler=new ControllerHandler(new SideProfile());
+        $this->middleware('permission:sideProfile.index', ['only' => ['index']]);
+        $this->middleware('permission:sideProfile.show', ['only' => ['show']]);
+        $this->middleware('permission:sideProfile.create', ['only' => ['store']]);
+        $this->middleware('permission:sideProfile.update', ['only' => ['update']]);
+        $this->middleware('permission:sideProfile.delete', ['only' => ['destroy']]);
+        $this->middleware('permission:sideProfile.evaluations,sideProfile.child.getChildAndSideProfile', ['only' => ['getAllEvaluation']]);
+
+
+        $this->ControllerHandler = new ControllerHandler(new SideProfile());
     }
 
     /**
@@ -29,7 +37,6 @@ class SideProfileController extends Controller
     public function index()
     {
         return $this->ControllerHandler->getAll("sideProfile");
-
     }
 
     /**
@@ -40,7 +47,7 @@ class SideProfileController extends Controller
     {
 
 
-        return $this->ControllerHandler->show("sideProfile",$sideProfile);
+        return $this->ControllerHandler->show("sideProfile", $sideProfile);
     }
 
 
@@ -51,16 +58,12 @@ class SideProfileController extends Controller
      */
     public function store(SideProfileRequest $request)
     {
-        return $this->ControllerHandler->store("sideProfile",$request->validated());
-
+        return $this->ControllerHandler->store("sideProfile", $request->validated());
     }
-
-
-
 
     public function update(SideProfileRequest $request, SideProfile $sideProfile)
     {
-       return $this->ControllerHandler->update('sideProfile',$sideProfile,$request->validated());
+        return $this->ControllerHandler->update('sideProfile', $sideProfile, $request->validated());
     }
 
     /**
@@ -70,20 +73,20 @@ class SideProfileController extends Controller
      */
     public function destroy(SideProfile $sideProfile)
     {
-//        return response(['k'=>$sideProfile]);
+        //        return response(['k'=>$sideProfile]);
 
-        return $this->ControllerHandler->destory('sideProfile',$sideProfile);
+        return $this->ControllerHandler->destory('sideProfile', $sideProfile);
     }
 
 
     public function getAllEvaluation(SideProfile $sideProfile)
     {
-        return $this->ControllerHandler->show("evaluations",$sideProfile->evaluations);
+        return $this->ControllerHandler->show("evaluations", $sideProfile->evaluations);
     }
 
 
     public function getSideprofileWithEvalautions()
     {
-        return  $this->ControllerHandler->show("evaluations",SideprofileRepository::getSideProfilesWithEvalautions());
+        return  $this->ControllerHandler->show("evaluations", SideprofileRepository::getSideProfilesWithEvalautions());
     }
 }

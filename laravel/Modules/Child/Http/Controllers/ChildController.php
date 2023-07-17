@@ -22,6 +22,13 @@ class ChildController extends Controller
 
     public function __construct()
     {
+        $this->middleware('permission:child.index|child.create|child.show|child.update|child.delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:child.create', ['only' => ['store']]);
+        $this->middleware('permission:child.show', ['only' => ['show']]);
+        $this->middleware('permission:child.update', ['only' => ['update']]);
+        $this->middleware('permission:child.delete', ['only' => ['destroy']]);
+        $this->middleware('permission:child.childAndEvaluation', ['only' => ['childAndEvaluation']]);
+        $this->middleware('permission:child.getChildAndSideProfile', ['only' => ['getChildAndSideProfile']]);
 
         $this->ControllerHandler = new ControllerHandler(new Child());
     }
@@ -31,10 +38,7 @@ class ChildController extends Controller
      */
     public function index()
     {
-
-
         return $this->ControllerHandler->getAll("children");
-
     }
 
     /**
@@ -44,7 +48,7 @@ class ChildController extends Controller
     public function show(Child $child)
     {
 
-        $child->childInMonths =(new ChildService)->calcChildAgeInMonths($child);
+        $child->childInMonths = (new ChildService)->calcChildAgeInMonths($child);
 
         return $this->ControllerHandler->show("child", $child);
     }
@@ -84,14 +88,13 @@ class ChildController extends Controller
 
 
         return $this->ControllerHandler->destory("children", $child);
-
     }
 
 
     public function childAndEvaluation(Child $child, Evaluation $evaluation)
     {
 
-        return $this->ControllerHandler->show("child",  (new ChildService)->getChildWithAgeInMonthAndCheckIfCanDoExam( $child ,$evaluation));
+        return $this->ControllerHandler->show("child", (new ChildService)->getChildWithAgeInMonthAndCheckIfCanDoExam($child, $evaluation));
     }
 
     public function getChildAndSideProfile(Child $child)
@@ -104,6 +107,4 @@ class ChildController extends Controller
     {
         return $this->ControllerHandler->show('evaluation_results', ChildRepository::getResultsWithSideProfile($request));
     }
-
-
 }

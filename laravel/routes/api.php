@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PassportAuthController;
-use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\PassportAuthController;
+use App\Http\Controllers\Api\FrontAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,14 @@ Route::post('login', [PassportAuthController::class, 'login'])->name('login.perf
 Route::post('/forgot-password', [PassportAuthController::class, 'forgotPassword'])->name('password.forgot');
 Route::post('/reset-password', [PassportAuthController::class, 'resetPassword'])->name('password.reset');
 
-Route::get('lookups/treatmentsType',[\App\Http\Controllers\LookupsController::class,'treatmeantType']);
+Route::get('lookups/treatmentsType', [\App\Http\Controllers\LookupsController::class, 'treatmeantType']);
+
+
+Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->group(function () {
+    Route::post('register', 'register')->name('register');
+});
+
+
 Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo'])->name('users.get');
     Route::post('logout', [PassportAuthController::class, 'logout'])->name('logout.perform');
@@ -63,5 +71,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
         Route::put('/{user}/edit', [UserController::class, 'update'])->name('users.edit');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('users.delete');
+        Route::post('/{user}/add-permissions', [UserController::class, 'addPermissions'])->name('users.addPermissions');
+        Route::get('/{user}/permissions', [UserController::class, 'getUserPermissions'])->name('users.getUserPermissions');
+        Route::post('/{user}/sync-permissions', [UserController::class, 'syncPermissions'])->name('users.syncPermissions');
     });
 });
