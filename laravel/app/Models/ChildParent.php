@@ -15,6 +15,8 @@ class ChildParent extends  Authenticatable
 
     protected $table = "parents";
 
+    protected $guard = 'parent';
+
     protected $fillable = [
         "fname",
         "lname",

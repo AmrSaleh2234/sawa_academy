@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\ChildParent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
@@ -17,6 +18,10 @@ class FrontAuthController extends Controller
             'email' => ['required', 'string'],
             'password' => ['required', 'string', 'confirmed'],
         ]);
+
+
+        if (Auth::guard('parent')->attempt($request->only(['email', 'password']))) {
+        }
     }
     public function register(Request $request)
     {
@@ -35,6 +40,9 @@ class FrontAuthController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
+
+
+
 
         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
 
