@@ -23,10 +23,12 @@
             يمكنك الان تسجيل الدخول للحساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
-        <div v-show="alert.show">
-          <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p>
-          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="alert.errors">
-            <p v-for="error in alert.errors" class="p-1">
+
+        
+        <div v-show="parentStore.showErrors" class="my-4">
+          <p v-show="!parentStore.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ parentStore.errorMessage }}</p>
+          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="parentStore.errors">
+            <p v-for="error in parentStore.errors" class="p-1">
               <p v-for="err in error">{{ err }}</p>
             </p>
           </div>
@@ -57,7 +59,7 @@
 
               <button
                 class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
-                @click.prevent="login"
+                @click.prevent="parentStore.login(parent)"
               >
                 تسجيل دخول
               </button>
@@ -75,10 +77,13 @@
   </section>
 </template>
 <script>
+ import { useParentStore } from "../../../stores/ParentStore";
+
 export default {
   props: ["alert"],
   data() {
     return {
+      parentStore: useParentStore(),
       parent: {
         email: "",
         password: "",

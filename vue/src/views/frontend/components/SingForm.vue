@@ -23,10 +23,10 @@
             يمكنك الان انشاء حساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
-        <div v-show="alert.show" class="my-4">
-          <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p>
-          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="alert.errors">
-            <p v-for="error in alert.errors" class="p-1">
+        <div v-show="parentStore.showErrors" class="my-4">
+          <!-- <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p> -->
+          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="parentStore.showErrors">
+            <p v-for="error in parentStore.errors" class="p-1">
               <p v-for="err in error">{{ err }}</p>
             </p>
           </div>
@@ -37,7 +37,7 @@
           <div class="p-2 md:space-y-6 sm:p-8">
             <form
               class="space-y-6 text-center rounded-2xl p-4 bg-none"
-              @submit.prevent="register"
+              @submit.prevent="parentStore.register(parent)"
             >
               <div class="grid grid-cols-2">
                 <input
@@ -110,15 +110,16 @@
 
 <script>
 import axios from "axios";
-
+import {useParentStore} from "../../../stores/ParentStore"
 export default {
   data() {
     return {
-       alert: {
-        show: false,
-        message: "",
-        errors: [],
-      },
+      parentStore: useParentStore(),
+      //  alert: {
+      //   show: false,
+      //   message: "",
+      //   errors: [],
+      // },
       parent: {
         fname: "",
         lname: "",
@@ -130,20 +131,20 @@ export default {
     };
   },
   methods: {
-    register() {
-      axios
-        .post("api/parent/register", this.parent)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          this.alert.show = true;
-          this.alert.message = err.response.data.message;
-          this.alert.errors = err.response.data.errors;
-          console.log(err);
-          console.log(err);
-        });
-    },
+    // register() {
+    //    axios
+    //     .post("api/parent/register", this.parent)
+    //     .then((res) => {
+    //       console.log(res);
+    //     })
+    //     .catch((err) => {
+    //       this.alert.show = true;
+    //       this.alert.message = err.response.data.message;
+    //       this.alert.errors = err.response.data.errors;
+    //       console.log(err);
+    //       console.log(err);
+    //     });
+    // },
   },
 };
 </script>
