@@ -19,22 +19,39 @@ class FrontAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $parent = ChildParent::where('email', $request->email)->first();
 
-        if ($parent) {
-            if (Hash::check($request->password, $parent->password)) {
-                $token = $parent->createToken('LaravelPassportAuth')->accessToken;
-                $response = [
-                    'token' => $token,
-                    'user' => $parent,
-                ];
-                return response($response, 202);
-            } else {
-                return response()->json(['message' => 'email or password does not match our records'], 401);
-            }
+        if (Auth::guard('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = ChildParent::where('email', $request->email)->first();
+            $response = [
+                'token' => $user->createToken('My Token', ['parent']),
+                'user' => $user,
+            ];
+            return response($response, 202);
         } else {
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
+
+
+
+
+
+
+        // $parent = ChildParent::where('email', $request->email)->first();
+
+        // if ($parent) {
+        //     if (Hash::check($request->password, $parent->password)) {
+        //         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
+        //         $response = [
+        //             'token' => $token,
+        //             'user' => $parent,
+        //         ];
+        //         return response($response, 202);
+        //     } else {
+        //         return response()->json(['message' => 'email or password does not match our records'], 401);
+        //     }
+        // } else {
+        //     return response()->json(['message' => 'email or password does not match our records'], 401);
+        // }
     }
     public function register(Request $request)
     {
@@ -67,6 +84,9 @@ class FrontAuthController extends Controller
     }
     public function user(Request $request)
     {
+        $user = $request->user();
+
+        return response()->json(['user' => $user], 200);
     }
     public function logout(Request $request)
     {

@@ -3,7 +3,7 @@
     class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
   >
     <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
-      <div class>
+      <div class> 
         <button class="py-12">
           <router-link class="flex" to="/">
             <p class="pt-4 text-2xl">الرئيسيه</p>
