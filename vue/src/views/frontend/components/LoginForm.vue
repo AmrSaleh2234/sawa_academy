@@ -5,15 +5,13 @@
   >
     <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
       <div class="">
-        <button class="">
-          <router-link class="flex" to="/">
-            <p class="pt-4 text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 p-4"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
+        <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
+          <v-icon
+            start
+            icon="mdi-arrow-left"
+          ></v-icon>
+            {{$t('الرئيسيه')}}
+        </v-btn>
       </div>
       <div
         class="flex flex-col items-center justify-between px-6 md:h-screen mx-auto md:col-span-10 lg:py-0"
@@ -43,7 +41,7 @@
               <div>
                 <input
                   class="backdrop-blur-md bg-white/30 px-16 p-2 m-2 text-center border-0 border-b-2 border-black border-solid"
-                  type="text"
+                  type="password"
                   name="email"
                   placeholder="كلمه السر"
                 />
@@ -65,3 +63,4 @@
     </div>
   </section>
 </template>
+
