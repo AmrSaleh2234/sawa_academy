@@ -76,6 +76,7 @@ export default {
   data() {
     return {
       alert_text:null,
+      alert:{},
       massegeerror:[],
       parent: {
         fname: null,
@@ -127,7 +128,7 @@ export default {
       if(!this.parent.password_confirmation){
         this.massegeerror.push("تاكيد كلمه المرور")
       }
-      e.preventDefault();
+      // e.preventDefault();
       
  
    
