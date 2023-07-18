@@ -19,39 +19,17 @@ class FrontAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-
-        if (Auth::guard('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (auth('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = ChildParent::where('email', $request->email)->first();
             $response = [
-                'token' => $user->createToken('My Token', ['parent']),
+                'token' => auth('parent')->user()->createToken($user->email)->plainTextToken,
                 'user' => $user,
             ];
+
             return response($response, 202);
         } else {
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
-
-
-
-
-
-
-        // $parent = ChildParent::where('email', $request->email)->first();
-
-        // if ($parent) {
-        //     if (Hash::check($request->password, $parent->password)) {
-        //         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
-        //         $response = [
-        //             'token' => $token,
-        //             'user' => $parent,
-        //         ];
-        //         return response($response, 202);
-        //     } else {
-        //         return response()->json(['message' => 'email or password does not match our records'], 401);
-        //     }
-        // } else {
-        //     return response()->json(['message' => 'email or password does not match our records'], 401);
-        // }
     }
     public function register(Request $request)
     {
@@ -72,7 +50,7 @@ class FrontAuthController extends Controller
         ]);
 
 
-        $token = $parent->createToken('LaravelPassportAuth')->accessToken;
+        $token = $parent->createToken($parent->email)->plainTextToken;
 
         return response()->json([
             'token' => $token,

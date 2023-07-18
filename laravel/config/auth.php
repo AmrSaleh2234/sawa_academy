@@ -45,7 +45,7 @@ return [
             'provider' => 'users',
         ],
         'parent' => [
-            'driver' => 'passport',
+            'driver' => 'session',
             'provider' => 'parents',
         ],
     ],
