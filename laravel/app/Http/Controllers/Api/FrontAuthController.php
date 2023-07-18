@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\ChildParent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
@@ -15,8 +16,42 @@ class FrontAuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'string'],
-            'password' => ['required', 'string', 'confirmed'],
+            'password' => ['required', 'string'],
         ]);
+
+
+        if (Auth::guard('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = ChildParent::where('email', $request->email)->first();
+            $response = [
+                'token' => $user->createToken('My Token', ['parent']),
+                'user' => $user,
+            ];
+            return response($response, 202);
+        } else {
+            return response()->json(['message' => 'email or password does not match our records'], 401);
+        }
+
+
+
+
+
+
+        // $parent = ChildParent::where('email', $request->email)->first();
+
+        // if ($parent) {
+        //     if (Hash::check($request->password, $parent->password)) {
+        //         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
+        //         $response = [
+        //             'token' => $token,
+        //             'user' => $parent,
+        //         ];
+        //         return response($response, 202);
+        //     } else {
+        //         return response()->json(['message' => 'email or password does not match our records'], 401);
+        //     }
+        // } else {
+        //     return response()->json(['message' => 'email or password does not match our records'], 401);
+        // }
     }
     public function register(Request $request)
     {
@@ -36,6 +71,7 @@ class FrontAuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         $token = $parent->createToken('LaravelPassportAuth')->accessToken;
 
         return response()->json([
@@ -48,8 +84,20 @@ class FrontAuthController extends Controller
     }
     public function user(Request $request)
     {
+        $user = $request->user();
+
+        return response()->json(['user' => $user], 200);
     }
     public function logout(Request $request)
     {
+        $token = $request->user()->token();
+
+        $token->revoke();
+
+        $resposne = [
+            'message' => "You have successfully been logged out!"
+        ];
+
+        return response($resposne, 200);
     }
 }
