@@ -78,37 +78,31 @@ second: '2-digit',
               console.log(res.data.k);
             });
         },
-        slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
-        minTime: '00:00:00', /* calendar start Timing */
-        maxTime: '24:00:00',  /* calendar end Timing */
-        eventClick:function(event)
-        {
-          this.event_id=event.event.id
-          this.event_title=event.event.title
-          this.modal_text="update Event"
-          this.creat_event=false
-          this.updat_event=true
-          this.visible=true
-          this.start_event=moment(event.event.start).format(' YYYY-MM-DD HH:mm:ss')
-         this.end_event= moment(event.event.end).format(' YYYY-MM-DD HH:mm:ss')
-         console.log(this.start_event)
-         
-        
-          
+
+        eventClick: function (event) {
+          this.event_id = event.event.id;
+          this.event_title = event.event.title;
+          this.modal_text = "update Event";
+          this.creat_event = false;
+          this.updat_event = true;
+          this.visible = true;
+          this.start_event = moment(event.event.start).format("YYYY-MM-DD");
+          this.end_event = moment(event.event.end).format("YYYY-MM-DD");
+          console.log(this.start_event);
         }.bind(this),
-      
-        
-        select: function (event){
-         console.log(event) 
-         this.event_title=""
-         this.modal_text="Create Event"
-         this.creat_event=true
-         this.updat_event=false
-         this.visible=true
-        console.log(event.start)
-         this.start_event=moment(event.start).format(' YYYY-MM-DD')
-         this.end_event= moment(event.end).format(' YYYY-MM-DD')
-       
+
+        select: function (event) {
+          console.log(event);
+          this.event_title = "";
+          this.modal_text = "Create Event";
+          this.creat_event = true;
+          this.updat_event = false;
+          this.visible = true;
+
+          console.log(event);
+          this.start_event = moment(event.start).format("YYYY-MM-DD");
+          this.end_event = moment(event.end).format("YYYY-MM-DD");
+          console.log(event.backgroundColor);
         }.bind(this),
       },
     };
@@ -120,78 +114,16 @@ second: '2-digit',
     deletevent(event) {
       console.log(event);
 
-                }).then(res =>{
-                
-                })
-                this.update()
-          setTimeout(() => {
-          this.visible=false,
-          this.event_title=null,
-         
-          this.loading = false;
-          }, 700);
-
-      },
-      reset(){
-
-        this.end_event=""
-        this.start_event=""
-        this.event_title=""
-      },
-      
-      updateevent(){
-        
-        axios.post(`/api/calender/${this.event_id}/update`,{
-            title:this.event_title,    
-            start:moment(this.start_event).format(' yyyy-MM-DD '),
-            end:moment(this.end_event ).format(' yyyy-MM-DD '),
-          
-          }).then(res =>{
-           
-          })
-          this.update()
-          setTimeout(() => {
-          this.visible=false,
-          this.event_title=null,
-         this.event_id=null,
-          this.loading = false;
-          }, 700);
-      },
-      async createvent(){
-        this.loading = true;
-        moment(this.time_start).format('dd-mm-yy'),
-        console.log(this.time_start)
-        axios.post("/api/calender/create",{
-             title:this.event_title,
-            start:(moment(this.start_event).format('yyyy-MM-DD '))+" "+(this.time_start),
-            end:(moment(this.end_event).format('yyyy-MM-DD '))+" "+(this.time_end),
-          }).then(res =>{
-           if(res.status != 200){
-            this.valid=true;
-           }
-           
-          })
-         await this.update()
-          setTimeout(() => {
-          this.visible=false,
-          this.event_title=null,
-          this.start_event=null,
-          this.end_event=null,
-          this.create_visible=false,
-          this.loading = false;
-          }, 700);
-      },
-      update(){
-        axios.get("/api/calender").then(res =>{
-      console.log(res)
-     this.opts.events=res.data.calender
-    
-    })
-      },
-      refreshEvents() {
-        
-      this.$refs.calendar.$emit('refetch-events')
-    }
+      axios
+        .delete(`/api/calender/${this.event_id}/delete`, {})
+        .then((res) => {});
+      this.update();
+      setTimeout(() => {
+        (this.visible = false),
+          (this.event_title = null),
+          (this.loading = false);
+      }, 700);
+    },
 
     updateevent() {
       axios
@@ -259,7 +191,7 @@ second: '2-digit',
       ></v-icon>
       Back
     </v-btn>
-    <v-btn height="45" class="mx-5 text-white" color="rgb(4, 171, 4)" @click="reset(),create_visible=true">
+    <v-btn height="45" class="mx-5 text-white" color="rgb(4, 171, 4)" @click="create_visible=true">
       <v-icon
         start
         icon="mdi-plus-circle"
@@ -274,10 +206,10 @@ second: '2-digit',
       <Dialog v-model:visible="create_visible" id="modal" modal header="Create Event" :style="{ width: '60vw' }">
          <form >
          <div  >
-          <div>
-            <Calendar showIcon placeholder="dd-mm-yy" date-format=" yy-mm-dd"  v-model="start_event" style="width: 100%;color-scheme:black;"  />
+          
+            <Calendar showIcon placeholder="dd-mm-yy" date-format=" yy-mm-dd"  v-model="start_event" style="width: 100%;"  />
           <InputText type="time" v-model="time_start" />
-          </div>
+         
 
           <Calendar showIcon placeholder="dd-mm-yy" date-format=" yy-mm-dd" v-model="end_event" style="width: 100%;margin-top: 10px;" />
           

@@ -2,17 +2,15 @@
   <section
     class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
   >
-    <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
+    <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12" >
       <div class="">
-        <button class="">
-          <router-link class="flex" to="/">
-            <p class="pt-4 text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 p-4"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
+        <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
+          <v-icon
+            start
+            icon="mdi-arrow-left"
+          ></v-icon>
+            {{$t('الرئيسيه')}}
+        </v-btn>
       </div>
       <div
         class="flex flex-col items-center justify-between px-6 md:h-screen mx-auto md:col-span-10 lg:py-0"
@@ -33,9 +31,12 @@
             </p>
           </div>
         </div>
-        <div
+        <form @submit.prevent="massegeerror.length == 0 ? parentStore.login(parent) : null"
           class="mb-24 backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
+        <div v-for="error in massegeerror" :key="error" class="text-center my-2 py-2">
+                <p class="text-red-600">{{error}}</p>
+              </div>
           <div class="p-2 md:space-y-6 sm:p-8">
             <div class="space-y-6 text-center rounded-2xl p-4 bg-none">
               <div>
@@ -50,7 +51,7 @@
               <div>
                 <input
                   class="backdrop-blur-md bg-white/30 px-16 p-2 m-2 text-center border-0 border-b-2 border-black border-solid"
-                  type="text"
+                  type="password"
                   name="email"
                   placeholder="كلمه السر"
                   v-model="parent.password"
@@ -59,7 +60,8 @@
 
               <button
                 class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
-                @click.prevent="parentStore.login(parent)"
+                @click="vaild"
+                type="submit"
               >
                 تسجيل دخول
               </button>
@@ -71,7 +73,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
@@ -88,12 +90,19 @@ export default {
         email: "",
         password: "",
       },
+      massegeerror:[]
     };
   },
   methods: {
-    login() {
-      this.$emit("submit", this.parent);
+    vaild(e){
+        this.massegeerror=[]
+        if(!this.parent.email){
+          this.massegeerror.push("ادخل رقم الموبيل")
+        }
+        if(!this.parent.password){
+          this.massegeerror.push("ادخل كلمه المرور")
+        }
     },
-  },
-};
+  }
+}
 </script>
