@@ -4,7 +4,7 @@ import { Navbar, NavbarLogo, NavbarCollapse, NavbarLink } from "flowbite-vue";
 <template>
   <Navbar class="flex flex-nowrap">
     <template #logo>
-      <div><img src="../image/header/Group 22.png" /></div>
+      <div><img src="../image/header/Group22.png" /></div>
     </template>
 
     <template #default="{ isShowMenu }">
@@ -41,7 +41,7 @@ import { Navbar, NavbarLogo, NavbarCollapse, NavbarLink } from "flowbite-vue";
               class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
             >
               <span class="mr-4"
-                ><img src="../image/header/Ellipse 2.png"
+                ><img src="../image/header/Ellipse2.png"
               /></span>
               <svg
                 onclick="rate()"

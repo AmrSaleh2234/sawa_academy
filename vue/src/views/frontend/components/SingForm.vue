@@ -23,6 +23,14 @@
             يمكنك الان انشاء حساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
+        <div v-show="alert.show" class="my-4">
+          <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p>
+          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="alert.errors">
+            <p v-for="error in alert.errors" class="p-1">
+              <p v-for="err in error">{{ err }}</p>
+            </p>
+          </div>
+        </div>
         <div
           class="w-full backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -43,7 +51,9 @@
               
               <p>
                 اذا كنت تمتلك حساب اضغط هنا
-                <router-link to="/Login" class="px-2 text-[#649297]"
+                <router-link
+                  :to="{ name: 'parentLogin' }"
+                  class="px-2 text-[#649297]"
                   >تسجيل الدخول</router-link
                 >
               </p>
@@ -93,6 +103,10 @@ export default {
         
         })
         .catch((err) => {
+          this.alert.show = true;
+          this.alert.message = err.response.data.message;
+          this.alert.errors = err.response.data.errors;
+          console.log(err);
           console.log(err);
         });
     },

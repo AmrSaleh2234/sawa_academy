@@ -44,7 +44,7 @@
           >
             <img
               class="object-cover rounded-t-lg md:h-auto md:rounded-none md:rounded-l-lg"
-              src="../image/Rectangle 63.png"
+              src="../image/Rectangle63.png"
               alt=""
             />
             <div class="flex flex-col justify-between p-4 leading-normal">
@@ -65,7 +65,7 @@
           >
             <img
               class="object-cover rounded-t-lg md:h-auto md:rounded-none md:rounded-l-lg"
-              src="../image/Rectangle 63.png"
+              src="../image/Rectangle63.png"
               alt=""
             />
             <div class="flex flex-col justify-between p-4 leading-normal">
@@ -86,7 +86,7 @@
           >
             <img
               class="object-cover rounded-t-lg md:h-auto md:rounded-none md:rounded-l-lg"
-              src="../image/Rectangle 63.png"
+              src="../image/Rectangle63.png"
               alt=""
             />
             <div class="flex flex-col justify-between p-4 leading-normal">
