@@ -24,6 +24,7 @@ export const useParentStore = defineStore("parentStore", {
         .then((res) => {
           this.parent = res.data.user;
           this.token = res.data.token;
+          this.parentAuth = true;
           console.log(res);
         })
         .catch((err) => {
@@ -40,6 +41,7 @@ export const useParentStore = defineStore("parentStore", {
         .then((res) => {
           this.parent = res.data.user;
           this.token = res.data.token;
+          this.parentAuth = true;
           console.log(res);
         })
         .catch((err) => {

@@ -25,12 +25,38 @@ function guest(to, from, next) {
   if (localStorage.getItem("token")) {
     return next({ name: "Home" });
   }
+  next();
+}
 
+function authForNormalUser(to, from, next) {
+  if (!localStorage.getItem("token")) {
+    return next({ name: "parentLogin" });
+  }
+
+  next();
+}
+
+function guestForNormalUser(to, from, next) {
+  if (localStorage.getItem("token")) {
+    return next({ name: "home" });
+  }
   next();
 }
 
 const routes = [
   ///////////////Begin Front End Users Routes //////////////////
+  {
+    path: "/SingUp",
+    name: "SingUp",
+    component: () => import("../views/frontend/views/SingUp.vue"),
+    beforeEnter: guestForNormalUser,
+  },
+  {
+    path: "/parent/Login",
+    name: "parentLogin",
+    component: Login,
+    beforeEnter: guestForNormalUser,
+  },
   {
     path: "/",
     name: "home",
@@ -42,81 +68,46 @@ const routes = [
     component: About,
   },
   {
-    path: "/SingUp",
-    name: "SingUp",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import("../views/frontend/views/SingUp.vue"),
-  },
-  {
-    path: "/parent/Login",
-    name: "parentLogin",
-    component: Login,
-  },
-  {
     path: "/New",
     name: "New",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/New.vue"),
   },
   {
     path: "/more",
     name: "more",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/more.vue"),
   },
   {
     path: "/ReAction",
     name: "ReAction",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/ReAction.vue"),
   },
   {
     path: "/Edit",
     name: "Edit",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/Edit.vue"),
   },
   {
     path: "/Profile",
     name: "Profile",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/Profile.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/Following",
     name: "Following",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/Following.vue"),
   },
   {
     path: "/Number",
     name: "Number",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/Number.vue"),
   },
   {
     path: "/Booking",
     name: "Booking",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/frontend/views/Booking.vue"),
+    beforeEnter: authForNormalUser,
   },
   ///////////////End Front End Users Routes //////////////////
 
