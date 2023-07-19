@@ -19,10 +19,10 @@
             يمكنك الان انشاء حساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
-        <div v-show="alert.show" class="my-4">
-          <p v-show="!alert.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ alert.message }}</p>
-          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="alert.errors">
-            <p v-for="error in alert.errors" class="p-1">
+        <div v-show="parentStore.showErrors" class="my-4">
+          <p v-show="!parentStore.errors" class="bg-red-200 text-red-700 px-3 py-2 rounded-lg">{{ parentStore.errorMessage }}</p>
+          <div class="bg-red-200 text-red-700 px-3 py-2 rounded-lg" v-show="parentStore.errors">
+            <p v-for="error in parentStore.errors" class="p-1">
               <p v-for="err in error">{{ err }}</p>
             </p>
           </div>
@@ -31,7 +31,8 @@
           class="w-full backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
           <div class="p-2 md:space-y-6 sm:p-8">
-            <form class="space-y-6 text-center rounded-2xl p-4 bg-none" @submit.prevent="register">
+
+            <form class="space-y-6 text-center rounded-2xl p-4 bg-none" @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">
                 <p class="text-red-600">{{error}}</p>
               </div>
@@ -49,7 +50,7 @@
                 <router-link
                   :to="{ name: 'parentLogin' }"
                   class="px-2 text-[#649297]"
-                  >تسجيل الدخول</router-link
+                  >تسجيل الدخول</router-link  
                 >
               </p>
             </form>
@@ -62,6 +63,7 @@
 
 <script>
 import axios from "axios";
+import {useParentStore} from "../../../stores/ParentStore"
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import InlineMessage from 'primevue/inlinemessage';
@@ -72,7 +74,9 @@ export default {
     return {
       alert:{},
       alert_text:null,
+      alert:{},
       massegeerror:[],
+      parentStore:useParentStore(),
       parent: {
         fname: null,
         lname: null,
@@ -106,6 +110,26 @@ export default {
           console.log(err);
         });
     },
+    vaild(e){
+      this.massegeerror=[]
+      if(!this.parent.fname){
+        this.massegeerror.push("ادخل اسم الاول")
+      }
+      if(!this.parent.lname){
+        this.massegeerror.push("ادخل اسم العائله")
+      }
+      if(!this.parent.phone){
+        this.massegeerror.push("ادخل رقم الموبيل")
+      }
+      if(!this.parent.password){
+        this.massegeerror.push("ادخل كلمه المرور")
+      }
+      if(!this.parent.password_confirmation){
+        this.massegeerror.push("تاكيد كلمه المرور")
+      }
+      e.preventDefault();
+      
+ 
    
   },
 };
