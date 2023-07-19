@@ -1,10 +1,6 @@
 <template>
   <section class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30">
-
-   
     <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
-       
-
       <div class>
         <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
           <v-icon
@@ -49,7 +45,6 @@
               <InputText type="password" v-model="parent.password" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder="كلمه السر"  />
               <InputText type="password" v-model="parent.password_confirmation" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder=" تاكيد كلمه السر"/>
               <button type="submit" @click="vaild()" class="mb-5 rounded-xl w-full p-2 text-lg text-white bg-[#23D1E6]">{{$t('انشاء حساب')}}</button>
-              
               <p>
                 اذا كنت تمتلك حساب اضغط هنا
                 <router-link
@@ -77,6 +72,7 @@ export default {
   components:{Button,InputText,InlineMessage},
   data() {
     return {
+      alert:{},
       alert_text:null,
       alert:{},
       massegeerror:[],
@@ -95,7 +91,25 @@ export default {
     home(){
       this.$router.push("/")
     },
-   
+    register() {
+      axios
+        .post("api/parent/register", this.parent)
+        .then((res) => {
+          if(res.data.status == 201)
+        {
+         
+          this.alert_text="children added successfully "
+        }
+        
+        })
+        .catch((err) => {
+          this.alert.show = true;
+          this.alert.message = err.response.data.message;
+          this.alert.errors = err.response.data.errors;
+          console.log(err);
+          console.log(err);
+        });
+    },
     vaild(e){
       this.massegeerror=[]
       if(!this.parent.fname){
@@ -113,11 +127,10 @@ export default {
       if(!this.parent.password_confirmation){
         this.massegeerror.push("تاكيد كلمه المرور")
       }
-      // e.preventDefault();
+      e.preventDefault();
       
  
    
-    }
   },
 };
 </script>

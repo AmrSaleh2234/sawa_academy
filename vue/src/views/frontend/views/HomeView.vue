@@ -8,7 +8,7 @@
     <nave />
     <HeadeForm />
     <Services />
-    <card :carddeta="mycard" />
+    <card />
     <DoCard />
     <See />
     <About />

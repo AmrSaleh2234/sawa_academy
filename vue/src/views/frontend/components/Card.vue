@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class=" m-auto md:grid md:grid-cols-3" >
         <div class="aa m-2 border-2 border-neutral-300 border-solid rounded-3xl relative truncate" v-for="(e,i) in cardinfo" :key="i">
             <div><img></div>
@@ -24,4 +24,93 @@ export default {
    
 
 }
+</script> -->
+<template>
+   <div class=" m-auto md:grid md:grid-cols-3 px-[10%] py-[5%]" >
+    <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+  
+   <img src="../image/sec1/1.png">
+
+
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+      @click="show = !show"
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
+    
+    </v-card-actions>
+
+   
+  </v-card>
+  <v-card
+  class="mx-auto rounded-xl"
+  max-width="344"
+>
+
+ <img src="../image/sec1/1.png">
+
+
+  <v-card-actions>
+    <v-btn
+    icon="mdi-arrow-left"
+    size="small"
+    color="#135C65"    
+    @click="show = !show"
+    style="border: 2px solid #135C65;"
+  
+  ></v-btn>
+   
+
+    <v-spacer></v-spacer>
+    <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
+  
+  </v-card-actions>
+
+ 
+</v-card>
+<v-card
+class="mx-auto"
+max-width="344"
+>
+
+<img src="../image/sec1/1.png">
+
+
+<v-card-actions>
+  <v-btn
+  icon="mdi-arrow-left"
+  size="small"
+  color="#135C65"    
+  @click="show = !show"
+  style="border: 2px solid #135C65;"
+
+></v-btn>
+ 
+
+  <v-spacer></v-spacer>
+  <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
+
+</v-card-actions>
+
+
+</v-card>
+   </div>
+  </template>
+  <script>
+  export default {
+    data: () => ({
+     
+    }),
+  }
 </script>
