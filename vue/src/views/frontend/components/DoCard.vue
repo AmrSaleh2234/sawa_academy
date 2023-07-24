@@ -9,7 +9,13 @@
                 <carousel class="bg-none w-full py-[5%] "  :wrap-around="true" :breakpoints="breakpoints" >
                     <slide v-for="image in 6" :key="image" class="w-full ">
                         
-                       <div class="flex w-[95%] justify-between ">
+                       <div class="flex w-[100%] justify-between   ">
+                        <div class="text-center bg-teal-100 rounded-3xl m-2">
+                            <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
+                            <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
+                            <p class="text-center text-teal-400 p-1">اخصائي مخ واعصاب</p>
+                            <button style="background-color: #135C65;" class="text-center w-[90%] m-2 p-2 rounded-3xl text-white">تواصل الان</button>
+                        </div>
                         <div class="text-center bg-teal-100 rounded-3xl m-2">
                             <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
                             <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>

@@ -2,7 +2,7 @@
     <section class="bg-gray-50 dark:bg-gray-900 bl  bg-no-repeat bg-cover backdrop-blur-sm bg-white/30">
         <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
           <div class>
-            <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
+            <v-btn height="45" to="/" class="mb-5 text-lg text-white" color="#135C65" @click="home">
               <v-icon
                 start
                 icon="mdi-arrow-left"
@@ -185,7 +185,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="w-52 " style="position: relative;" >
+                    <td class="w-52 rounded-full " style="position: relative;" >
                         <diV class="time w-full py-2">
                             <p  class="m-auto w-full text-center text-sm">12:00 م</p>
                             <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
@@ -231,55 +231,7 @@
                 </tbody>
               </v-table>
         </div>
-      <!-- <div class="p-[5%]">
-        <v-data-table :headers="headers" :items="desserts" class="[&>div>table>thead>tr>th]:bg-[red]" style="border: 2px solid rgb(135, 95, 95); ">
-      <template  #item="{ item ,index}" >
-        <tr >
-            <td class="w-52 " style="position: relative;" >
-                    <diV class="time w-full py-2">
-                        <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-                        <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-                    </diV>
-            </td>
-            <td class="w-52 " style="position: relative;" >
-                <diV class="time w-full py-2">
-                    <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-                    <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-                </diV>
-        </td>
-        <td class="w-52 " style="position: relative;" >
-            <diV class="time w-full py-2">
-                <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-                <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-            </diV>
-    </td>
-    <td class="w-52 " style="position: relative;" >
-        <diV class="time w-full py-2">
-            <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-            <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-        </diV>
-</td>
-<td class="w-52 " style="position: relative;" >
-    <diV class="time w-full py-2">
-        <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-        <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-    </diV>
-</td>
-<td class="w-52 " style="position: relative;" >
-    <diV class="time w-full py-2">
-        <p  class="m-auto w-full text-center text-sm">12:00 م</p>
-        <button style="position: absolute;" class="top-[35%] left-0 text-xs ">احجز الان</button>
-    </diV>
-</td>
-        </tr>
-
-      </template>
-<template #bottom>
-      </template>
-    
-    </v-data-table>
-      </div> -->
-      </section>
+            </section>
 </template>
 <script>
   export default {
@@ -318,7 +270,7 @@ border-radius: 30%;
 td button{
     color: red;
     transform: translateX(-100%);
-    transition: 0.8s;
+    transition: 0.3s;
 }
 td:hover button{
     transform: translateX(50%);
