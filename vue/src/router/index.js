@@ -13,6 +13,7 @@ import HomeView from "../views/frontend/views/HomeView.vue";
 import Login from "../views/frontend/views/Login.vue";
 import About from "../views/frontend/components/About.vue";
 import BookingTime from "../views/frontend/components/BookingTime.vue";
+import Cursale from "../views/frontend/components/Cursale.vue";
 
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
@@ -52,6 +53,8 @@ const routes = [
     component: () => import("../views/frontend/views/SingUp.vue"),
     beforeEnter: guestForNormalUser,
   },
+  
+  
   {
     path: "/parent/Login",
     name: "parentLogin",
@@ -68,6 +71,13 @@ const routes = [
     name: "BookingTime",
     component: BookingTime,
   },
+  {
+    path: "/Cursale",
+    name: "Cursale",
+    component: Cursale,
+  },
+
+
   {
     path: "/about",
     name: "about",

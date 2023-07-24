@@ -9,6 +9,7 @@
     <HeadeForm />
     <Services />
     <card />
+    <Cursale></Cursale>
     <DoCard />
     <See />
     <About />
@@ -31,12 +32,14 @@ import About from '../components/About.vue';
 import DoCard from '../components/DoCard.vue'; 
 import See from '../components/See.vue'; 
 import Nave1 from '../components/Nave1.vue'; 
+import Cursale from '../components/Cursale.vue'; 
 import getcard from '../json/card.json'; 
 
 
 
+
 export default {
-components:{Nave,HeadeForm,Services,Card,About,DoCard,See,Nave1},
+components:{Nave,HeadeForm,Services,Card,About,DoCard,See,Nave1,Cursale},
 data(){
     return{
         mycard:getcard

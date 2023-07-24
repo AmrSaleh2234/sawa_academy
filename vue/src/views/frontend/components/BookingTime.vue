@@ -29,7 +29,7 @@
                 <thead>
                   <tr class="bg-[#135C65] border-b-2 border-[#474042]">
                     <th class="text-white w-52 text-center">
-                      الجمعه
+                      الجمعه,
                     </th>
                     <th class="text-white text-center">
                       الخميس 
