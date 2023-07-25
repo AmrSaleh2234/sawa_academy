@@ -6,12 +6,14 @@
     </div>
     <div class="grid grid-cols-10 py-[2%] ">
         <div class="m-auto col-span-2">
-            <img  src="../image/sec1/3.png">
+            <img class="p-5" src="../image/sec1/3.png">
         </div>
         <div class="col-span-6 m-auto">
             <carousel class="max-w-3xl "   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
-                <slide v-for="image in images" :key="image">
-                 <img class="w-[80%]" src="../image/sec1/113.png" >
+                <slide  v-for="image in images" :key="image">
+             <div class="w-[80%] p-2 rounded-2xl border-2 border-white">
+                <img  src="../image/sec1/113.png" >
+             </div>
                 </slide>
             
                 <template #addons>
@@ -20,7 +22,7 @@
               </carousel>
         </div>
         <div class="m-auto col-span-2">
-            <img  src="../image/sec1/2.png">
+            <img  class="p-5" src="../image/sec1/2.png">
         </div>
        </div>
        <div class="grid grid-cols-10 ">
