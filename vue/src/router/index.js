@@ -48,7 +48,7 @@ function guestForNormalUser(to, from, next) {
 const routes = [
   ///////////////Begin Front End Users Routes //////////////////
   {
-    path: "/SingUp",
+    path: "/web/SingUp",
     name: "SingUp",
     component: () => import("../views/frontend/views/SingUp.vue"),
     beforeEnter: guestForNormalUser,
@@ -56,71 +56,71 @@ const routes = [
   
   
   {
-    path: "/parent/Login",
+    path: "/web/parent/Login",
     name: "parentLogin",
     component: Login,
     beforeEnter: guestForNormalUser,
   },
   {
-    path: "/",
+    path: "/web/",
     name: "home",
     component: HomeView,
   },
   {
-    path: "/BookingTime",
+    path: "/web/BookingTime",
     name: "BookingTime",
     component: BookingTime,
   },
   {
-    path: "/Cursale",
+    path: "/web/Cursale",
     name: "Cursale",
     component: Cursale,
   },
 
 
   {
-    path: "/about",
+    path: "/web/about",
     name: "about",
     component: About,
   },
   {
-    path: "/New",
+    path: "/web/New",
     name: "New",
     component: () => import("../views/frontend/views/New.vue"),
   },
   {
-    path: "/more",
+    path: "/web/more",
     name: "more",
     component: () => import("../views/frontend/views/more.vue"),
   },
   {
-    path: "/ReAction",
+    path: "/web/ReAction",
     name: "ReAction",
     component: () => import("../views/frontend/views/ReAction.vue"),
   },
   {
-    path: "/Edit",
+    path: "/web/Edit",
     name: "Edit",
     component: () => import("../views/frontend/views/Edit.vue"),
   },
   {
-    path: "/Profile",
+    path: "/web/Profile",
     name: "Profile",
     component: () => import("../views/frontend/views/Profile.vue"),
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/Following",
+    path: "/web/Following",
     name: "Following",
     component: () => import("../views/frontend/views/Following.vue"),
   },
   {
-    path: "/Number",
+    path: "/web/Number",
     name: "Number",
     component: () => import("../views/frontend/views/Number.vue"),
   },
   {
-    path: "/Booking",
+    path: "/web/Booking",
     name: "Booking",
     component: () => import("../views/frontend/views/Booking.vue"),
     beforeEnter: authForNormalUser,
