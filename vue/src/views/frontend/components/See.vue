@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[url('../image/sec1/Group79.png')] bg-[#EFFBFD] pt-[5%] pb-[5%] bg-center bg-cover bg-no-repeat"
+    class=" bg-[#EFFBFD] pt-[5%] pb-[5%] bg-center bg-cover bg-no-repeat"
   >
     <div class="text-center">
       <h2 class="text-3xl font-bold text-red-500 p-1">اراء عملائنا</h2>

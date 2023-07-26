@@ -4,10 +4,15 @@
       class="bg-[#135C65] max-h-screen z-10 text-cyan-100 md:w-80 w-72 h-auto py-4 space-y-6 px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
       :class="{ 'fixed translate-x-0 ': sole }"
     >
-      <div class="space-y-2 py-4 border-b-2 border-white border-solid">
+      <div
+        v-if="parentStore.parentAuth"
+        class="space-y-2 py-4 border-b-2 border-white border-solid"
+      >
         <div><img class="m-auto" src="../image/Ellipse2.png" /></div>
-        <p class="text-white text-center">عبدالله محمد عبدالمنعم</p>
-        <p class="text-center text-white">mohamedemad@gmail.com</p>
+        <p class="text-white text-center">
+          {{ parentStore.user.fname }} {{ parentStore.user.lname }}
+        </p>
+        <p class="text-center text-white">{{ parentStore.user.email }}</p>
       </div>
       <div class="border-b-2 border-white border-solid py-6">
         <div class=" ">
@@ -33,7 +38,7 @@
         <div class=" ">
           <router-link
             class="flex rtl:flex-row-reverse justify-between p-4"
-            to="/Booking"
+            :to="{ name: 'Booking' }"
           >
             <div>
               <font-awesome-icon
@@ -71,7 +76,7 @@
         <div class=" ">
           <router-link
             class="flex rtl:flex-row-reverse justify-between p-4"
-            to="/Following"
+            :to="{ name: 'Following' }"
           >
             <div>
               <font-awesome-icon
@@ -115,7 +120,7 @@
         <div class=" ">
           <router-link
             class="flex rtl:flex-row-reverse justify-between p-4"
-            to="/Edit"
+            :to="{ name: 'Edit' }"
           >
             <div>
               <font-awesome-icon
@@ -178,20 +183,27 @@
       <button
         class="w-full py-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
       >
-        <router-link to="/Profile">تعديل الملف الشخصي</router-link>
+        <router-link :to="{ name: 'Profile' }">تعديل الملف الشخصي</router-link>
       </button>
       <button
+        @click="parentStore.logout"
         class="w-full py-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
       >
-        <router-link to="/">تسجيل الخروج</router-link>
+        تسجيل الخروج
       </button>
     </div>
   </div>
 </template>
 <script>
+import { useParentStore } from "@/stores/ParentStore.js";
 export default {
   props: {
     sole: true,
+  },
+  data() {
+    return {
+      parentStore: useParentStore(),
+    };
   },
 };
 </script>

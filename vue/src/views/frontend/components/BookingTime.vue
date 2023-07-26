@@ -6,6 +6,7 @@
       <div class>
         <v-btn
           height="45"
+          to="/"
           class="mb-5 text-lg text-white"
           color="#135C65"
           @click="home"
@@ -38,7 +39,7 @@
       <v-table class="border-2 border-[#967a80]">
         <thead>
           <tr class="bg-[#135C65] border-b-2 border-[#474042]">
-            <th class="text-white w-52 text-center">الجمعه</th>
+            <th class="text-white w-52 text-center">الجمعه,</th>
             <th class="text-white text-center">الخميس</th>
             <th class="text-white text-center">الاربعاء</th>
             <th class="text-white text-center">الثلاثاء</th>
@@ -48,36 +49,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="rows in max">
-            <!-- Friday -->
+          <tr>
             <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in events"
-                v-if="index == 'Friday'"
-                class="w-full py-2 m-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
-                <p
-                  class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
-                >
-                  {{ event_data }}
-                </p>
-                <button
-                  style="position: absolute"
-                  class="top-[35%] left-0 text-xs"
-                >
-                  احجز الان
-                </button>
-              </diV>
-            </td>
-            <!-- End Friday -->
-
-            <!-- Tuesday -->
-            <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Tuesday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
+              <diV class="time w-full py-2">
                 <p
                   class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
                 >
@@ -91,15 +65,8 @@
                 </button>
               </diV>
             </td>
-            <!-- End Tuesday -->
-
-            <!-- Wednesday -->
             <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Wednesday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
+              <diV class="time w-full py-2">
                 <p
                   class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
                 >
@@ -113,15 +80,8 @@
                 </button>
               </diV>
             </td>
-            <!-- End Wednesday -->
-
-            <!-- Thursday -->
             <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Thursday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
+              <diV class="time w-full py-2">
                 <p
                   class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
                 >
@@ -135,15 +95,8 @@
                 </button>
               </diV>
             </td>
-            <!-- End Thursday -->
-
-            <!-- Monday -->
             <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Monday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
+              <diV class="time w-full py-2">
                 <p
                   class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
                 >
@@ -157,20 +110,9 @@
                 </button>
               </diV>
             </td>
-            <!-- End Monday -->
-
-            <!-- Sunday -->
-            <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Sunday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
-                <p
-                  class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
-                >
-                  12:00 م
-                </p>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
                 <button
                   style="position: absolute"
                   class="top-[35%] left-0 text-xs"
@@ -179,20 +121,9 @@
                 </button>
               </diV>
             </td>
-            <!-- End Sunday -->
-
-            <!-- Saturday -->
-            <td class="w-56" style="position: relative">
-              <diV
-                v-for="event_data in event"
-                v-if="index == 'Saturday'"
-                class="w-full py-2 border-2 border-gray-400 rounded-full transition-all ease-out duration-100"
-              >
-                <p
-                  class="m-auto w-full text-center hover:hidden lg:hover:block text-sm"
-                >
-                  12:00 مs
-                </p>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
                 <button
                   style="position: absolute"
                   class="top-[35%] left-0 text-xs"
@@ -201,12 +132,260 @@
                 </button>
               </diV>
             </td>
-            <!-- End Saturday -->
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+          </tr>
+          <tr>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+          </tr>
+          <tr>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+          </tr>
+          <tr>
+            <td class="w-52 rounded-full" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
+            <td class="w-52" style="position: relative">
+              <diV class="time w-full py-2">
+                <p class="m-auto w-full text-center text-sm">12:00 م</p>
+                <button
+                  style="position: absolute"
+                  class="top-[35%] left-0 text-xs"
+                >
+                  احجز الان
+                </button>
+              </diV>
+            </td>
           </tr>
         </tbody>
       </v-table>
     </div>
   </section>
+  >>>>>>> 079b708bccac34a587b92a54930d8179c8347e9e
 </template>
 <script>
 import axios from "axios";

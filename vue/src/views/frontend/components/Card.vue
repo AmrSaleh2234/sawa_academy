@@ -26,91 +26,142 @@ export default {
 }
 </script> -->
 <template>
-   <div class=" m-auto md:grid md:grid-cols-3 px-[10%] py-[5%]" >
-    <v-card
-    class="mx-auto"
+   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-4 px-[10%] py-[8%]  " >
+    <div class="animate  relative">
+        <v-card
+    class="mx-auto rounded-xl"
     max-width="344"
   >
   
-   <img src="../image/sec1/1.png">
-
-
+  
+   <div>
+    <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
+            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
+        </div>
+      </div>
+    <img class="imge" src="../image/sec1/1.png">
+   </div>
+  
+  
     <v-card-actions>
       <v-btn
       icon="mdi-arrow-left"
       size="small"
       color="#135C65"    
-      @click="show = !show"
+   
       style="border: 2px solid #135C65;"
     
     ></v-btn>
      
-
+  
       <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
+      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
     
     </v-card-actions>
-
-   
+  
+    
   </v-card>
-  <v-card
-  class="mx-auto rounded-xl"
-  max-width="344"
->
-
- <img src="../image/sec1/1.png">
-
-
-  <v-card-actions>
-    <v-btn
-    icon="mdi-arrow-left"
-    size="small"
-    color="#135C65"    
-    @click="show = !show"
-    style="border: 2px solid #135C65;"
   
-  ></v-btn>
-   
-
-    <v-spacer></v-spacer>
-    <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
   
-  </v-card-actions>
-
- 
-</v-card>
-<v-card
-class="mx-auto"
-max-width="344"
->
-
-<img src="../image/sec1/1.png">
-
-
-<v-card-actions>
-  <v-btn
-  icon="mdi-arrow-left"
-  size="small"
-  color="#135C65"    
-  @click="show = !show"
-  style="border: 2px solid #135C65;"
-
-></v-btn>
- 
-
-  <v-spacer></v-spacer>
-  <p class="text-2xl p-2 text-[#135C65]">نتيجه التقييم</p>
-
-</v-card-actions>
-
-
-</v-card>
+    </div>
+    <div class="animate  relative">
+        <v-card
+    class="mx-auto rounded-xl"
+    max-width="344"
+  >
+  
+  
+   <div class="">
+    <div class="animte right-0  absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
+            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
+        </div>
+      </div>
+    <img class="imge " src="../image/sec1/1.png">
    </div>
+  
+  
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+   
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+  
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
+    
+    </v-card-actions>
+  
+    
+  </v-card>
+  
+  
+    </div>
+    <div class="animate  relative">
+        <v-card
+    class="mx-auto rounded-xl"
+    max-width="344"
+  >
+  
+  
+   <div>
+    <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
+            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
+        </div>      </div>
+    <img class="imge" src="../image/sec1/1.png">
+   </div>
+  
+  
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+   
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+  
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
+    
+    </v-card-actions>
+  
+    
+  </v-card>
+  
+  
+    </div>
+</div>
   </template>
   <script>
   export default {
-    data: () => ({
-     
-    }),
+   data(){
+    return{
+        
+    }
+   }
   }
 </script>
+<style scoped>
+.animte {
+    transform: translateX(100%);
+    transition: .8s;
+}
+.animate:hover .animte{
+    transform: translateX(0%);
+}
+.animate:hover .imge{
+    transform: translateX(-50%);
+    transition: .8s;
+ }
+
+</style>

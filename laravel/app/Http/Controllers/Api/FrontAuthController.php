@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class FrontAuthController extends Controller
 {
@@ -51,15 +52,18 @@ class FrontAuthController extends Controller
         ]);
 
 
+        // $userRole = Role::where('name', 'user')->where('guard_name', 'parent')->first();
+        // $parent->assignRole($userRole);
+        $child_permissions = Permission::select('name')->where('guard_name', 'parent')->where('name', 'like', "%child%")->pluck('name');
+        $parent->givePermissionTo($child_permissions);
+
+
         $token = $parent->createToken($parent->email)->plainTextToken;
 
         return response()->json([
             'token' => $token,
             'user' => $parent,
         ], 201);
-
-
-        return response()->json($parent, 201);
     }
     public function user(Request $request)
     {
@@ -69,9 +73,8 @@ class FrontAuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $token = $request->user()->token();
 
-        $token->revoke();
+        $request->user('parent')->tokens()->delete();
 
         $resposne = [
             'message' => "You have successfully been logged out!"
