@@ -11,6 +11,7 @@ use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Repository\ChildRepository;
 use Modules\Child\Http\Controllers\Services\ChildService;
 use Modules\Child\Http\Requests\ChildRequest;
+use Modules\Child\Transformers\AllChildResource;
 use Modules\Child\Transformers\ChildResource;
 use Modules\Evaluation\Entities\Evaluation;
 
@@ -41,6 +42,13 @@ class ChildController extends Controller
         return $this->ControllerHandler->getAll("children");
     }
 
+    public function getParentChilds()
+    {
+        $childs = Child::where('parent_id', auth('parent')->id())->get();
+
+        return $this->ControllerHandler->show('childs', AllChildResource::collection($childs));
+    }
+
     /**
      * @param Child $child
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -62,6 +70,7 @@ class ChildController extends Controller
 
         $data = $request->validated();
 
+        // $data['age'] = (new ChildService)->calcChildAgeInMonths($data['birth_date']);
 
         return $this->ControllerHandler->store("children", $data);
     }

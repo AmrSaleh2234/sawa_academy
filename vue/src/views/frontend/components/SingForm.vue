@@ -91,47 +91,44 @@ export default {
     home(){
       this.$router.push("/")
     },
-    register() {
-      axios
-        .post("api/parent/register", this.parent)
-        .then((res) => {
-          if(res.data.status == 201)
-        {
+    // register() {
+    //   axios
+    //     .post("api/parent/register", this.parent)
+    //     .then((res) => {
+    //       if(res.data.status == 201)
+    //     {
          
-          this.alert_text="children added successfully "
-        }
+    //       this.alert_text="children added successfully "
+    //     }
         
-        })
-        .catch((err) => {
-          this.alert.show = true;
-          this.alert.message = err.response.data.message;
-          this.alert.errors = err.response.data.errors;
-          console.log(err);
-          console.log(err);
-        });
-    },
-    vaild(e){
-      this.massegeerror=[]
-      if(!this.parent.fname){
-        this.massegeerror.push("ادخل اسم الاول")
-      }
-      if(!this.parent.lname){
-        this.massegeerror.push("ادخل اسم العائله")
-      }
-      if(!this.parent.phone){
-        this.massegeerror.push("ادخل رقم الموبيل")
-      }
-      if(!this.parent.password){
-        this.massegeerror.push("ادخل كلمه المرور")
-      }
-      if(!this.parent.password_confirmation){
-        this.massegeerror.push("تاكيد كلمه المرور")
-      }
-      e.preventDefault();
-      
- 
-   
-  },
+    //     })
+    //     .catch((err) => {
+    //       this.alert.show = true;
+    //       this.alert.message = err.response.data.message;
+    //       this.alert.errors = err.response.data.errors;
+    //       console.log(err);
+    //       console.log(err);
+    //     });
+    // },
+    // vaild(e){
+    //   this.massegeerror=[]
+    //   if(!this.parent.fname){
+    //     this.massegeerror.push("ادخل اسم الاول")
+    //   }
+    //   if(!this.parent.lname){
+    //     this.massegeerror.push("ادخل اسم العائله")
+    //   }
+    //   if(!this.parent.phone){
+    //     this.massegeerror.push("ادخل رقم الموبيل")
+    //   }
+    //   if(!this.parent.password){
+    //     this.massegeerror.push("ادخل كلمه المرور")
+    //   }
+    //   if(!this.parent.password_confirmation){
+    //     this.massegeerror.push("تاكيد كلمه المرور")
+    //   }
+    //   e.preventDefault();
+  // },
 }
-};
+}
 </script>

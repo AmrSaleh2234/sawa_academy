@@ -15,6 +15,7 @@ class ChildParent extends  Authenticatable
 
     protected $table = "parents";
 
+
     protected $fillable = [
         "fname",
         "lname",
@@ -40,4 +41,9 @@ class ChildParent extends  Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function guardName()
+    {
+        return "parent";
+    }
 }

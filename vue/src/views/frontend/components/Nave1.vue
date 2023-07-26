@@ -1,4 +1,4 @@
- <!-- <template>
+<!-- <template>
   <div
     style="background-color: #135c65"
     class="grid md:grid-cols-2 p-4 text-center"
@@ -183,16 +183,16 @@ export default {
   <nav class="bg-[#135C65] p-4">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Your logo or brand content goes here -->
-      <div class="flex mx-2 ">
+      <div class="flex mx-2">
         <div>
           <p style="font-size:20px" class="text-white text-base">
          
             عمان-الرابيه-شارع ميسلون
             <v-icon
-            end
-            icon="mdi-map-marker"
-            class="  text-[#FFCF24]  h-full  "
-          ></v-icon>
+              end
+              icon="mdi-map-marker"
+              class="text-[#FFCF24] h-full"
+            ></v-icon>
           </p>
         </div>
         <div class="mx-2">
@@ -230,15 +230,21 @@ export default {
             <input style="font-size:18px" class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]" type="text" placeholder="اسم المستخدم" >
           </div>
           <div>
-            <v-btn to="/register" class="bg-[#FFCF24] text-white text-base ">
-              تسجيل الدخول 
+            <v-btn
+              :to="{ name: 'parentLogin' }"
+              class="bg-[#FFCF24] text-white text-base"
+            >
+              تسجيل الدخول
             </v-btn>
-           </div>
-           <div>
-            <button class="bg-none shadow-0 text-[#FFCF24] text-base">انشاء حساب</button>
-            
-           </div>
-         </div>
+          </div>
+          <div>
+            <div class="bg-none shadow-0 text-[#FFCF24] text-base">
+              <v-btn :to="{ name: 'SingUp' }" class="text-base">
+                انشاء حساب
+              </v-btn>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Mobile menu toggle button -->
@@ -275,7 +281,10 @@ export default {
         ></v-icon>
           <input class="text-center focus:ring-0 text-white rounded-lg w-full bg-[#0D4047]" :type="pass_type" placeholder="كلمه المرور" >
         </div>
-        <div class="m-auto  bg-[#0D4047] w-full rounded-lg" style="display: flex; align-items: center;">
+        <div
+          class="m-auto bg-[#0D4047] w-full rounded-lg"
+          style="display: flex; align-items: center"
+        >
           <v-icon
           end
          
@@ -288,13 +297,13 @@ export default {
           <v-btn to="/register" class="bg-[#FFCF24] m-auto w-full  text-white text-base">
             تسجيل الدخول 
           </v-btn>
-         </div>
-         <div>
+        </div>
+        <div>
           <v-btn class="bg-none w-full shadow-0 text-[#FFCF24] text-base">
             انشاء حساب
           </v-btn>
-         </div>
-       </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
@@ -304,8 +313,8 @@ export default {
   data() {
     return {
       isMobileMenuOpen: false,
-      show_Password: 'mdi-eye-off',
-      pass_type:'password'
+      show_Password: "mdi-eye-off",
+      pass_type: "password",
     };
   },
   methods: {

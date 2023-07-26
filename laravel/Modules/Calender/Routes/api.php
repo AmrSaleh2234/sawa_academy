@@ -14,13 +14,15 @@ use Illuminate\Http\Request;
 */
 
 
-
+Route::middleware('auth:parent')->group(function () {
+    Route::group(['prefix' => 'calender'], function () {
+        Route::get('/events', [\Modules\Calender\Http\Controllers\CalenderController::class, 'groupedEventsForParents'])->name('calender.events_parents');
+    });
+});
 
 Route::middleware('auth:api')->group(function () {
-
     Route::group(['prefix' => 'calender'], function () {
         Route::get('/', [\Modules\Calender\Http\Controllers\CalenderController::class, 'index'])->name('calender.index');
-        Route::get('/events', [\Modules\Calender\Http\Controllers\CalenderController::class, 'groupedEventsForParents'])->name('calender.events_parents');
         Route::post('/create', [\Modules\Calender\Http\Controllers\CalenderController::class, 'store'])->name('calender.create');
         Route::get('/{calender}', [\Modules\Calender\Http\Controllers\CalenderController::class, 'show'])->name('calender.show');
         Route::post('/{calender}/update', [\Modules\Calender\Http\Controllers\CalenderController::class, 'update'])->name('calender.update');
