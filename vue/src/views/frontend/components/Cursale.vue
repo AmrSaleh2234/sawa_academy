@@ -8,11 +8,11 @@
         <div class="m-auto col-span-2">
             <img class="p-5" src="../image/sec1/3.png">
         </div>
-        <div class="col-span-6 m-auto">
-            <carousel class="max-w-3xl "   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
+        <div class="col-span-6 m-auto w-full">
+            <carousel class="max-w-3xl m-auto min-w-full"   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
                 <slide  v-for="image in images" :key="image">
-             <div class="w-[80%] p-2 rounded-2xl border-2 border-white">
-                <img  src="../image/sec1/113.png" >
+             <div class="w-[90%] m-auto rounded-2xl border-2 border-white">
+                <img class="w-full p-2" src="../image/sec1/113.png" >
              </div>
                 </slide>
             

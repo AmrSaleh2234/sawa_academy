@@ -4,20 +4,28 @@
     class="flex justify-between p text-center"
   >
     <div class="p-2 my-auto"><img src="../image/header/Group22.png" /></div>
-    <div class="flex justify-between p-2">
-      <p class="mr-6 text-white m-auto">
-        التواصل : 0096265522688-00962791017001<font-awesome-icon
-          class="text-xl pl-2 text-[#FFCF24] m-auto"
-          icon="fa-solid fa-phone-flip"
-        ></font-awesome-icon>
-      </p>
-      <p class="text-white m-auto">
-        عمان-الرابيه-شارع ميسلون
-        <font-awesome-icon
-          class="text-xl pl-2 text-[#FFCF24] m-auto"
-          icon="fa-solid fa-location-dot"
-        ></font-awesome-icon>
-      </p>
+    <div class="flex mx-2 ">
+      <div class="m-auto">
+        <p style="font-size:20px" class="text-white text-base">
+       
+          عمان-الرابيه-شارع ميسلون
+          <v-icon
+          end
+          icon="mdi-map-marker"
+          class="  text-[#FFCF24]  h-full  "
+        ></v-icon>
+        </p>
+      </div>
+      <div class="mx-2 m-auto">
+        <p style="font-size:20px" class=" text-white text-base">
+          التواصل : 0096265522688-00962791017001
+          <v-icon
+          end
+          icon="mdi-phone"
+          class="  text-[#FFCF24]   h-full rotate-180 "
+        ></v-icon>
+        </p>
+      </div>
     </div>
   </div>
 </template>

@@ -26,20 +26,20 @@ export default {
 }
 </script> -->
 <template>
-   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-4 px-[10%] py-[8%]  " >
-    <div class="animate  relative">
+   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-3  py-[8%]  " >
+    <div class="animate  relative w-full">
         <v-card
-    class="mx-auto rounded-xl"
+    class="mx-auto w-full rounded-xl"
     max-width="344"
   >
   
   
-   <div>
+   
+  <div>
     <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
-        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
-            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
-        </div>
-      </div>
+        <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
+            <p class="w-full h-full  m-auto text-center">اكاديمه سوا  للتربيه</p>
+        </div>      </div>
     <img class="imge" src="../image/sec1/1.png">
    </div>
   
@@ -74,11 +74,11 @@ export default {
   
    <div class="">
     <div class="animte right-0  absolute m-auto h-full w-[50%] bg-white">
-        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
-            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
+        <div class="inner p-[10%]  m-auto h-full w-full text-[#A5E9FF]">
+            <p class="w-full h-[50%] pt-[20%] text-center">اكاديمه سوا  للتربيه</p>
         </div>
       </div>
-    <img class="imge " src="../image/sec1/1.png">
+    <img class="imge " src="../image/header/2.png">
    </div>
   
   
@@ -94,7 +94,7 @@ export default {
      
   
       <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
+      <p class="text-2xl p-2 text-[#135C65] z-10"> احجز موعد لابنك</p>
     
     </v-card-actions>
   
@@ -112,10 +112,10 @@ export default {
   
    <div>
     <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
-        <div class="inner p-[10%] m-auto h-full w-full text-[#135C65]">
+        <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
             <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
         </div>      </div>
-    <img class="imge" src="../image/sec1/1.png">
+    <img class="imge" src="../image/header/3.png">
    </div>
   
   
@@ -131,7 +131,7 @@ export default {
      
   
       <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
+      <p class="text-2xl p-2 text-[#135C65] z-10">تسجيل طفلك معنا</p>
     
     </v-card-actions>
   

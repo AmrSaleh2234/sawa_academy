@@ -185,7 +185,7 @@ export default {
       <!-- Your logo or brand content goes here -->
       <div class="flex mx-2 ">
         <div>
-          <p class="text-white text-base">
+          <p style="font-size:20px" class="text-white text-base">
          
             عمان-الرابيه-شارع ميسلون
             <v-icon
@@ -195,39 +195,39 @@ export default {
           ></v-icon>
           </p>
         </div>
-        <div>
-          <p class=" text-white text-base">
+        <div class="mx-2">
+          <p style="font-size:20px" class=" text-white text-base">
             التواصل : 0096265522688-00962791017001
             <v-icon
             end
             icon="mdi-phone"
-            class="  text-[#FFCF24]  w-[20%] h-full rotate-180 "
+            class="  text-[#FFCF24]   h-full rotate-180 "
           ></v-icon>
           </p>
         </div>
       </div>
 
       <!-- Your navigation links go here -->
-      <div class="hidden md:flex space-x-4">
+      <div class="hidden lg:block space-x-4">
         <div class="flex flex-col md:flex-row m-auto  space-x-4" >
-          <div class=" m-auto w-52 bg-[#0D4047] rounded-lg border-2 border-white" style="display: flex; align-items: center;">
+          <div  class=" m-auto w-52 bg-[#0D4047] rounded-lg" style="display: flex; align-items: center;border:1px solid white">
             <v-icon
             end
             @click="show"
             :icon="show_Password"
            
-            class=" text-2xl text-white w-[20%]bg-[#0D4047] h-full"
+            class=" text-2xl text-white w-[20%] bg-[#0D4047] h-full"
           ></v-icon>
-            <input class="text-center  text-white rounded-lg w-full bg-[#0D4047]" :type="pass_type" placeholder="كلمه المرور" >
+            <input style="font-size:18px" class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]" :type="pass_type" placeholder="كلمه المرور" >
           </div>
-          <div class="bg-[#0D4047] m-auto w-52 rounded-lg  md:max-w-xs border-2 border-white" style="display: flex; align-items: center;">
+          <div class="bg-[#0D4047] m-auto w-52 rounded-lg  md:max-w-xs " style="display: flex; align-items: center;border:1px solid white">
             <v-icon
             end
            
             icon="mdi-account"
             class=" text-white   bg-[#0D4047] h-full"
           ></v-icon>
-            <input class="text-center  text-white rounded-lg w-full bg-[#0D4047]" type="text" placeholder="اسم المستخدم" >
+            <input style="font-size:18px" class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]" type="text" placeholder="اسم المستخدم" >
           </div>
           <div>
             <v-btn to="/register" class="bg-[#FFCF24] text-white text-base ">
@@ -242,7 +242,7 @@ export default {
       </div>
 
       <!-- Mobile menu toggle button -->
-      <div class="md:hidden flex items-center">
+      <div class="lg:hidden flex items-center">
         <button @click="toggleMenu" class="text-white focus:outline-none">
           <svg
             class="h-6 w-6"
@@ -263,29 +263,29 @@ export default {
     </div>
 
     <!-- Mobile menu -->
-    <div v-if="isMobileMenuOpen" class="md:hidden fix bg-[#135C65] p-4">
-      <div class="flex flex-col w-full  md:flex-row m-auto  space-y-4" >
+    <div v-if="isMobileMenuOpen" class="lg:hidden fix bg-[#135C65] p-4">
+      <div class="flex flex-col w-full  lg:flex-row m-auto  space-y-4" >
         <div class=" m-auto  bg-[#0D4047] w-full rounded-lg" style="display: flex; align-items: center;">
           <v-icon
           end
           @click="show"
           :icon="show_Password"
          
-          class=" text-2xl text-white w-[20%]bg-[#0D4047] h-full"
+          class=" text-2xl text-white w-[20%] bg-[#0D4047] h-full"
         ></v-icon>
-          <input class="text-center  text-white rounded-lg w-full bg-[#0D4047]" :type="pass_type" placeholder="كلمه المرور" >
+          <input class="text-center focus:ring-0 text-white rounded-lg w-full bg-[#0D4047]" :type="pass_type" placeholder="كلمه المرور" >
         </div>
         <div class="m-auto  bg-[#0D4047] w-full rounded-lg" style="display: flex; align-items: center;">
           <v-icon
           end
          
           icon="mdi-account"
-          class=" text-2xl text-white px-2 w-[20%]bg-[#0D4047] h-full"
+          class=" text-2xl text-white px-2 w-[20%] bg-[#0D4047] h-full"
         ></v-icon>
-          <input class="text-center px-2 text-white rounded-lg w-full bg-[#0D4047]" type="text" placeholder="اسم المستخدم" >
+          <input class="focus:ring-0 text-center  text-white rounded-lg w-full bg-[#0D4047]" type="text" placeholder="اسم المستخدم" >
         </div>
-        <div>
-          <v-btn to="/register" class="bg-[#FFCF24] w-full text-white text-base">
+        <div class="">
+          <v-btn to="/register" class="bg-[#FFCF24] m-auto w-full  text-white text-base">
             تسجيل الدخول 
           </v-btn>
          </div>

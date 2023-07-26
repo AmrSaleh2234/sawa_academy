@@ -2,7 +2,7 @@
     <div class="">
         <Map />
       <div class=" flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid ">
-        <div class=" col-span-1 text-right m-auto visible md:invisible"  @click="toggle()"><font-awesome-icon class=" text-2xl md:text-3xl text-right p-4 text-black hover:text-red-600 " icon="fa-solid fa-bars "></font-awesome-icon></div>
+        <div class=" col-span-1 text-right m-auto visible md:invisible"  @click="toggle()"><v-toolbar-title class="">My Menu Bar</v-toolbar-title></div>
         <div><p class=" w-full  text-left m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]" >الملف الشخصي</p></div>
         <div class="text-left m-auto">
             <button class=" ">
