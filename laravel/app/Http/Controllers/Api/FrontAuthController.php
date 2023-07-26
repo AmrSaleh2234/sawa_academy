@@ -19,10 +19,11 @@ class FrontAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (auth('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = ChildParent::where('email', $request->email)->first();
+        $user = ChildParent::where('email', $request->email)->first();
+
+        if (Hash::check($request->password, $user->password)) {
             $response = [
-                'token' => auth('parent')->user()->createToken($user->email)->plainTextToken,
+                'token' => $user->createToken($user->email)->plainTextToken,
                 'user' => $user,
             ];
 

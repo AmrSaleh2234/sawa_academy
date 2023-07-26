@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\FrontAuthController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,11 @@ use App\Http\Controllers\Api\FrontAuthController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:parent')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
 
 
 Route::post('register', [PassportAuthController::class, 'register'])->name('register.perform');

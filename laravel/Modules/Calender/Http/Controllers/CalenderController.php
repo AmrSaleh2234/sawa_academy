@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Modules\Calender\Entities\Calender;
+use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
+use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Transformers\EventResource;
 
@@ -33,26 +35,7 @@ class CalenderController extends Controller
 
     public function groupedEventsForParents()
     {
-        $events = Calender::query()
-            ->select(DB::raw('title,date(start) as start,time(start) as start_time, DAYNAME(start) as day'))
-            // ->groupBy('start')
-            // ->groupBy('day')
-            ->orderBy('start', 'asc') // count(*) as total
-            ->whereBetween('start', [Carbon::now()->startOfWeek(Carbon::SATURDAY), Carbon::now()->endOfWeek(Carbon::FRIDAY)])
-            ->get();
-
-        $result = [];
-
-        $events->each(function ($event) use (&$result) {
-            $result[$event->day][] = [
-                'title' => $event->title,
-                'start_time' => $event->start_time,
-            ];
-        });
-
-        return response()->json([
-            "events" => $result
-        ]);
+        return $this->ControllerHandler->show("events", CalenderService::groupEventsOnTheSameDay(CalenderRepository::getEventsOnDayForParents()));
     }
 
     /**
