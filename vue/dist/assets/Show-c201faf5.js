@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:vue/dist/assets/Show-c201faf5.js
-import{P as s,I as c,g as r,o as i,c as n,i as e,w as l,V as u,f as o,j as d}from"./main-87efbc3c.js";const _={__name:"Show",setup(h){const t=s();return c(()=>{r.get(`api/roles/${t.params.id}`)}),(a,m)=>(i(),n("div",null,[e(d,{height:"45",class:"mb-5 text-white",color:"#A9AB7F",onClick:a.goBack},{default:l(()=>[e(u,{start:"",icon:"mdi-arrow-left"}),o(" Back ")]),_:1},8,["onClick"]),o(" this is roles show ")]))}};export{_ as default};
-========
-import{P as s,I as c,g as r,o as i,c as n,i as e,w as l,V as u,f as o,j as d}from"./main-cb98dd2c.js";const _={__name:"Show",setup(h){const t=s();return c(()=>{r.get(`api/roles/${t.params.id}`)}),(a,m)=>(i(),n("div",null,[e(d,{height:"45",class:"mb-5 text-white",color:"#A9AB7F",onClick:a.goBack},{default:l(()=>[e(u,{start:"",icon:"mdi-arrow-left"}),o(" Back ")]),_:1},8,["onClick"]),o(" this is roles show ")]))}};export{_ as default};
->>>>>>>> 9dd41c952bafa22bd8c90dd01beac76641c63ef1:vue/dist/assets/Show-931e79a6.js
