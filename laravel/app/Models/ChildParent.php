@@ -21,6 +21,7 @@ class ChildParent extends  Authenticatable
         "lname",
         "email",
         "phone",
+        "image",
         "password",
     ];
     /**

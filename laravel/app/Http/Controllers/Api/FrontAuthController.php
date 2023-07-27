@@ -87,8 +87,30 @@ class FrontAuthController extends Controller
     public function profile(UpdateProfileRequest $request)
     {
         $user = $request->user('parent');
-
         $data = $request->validated();
+
+        if ($request->file('image')) {
+            if (!empty($user->image)) {
+                $currentImage = public_path() . $user->image;
+
+                if (file_exists($currentImage)) {
+                    unlink($currentImage);
+                }
+            }
+
+            $file = $request->file('image');
+
+            $extension = $file->getClientOriginalExtension();
+
+            $name = time() . '.' . $extension;
+
+            $request->image->move(public_path() . '/images/',  $name);
+
+            $user->image = '/images/' . $name;
+
+            $data['image'] = $user->image;
+        }
+
 
         $data['password'] = Hash::make($request->validated('password'));
 
@@ -96,7 +118,7 @@ class FrontAuthController extends Controller
 
         return response()->json([
             'message' => 'profile updated successfully',
-            'profile' => $user
+            'profile' => $user->fresh()
         ], 202);
     }
 }

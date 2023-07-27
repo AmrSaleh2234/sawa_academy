@@ -18,5 +18,7 @@ return [
     'Elm' => 'Elm',
     'Gars' => 'Gars',
     'Mchat' => 'Mchat',
+    "male" => "male",
+    "female" => "female",
 
 ];
