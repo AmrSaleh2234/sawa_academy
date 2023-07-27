@@ -85,11 +85,13 @@ const routes = [
     path: "/web/New",
     name: "New",
     component: () => import("../views/frontend/views/New.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/more",
     name: "more",
     component: () => import("../views/frontend/views/more.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/ReAction",
@@ -100,6 +102,7 @@ const routes = [
     path: "/web/Edit",
     name: "Edit",
     component: () => import("../views/frontend/views/Edit.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/Profile",
@@ -111,6 +114,7 @@ const routes = [
     path: "/web/Following",
     name: "Following",
     component: () => import("../views/frontend/views/Following.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/Number",
