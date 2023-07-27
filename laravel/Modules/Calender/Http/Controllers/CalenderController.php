@@ -8,20 +8,24 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Modules\Calender\Entities\Booking;
 use Modules\Calender\Entities\Calender;
 use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
 use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
+use Modules\Calender\Http\Requests\StoreBookingRequest;
 use Modules\Calender\Transformers\EventResource;
 
 class CalenderController extends Controller
 {
     private $ControllerHandler;
-
+    private $bookingControllerHandler;
     public function __construct()
     {
 
         $this->ControllerHandler = new ControllerHandler(new Calender());
+
+        $this->bookingControllerHandler = new ControllerHandler(new Booking());
     }
 
     /**
@@ -36,6 +40,11 @@ class CalenderController extends Controller
     public function groupedEventsForParents()
     {
         return $this->ControllerHandler->show("events", CalenderService::groupEventsOnTheSameDay(CalenderRepository::getEventsOnDayForParents()));
+    }
+
+    public function storeBookingForChild(StoreBookingRequest $request)
+    {
+        return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
     /**
