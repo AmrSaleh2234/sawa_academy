@@ -78,6 +78,7 @@
                       }}</label>
                       <input
                         type="date"
+                        v-date-picker="YYYY-MM-DD"
                         id="child_age"
                         v-model="child.birth_date"
                         class="border-b focus:ring-0"

@@ -308,7 +308,6 @@ export default {
         </button>
       </div>
     </div>
-
     <!-- Mobile menu -->
     <div v-if="isMobileMenuOpen" class="md:hidden fix bg-[#ffffff] p-4">
       <li

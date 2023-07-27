@@ -15,7 +15,7 @@
       </div>
         <div class="relative  overflow-clip max-w-full max-h-screen flex">
             <sidbar :sole="showsider" />
-            <div class=" flex-1 min-h-screen overflow-scroll ">
+            <div class=" flex-1  overflow-scroll ">
                 <div class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow ">نتيجه التقيم</div>
                 <according class=" text-xs block" name="محمد عماد محمد الشيخ" age="15" >
                     <p> طفلي اصبح اكثر مهاره</p>

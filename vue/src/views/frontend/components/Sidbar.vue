@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="bg-[#135C65] max-h-screen z-10 text-cyan-100 md:w-80 w-72 h-auto py-4 space-y-6 px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
+      class="bg-[#135C65] h-screen z-10 text-cyan-100 md:w-80 w-72 h-auto py-4 space-y-6 px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
       :class="{ 'fixed translate-x-0 ': sole }"
     >
       <div
