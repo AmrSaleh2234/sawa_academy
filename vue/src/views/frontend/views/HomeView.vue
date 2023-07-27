@@ -1,9 +1,7 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-
-<div>
+  <div>
     <nave-1 />
     <nave />
     <HeadeForm />
@@ -13,41 +11,36 @@
     <DoCard />
     <See />
     <About />
-</div>
-
-
-
-
-
-
+  </div>
 </template>
-<script setup(props) {
-  
-}>
-import Nave from '../components/Nave.vue'; 
-import HeadeForm from '../components/HeadeForm.vue'; 
-import Services from '../components/Services.vue'; 
-import Card from '../components/Card.vue'; 
-import About from '../components/About.vue'; 
-import DoCard from '../components/DoCard.vue'; 
-import See from '../components/See.vue'; 
-import Nave1 from '../components/Nave1.vue'; 
-import Cursale from '../components/Cursale.vue'; 
-import getcard from '../json/card.json'; 
-
-
-
+<script setup(props) { }>
+import Nave from "../components/Nave.vue";
+import HeadeForm from "../components/HeadeForm.vue";
+import Services from "../components/Services.vue";
+import Card from "../components/Card.vue";
+import About from "../components/About.vue";
+import DoCard from "../components/DoCard.vue";
+import See from "../components/See.vue";
+import Nave1 from "../components/Nave1.vue";
+import Cursale from "../components/Cursale.vue";
+import getcard from "../json/card.json";
 
 export default {
-components:{Nave,HeadeForm,Services,Card,About,DoCard,See,Nave1,Cursale},
-data(){
-    return{
-        mycard:getcard
-    }
-}
-  
-
-}
+  components: {
+    Nave,
+    HeadeForm,
+    Services,
+    Card,
+    About,
+    DoCard,
+    See,
+    Nave1,
+    Cursale,
+  },
+  data() {
+    return {
+      mycard: getcard,
+    };
+  },
+};
 </script>
-
-

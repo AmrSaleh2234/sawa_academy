@@ -385,7 +385,6 @@
       </v-table>
     </div>
   </section>
-  >>>>>>> 079b708bccac34a587b92a54930d8179c8347e9e
 </template>
 <script>
 import axios from "axios";
