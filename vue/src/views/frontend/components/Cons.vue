@@ -36,11 +36,16 @@
         </p>
       </div>
       <div class="m-auto md:mr-0">
-        <router-link to="/"
-          ><font-awesome-icon
-            class="bg-[#135C65] rounded-[50%] p-2 md:p-4 text-white"
-            icon="fa-solid fa-arrow-left"
-        /></router-link>
+        <v-btn
+          height="45"
+          to="/web"
+          class="mb-5 text-lg m-auto text-white"
+          color="#135C65"
+          @click="home"
+        >
+          <v-icon start icon="mdi-arrow-left"></v-icon>
+          {{ $t("الرئيسيه") }}
+        </v-btn>
       </div>
     </div>
     <div class="m-auto p-8 rounded-2xl max-w-2xl text-center ">

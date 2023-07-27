@@ -4,13 +4,8 @@
     :class="{ 'fixed translate-x-0 ': sole }"
   >
     <div
-<<<<<<< HEAD
-      class="bg-[#135C65] h-screen z-10 text-cyan-100 md:w-80 w-72 h-auto py-4 space-y-6 px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
-      :class="{ 'fixed translate-x-0 ': sole }"
-=======
       v-if="parentStore.parentAuth"
       class="space-y-2 py-4 border-b-2 border-white border-solid"
->>>>>>> 743f0fc76fda0dad1d4af6c6299d618fd098af1b
     >
       <div><img class="m-auto" src="../image/Ellipse2.png" /></div>
       <p class="text-white text-center">
