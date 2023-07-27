@@ -40,6 +40,7 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
 
     Route::middleware('auth:parent')->group(function () {
         Route::post('logout', 'logout')->name('logout');
+        Route::post('profile', 'profile')->name('profile');
     });
 });
 

@@ -184,7 +184,7 @@ export default {
         >
           <router-link :to="{ name: 'ReAction' }"> الرئيسيه</router-link>
         </li>
-        <div class="flex space-x-2">
+        <div class="flex space-x-2" v-if="parentStore.parentAuth">
           <div>
             <div class="relative">
               <button
@@ -335,6 +335,8 @@ export default {
 </template>
 
 <script>
+import { useParentStore } from "../../../stores/ParentStore";
+
 export default {
   data() {
     return {
@@ -342,6 +344,7 @@ export default {
       show_Password: "mdi-eye-off",
       pass_type: "password",
       show: false,
+      parentStore: useParentStore(),
     };
   },
   methods: {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Parent\UpdateProfileRequest;
 use App\Models\ChildParent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,5 +82,21 @@ class FrontAuthController extends Controller
         ];
 
         return response($resposne, 200);
+    }
+
+    public function profile(UpdateProfileRequest $request)
+    {
+        $user = $request->user('parent');
+
+        $data = $request->validated();
+
+        $data['password'] = Hash::make($request->validated('password'));
+
+        $user->update($data);
+
+        return response()->json([
+            'message' => 'profile updated successfully',
+            'profile' => $user
+        ], 202);
     }
 }
