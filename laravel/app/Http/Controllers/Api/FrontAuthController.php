@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Parent\UpdateProfileRequest;
 use App\Models\ChildParent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class FrontAuthController extends Controller
 {
@@ -19,10 +21,11 @@ class FrontAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (auth('parent')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = ChildParent::where('email', $request->email)->first();
+        $user = ChildParent::where('email', $request->email)->first();
+
+        if (Hash::check($request->password, $user->password)) {
             $response = [
-                'token' => auth('parent')->user()->createToken($user->email)->plainTextToken,
+                'token' => $user->createToken($user->email)->plainTextToken,
                 'user' => $user,
             ];
 
@@ -50,15 +53,18 @@ class FrontAuthController extends Controller
         ]);
 
 
+        // $userRole = Role::where('name', 'user')->where('guard_name', 'parent')->first();
+        // $parent->assignRole($userRole);
+        $child_permissions = Permission::select('name')->where('guard_name', 'parent')->where('name', 'like', "%child%")->pluck('name');
+        $parent->givePermissionTo($child_permissions);
+
+
         $token = $parent->createToken($parent->email)->plainTextToken;
 
         return response()->json([
             'token' => $token,
             'user' => $parent,
         ], 201);
-
-
-        return response()->json($parent, 201);
     }
     public function user(Request $request)
     {
@@ -68,14 +74,29 @@ class FrontAuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $token = $request->user()->token();
 
-        $token->revoke();
+        $request->user('parent')->tokens()->delete();
 
         $resposne = [
             'message' => "You have successfully been logged out!"
         ];
 
         return response($resposne, 200);
+    }
+
+    public function profile(UpdateProfileRequest $request)
+    {
+        $user = $request->user('parent');
+
+        $data = $request->validated();
+
+        $data['password'] = Hash::make($request->validated('password'));
+
+        $user->update($data);
+
+        return response()->json([
+            'message' => 'profile updated successfully',
+            'profile' => $user
+        ], 202);
     }
 }

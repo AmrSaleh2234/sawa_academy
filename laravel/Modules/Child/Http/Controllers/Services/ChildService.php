@@ -9,16 +9,15 @@ class ChildService
 {
     public function getChildWithSideProfile($child)
     {
-          return  ChildRepository::getChildWithSideProfile($child);
+        return  ChildRepository::getChildWithSideProfile($child);
     }
 
     public function calcChildAgeInMonths($child)
     {
-        $childAgeInMonth=(Carbon::parse($child->birth_date)->diffInMonths(Carbon::now('EET')));
-        if((int)Carbon::parse($child->birth_date)->diff(Carbon::now())->format('%d')>=15)
+        $childAgeInMonth = (Carbon::parse($child->birth_date)->diffInMonths(Carbon::now('EET')));
+        if ((int)Carbon::parse($child->birth_date)->diff(Carbon::now('EET'))->format('%d') >= 15)
             $childAgeInMonth++;
         return $childAgeInMonth;
-
     }
 
     public function getChildWithAgeInMonthAndCheckIfCanDoExam($child, $evaluation)
@@ -35,7 +34,6 @@ class ChildService
         if ($data) {
             if (Carbon::parse($data->created_at)->diffInMonths(Carbon::now()) >= 6)
                 $child->canDoExam = 1;
-
         } else {
             $child->canDoExam = 1;
         }

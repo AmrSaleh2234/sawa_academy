@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\FrontAuthController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,11 @@ use App\Http\Controllers\Api\FrontAuthController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:parent')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
 
 
 Route::post('register', [PassportAuthController::class, 'register'])->name('register.perform');
@@ -34,7 +37,11 @@ Route::get('lookups/treatmentsType', [\App\Http\Controllers\LookupsController::c
 Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->group(function () {
     Route::post('register', 'register')->name('register');
     Route::post('login', 'login')->name('login');
-    Route::post('logout', 'logout')->name('logout');
+
+    Route::middleware('auth:parent')->group(function () {
+        Route::post('logout', 'logout')->name('logout');
+        Route::post('profile', 'profile')->name('profile');
+    });
 });
 
 

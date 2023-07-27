@@ -19,10 +19,10 @@
                 <p class="text-white">عمان-الرابيه-شارع ميسلون<i class='fas fa-map-marker-alt'></i></p>
             </div>
             <div  class="text-right grid grid-row-4 gap-5 md:gap-0">
-                <p class="text-2xl text-teal-800 font-bold hover:text-rose-600">الرئيسيه</p>
-                <p class="text-2xl text-teal-800 font-bold hover:text-rose-600"> ماذا عنا</p>
-                <p class="text-2xl text-teal-800 font-bold hover:text-rose-600">قدم شكوي</p>
-                <p class="text-2xl text-teal-800 font-bold hover:text-rose-600"> اعتامدتنا</p>
+                <p class="text-2xl text-teal-800 font-bold hover:text-[#8B6D00]">الرئيسيه</p>
+                <p class="text-2xl text-teal-800 font-bold hover:text-[#8B6D00]"> ماذا عنا</p>
+                <p class="text-2xl text-teal-800 font-bold hover:text-[#8B6D00]">قدم شكوي</p>
+                <p class="text-2xl text-teal-800 font-bold hover:text-[#8B6D00]"> اعتامدتنا</p>
             </div>
         </div>
     </div>    

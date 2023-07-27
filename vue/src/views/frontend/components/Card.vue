@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class=" m-auto md:grid md:grid-cols-3" >
         <div class="aa m-2 border-2 border-neutral-300 border-solid rounded-3xl relative truncate" v-for="(e,i) in cardinfo" :key="i">
             <div><img></div>
@@ -24,4 +24,144 @@ export default {
    
 
 }
+</script> -->
+<template>
+   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-3  py-[8%]  " >
+    <div class="animate  relative w-full">
+        <v-card
+    class="mx-auto w-full rounded-xl"
+    max-width="344"
+  >
+  
+  
+   
+  <div>
+    <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
+            <p class="w-full h-full  m-auto text-center">اكاديمه سوا  للتربيه</p>
+        </div>      </div>
+    <img class="imge" src="../image/sec1/1.png">
+   </div>
+  
+  
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+   
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+  
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
+    
+    </v-card-actions>
+  
+    
+  </v-card>
+  
+  
+    </div>
+    <div class="animate  relative">
+        <v-card
+    class="mx-auto rounded-xl"
+    max-width="344"
+  >
+  
+  
+   <div class="">
+    <div class="animte right-0  absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%]  m-auto h-full w-full text-[#A5E9FF]">
+            <p class="w-full h-[50%] pt-[20%] text-center">اكاديمه سوا  للتربيه</p>
+        </div>
+      </div>
+    <img class="imge " src="../image/header/2.png">
+   </div>
+  
+  
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+   
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+  
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65] z-10"> احجز موعد لابنك</p>
+    
+    </v-card-actions>
+  
+    
+  </v-card>
+  
+  
+    </div>
+    <div class="animate  relative">
+        <v-card
+    class="mx-auto rounded-xl"
+    max-width="344"
+  >
+  
+  
+   <div>
+    <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
+        <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
+            <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
+        </div>      </div>
+    <img class="imge" src="../image/header/3.png">
+   </div>
+  
+  
+    <v-card-actions>
+      <v-btn
+      icon="mdi-arrow-left"
+      size="small"
+      color="#135C65"    
+   
+      style="border: 2px solid #135C65;"
+    
+    ></v-btn>
+     
+  
+      <v-spacer></v-spacer>
+      <p class="text-2xl p-2 text-[#135C65] z-10">تسجيل طفلك معنا</p>
+    
+    </v-card-actions>
+  
+    
+  </v-card>
+  
+  
+    </div>
+</div>
+  </template>
+  <script>
+  export default {
+   data(){
+    return{
+        
+    }
+   }
+  }
 </script>
+<style scoped>
+.animte {
+    transform: translateX(100%);
+    transition: .8s;
+}
+.animate:hover .animte{
+    transform: translateX(0%);
+}
+.animate:hover .imge{
+    transform: translateX(-50%);
+    transition: .8s;
+ }
+
+</style>

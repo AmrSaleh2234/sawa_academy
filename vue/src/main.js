@@ -12,6 +12,8 @@ import vuetify from "@/plugins/vuetify";
 
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import print from "vue3-print-nb";
+import VueCarousel from 'vue-carousel';
+
 
 import "primevue/resources/primevue.min.css";
 
@@ -44,5 +46,6 @@ app.use(router);
 app.use(PrimeVue);
 app.use(print);
 app.use(VueHtmlToPaper);
+app.use(VueCarousel);
 
 app.mount("#app");

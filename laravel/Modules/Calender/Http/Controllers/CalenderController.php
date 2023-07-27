@@ -3,10 +3,14 @@
 namespace Modules\Calender\Http\Controllers;
 
 use App\Http\Controllers\ControllerHandler;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Modules\Calender\Entities\Calender;
+use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
+use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Transformers\EventResource;
 
@@ -25,9 +29,13 @@ class CalenderController extends Controller
      */
     public function index()
     {
-//        return $this->ControllerHandler->getAll("calender");
-        return response(['calender'=>EventResource::collection(Calender::currentAuth()->get())]);
+        //        return $this->ControllerHandler->getAll("calender");
+        return response(['calender' => EventResource::collection(Calender::currentAuth()->get())]);
+    }
 
+    public function groupedEventsForParents()
+    {
+        return $this->ControllerHandler->show("events", CalenderService::groupEventsOnTheSameDay(CalenderRepository::getEventsOnDayForParents()));
     }
 
     /**
@@ -46,7 +54,7 @@ class CalenderController extends Controller
     public function store(CalenderRequest $request)
     {
 
-//        return response(['k'=>$request->start]);
+        //        return response(['k'=>$request->start]);
         return $this->ControllerHandler->store("calender", $request->validated());
     }
 
@@ -68,7 +76,5 @@ class CalenderController extends Controller
         // here some validation check parent or admin
 
         return $this->ControllerHandler->destory("calender", $calender);
-
     }
-
 }

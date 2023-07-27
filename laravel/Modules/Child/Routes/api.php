@@ -28,17 +28,17 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{child}', [ChildController::class, 'show'])->name('child.show');
         Route::post('/{child}/update', [ChildController::class, 'update'])->name('child.update');
         Route::delete('/{child}/delete', [ChildController::class, 'destroy'])->name('child.delete');
-
     });
 });
 
-//Route::group(['prefix' => 'child'], function () {
-//    Route::get('/', [ChildController::class, 'index'])->name('child.index');
-//    Route::post('/create', [ChildController::class, 'store'])->name('child.create');
-//    Route::get('/{child}/show-side-profiles', [ChildController::class, 'getChildAndSideProfile'])->name('child.getChildAndSideProfile');
-//    Route::get('/{child}/{evaluation}', [ChildController::class, 'childAndEvaluation'])->name('child.childAndEvaluation');
-//    Route::get('/{child}', [ChildController::class, 'show'])->name('child.show');
-//    Route::post('/{child}/update', [ChildController::class, 'update'])->name('child.update');
-//    Route::delete('/{child}/delete', [ChildController::class, 'destroy'])->name('child.delete');
-//
-//});
+
+// This Is Temp For Parent Until We Remove The Above Routes.
+Route::middleware('auth:parent')->prefix('parent')->as('parent.')->group(function () {
+    Route::group(['prefix' => 'child'], function () {
+        Route::post('/create', [ChildController::class, 'store'])->name('child.create');
+        Route::get('/all', [ChildController::class, 'getParentChilds'])->name('all');
+        Route::get('/{child}', [ChildController::class, 'show'])->name('child.show');
+        Route::post('/{child}/update', [ChildController::class, 'update'])->name('child.update');
+        Route::delete('/{child}/delete', [ChildController::class, 'destroy'])->name('child.delete');
+    });
+});
