@@ -1,9 +1,9 @@
 <template>
   <div
     style="background-color: #135c65"
-    class="flex justify-between p text-center"
+    class="flex justify-between  text-center"
   >
-    <div class="p-2 my-auto"><img src="../image/header/Group22.png" /></div>
+    <div class="my-auto"><img src="../image/header/Group22.png" /></div>
     <div class="flex mx-2 ">
       <div class="m-auto">
         <p style="font-size:20px" class="text-white text-base">

@@ -48,12 +48,12 @@
         </v-btn>
       </div>
     </div>
-    <div class="m-auto p-8 rounded-2xl max-w-2xl text-center ">
+    <div class="m-auto p-8 rounded-2xl max-w-5xl text-center ">
       <div class="my-4">
         <h2 class="text-right font-bold text-lg">احجز موعد مع الاخصائي</h2>
         <p class="text-right text-[#29CCFF]">برجاء ملئ البيانات</p>
       </div>
-      <form class="py-4 space-y-4 shadow p-2">
+      <form class="py-4 min-w-full space-y-4 shadow p-2">
         <div class="flex flex-col">
           <label class="text-sm  text-right pl-2">{{
             $t("اسم ولي امر  مقدم الطلب")
@@ -249,9 +249,9 @@
             placeholder="ادخل كود استشاري تريده"
           />
         </div>
-        <div class="text-right space-x-4">
-          <span>انا اوافق علي كافه الشروط والاحكام</span>
-          <input  type="checkbox" />
+        <div class="text-right m-auto w-full space-x-4">
+          <span class="m-auto">انا اوافق علي كافه الشروط والاحكام</span>
+          <input style="border: 2px solid black;" type="checkbox" />
         </div>
         <button
           type="submit"

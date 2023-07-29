@@ -1,19 +1,23 @@
 <template>
   <section
-    class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
+    class=" dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center backdrop-blur-sm bg-white/40"
   >
-    <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12" >
+  <div style="opacity: 10%;" class="bg-black h-full w-full absolute  "></div>
+    <div class="h-full p-6 md:grid md:grid-cols-12" style="backdrop-filter: blur(2px);" >
       <div class="">
-        <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
-          <v-icon
-            start
-            icon="mdi-arrow-left"
-          ></v-icon>
-            {{$t('الرئيسيه')}}
+        <v-btn
+          to="/web"
+          height="45"
+          class="mb-5 text-lg m-auto text-white"
+          color="#135C65"
+          @click="home"
+        >
+          <v-icon start icon="mdi-arrow-left"></v-icon>
+          {{ $t("الرئيسيه") }}
         </v-btn>
       </div>
       <div
-        class="flex flex-col items-center justify-between px-6 md:h-screen mx-auto md:col-span-10 lg:py-0"
+        class="flex flex-col items-center justify-between px-6  mx-auto md:col-span-10 lg:py-0"
       >
         <div class="text-center m-2">
           <h1 class="text-3xl py-5 font-bold">تسجيل الدخول</h1>
@@ -32,32 +36,35 @@
           </div>
         </div>
         <form @submit.prevent="massegeerror.length == 0 ? parentStore.login(parent) : null"
-          class="mb-24 backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 12%;margin-bottom: 12%;"
+          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
         <div v-for="error in massegeerror" :key="error" class="text-center my-2 py-2">
                 <p class="text-red-600">{{error}}</p>
               </div>
-          <div class="p-2 md:space-y-6 sm:p-8">
+          <div class="p-2 md:space-y-4 sm:p-8">
             <div class="space-y-6 text-center rounded-2xl p-4 bg-none">
-              <div>
+              <div class="flex flex-col">
                 <input
-                  class="backdrop-blur-md bg-white/30 px-16 p-2 text-center border-0 border-b-2 border-black border-solid"
-                  type="email"
-                  name="email"
-                  placeholder=" الايميل الالكتروني"
+                  style="border-bottom: 2px solid black;"
                   v-model="parent.email"
+                  type="email"
+                  id="child_name"
+                  placeholder=" الايميل الالكتروني"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
                 />
               </div>
-              <div>
+              <div class="flex flex-col">
                 <input
-                  class="backdrop-blur-md bg-white/30 px-16 p-2 m-2 text-center border-0 border-b-2 border-black border-solid"
-                  type="password"
-                  name="email"
-                  placeholder="كلمه السر"
+                  style="border-bottom: 2px solid black;"
                   v-model="parent.password"
+                  type="password"
+                  id="child_name"
+                  placeholder="كلمه السر"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
                 />
               </div>
-
+              
               <button
                 class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
                 @click="vaild"
@@ -75,6 +82,7 @@
           </div>
         </form>
       </div>
+      
     </div>
   </section>
 </template>
