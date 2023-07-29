@@ -48,14 +48,14 @@ function guestForNormalUser(to, from, next) {
 const routes = [
   ///////////////Begin Front End Users Routes //////////////////
   {
-    path: "/web/parent/SingUp",
+    path: "/web/parent/register",
     name: "SingUp",
     component: () => import("../views/frontend/views/SingUp.vue"),
     // beforeEnter: guestForNormalUser,
   },
 
   {
-    path: "/web/parent/Login",
+    path: "/web/parent/login",
     name: "parentLogin",
     component: Login,
     // beforeEnter: guestForNormalUser,
@@ -66,7 +66,7 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/web/BookingTime",
+    path: "/web/booking-time",
     name: "BookingTime",
     component: BookingTime,
   },
@@ -88,8 +88,9 @@ const routes = [
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/more",
+    path: "/web/:event_id/more",
     name: "more",
+    props: true,
     component: () => import("../views/frontend/views/more.vue"),
     beforeEnter: authForNormalUser,
   },
