@@ -1,7 +1,9 @@
 <template>
   <div>
-    <Map />
+    <div class="max-h-screen">
+      <Map />
     <LoginForm />
+    </div>
     <About />
   </div>
 </template>
