@@ -13,7 +13,7 @@
         
       </div>
       <div
-        class="flex flex-col items-center z-40 justify-center px-6 col-span-10 mx-auto lg:py-0">
+        class="flex flex-col items-center z-40 justify-center px-6 col-span-8 w-full mx-auto lg:py-0">
         <div class="mb-4 text-center">
           <h1 class="text-3xl py-2 font-bold">انشاء حساب</h1>
           <p class="text-xl">
@@ -30,11 +30,11 @@
         </div>
         <div
         style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;"
-                  class="w-full  shadow-md  rounded-3xl z-30 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+                  class="w-full  shadow-md   rounded-3xl z-30 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div  class="p-2 md:space-y-6 sm:p-8">
+          <div  class=" w-full p-2 md:space-y-6 sm:p-8">
 
-            <form  class="space-y-4 text-center rounded-2xl p-4 bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
+            <form  class="w-full space-y-4 text-center rounded-2xl  bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">
                 <p class="text-red-600">{{error}}</p>
               </div>

@@ -50,8 +50,8 @@
     </div>
     <div class="m-auto p-8 rounded-2xl max-w-5xl text-center ">
       <div class="my-4">
-        <h2 class="text-right font-bold text-lg">احجز موعد مع الاخصائي</h2>
-        <p class="text-right text-[#29CCFF]">برجاء ملئ البيانات</p>
+        <h2 class="text-right font-bold text-xl">احجز موعد مع الاخصائي</h2>
+        <p class="text-right text-[#29CCFF] text-xl">برجاء ملئ البيانات</p>
       </div>
       <form class="py-4 min-w-full space-y-4 shadow p-2">
         <div class="flex flex-col">
@@ -66,7 +66,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label class="text-sm  text-right pl-2">{{
+          <label class="text-lg  text-right pl-2">{{
             $t("درجه قرابته للطفل ")
           }}</label>
           <input
@@ -77,7 +77,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("الاسم الرباعي للطفل  ")
           }}</label>
           <input
@@ -88,7 +88,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("مكان وتاريخ الميلاد  ")
           }}</label>
           <input
@@ -99,7 +99,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("لغة الطفل الاساسيه  ")
           }}</label>
           <input
@@ -110,7 +110,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label class="text-sm  text-right pl-2">{{
+          <label class="text-lg  text-right pl-2">{{
             $t("الرقم الوطني / الجنسيه")
           }}</label>
           <input
@@ -121,7 +121,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg text-right pl-2">{{
             $t("العنوان")
           }}</label>
           <input
@@ -131,7 +131,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("رقم هاتف ولي الامر")
           }}</label>
           <input
@@ -142,7 +142,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label class="text-sm  text-right pl-2">{{
+          <label class="text-lg  text-right pl-2">{{
             $t("رقم هاتف اضافي")
           }}</label>
           <input
@@ -153,7 +153,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("مالك الرقم الاضافي . درجه قرابته بالطفل")
           }}</label>
           <input
@@ -164,7 +164,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg text-right pl-2">{{
             $t("مصدر التحويل")
           }}</label>
           <input
@@ -175,7 +175,7 @@
           />
         </div>
         <div class="flex flex-col">
-          <label  class="text-sm  text-right pl-2">{{
+          <label  class="text-lg  text-right pl-2">{{
             $t("الطبيب الخاص بالطفل")
           }}</label>
           <input
@@ -188,7 +188,7 @@
         
         <p class="p-4 font-bold text-lg text-right">اجب عن الاسئله الاتيه</p>
         <div class="w-full">
-          <h3 class="py-2">الجنس</h3>
+          <h3 class="py-2 text-lg">الجنس</h3>
           <Dropdown
             v-model="selectedFruit"
             :options="fruits"
@@ -199,7 +199,7 @@
           />
         </div>
         <div class="w-full">
-          <h3 class="py-2">نرجو تحديد نوع المشكله</h3>
+          <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
           <Dropdown
             v-model="selectedFruit"
             :options="problem_type"
@@ -219,7 +219,7 @@
           />
         </div>
         <div class="w-full">
-          <h3 class="py-2">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
+          <h3 class="py-2 ">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
           <Dropdown
             v-model="selectedFruit"
             :options="approve"
@@ -230,13 +230,13 @@
           />
         </div>
         <div class="space-y-4">
-          <p class="text-right">
+          <p class="text-right text-lg">
             :المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل
           </p>
           <Textarea class="w-full" v-model="value" rows="5" cols="30" />
         </div>
         <div class="space-y-4">
-          <p class="text-right">
+          <p class="text-right text-lg">
             :ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
           </p>
           <Textarea class="w-full" v-model="value" rows="5" cols="30" />
@@ -244,13 +244,13 @@
         </div>
         <div>
           <input
-            class="border-0 border-b text-center focus:ring-0"
+            class="border-0 border-b text-xl text-center focus:ring-0"
             type="text"
             placeholder="ادخل كود استشاري تريده"
           />
         </div>
         <div class="text-right m-auto w-full space-x-4">
-          <span class="m-auto">انا اوافق علي كافه الشروط والاحكام</span>
+          <span class="m-auto text-xl">انا اوافق علي كافه الشروط والاحكام</span>
           <input style="border: 2px solid black;" type="checkbox" />
         </div>
         <button

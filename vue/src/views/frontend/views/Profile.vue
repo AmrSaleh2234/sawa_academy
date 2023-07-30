@@ -18,43 +18,11 @@
           <p class="text-center p-6 text-2xl text-[#6EB7BF]">الملف الشخصي</p>
         </div>
         <div @click="toggle" class="m-auto md:invisible">
-          <svg
-            fill="#000000"
-            version="1.1"
-            id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            width="34px"
-            height="34px"
-            viewBox="0 0 91.914 91.914"
-            xml:space="preserve"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <g>
-                <g>
-                  <rect x="1.124" width="89.666" height="14.089"></rect>
-                  <rect x="26.29" y="25.494" width="64.447" height="14.09"></rect>
-                  <rect x="1.124" y="52.33" width="89.666" height="14.09"></rect>
-                  <rect
-                    x="26.29"
-                    y="77.825"
-                    width="64.447"
-                    height="14.089"
-                  ></rect>
-                </g>
-              </g>
-            </g>
-          </svg>
+          <svg fill="#000000" width="54px" height="54px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"></path></g></svg>
         </div>
       </div>
-      <div class="relative flex">
-        <sidbar class="h-full" :sole="showsider" />
+      <div class="relative flex selection max-h-full">
+        <sidbar class="" :sole="showsider" />
         <div class="flex-1 space-y-10">
           <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
             <button>تعديل الملف الشخصي</button>

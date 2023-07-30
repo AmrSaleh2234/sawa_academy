@@ -1,6 +1,6 @@
 <template>
    <div class=" bg-[url('../image/sec1/Group68.png')] bg-cover bg-[#135C65]">
-    <div class="m-auto w-full space-y-4 p-[4%]">
+    <div style="padding: 2%;" class="m-auto w-full space-y-4  ">
         <h1 class="m-auto text-center text-4xl text-white">اهم ما يميزنا</h1>
         <p class="m-auto text-center text-2xl text-[#29CCFF]">نبذل جهدا كبيرا لكي نساعدك </p>
     </div>
@@ -28,8 +28,8 @@
        <div class="grid grid-cols-10 ">
         <div class="col-span-2"></div>
         <div class="col-span-8 w-[80%] py-[3%] text-center">
-            <p class="text-white text-center">ىتساشلالؤلاتىشسى اسشؤلاسنش لاىؤسشرؤ سشى الاتس’ْ</p>
-            <p class="text-white text-center">مةنتالراشلاتشسؤلالآ  شستلا</p>
+            <p class="text-white text-center"> اكادميه سوا للتربيه الخاصه </p>
+            <p class="text-white text-center">هنا سوف تجد جميع الخدمات لطفلك </p>
         </div>
         <div class="col-span-2"></div>
        </div>

@@ -26,11 +26,11 @@ export default {
 }
 </script> -->
 <template>
-   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-3  py-[8%]  " >
+   <div class=" m-auto grid grid-row-3  md:grid-cols-3 gap-3  py-[5%]  " >
     <div class="animate  relative w-full">
         <v-card
     class="mx-auto w-full rounded-xl"
-    max-width="80%"
+    max-width="75%"
   >
   
   
@@ -68,7 +68,7 @@ export default {
     <div class="animate  relative">
         <v-card
     class="mx-auto rounded-xl"
-    max-width="80%"
+    max-width="75%"
   >
   
   
@@ -106,7 +106,7 @@ export default {
     <div class="animate  relative">
         <v-card
     class="mx-auto rounded-xl"
-    max-width="80%"
+    max-width="75%"
   >
   
   

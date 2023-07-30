@@ -3,12 +3,12 @@
         <img src="../image/sec1/m.png" class="absolute inset-0 w-full h-full object-cover">
         
         <div class="text-center pb-[5%]">
-            <h1 class="text-3xl  font-bold text-white tracking-wide ">فريق اكاديميه سوا</h1>
-            <p class="text-white tracking-wide ">لدينا مجموعه من الاخصائين العالجين ذو خبره عاليه</p>
+            <h1 class="text-4xl  font-bold text-white tracking-wide ">فريق اكاديميه سوا</h1>
+            <p class="text-2xl text-white tracking-wide pt-4 ">لدينا مجموعه من الاخصائين العالجين ذو خبره عاليه</p>
         </div>
         <div class=" m-auto">
             <div class=" m-auto">
-                <carousel class="bg-none w-full py-[5%]  " v-bind="settings" :wrap-around="true" :breakpoints="breakpoints" >
+                <carousel class="bg-none w-full py-[1%]  " v-bind="settings" :wrap-around="true" :breakpoints="breakpoints" >
                     <slide v-for="image in 7" :key="image" class="w-full widths">
                        <div v-for="index in perPage" :key="index" class=" w-[100%] ">
                         <div class="text-center bg-teal-100 rounded-3xl m-2">
