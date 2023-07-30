@@ -77,7 +77,6 @@ class FrontAuthController extends Controller
     {
         $user = ParentResource::make($request->user('parent'));
 
-        $user->notify(new AcceptBookingNotification());
 
         return response()->json(['user' => $user], 200);
     }
