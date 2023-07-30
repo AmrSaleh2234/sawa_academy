@@ -1,9 +1,9 @@
 <template>
-        <div  class=" py-[20%]  relative bg-center bg-cover  max-h-screen">
+        <div  class=" py-[8%]  relative bg-center bg-cover  max-h-screen">
             <img src="../image/header/112.png" class="absolute  inset-0 w-full h-full object-cover">
-            <div style="opacity: 35%;" class="absolute inset-0 bg-black"></div>
-            <div class="relative background-color lg:w-[50%] p-[5%] z-10 ">
-            <h1 style="font-size:50px" class="font-bold   text-right pr-6 text-white" >اكاديميه سوا للتربيه الخاصة</h1>
+            <div style="background: linear-gradient(to right, #74DBC7, #618990); opacity: 50%;" class="absolute inset-0 bg-black"></div>
+            <div class="relative background-color lg:w-[50%] px-[5%] z-10 ">
+            <h1 style="font-size:45px" class="font-bold   text-right pr-6 text-white" >اكاديمة سوا للتربية الخاصة</h1>
             <h2 style="font-size:35px" class=" text-3xl m-10 text-right text-white ">رعايه ذاتيه افضل لطفلط من خلالنا</h2>
             <div style="color: white;" class="relative flex  justify-between bg-black p-2 opacity-70 w-[100%] rounded-3xl">
                 <button class="p-2 text-[#FFCF24]">بحث</button>
