@@ -11,12 +11,12 @@ class AcceptBookingNotification extends Notification
 {
     use Queueable;
 
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(private $event, private $booking)
     {
-        //
     }
 
     /**
@@ -38,7 +38,10 @@ class AcceptBookingNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا 01:00م الموعد غدا"
+            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا 01:00م الموعد غدا", "data" => [
+                'event' => $this->event,
+                'booking' => $this->booking,
+            ]
         ];
     }
 }

@@ -45,4 +45,5 @@ export default {
   print: "طباعة",
   evaluation_type: "نوع التقيم",
   manage_user_roles: "تحكم ادوار المستخدم",
+  bookings: "الحجوزات",
 };

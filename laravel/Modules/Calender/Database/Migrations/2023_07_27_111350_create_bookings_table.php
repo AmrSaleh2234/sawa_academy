@@ -50,6 +50,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger("doctor_code");
 
+
+
             $table->timestamps();
         });
     }
