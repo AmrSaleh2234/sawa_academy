@@ -28,6 +28,11 @@
         >
           <router-link :to="{ name: 'home' }"> الرئيسيه</router-link>
         </li>
+        <li
+          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+          <LocaleSelect id="local-switcher" />
+        </li>
         <div class="flex space-x-2" v-if="parentStore.parentAuth">
           <div>
             <div class="relative">
@@ -180,6 +185,7 @@
 
 <script>
 import { useParentStore } from "../../../stores/ParentStore";
+import LocaleSelect from "../../../components/LocaleSelect.vue";
 
 export default {
   data() {
@@ -196,6 +202,9 @@ export default {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
   },
+  components:{
+    LocaleSelect
+  }
 };
 </script>
 

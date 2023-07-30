@@ -1,10 +1,8 @@
 <template>
-  <div>
     <Map2></Map2>
     <Nave />
     <Cons :event_id="event_id" />
     <About />
-  </div>
 </template>
 <script setup(props) { }>
 import Map2 from "../components/Map2.vue";

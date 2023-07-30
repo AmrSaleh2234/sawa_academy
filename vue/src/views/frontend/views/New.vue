@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+
     <Map />
     <div
       class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
@@ -43,7 +43,7 @@
       </div>
     </div>
     <About />
-  </div>
+
 </template>
 <script>
 import Map from "../components/Map.vue";
