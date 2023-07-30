@@ -23,13 +23,17 @@ class FrontAuthController extends Controller
 
         $user = ChildParent::where('email', $request->email)->first();
 
-        if (Hash::check($request->password, $user->password)) {
-            $response = [
-                'token' => $user->createToken($user->email)->plainTextToken,
-                'user' => $user,
-            ];
+        if ($user != null) {
+            if (Hash::check($request->password, $user->password)) {
+                $response = [
+                    'token' => $user->createToken($user->email)->plainTextToken,
+                    'user' => $user,
+                ];
 
-            return response($response, 202);
+                return response($response, 202);
+            } else {
+                return response()->json(['message' => 'email or password does not match our records'], 401);
+            }
         } else {
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
