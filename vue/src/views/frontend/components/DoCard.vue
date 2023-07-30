@@ -1,46 +1,31 @@
 <template>
-  <div
-    style="background: linear-gradient(to right, #ff8b6a, #ff566f)"
-    class="p-6 py-16 bg-center bg-cover m-auto relative"
-  >
-    <img
-      src="../image/sec1/m.png"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
+    <div style="background: linear-gradient(to right, #FF8B6A, #FF566F);" class="p-6 py-16 bg-center bg-cover m-auto relative ">
+        <img src="../image/sec1/m.png" class="absolute inset-0 w-full h-full object-cover">
+        
+        <div class="text-center pb-[5%]">
+            <h1 class="text-4xl  font-bold text-white tracking-wide ">فريق اكاديميه سوا</h1>
+            <p class="text-2xl text-white tracking-wide pt-4 ">لدينا مجموعه من الاخصائين العالجين ذو خبره عاليه</p>
+        </div>
+        <div class=" m-auto">
+            <div class=" m-auto">
+                <carousel class="bg-none w-full py-[1%]  " v-bind="settings" :wrap-around="true" :breakpoints="breakpoints" >
+                    <slide v-for="image in 7" :key="image" class="w-full widths">
+                       <div v-for="index in perPage" :key="index" class=" w-[100%] ">
+                        <div class="text-center bg-teal-100 rounded-3xl m-2">
+                            <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
+                            <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
+                            <p class="text-center text-teal-400 p-1">اخصائي مخ واعصاب</p>
+                            <button  class="text-center w-[90%] m-2 p-2 rounded-3xl text-white bg-[#135C65] hover:bg-[#29CCFF]">تواصل الان</button>
+                        </div>
+                       </div>
+                    </slide>
+                
+                    <template  #addons >
+                        
+                      <pagination class="[&>div]:bg-[red] " />
+                    </template>
+                  </carousel>
 
-    <div class="text-center pb-[5%]">
-      <h1 class="text-3xl font-bold text-white tracking-wide">
-        فريق اكاديميه سوا
-      </h1>
-      <p class="text-white tracking-wide">
-        لدينا مجموعه من الاخصائين العالجين ذو خبره عاليه
-      </p>
-    </div>
-    <div class="m-auto">
-      <div class="m-auto">
-        <carousel
-          class="bg-none w-full py-[5%]"
-          v-bind="settings"
-          :wrap-around="true"
-          :breakpoints="breakpoints"
-        >
-          <slide v-for="image in 7" :key="image" class="w-full widths">
-            <div v-for="index in perPage" :key="index" class="w-[100%]">
-              <div class="text-center bg-teal-100 rounded-3xl m-2">
-                <div class="bg-white rounded-3xl">
-                  <img
-                    class="m-auto px-5"
-                    src="../image/sec1/Doctor-PNG-Clipart.png"
-                  />
-                </div>
-                <p class="text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
-                <p class="text-center text-teal-400 p-1">اخصائي مخ واعصاب</p>
-                <button
-                  class="text-center w-[90%] m-2 p-2 rounded-3xl text-white bg-[#135C65] hover:bg-[#29CCFF]"
-                >
-                  تواصل الان
-                </button>
-              </div>
             </div>
           </slide>
 

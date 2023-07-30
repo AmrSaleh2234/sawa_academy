@@ -11,95 +11,29 @@
           <router-link :to="{ name: 'home' }">
             <v-icon start icon="mdi-arrow-left"></v-icon>
             {{ $t("الرئيسيه") }}
-          </router-link>
-        </v-btn>
-      </div>
-      <div class="m-auto">
-        <p class="text-center p-6 text-2xl text-[#6EB7BF]">الملف الشخصي</p>
-      </div>
-      <div @click="toggle" class="m-auto md:invisible">
-        <svg
-          fill="#000000"
-          version="1.1"
-          id="Capa_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="34px"
-          height="34px"
-          viewBox="0 0 91.914 91.914"
-          xml:space="preserve"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            <g>
-              <g>
-                <rect x="1.124" width="89.666" height="14.089"></rect>
-                <rect x="26.29" y="25.494" width="64.447" height="14.09"></rect>
-                <rect x="1.124" y="52.33" width="89.666" height="14.09"></rect>
-                <rect
-                  x="26.29"
-                  y="77.825"
-                  width="64.447"
-                  height="14.089"
-                ></rect>
-              </g>
-            </g>
-          </g>
-        </svg>
-      </div>
-    </div>
-    <div class="relative flex">
-      <sidbar class="h-full" :sole="showsider" />
-      <div class="flex-1 space-y-10">
-        <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
-          <button>تعديل الملف الشخصي</button>
+          </v-btn>
         </div>
-        <div class="p-2">
-          <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
-            <form
-              class="space-y-10 text-center rounded-2xl p-6 bg-[#F8F8F8]"
-              enctype="multipart/form-data"
-            >
-              <div class="relative m-auto">
-                <input
-                  type="file"
-                  ref="fileInput"
-                  style="display: none"
-                  @change="handleFileUpload"
-                />
-                <img
-                  @click="openFileUpload"
-                  :src="parent.image"
-                  class="uploaded-image relative m-auto cursor-pointer rounded-full"
-                />
-                <svg
-                  @click="openFileUpload"
-                  class="cursor-pointer absolute left-[50%] m-auto bottom-0 bg-white rounded-full p-1 h-8 w-8"
-                  viewBox="-2.4 -2.4 28.80 28.80"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#29CCFF"
-                  transform="matrix(-1, 0, 0, 1, 0, 0)"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      fill="#29CCFF"
-                      d="M21 3H3C1.35 3 0 4.35 0 6v12c0 1.55 1.19 2.83 2.7 2.98.1.01.2.02.3.02h18c.1 0 .2 0 .29-.02.03 0 .06-.01.09-.01C22.86 20.78 24 19.52 24 18V6c0-1.65-1.35-3-3-3zm1 13.53l-2.21-4.42c-.25-.5-.69-.87-1.22-1.03-.19-.05-.38-.08-.57-.08-.35 0-.7.09-1.01.27l-6.41 3.74-2.46-1.67C7.78 13.11 7.39 13 7 13c-.52 0-1.03.2-1.41.59L2 17.18V6c0-.55.45-1 1-1h18c.55 0 1 .45 1 1v10.53z"
-                    ></path>
-                    <circle fill="#29CCFF" cx="11" cy="10" r="2"></circle>
-                  </g>
-                </svg>
-              </div>
+        <div class="m-auto">
+          <p class="text-center p-6 text-2xl text-[#6EB7BF]">الملف الشخصي</p>
+        </div>
+        <div @click="toggle" class="m-auto md:invisible">
+          <svg fill="#000000" width="54px" height="54px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"></path></g></svg>
+        </div>
+      </div>
+      <div class="relative flex selection max-h-full">
+        <sidbar class="" :sole="showsider" />
+        <div class="flex-1 space-y-10">
+          <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
+            <button>تعديل الملف الشخصي</button>
+          </div>
+          <div class="p-2">
+            <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
+                <div class="relative m-auto " >
+                    <input type="file" ref="fileInput" style="display: none;" @change="handleFileUpload" />
+                    <img  @click="openFileUpload" :src="imageSrc" class="uploaded-image relative m-auto cursor-pointer  rounded-full" >
+                    <svg @click="openFileUpload" class=" cursor-pointer absolute left-[50%] m-auto  bottom-0 bg-white rounded-full p-1   h-8 w-8"  viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" fill="#29CCFF" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#29CCFF" d="M21 3H3C1.35 3 0 4.35 0 6v12c0 1.55 1.19 2.83 2.7 2.98.1.01.2.02.3.02h18c.1 0 .2 0 .29-.02.03 0 .06-.01.09-.01C22.86 20.78 24 19.52 24 18V6c0-1.65-1.35-3-3-3zm1 13.53l-2.21-4.42c-.25-.5-.69-.87-1.22-1.03-.19-.05-.38-.08-.57-.08-.35 0-.7.09-1.01.27l-6.41 3.74-2.46-1.67C7.78 13.11 7.39 13 7 13c-.52 0-1.03.2-1.41.59L2 17.18V6c0-.55.45-1 1-1h18c.55 0 1 .45 1 1v10.53z"></path> <circle fill="#29CCFF" cx="11" cy="10" r="2"></circle> </g></svg>
+                </div>
+
               <div style="font-size: 16px" class="flex">
                 <p class="m-auto text-center text-[#FF3765]">
                   تنبيه هام : برجاء اختيار حجم الصوره 440 بسكل * 660 بسكيل

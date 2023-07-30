@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#135C65] max-h-screen z-10 text-cyan-100 md:w-80 w-72 h-screen py-4 space-y-6 px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
+    class="bg-[#135C65]  z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%]   px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
     :class="{ 'fixed translate-x-0 ': sole }"
   >
     <div
@@ -13,7 +13,7 @@
       </p>
       <p class="text-center text-white">{{ parentStore.user.email }}</p>
     </div>
-    <div class="border-b-2 border-white border-solid py-6">
+    <div class="  space-y-4 py-6">
       <div class=" ">
         <router-link
           class="flex rtl:flex-row-reverse justify-between p-4"
@@ -25,12 +25,9 @@
               icon="fa-solid fa-circle"
             ></font-awesome-icon>
           </div>
-          <div class="flex rtl:flex-row-reverse">
+          <div class="flex rtl:flex-row-reverse space-x-2">
             <p class="text-white text-xl">اخر المستجدات</p>
-            <font-awesome-icon
-              class="pl-2 text-sm text-white m-auto"
-              icon="fa-solid fa-bell"
-            ></font-awesome-icon>
+            <svg class="m-auto" width="24px" height="24px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M29.977 29.889h132.021v131.89H29.977zm33.749 34.092v0m30.34 0h36.211M63.726 96.06v0m30.34 0h36.211m-67.05 31.936v0m30.34 0h36.211" style="fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:57.5;paint-order:stroke markers fill"></path></g></svg>
           </div>
         </router-link>
       </div>
@@ -176,20 +173,22 @@
           </div>
         </router-link>
       </div>
+      <div class="w-full" style="border: 1px solid;"></div>
+      <div class=" bottom-0">
+        <button
+          class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
+        >
+          <router-link :to="{ name: 'Profile' }">تعديل الملف الشخصي</router-link>
+        </button>
+        <button
+          @click="parentStore.logout"
+          class="w-full py-2 my-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
+        >
+          تسجيل الخروج
+        </button>
+      </div>
     </div>
-    <div class="absolute bottom-0">
-      <button
-        class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
-      >
-        <router-link :to="{ name: 'Profile' }">تعديل الملف الشخصي</router-link>
-      </button>
-      <button
-        @click="parentStore.logout"
-        class="w-full py-2 my-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
-      >
-        تسجيل الخروج
-      </button>
-    </div>
+   
   </div>
 </template>
 <script>
