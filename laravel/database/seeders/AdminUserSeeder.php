@@ -19,11 +19,11 @@ class AdminUserSeeder extends Seeder
     {
 
         // all permissions
-        $allPermissions = Permission::all();
+        $allPermissions = Permission::where('guard_name', 'api')->get();
         // admin user
-        DB::transaction(function () use ($allPermissions) {            
+        DB::transaction(function () use ($allPermissions) {
             $admin = User::create([
-                'name' => 'Admin', 
+                'name' => 'Admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('password'),
                 'email_verified_at' => now(),
@@ -33,16 +33,16 @@ class AdminUserSeeder extends Seeder
             $adminRole->syncPermissions($allPermissions);
             $admin->assignRole([$adminRole->id]);
             $admin->syncPermissions($allPermissions);
-    
+
             // test user
             $user = User::create([
-                'name' => 'Test User', 
+                'name' => 'Test User',
                 'email' => 'test@test.com',
                 'password' => bcrypt('password'),
                 'email_verified_at' => now(),
                 'remember_token' => Str::random(10),
             ]);
-    
+
             $userRole = Role::create(['name' => 'user']);
             // get only users permissions
             $userPermissions = collect($allPermissions)->whereIn('module', [
@@ -51,11 +51,10 @@ class AdminUserSeeder extends Seeder
                 'logout',
                 'password',
                 'verification',
-                ])->all();
+            ])->all();
             $userRole->syncPermissions($userPermissions);
             $user->assignRole([$userRole->id]);
             $user->syncPermissions($userPermissions);
         });
-
     }
 }
