@@ -38,7 +38,7 @@ class AcceptBookingNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            "notifiable" => $notifiable
+            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا 01:00م الموعد غدا"
         ];
     }
 }

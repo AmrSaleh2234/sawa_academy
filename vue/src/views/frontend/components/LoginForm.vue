@@ -74,7 +74,7 @@
               </button>
               <p>
                 اذا كنت تمتلك حساب اضغط هنا
-                <router-link to="/SingUp" class="px-2 text-[#649297]">
+                <router-link :to="{name:'SingUp'}" class="px-2 text-[#649297]">
                   انشاء حساب</router-link
                 >
               </p>

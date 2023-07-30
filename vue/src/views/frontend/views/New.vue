@@ -37,8 +37,8 @@
         >
           اخر المستجدات
         </div>
-        <NewAcorrding date="15 مايو">
-          اكاديمه سوا للتربيه الصحييه
+        <NewAcorrding date="15 مايو" v-for="notification in notifications">
+          {{ notification.data.message }}
         </NewAcorrding>
       </div>
     </div>
@@ -56,6 +56,7 @@ export default {
   data() {
     return {
       showsider: false,
+      notifications: [],
     };
   },
   methods: {
@@ -66,6 +67,7 @@ export default {
       axios
         .get("/api/parent/notification")
         .then((res) => {
+          this.notifications = res.data.notifications;
           console.log(res);
         })
         .catch((err) => {

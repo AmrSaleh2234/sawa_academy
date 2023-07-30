@@ -21,7 +21,7 @@
         <li
           class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
-          <router-link :to="{ name: 'more' }">ماذا عنا</router-link>
+          <router-link :to="{ name: 'about' }">ماذا عنا</router-link>
         </li>
         <li
           class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
@@ -167,7 +167,7 @@
       <li
         class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
       >
-        <router-link to="/more"> تواصل معنا</router-link>
+        <router-link to="/about"> تواصل معنا</router-link>
       </li>
       <li
         class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"

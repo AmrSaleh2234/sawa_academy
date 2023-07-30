@@ -88,7 +88,7 @@ const routes = [
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/:event_id/more",
+    path: "/web/more/:event_id",
     name: "more",
     props: true,
     component: () => import("../views/frontend/views/more.vue"),
