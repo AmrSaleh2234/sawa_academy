@@ -7,6 +7,7 @@ use App\Http\Requests\Parent\UpdateProfileRequest;
 use App\Http\Resources\ParentResource;
 use App\Http\Resources\UserResource;
 use App\Models\ChildParent;
+use App\Notifications\AcceptBookingNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -74,7 +75,9 @@ class FrontAuthController extends Controller
     }
     public function user(Request $request)
     {
-        $user = ParentResource::make($request->user());
+        $user = ParentResource::make($request->user('parent'));
+
+        $user->notify(new AcceptBookingNotification());
 
         return response()->json(['user' => $user], 200);
     }
@@ -129,5 +132,15 @@ class FrontAuthController extends Controller
             'message' => 'profile updated successfully',
             'profile' => ParentResource::make($user->fresh())
         ], 202);
+    }
+
+    public function getParentNotification()
+    {
+        $user = auth('parent')->user();
+
+
+        return response()->json([
+            "notifications" => $user->notifications
+        ], 200);
     }
 }

@@ -42,6 +42,7 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
         Route::post('logout', 'logout')->name('logout');
         Route::post('profile', 'profile')->name('profile');
         Route::get('user', 'user')->name('user');
+        Route::get('notification', 'getParentNotification')->name('notification');
     });
 });
 

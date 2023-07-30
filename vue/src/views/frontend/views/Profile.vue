@@ -232,6 +232,7 @@ export default {
         .get("/api/parent/user")
         .then((res) => {
           this.parent = res.data.user;
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
