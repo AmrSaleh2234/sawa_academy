@@ -2,7 +2,7 @@
    <div class=" bg-[url('../image/sec1/Group68.png')] bg-cover bg-[#135C65]">
     <div class="m-auto w-full space-y-4 p-[4%]">
         <h1 class="m-auto text-center text-4xl text-white">اهم ما يميزنا</h1>
-        <p class="m-auto text-center text-xl text-[#29CCFF]">نبذل جهدا كبيرا لكي نساعدك </p>
+        <p class="m-auto text-center text-2xl text-[#29CCFF]">نبذل جهدا كبيرا لكي نساعدك </p>
     </div>
     <div class="grid grid-cols-10 py-[2%] ">
         <div class="m-auto col-span-2">

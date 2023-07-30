@@ -22,7 +22,7 @@
       </div>
       <div class="text-left m-auto">
         <button class=" ">
-          <router-link class="flex" to="/">
+          <router-link class="flex" to="/web">
             <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
           </router-link>
         </button>

@@ -30,7 +30,7 @@ export default {
     <div class="animate  relative w-full">
         <v-card
     class="mx-auto w-full rounded-xl"
-    max-width="344"
+    max-width="80%"
   >
   
   
@@ -38,7 +38,7 @@ export default {
   <div>
     <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
         <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
-            <p class="w-full h-full  m-auto text-center">اكاديمه سوا  للتربيه</p>
+            <p class="w-full h-full  m-auto text-center ">اكاديمه سوا  للتربيه</p>
         </div>      </div>
     <img class="imge" src="../image/sec1/1.png">
    </div>
@@ -68,7 +68,7 @@ export default {
     <div class="animate  relative">
         <v-card
     class="mx-auto rounded-xl"
-    max-width="344"
+    max-width="80%"
   >
   
   
@@ -106,16 +106,16 @@ export default {
     <div class="animate  relative">
         <v-card
     class="mx-auto rounded-xl"
-    max-width="344"
+    max-width="80%"
   >
   
   
-   <div>
+   <div class="w-full">
     <div class="animte right-0 absolute m-auto h-full w-[50%] bg-white">
         <div class="inner p-[10%] m-auto h-full w-full  text-[#A5E9FF]">
             <p class="w-full h-full text-center">اكاديمه سوا  للتربيه</p>
         </div>      </div>
-    <img class="imge" src="../image/header/3.png">
+    <img class="imge w-full" src="../image/header/3.png">
    </div>
   
   

@@ -1,8 +1,9 @@
 <template>
-  <section class="bg-gray-50 dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover backdrop-blur-sm bg-white/30">
-    <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
+  <section  class="bg-gray-50 relative dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center  ">
+    <div style="opacity: 10%;" class="bg-black h-full w-full absolute  "></div>
+    <div class=" bg-white/30 p-6 md:grid md:grid-cols-10" style="backdrop-filter: blur(1px);" >
       <div class>
-        <v-btn height="45" class="mb-5 text-lg text-white" color="#135C65" @click="home">
+        <v-btn to="/web" height="45" class="mb-5 text-lg text-white" color="#135C65" >
           <v-icon
             start
             icon="mdi-arrow-left"
@@ -12,7 +13,7 @@
         
       </div>
       <div
-        class="flex flex-col items-center justify-center px-6 col-span-10 mx-auto lg:py-0">
+        class="flex flex-col items-center z-40 justify-center px-6 col-span-10 mx-auto lg:py-0">
         <div class="mb-4 text-center">
           <h1 class="text-3xl py-2 font-bold">انشاء حساب</h1>
           <p class="text-xl">
@@ -28,22 +29,78 @@
           </div>
         </div>
         <div
-          class="w-full backdrop-blur-xl bg-white/30 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;"
+                  class="w-full  shadow-md  rounded-3xl z-30 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div class="p-2 md:space-y-6 sm:p-8">
+          <div  class="p-2 md:space-y-6 sm:p-8">
 
-            <form class="space-y-6 text-center rounded-2xl p-4 bg-none" @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
+            <form  class="space-y-4 text-center rounded-2xl p-4 bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">
                 <p class="text-red-600">{{error}}</p>
               </div>
               <div class="grid grid-cols-2 gap-5">
-                <InputText type="phone" v-model="parent.lname" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder=" الاسم العائله"  />
-                <InputText type="phone" v-model="parent.fname" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder=" الاسم الاول"  />
+                <div  class="flex flex-col">
+                  <input
+                  v-model="parent.lname"
+                    style="border-bottom: 2px solid black;"
+                    type="text"
+                    id="child_name"
+                    placeholder="اسم العائله"
+                    class="min-w-full   bg-white/10  focus:ring-0 text-center"
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <input
+                  v-model="parent.fname"
+                    style="border-bottom: 2px solid black;"
+                    type="text"
+                    id="child_name"
+                    placeholder=" الاسم الاول"
+                    class="min-w-full   bg-white/10  focus:ring-0 text-center"
+                  />
+                </div>
               </div>
-              <InputText type="phone" v-model="parent.phone" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder="رقم الموبيل"  />
-              <InputText type="email" v-model="parent.email" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center"  placeholder=" الايميل الالكتروني"  />
-              <InputText type="password" v-model="parent.password" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder="كلمه السر"  />
-              <InputText type="password" v-model="parent.password_confirmation" class="min-w-full rounded-md backdrop-blur-md bg-white/10 text-center" placeholder=" تاكيد كلمه السر"/>
+              <div class="flex flex-col">
+                <input
+                v-model="parent.phone"
+                  style="border-bottom: 2px solid black;"
+                  type="text"
+                  id="child_name"
+                  placeholder="رقم الموبيل"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
+                />
+              </div>
+              <div class="flex flex-col">
+                <input
+                v-model="parent.email"
+                  style="border-bottom: 2px solid black;"
+                  type="text"
+                  id="child_name"
+                  placeholder="الايميل الالكتروني"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
+                />
+              </div>
+              <div class="flex flex-col">
+                <input
+                v-model="parent.password"
+                  style="border-bottom: 2px solid black;"
+                  type="password"
+                  id="child_name"
+                  placeholder="كلمه السر"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
+                />
+              </div>
+              <div class="flex flex-col">
+                <input
+                  style="border-bottom: 2px solid black;"
+                v-model="parent.password_confirmation"
+                  type="password"
+                  id="child_name"
+                  placeholder=" تاكيد كلمه السر"
+                  class="min-w-full  bg-white/10  focus:ring-0 text-center"
+                />
+              </div>
+              
               <button type="submit" @click="vaild()" class="mb-5 rounded-xl w-full p-2 text-lg text-white bg-[#23D1E6]">{{$t('انشاء حساب')}}</button>
               <p>
                 اذا كنت تمتلك حساب اضغط هنا
@@ -88,9 +145,7 @@ export default {
     };
   },
   methods: {
-    home(){
-      this.$router.push("/")
-    },
+    
     // register() {
     //   axios
     //     .post("api/parent/register", this.parent)
