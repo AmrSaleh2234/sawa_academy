@@ -25,8 +25,20 @@ class PermissionSeeder extends Seeder
                     Permission::create([
                         'name' => $route->getName(),
                         'module' => Str::before($route->getName(), '.'),
-                        ]);
+                    ]);
                 }
+            }
+        }
+
+        $child_permissions = Permission::select('name')->where('name', 'like', "%child%")->pluck('name');
+
+        if ($child_permissions != null) {
+            foreach ($child_permissions as $child_permission) {
+                Permission::create([
+                    'name' => $child_permission,
+                    'module' => 'parent',
+                    'guard_name' => 'parent',
+                ]);
             }
         }
     }

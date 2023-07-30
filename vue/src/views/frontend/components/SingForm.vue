@@ -93,6 +93,7 @@
               <div class="flex flex-col">
                 <input
                   style="border-bottom: 2px solid black;"
+                v-model="parent.password_confirmation"
                   type="password"
                   id="child_name"
                   placeholder=" تاكيد كلمه السر"

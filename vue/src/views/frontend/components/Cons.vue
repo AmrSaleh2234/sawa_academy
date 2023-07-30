@@ -6,7 +6,8 @@
       </div>
       <div class="col-span-4 text-center m-auto">
         <p class="flex text-3xl">
-          السبت-12:00 م<svg
+          السبت-12:00 م
+          <svg
             fill="#135C65"
             width="35px"
             height="40px"
@@ -48,149 +49,176 @@
         </v-btn>
       </div>
     </div>
-    <div class="m-auto p-8 rounded-2xl max-w-5xl text-center ">
+    <div class="m-auto p-8 rounded-2xl max-w-5xl text-center">
       <div class="my-4">
         <h2 class="text-right font-bold text-xl">احجز موعد مع الاخصائي</h2>
         <p class="text-right text-[#29CCFF] text-xl">برجاء ملئ البيانات</p>
       </div>
-      <form class="py-4 min-w-full space-y-4 shadow p-2">
+      <form
+        class="py-4 min-w-full space-y-4 shadow p-2"
+        @submit.prevent="bookTime"
+      >
         <div class="flex flex-col">
-          <label class="text-sm  text-right pl-2">{{
+          <label class="text-sm text-right pl-2">{{
             $t("اسم ولي امر  مقدم الطلب")
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.requester_name"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
+
           <label class="text-lg  text-right pl-2">{{
+
             $t("درجه قرابته للطفل ")
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.relative_degree"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg  text-right pl-2">{{
+
             $t("الاسم الرباعي للطفل  ")
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.child_name"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
+
           <label  class="text-lg  text-right pl-2">{{
             $t("مكان وتاريخ الميلاد  ")
+
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.child_birth_place"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
+
           <label  class="text-lg  text-right pl-2">{{
+
             $t("لغة الطفل الاساسيه  ")
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.child_lang"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label class="text-lg  text-right pl-2">{{
+
             $t("الرقم الوطني / الجنسيه")
           }}</label>
           <input
             type="text"
             id="child_name"
-            
+            v-model="booking.child_nationalty"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg text-right pl-2">{{
             $t("العنوان")
+
           }}</label>
           <input
             type="text"
             id="child_name"
+            v-model="booking.child_national_id"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label class="text-sm text-right pl-2">{{ $t("العنوان") }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_address"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg  text-right pl-2">{{
+
             $t("رقم هاتف ولي الامر")
           }}</label>
           <input
             type="tel"
             id="child_name"
-            
+            v-model="booking.requester_phone"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label class="text-lg  text-right pl-2">{{
+
             $t("رقم هاتف اضافي")
           }}</label>
           <input
             type="tel"
             id="child_name"
-            
+            v-model="booking.addtional_phone"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg  text-right pl-2">{{
+
             $t("مالك الرقم الاضافي . درجه قرابته بالطفل")
           }}</label>
           <input
-            type="tel"
+            type="text"
             id="child_name"
-            
+            v-model="booking.addtional_phone_degree"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg text-right pl-2">{{
+
             $t("مصدر التحويل")
           }}</label>
           <input
-            type="tel"
+            type="text"
             id="child_name"
-            
+            v-model="booking.conversion_type"
             class="border-b focus:ring-0 text-center"
           />
         </div>
         <div class="flex flex-col">
           <label  class="text-lg  text-right pl-2">{{
+
             $t("الطبيب الخاص بالطفل")
           }}</label>
           <input
-            type="tel"
+            type="text"
             id="child_name"
-            
+            v-model="booking.child_doctor"
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        
+
         <p class="p-4 font-bold text-lg text-right">اجب عن الاسئله الاتيه</p>
         <div class="w-full">
           <h3 class="py-2 text-lg">الجنس</h3>
           <Dropdown
-            v-model="selectedFruit"
+            v-model="booking.child_gender"
             :options="fruits"
             optionLabel="name"
             optionValue="id"
@@ -201,27 +229,27 @@
         <div class="w-full">
           <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
           <Dropdown
-            v-model="selectedFruit"
+            v-model="booking.child_problem"
             :options="problem_type"
             optionLabel="name"
-            optionValue="id"
+            optionValue="name"
             placeholder="نرجو تحديد نوع المشكله"
             class="w-full text-left"
           />
         </div>
         <div class="flex flex-col">
-          
           <input
             type="tel"
             id="child_name"
-             placeholder="التسخيص ان وجد"
+            placeholder="التسخيص ان وجد"
             class="border-b focus:ring-0 text-center"
+            v-model="booking.child_problems_notes"
           />
         </div>
         <div class="w-full">
           <h3 class="py-2 ">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
           <Dropdown
-            v-model="selectedFruit"
+            v-model="booking.child_aids"
             :options="approve"
             optionLabel="name"
             optionValue="id"
@@ -233,25 +261,36 @@
           <p class="text-right text-lg">
             :المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل
           </p>
-          <Textarea class="w-full" v-model="value" rows="5" cols="30" />
+          <Textarea
+            class="w-full"
+            v-model="booking.child_parents_problems"
+            rows="5"
+            cols="30"
+          />
         </div>
         <div class="space-y-4">
           <p class="text-right text-lg">
             :ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
           </p>
-          <Textarea class="w-full" v-model="value" rows="5" cols="30" />
-          
+          <Textarea
+            class="w-full"
+            v-model="booking.parents_priorities"
+            rows="5"
+            cols="30"
+          />
         </div>
         <div>
           <input
             class="border-0 border-b text-xl text-center focus:ring-0"
             type="text"
+            v-model="booking.doctor_code"
             placeholder="ادخل كود استشاري تريده"
           />
         </div>
         <div class="text-right m-auto w-full space-x-4">
           <span class="m-auto text-xl">انا اوافق علي كافه الشروط والاحكام</span>
           <input style="border: 2px solid black;" type="checkbox" />
+
         </div>
         <button
           type="submit"
@@ -264,37 +303,83 @@
   </div>
 </template>
 <script>
-import  Dropdown  from 'primevue/dropdown';
-import Textarea from 'primevue/textarea';
-
+import axios from "axios";
+import Dropdown from "primevue/dropdown";
+import Textarea from "primevue/textarea";
+import { useParentStore } from "../../../stores/ParentStore";
 export default {
+  props: ["event_id"],
   components: {
     Dropdown,
-    Textarea
+    Textarea,
   },
   data() {
     return {
+      parentStore: useParentStore(),
       selectedFruit: null,
       fruits: [
-        { id: 1, name: 'ذكر' },
-        { id: 2, name: 'انثي' },
-       
+        { id: 0, name: "انثي" },
+        { id: 1, name: "ذكر" },
       ],
-      problem_type:[
-        { id: 1, name: 'حركيه' },
-        { id: 2, name: 'سمعيه' },
-        { id: 2, name: 'بصريه' },
-        { id: 2, name: 'عقليه/نمائيه' },
-        { id: 2, name: 'توحد' },
-        { id: 2, name: 'اخر' },
+      problem_type: [
+        { name: "حركيه" },
+        { name: "سمعيه" },
+        { name: "بصريه" },
+        { name: "عقليه/نمائيه" },
+        { name: "توحد" },
+        { name: "اخر" },
       ],
-      approve:[
-        { id: 1, name: 'نعم' },
-        { id: 2, name: 'لا' },
-        
-      ]
-
+      approve: [
+        { id: 1, name: "نعم" },
+        { id: 0, name: "لا" },
+      ],
+      booking: {
+        event_id: "",
+        user_id: "",
+        requester_name: "",
+        requester_phone: "",
+        relative_degree: "",
+        addtional_phone: "",
+        addtional_phone_owner: "",
+        addtional_phone_degree: "",
+        child_name: "",
+        child_gender: "",
+        child_lang: "",
+        child_nationalty: "",
+        child_national_id: "",
+        child_birth_date: "",
+        child_birth_place: "",
+        child_address: "",
+        conversion_type: "",
+        child_doctor: "",
+        child_problem: "",
+        child_problems_notes: "",
+        child_aids: "",
+        child_aids_notes: "",
+        child_parents_problems: "",
+        parents_priorities: "",
+        doctor_code: "",
+      },
     };
+  },
+  methods: {
+    bookTime() {
+      this.booking.user_id = this.parentStore.user.id;
+      this.booking.event_id = this.event_id;
+      console.log(this.booking);
+      axios
+        .post("/api/calender/store-booking", this.booking)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  mounted() {
+    console.log(this.event_id);
   },
 };
 </script>

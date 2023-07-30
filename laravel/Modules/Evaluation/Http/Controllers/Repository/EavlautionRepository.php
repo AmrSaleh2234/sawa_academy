@@ -10,18 +10,18 @@ use Modules\Evaluation\Entities\Question;
 
 class EavlautionRepository
 {
+
     public static function insert($request)
     {
-        return Evaluation::create($request->validated());//create evaluation
+        return Evaluation::create($request->validated()); //create evaluation
     }
-
 
     public static function assignHeadersQuestions($evaluation, $key, $title) //assign header and question to specific evaluation
     {
         $evaluation->evaluationHeader()->attach($key, [
-            "title" => $title]);
+            "title" => $title
+        ]);
     }
-
 
     public static function deleteAssignedHeaderQuestions($evaluation)
     {
@@ -33,22 +33,19 @@ class EavlautionRepository
         return Evaluation::find($evaluation->id)->evaluationHeader;
     }
 
-
     public static function EvaluationUpdate($evaluation, $request)
     {
         $evaluation->update($request->validated());
     }
 
-
     public static function SaveScoreForEvalutionByChildIdAndQuestionId($evaluation, $question_id, $child_id, $score)
     {
-//
+
         $evaluation->question()->attach($question_id, [
             'child_id' => $child_id,
             'score' => $score
         ]);
     }
-
 
     public static function getSpecifcEvalautionWithHeaderAndQuestions($evalaution)
     {
@@ -61,9 +58,7 @@ class EavlautionRepository
             ->join("evaluation_headers", "questions.evaluation_header_id", '=', 'evaluation_headers.id')
             ->where('evaluations.id', $evalaution->id)
             ->get();
-
     }
-
 
     public static function getResultForSpecificChildWithSpecificSideProfile($child, $sideProfile, $evaluation)
     {
@@ -86,19 +81,18 @@ class EavlautionRepository
             ->where('evaluations.side_profile_id', $sideProfile->id)
             ->where('evaluations.id', $evaluation->id)
             ->get();
-
     }
-    public static function getResultForSpecificChildWithSpecificSideProfileWithDate($child, $sideProfile, $evaluation,$date1,$date2)
+
+    public static function getResultForSpecificChildWithSpecificSideProfileWithDate($child, $sideProfile, $evaluation, $date1, $date2)
     {
 
-        if($date2== null || $date1==null)
-            return EavlautionRepository::getResultForSpecificChildWithSpecificSideProfile($child,$sideProfile,$evaluation);
+        if ($date2 == null || $date1 == null)
+            return EavlautionRepository::getResultForSpecificChildWithSpecificSideProfile($child, $sideProfile, $evaluation);
 
-        if ($date1>$date2)
-        {
-            $temp= $date2;
-            $date2=$date1;
-            $date1=$temp;
+        if ($date1 > $date2) {
+            $temp = $date2;
+            $date2 = $date1;
+            $date1 = $temp;
         }
         return EvaluationResults::selectRaw("children.name child_name ,
          users.name therapist_name ,
@@ -115,10 +109,9 @@ class EavlautionRepository
             ->where('child_id', $child->id)
             ->where('evaluations.side_profile_id', $sideProfile->id)
             ->where('evaluations.id', $evaluation->id)
-            ->where('evaluation_results.created_at', '>=',$date1)
-            ->where('evaluation_results.created_at','<=', $date2)
+            ->where('evaluation_results.created_at', '>=', $date1)
+            ->where('evaluation_results.created_at', '<=', $date2)
             ->get();
-
     }
 
     public static function getEvaluationsForSpecificChildWithSpecificSideProfile($child, $sideProfile)
@@ -149,14 +142,12 @@ class EavlautionRepository
         ]);
     }
 
-
-    public static function editDateEvaluationResult($evaluationResult,$date)
+    public static function editDateEvaluationResult($evaluationResult, $date)
     {
-         $evaluationResult->update([
-            'created_at'=>$date
+        $evaluationResult->update([
+            'created_at' => $date
         ]);
 
-         return $evaluationResult->fresh();
+        return $evaluationResult->fresh();
     }
-
 }

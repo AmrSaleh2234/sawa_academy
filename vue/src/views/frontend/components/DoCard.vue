@@ -25,10 +25,17 @@
                       <pagination class="[&>div]:bg-[red] " />
                     </template>
                   </carousel>
+
             </div>
-        </div>
-        
+          </slide>
+
+          <template #addons>
+            <pagination class="[&>div]:bg-[red]" />
+          </template>
+        </carousel>
+      </div>
     </div>
+  </div>
 </template>
 <!-- <script>
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
@@ -52,23 +59,20 @@ export default {
 }
 </script> -->
 <script>
-
-
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
-import { useWindowSize } from '@vueuse/core';
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { ref, watch, onMounted, onBeforeUnmount } from "vue";
+import { useWindowSize } from "@vueuse/core";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
 export default {
-    components: {
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
-      },
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
   setup() {
     const perPage = ref(1);
-   
 
     // Adjust the number of slides per page based on screen size
     // watch(windowSize, () => {
@@ -83,8 +87,8 @@ export default {
 
     onMounted(() => {
       // Initialize the number of slides per page on component mount
-      console.log(window.innerWidth )
-      if (window.innerWidth>= 768 && window.innerWidth < 1024) {
+      console.log(window.innerWidth);
+      if (window.innerWidth >= 768 && window.innerWidth < 1024) {
         perPage.value = 3;
       } else if (window.innerWidth >= 1024) {
         perPage.value = 5;
