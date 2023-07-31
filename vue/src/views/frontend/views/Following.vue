@@ -1,5 +1,4 @@
 <template>
-  <div class="">
     <Map />
     <div
       class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
@@ -22,7 +21,7 @@
       </div>
       <div class="text-left m-auto">
         <button class=" ">
-          <router-link class="flex" to="/">
+          <router-link class="flex" to="/web">
             <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
           </router-link>
         </button>
@@ -78,7 +77,6 @@
                       }}</label>
                       <input
                         type="date"
-                        v-date-picker="YYYY-MM-DD"
                         id="child_age"
                         v-model="child.birth_date"
                         class="border-b focus:ring-0"
@@ -99,7 +97,6 @@
       </div>
     </div>
     <About />
-  </div>
 </template>
 <script>
 import Map from "../components/Map.vue";

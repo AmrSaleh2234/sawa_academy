@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Parent\UpdateProfileRequest;
+use App\Http\Resources\ParentResource;
+use App\Http\Resources\UserResource;
 use App\Models\ChildParent;
+use App\Notifications\AcceptBookingNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,13 +26,17 @@ class FrontAuthController extends Controller
 
         $user = ChildParent::where('email', $request->email)->first();
 
-        if (Hash::check($request->password, $user->password)) {
-            $response = [
-                'token' => $user->createToken($user->email)->plainTextToken,
-                'user' => $user,
-            ];
+        if ($user != null) {
+            if (Hash::check($request->password, $user->password)) {
+                $response = [
+                    'token' => $user->createToken($user->email)->plainTextToken,
+                    'user' => $user,
+                ];
 
-            return response($response, 202);
+                return response($response, 202);
+            } else {
+                return response()->json(['message' => 'email or password does not match our records'], 401);
+            }
         } else {
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
@@ -68,7 +75,8 @@ class FrontAuthController extends Controller
     }
     public function user(Request $request)
     {
-        $user = $request->user();
+        $user = ParentResource::make($request->user('parent'));
+
 
         return response()->json(['user' => $user], 200);
     }
@@ -88,6 +96,9 @@ class FrontAuthController extends Controller
     {
         $user = $request->user('parent');
         $data = $request->validated();
+        // $data = json_decode($request->validated(), true);
+
+        // return $data;
 
         if ($request->file('image')) {
             if (!empty($user->image)) {
@@ -118,7 +129,17 @@ class FrontAuthController extends Controller
 
         return response()->json([
             'message' => 'profile updated successfully',
-            'profile' => $user->fresh()
+            'profile' => ParentResource::make($user->fresh())
         ], 202);
+    }
+
+    public function getParentNotification()
+    {
+        $user = auth('parent')->user();
+
+
+        return response()->json([
+            "notifications" => $user->notifications
+        ], 200);
     }
 }

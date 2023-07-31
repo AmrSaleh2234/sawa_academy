@@ -13,6 +13,7 @@ class CalenderService
             $result[$event->day][] = [
                 'title' => $event->title,
                 'start_time' => $event->start_time,
+                'id' => $event->id,
             ];
 
             if (count($result[$event->day]) > $max) {
@@ -46,7 +47,7 @@ class CalenderService
                 "events" => array_reverse(array_values($result)),
                 'max' => $max
             ]);
-            
+
         */
     }
 }

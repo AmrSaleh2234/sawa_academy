@@ -1,17 +1,20 @@
 <script setup></script>
 
 <template>
-  <div>
-    <nave-1 />
-    <nave />
-    <HeadeForm />
-    <Services />
-    <card />
-    <Cursale></Cursale>
-    <DoCard />
-    <See />
-    <About />
-  </div>
+
+      <div class="switcher">
+        <nave-1 />
+        <nave />
+        <HeadeForm />
+        <Services />
+        <card />
+        <Cursale></Cursale>
+        <DoCard />
+        <See />
+        <About />
+
+      </div>
+
 </template>
 <script setup(props) { }>
 import Nave from "../components/Nave.vue";

@@ -1,11 +1,9 @@
 <template>
-  <div>
     <div class="max-h-screen">
       <Map />
     <LoginForm />
     </div>
     <About />
-  </div>
 </template>
 <script>
 import Map from "../components/Map.vue";

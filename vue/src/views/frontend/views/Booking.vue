@@ -1,9 +1,7 @@
 <template>
-    <div>
       <Map />
       <Singup2 />
       <About />
-    </div>
 </template>
 <script setup(props) {
   

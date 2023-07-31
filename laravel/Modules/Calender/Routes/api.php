@@ -21,8 +21,12 @@ Route::middleware('auth:parent')->group(function () {
     });
 });
 
+
 Route::middleware('auth:api')->group(function () {
     Route::group(['prefix' => 'calender'], function () {
+        Route::get('/bookings', [\Modules\Calender\Http\Controllers\CalenderController::class, 'getAllBooking'])->name('calender.bookings');
+        Route::get('/bookings/{booking}', [\Modules\Calender\Http\Controllers\CalenderController::class, 'showBooking'])->name('calender.booking');
+        Route::post('/bookings/{booking}/accept', [\Modules\Calender\Http\Controllers\CalenderController::class, 'acceptBooking'])->name('accept.booking');
         Route::get('/', [\Modules\Calender\Http\Controllers\CalenderController::class, 'index'])->name('calender.index');
         Route::post('/create', [\Modules\Calender\Http\Controllers\CalenderController::class, 'store'])->name('calender.create');
         Route::get('/{calender}', [\Modules\Calender\Http\Controllers\CalenderController::class, 'show'])->name('calender.show');

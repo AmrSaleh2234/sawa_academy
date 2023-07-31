@@ -2,6 +2,9 @@
 </script>
 <template>
   <v-app>
-    <RouterView />
+    <div class="switcher">
+      <RouterView />
+    </div>
+
   </v-app>
 </template>

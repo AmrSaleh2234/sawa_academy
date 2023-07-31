@@ -23,6 +23,11 @@ const changeLocale = () => {
 
 const executeArCode = () => {
   document.body.dir="ltr"
+  let k= document.getElementsByClassName("switcher")
+  console.log(k)
+  k[0].dir="ltr"
+
+
     i18n.global.locale.value = 'en'
     appLang.setAppLang(i18n.global.locale.value)
     appLang.setAppRtl(false)
@@ -30,6 +35,9 @@ const executeArCode = () => {
 
 const executeEnCode = () => {
   document.body.dir="rtl"
+  let k= document.getElementsByClassName("switcher")
+  console.log(k)
+  k[0].dir="rtl"
     i18n.global.locale.value = 'ar'
     appLang.setAppLang(i18n.global.locale.value)
     appLang.setAppRtl(true)
