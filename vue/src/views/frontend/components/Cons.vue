@@ -144,15 +144,7 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="flex flex-col">
-          <label class="text-sm text-right pl-2">{{ $t("العنوان") }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_address"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
+        
         <div class="flex flex-col">
           <label  class="text-lg  text-right pl-2">{{
 

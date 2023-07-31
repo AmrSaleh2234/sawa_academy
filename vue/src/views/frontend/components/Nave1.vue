@@ -256,7 +256,6 @@ export default {
                 انشاء حساب
               </v-btn>
             </div>
-
           </div>
         </div>
       </div>
@@ -339,8 +338,6 @@ export default {
 
 <script>
 import { useParentStore } from "../../../stores/ParentStore";
-import LocaleSelect from "../../../components/LocaleSelect.vue";
-
 
 export default {
   data() {
@@ -356,10 +353,6 @@ export default {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
   },
-  components:{
-   LocaleSelect
-
-  }
 };
 </script>
 

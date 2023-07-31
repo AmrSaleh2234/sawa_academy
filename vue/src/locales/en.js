@@ -45,4 +45,33 @@ export default {
   evaluation_type: "Evaluation Type",
   manage_user_roles: "Manage User Roles",
   bookings: "bookings",
+  home:"Home",
+  Profile_personly:"Profile personly",
+  latest_developments:"latest developments",
+  bookings:"Bookings",
+  follow_the_child:"follow the child",
+  evaluation_result:"Evaluation result",
+  Modify_profile:"Modify profile",
+  sign_out:"sign out",
+  Save_changes:"Save changes",
+  sign_in:"Sing in" ,
+  You_can_now_create_your_own_account_with_us_to_follow_up_your_requests_directly:"You can now create your own account with us to follow up your requests directly",
+  family_name:"family name",
+  first_name:"first name",
+  Mobile_number:"Mobile number",
+  email:"Email",
+  password:"password",
+  password_confirmation:"confirm password ",
+  If_you_have_an_account:"If you have an account",
+  sign_in:"sign in",
+  If_you_do_not_have_an_account:"If you do not have an account",
+  Create_an_account:"Create an account"
+
+
+
+
+
+
+  
+
 };

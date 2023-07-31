@@ -26,7 +26,9 @@
           ></v-icon>
         </p>
       </div>
-      <LocaleSelect id="local-switcher" />
+    <div class="h-full pt-3">
+      <LocaleSelect class="" id="local-switcher" />
+    </div>
 
     </div>
   </div>
