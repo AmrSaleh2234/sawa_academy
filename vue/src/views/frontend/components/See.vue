@@ -3,7 +3,7 @@
     style=""
     class="relative bg-[url('../image/sec1/76.png')] bg-[#EFFBFD] bg-center bg-cover bg-no-repeat"
   >
-  <div class="h-full w-full absolute  " style="opacity: 60% ; background-color: white; z-index: ;"></div>
+  <div class="h-full w-full absolute  " style="opacity: 50% ; background-color: white; z-index: ;"></div>
     <div class="text-center p-[5%] " style="z-index:s2;">
       <h2 class="text-4xl font-bold text-[#FF2A5B] p-1">اراء عملائنا</h2>
       <p class="text-[#135C65] text-2xl">نسعي جاهديين الي ما يحتاجه طفلك</p>

@@ -6,6 +6,7 @@
         <div class="m-auto">
           <v-btn
             height="45"
+            to="/web"
             class="mb-5 text-lg m-auto text-white"
             color="#135C65"
             @click="home"
@@ -81,7 +82,7 @@
                     "
                   >
                     <input
-                     
+               
                       style="font-size: 20px"
                       class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                       type="email"
