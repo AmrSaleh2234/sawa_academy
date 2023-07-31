@@ -37,6 +37,8 @@ class Booking extends Model
         'child_parents_problems',
         'parents_priorities',
         "doctor_code",
+        'accepted',
+        'accepted_notes',
     ];
 
     protected static function newFactory()

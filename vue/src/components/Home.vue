@@ -234,6 +234,12 @@ onMounted(async () => {
               value="calender"
               :to="{ name: 'Calender' }"
             ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-message-question-outline"
+              :title="$t('bookings')"
+              value="bookings"
+              :to="{ name: 'ShowBooking' }"
+            ></v-list-item>
           </v-list-group>
         </v-list>
       </v-navigation-drawer>

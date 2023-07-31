@@ -44,4 +44,5 @@ export default {
   print: "print",
   evaluation_type: "Evaluation Type",
   manage_user_roles: "Manage User Roles",
+  bookings: "bookings",
 };

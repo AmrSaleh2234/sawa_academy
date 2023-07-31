@@ -3,6 +3,8 @@
 namespace Modules\Calender\Http\Controllers;
 
 use App\Http\Controllers\ControllerHandler;
+use App\Models\ChildParent;
+use App\Notifications\AcceptBookingNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -47,10 +49,52 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
-    /**
-     * @param Calender $calender
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
+    public function getAllBooking(Request $request)
+    {
+        $bookings = Booking::query()
+            ->select(
+                'id',
+                'child_name',
+                DB::raw("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), child_birth_date)), '%Y') + 0 AS child_age"),
+                'requester_phone'
+            )
+            ->addSelect(['event_date' => Calender::select('start')->whereColumn('id', 'bookings.event_id')])
+            ->get();
+
+        return $this->bookingControllerHandler->show('bookings', $bookings);
+    }
+    public function showBooking(Booking $booking, Request $request)
+    {
+        return $this->bookingControllerHandler->show('booking', $booking);
+    }
+
+    public function acceptBooking(Booking $booking, Request $request)
+    {
+        $request->validate([
+            'status' => ['required', 'boolean'],
+            'event_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
+            'accepted_notes' => ['nullable', 'string']
+        ]);
+
+        $booking->update([
+            'accepted' => $request->status,
+            'accepted_notes' => $request->accepted_notes,
+        ]);
+
+        $event = Calender::where('id', $request->event_id)->first();
+
+        $user = ChildParent::where('id', $request->user_id)->first();
+
+        $user->notify(new AcceptBookingNotification($event, $booking));
+
+        $event->update([
+            'status' => 1
+        ]);
+
+        return $this->bookingControllerHandler->show('booking', $booking->fresh());
+    }
+
     public function show(Calender $calender)
     {
         return $this->ControllerHandler->show("calender", $calender);
