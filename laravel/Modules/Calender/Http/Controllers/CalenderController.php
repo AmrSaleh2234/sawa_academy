@@ -2,13 +2,14 @@
 
 namespace Modules\Calender\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ControllerHandler;
 use App\Models\ChildParent;
+use App\Models\User;
 use App\Notifications\AcceptBookingNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Modules\Calender\Entities\Booking;
 use Modules\Calender\Entities\Calender;
@@ -63,9 +64,82 @@ class CalenderController extends Controller
 
         return $this->bookingControllerHandler->show('bookings', $bookings);
     }
-    public function showBooking(Booking $booking, Request $request)
+
+    public function getAllAcceptedBookingDoctors(Request $request)
     {
-        return $this->bookingControllerHandler->show('booking', $booking);
+        $data = [];
+
+        // $bookings = Booking::query()
+        //     ->with('user')
+        //     ->addSelect([
+        //         "event_date" => Calender::select('start')->whereColumn('id', 'bookings.event_id'),
+        //     ])
+        //     ->where('accepted', 1)
+        //     ->where('user_id', $request->user('parent')->id)
+        //     ->get();
+
+        // $data['bookings'] = $bookings;
+
+        $data = DB::table('bookings')
+            ->select(
+                "bookings.id as booking_id",
+                "bookings.user_id",
+                "event_id",
+                "start as event_date",
+                'users.name as user_name',
+                'users.title as user_title'
+            )
+            ->join('events', 'events.id', '=', 'bookings.event_id')
+            ->join('users', 'users.id', '=', 'events.user_id')
+            ->where('bookings.accepted', 1)
+            ->where('bookings.user_id', $this->getAuthUserID('parent'))
+            ->get();
+
+
+
+
+        return $this->bookingControllerHandler->show('bookings', $data);
+    }
+
+
+    public function showBooking($booking_id, Request $request)
+    {
+
+        $data['booking'] = Booking::query()
+            ->select("*")
+            ->addSelect([
+                "event_date" => Calender::select('start')->whereColumn('id', 'bookings.event_id')
+            ])
+            ->where('id', $booking_id)
+            ->first();
+
+        if ($data['booking']['doctor_code']) {
+            $data['doctor'] = DB::table("users")
+                ->select('users.name', 'users.title')
+                ->leftJoin("events", "events.user_id", '=', 'users.id')
+                ->where('events.id', '=', $data['booking']['event_id'])
+                ->first();
+        }
+
+        return $this->bookingControllerHandler->show('booking', $data);
+    }
+
+    public function changeDoctor(Request $request)
+    {
+        $request->validate([
+            'start' => ['required']
+        ]);
+
+        $doctors = Calender::query()
+            ->select('user_id')
+            ->addSelect([
+                'doctor_name' => User::select("name")->whereColumn('id', 'user_id'),
+                'title_name' => User::select("title")->whereColumn('id', 'user_id'),
+            ])
+            ->where('start', $request->start)
+            ->get();
+
+        return $this->bookingControllerHandler->show('doctors', $doctors);
     }
 
     public function acceptBooking(Booking $booking, Request $request)
