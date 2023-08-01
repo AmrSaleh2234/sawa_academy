@@ -3,18 +3,19 @@
   <div
     class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
   >
-    <div
-      class="col-span-1 text-right m-auto visible md:invisible"
-      @click="toggle()"
-    >
-      <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
-    </div>
     <div>
-      <p
-        class="w-full text-left font-bold m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
+      <div
+        class="col-span-1 text-right m-auto visible md:invisible"
+        @click="toggle()"
       >
-
         <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
+      </div>
+      <div>
+        <p
+          class="w-full text-left font-bold m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
+        >
+          <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
+        </p>
       </div>
       <div>
         <p
@@ -36,6 +37,7 @@
       </div>
     </div>
   </div>
+
   <div class="relative overflow-clip max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />
     <div class="flex-1 py-9 my-6 overflow-y-scroll">

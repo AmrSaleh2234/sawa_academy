@@ -1,4 +1,3 @@
-
 <template>
   <div class="switcher">
     <Map />
@@ -163,7 +162,6 @@
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
                 placeholder="password"
-                v-model="password"
               />
             </div>
             <button
@@ -172,11 +170,9 @@
             >
               حفظ التغيرات
             </button>
-
           </div>
         </div>
       </div>
-      <About />
     </div>
     <About />
   </div>
@@ -277,59 +273,54 @@ export default {
     imageClass() {
       // Return a string of Tailwind CSS classes to set the width of the image
       return this.imageSrc ? ["w-40", "h-0"] : ""; // Adjust the 'w-64' class to set the desired width
-
     },
-      methods: {
-          toggleEditing() {
-        this.editing = !this.editing;
-      },
-          toggle(){
-              this.showsider=!this.showsider
-          },
-          home(){
-              
-          },
-          onUpload() {
-              this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-          },
-          openFileUpload() {
-        // Get the file input element using the "ref" attribute
-        const fileInput = this.$refs.fileInput;
-  
-        // Trigger the click event on the file input element
-        fileInput.click();
-      },
-      handleFileUpload(event) {
-        // Handle the file selection here
-        const selectedFile = event.target.files[0];
-        if (selectedFile) {
-          // Create a FileReader to read the file as a data URL
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            // Set the imageSrc data property with the data URL of the selected image
-            this.imageSrc = e.target.result;
-          };
-          // Read the selected file as a data URL
-          reader.readAsDataURL(selectedFile);
-        }
-      },
-      },
-    }
-  
-  </script>
-  <style>
-  .uploaded-image {
-    width: 101px; 
-    height:101px;
-   
-  }
+    // methods: {
+    //   toggleEditing() {
+    //     this.editing = !this.editing;
+    //   },
+    //   toggle() {
+    //     this.showsider = !this.showsider;
+    //   },
+    //   home() {},
+    //   onUpload() {
+    //     this.$toast.add({
+    //       severity: "info",
+    //       summary: "Success",
+    //       detail: "File Uploaded",
+    //       life: 3000,
+    //     });
+    //   },
+    //   openFileUpload() {
+    //     // Get the file input element using the "ref" attribute
+    //     const fileInput = this.$refs.fileInput;
+
+    //     // Trigger the click event on the file input element
+    //     fileInput.click();
+    //   },
+    //   handleFileUpload(event) {
+    //     // Handle the file selection here
+    //     const selectedFile = event.target.files[0];
+    //     if (selectedFile) {
+    //       // Create a FileReader to read the file as a data URL
+    //       const reader = new FileReader();
+    //       reader.onload = (e) => {
+    //         // Set the imageSrc data property with the data URL of the selected image
+    //         this.imageSrc = e.target.result;
+    //       };
+    //       // Read the selected file as a data URL
+    //       reader.readAsDataURL(selectedFile);
+    //     }
+    //   },
+    // },
+  },
+  mounted() {
+    this.getUserProfile();
+  },
+};
+</script>
+<style>
+.uploaded-image {
+  width: 101px;
+  height: 101px;
+}
 </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
