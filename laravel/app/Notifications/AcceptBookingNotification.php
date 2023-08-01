@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -37,10 +38,12 @@ class AcceptBookingNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $time = Carbon::parse($this->event->start)->format("H:i A");
         return [
-            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا 01:00م الموعد غدا", "data" => [
-                'event' => $this->event,
-                'booking' => $this->booking,
+            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا{$time} الموعد غدا", "data" => [
+                'event' => $this->event->id,
+                'booking' => $this->booking->id,
+                'event_start' => Carbon::parse($this->event->start)->format("H:i A")
             ]
         ];
     }
