@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#135C65]  z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%]   px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
+    class="bg-[#135C65] z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%] px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
     :class="{ 'fixed translate-x-0 ': sole }"
   >
     <div
@@ -13,7 +13,7 @@
       </p>
       <p class="text-center text-white">{{ parentStore.user.email }}</p>
     </div>
-    <div class="  space-y-4 py-6">
+    <div class="space-y-4 py-6">
       <div class=" ">
         <router-link
           class="flex rtl:flex-row-reverse justify-between p-4"
@@ -25,13 +25,39 @@
               icon="fa-solid fa-circle"
             ></font-awesome-icon>
           </div>
-          <div class="flex rtl:flex-row-reverse space-x-2 items-end text-">
-            <p class="text-white text-xl m-auto">{{$t("latest_developments")  }} </p>
-            <svg id="af363570e9b2b9df3a3ac855b6fdaee0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path id="Path_216" data-name="Path 216" d="M0,0H24V24H0Z" fill="none"/>
-              <path id="Path_217" data-name="Path 217" d="M18,16V11c0-3.07-1.64-5.64-4.5-6.32V4a1.507,1.507,0,0,0-1.51-1.5A1.49,1.49,0,0,0,10.5,4v.68C7.63,5.36,6,7.92,6,11v5L4.7,17.29A1,1,0,0,0,5.4,19H18.57a1,1,0,0,0,.71-1.71Zm-6.01,6a2.006,2.006,0,0,0,2-2h-4A2,2,0,0,0,11.99,22ZM6.77,4.73A.985.985,0,0,0,6.8,3.3a1,1,0,0,0-1.39-.02A10.424,10.424,0,0,0,2.14,9.34a1.011,1.011,0,0,0,1,1.16,1,1,0,0,0,.98-.83A8.44,8.44,0,0,1,6.77,4.73ZM18.6,3.28a1.012,1.012,0,0,0-1.4.02.982.982,0,0,0,.03,1.42,8.5,8.5,0,0,1,2.65,4.94.982.982,0,0,0,.98.83,1,1,0,0,0,.99-1.16A10.488,10.488,0,0,0,18.6,3.28Z" fill="#fff"/>
+          <div class="flex rtl:flex-row-reverse space-x-2">
+            <p class="text-white text-xl">اخر المستجدات</p>
+            <svg
+              class="m-auto"
+              width="24px"
+              height="24px"
+              viewBox="0 0 192 192"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M29.977 29.889h132.021v131.89H29.977zm33.749 34.092v0m30.34 0h36.211M63.726 96.06v0m30.34 0h36.211m-67.05 31.936v0m30.34 0h36.211"
+                  style="
+                    fill: none;
+                    stroke: #fff;
+                    stroke-width: 12;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 57.5;
+                    paint-order: stroke markers fill;
+                  "
+                ></path>
+              </g>
             </svg>
-                      </div>
+          </div>
+
         </router-link>
       </div>
       <div class=" ">
@@ -95,11 +121,12 @@
           </div>
         </router-link>
       </div>
-      <div class="w-full" style="border: 1px solid;"></div>
-      <div class=" bottom-0">
+      <div class="w-full" style="border: 1px solid"></div>
+      <div class="bottom-0">
         <button
           class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
         >
+
           <router-link :to="{ name: 'Profile' }">{{$t("Modify_profile")}}</router-link>
         </button>
         <button
@@ -110,7 +137,6 @@
         </button>
       </div>
     </div>
-   
   </div>
 </template>
 <script>

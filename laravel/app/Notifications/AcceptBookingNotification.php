@@ -16,7 +16,7 @@ class AcceptBookingNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private $event, private $booking)
+    public function __construct(private $event, private $booking, private $doctor)
     {
     }
 
@@ -40,10 +40,14 @@ class AcceptBookingNotification extends Notification
     {
         $time = Carbon::parse($this->event->start)->format("H:i A");
         return [
-            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب : احمد إبراهيم استشاري مخ واعصاب في يوم الثلاثاء الساعة الواحدة ظهرا{$time} الموعد غدا", "data" => [
+            "message" => "يرجي العلم بأنه تم حجز استشارة مع الطبيب",
+            "data" => [
                 'event' => $this->event->id,
                 'booking' => $this->booking->id,
-                'event_start' => Carbon::parse($this->event->start)->format("H:i A")
+                'event_date' => Carbon::parse($this->event->start)->isoFormat("dddd D"),
+                'event_start' => Carbon::parse($this->event->start)->format("H:i A"),
+                "doctor_name" => $this->doctor["doctor_name"],
+                "doctor_title" => $this->doctor["doctor_title"]
             ]
         ];
     }
