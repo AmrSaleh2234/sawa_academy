@@ -18,6 +18,7 @@ use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Http\Requests\StoreBookingRequest;
 use Modules\Calender\Transformers\EventResource;
+use Modules\Child\Http\Controllers\Services\ChildService;
 
 class CalenderController extends Controller
 {
@@ -56,11 +57,16 @@ class CalenderController extends Controller
             ->select(
                 'id',
                 'child_name',
-                DB::raw("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), child_birth_date)), '%Y') + 0 AS child_age"),
+                'child_birth_date as child_age',
                 'requester_phone'
             )
             ->addSelect(['event_date' => Calender::select('start')->whereColumn('id', 'bookings.event_id')])
             ->get();
+
+        $bookings->map(function ($booking) {
+            $booking['child_age'] = (new ChildService())->calcChildAgeInMonthsWithAgeParam($booking['child_age']);
+        });
+
 
         return $this->bookingControllerHandler->show('bookings', $bookings);
     }
@@ -148,7 +154,9 @@ class CalenderController extends Controller
             'status' => ['required', 'boolean'],
             'event_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
-            'accepted_notes' => ['nullable', 'string']
+            'accepted_notes' => ['nullable', 'string'],
+            'doctor_name' => ['required', 'string'],
+            'doctor_title' => ['required', 'string']
         ]);
 
         $booking->update([
@@ -157,10 +165,13 @@ class CalenderController extends Controller
         ]);
 
         $event = Calender::where('id', $request->event_id)->first();
-
+        $doctor = [
+            "doctor_name" => $request->doctor_name,
+            "doctor_title" => $request->doctor_title
+        ];
         $user = ChildParent::where('id', $request->user_id)->first();
 
-        $user->notify(new AcceptBookingNotification($event, $booking));
+        $user->notify(new AcceptBookingNotification($event, $booking, $doctor));
 
         $event->update([
             'status' => 1

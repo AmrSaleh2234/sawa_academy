@@ -46,6 +46,7 @@
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
           <button>تعديل الملف الشخصي</button>
         </div>
+
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
             <div class="relative m-auto">
@@ -60,6 +61,7 @@
                 :src="imageSrc"
                 class="uploaded-image relative m-auto cursor-pointer rounded-full"
               />
+
               <svg
                 @click="openFileUpload"
                 class="cursor-pointer absolute left-[50%] m-auto bottom-0 bg-white rounded-full p-1 h-8 w-8"
@@ -164,6 +166,7 @@
               />
             </div>
             <button
+              @click="updateProfile"
               class="p-4 mt-10 text-center bg-[#148A98] text-white w-full rounded-2xl text-xl"
             >
               حفظ التغيرات
@@ -189,14 +192,13 @@ export default {
   data() {
     return {
       imageSrc: null,
-      fd: new FormData(),
       parentStore: useParentStore(),
       parent: {
         fname: "",
         lname: "",
         email: "",
         password: "",
-        image: "",
+        image: {},
       },
       showsider: false,
       value: 65,
@@ -238,18 +240,34 @@ export default {
       fileInput.click();
     },
     handleFileUpload(event) {
-      // Handle the file selection here
       const selectedFile = event.target.files[0];
       if (selectedFile) {
-        // Create a FileReader to read the file as a data URL
         const reader = new FileReader();
         reader.onload = (e) => {
-          // Set the imageSrc data property with the data URL of the selected image
-          this.parent.image = e.target.result;
+          this.imageSrc = e.target.result;
         };
-        // Read the selected file as a data URL
         reader.readAsDataURL(selectedFile);
+        this.parent.image = event.target.files[0];
+        console.log(this.parent.image);
       }
+    },
+    updateProfile() {
+      let self = this;
+      const formData = new FormData();
+      Object.keys(self.parent).forEach((key) => {
+        console.log(key);
+        if ((key == "image" || key == "video") && self.parent[key] == null)
+          return;
+        formData.append(key, self.parent[key]);
+      });
+      axios
+        .post("/api/parent/profile", formData)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   computed: {

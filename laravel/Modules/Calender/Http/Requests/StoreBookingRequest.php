@@ -41,7 +41,7 @@ class StoreBookingRequest extends FormRequest
             "child_aids_notes" => ['required_if:child_aids,true'],
             'child_parents_problems' => ['required', 'string'],
             'parents_priorities' => ['required', 'string'],
-            "doctor_code" => ['required', 'integer'],
+            "doctor_code" => ['nullable', 'integer'],
         ];
     }
 
