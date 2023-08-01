@@ -1,8 +1,8 @@
 <template>
    <div class=" bg-[url('../image/sec1/Group68.png')] bg-cover bg-[#135C65]">
     <div style="padding: 2%;" class="m-auto w-full space-y-4  ">
-        <h1 class="m-auto text-center text-4xl text-white">اهم ما يميزنا</h1>
-        <p class="m-auto text-center text-2xl text-[#29CCFF]">نبذل جهدا كبيرا لكي نساعدك </p>
+        <h1 class="m-auto text-center text-4xl text-white">{{$t("important_thing_that_distinguishes_us")}}</h1>
+        <p class="m-auto text-center text-2xl text-[#29CCFF]">{{ $t("make_a_great_effort_to_help_you") }}</p>
     </div>
     <div class="grid grid-cols-10 py-[2%] ">
         <div class="m-auto col-span-2">
@@ -11,11 +11,10 @@
         <div class="col-span-6 m-auto w-full">
             <carousel class="max-w-3xl m-auto min-w-full"   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
                 <slide  v-for="image in images" :key="image">
-             <div class="w-[90%] m-auto rounded-2xl border-2 border-white">
+             <div style="width: 75%;" class=" m-auto rounded-2xl border-2 border-white">
                 <img class="w-full p-2" src="../image/sec1/113.png" >
              </div>
                 </slide>
-            
                 <template #addons>
                   <navigation class=" bg-[#FFCF24] rounded-[50%]  text-white " />
                 </template>

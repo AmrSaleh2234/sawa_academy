@@ -229,6 +229,7 @@
           v-if="errors != null"
           class="text-red-600 font-semibold text-sm rounded-md"
         >
+
           <p v-for="error in errors['child_national_id']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -260,6 +261,7 @@
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
           <label class="text-base font-bold text-right pl-2">{{
+
             $t("رقم هاتف ولي الامر")
           }}</label>
           <input
