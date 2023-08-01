@@ -13,16 +13,16 @@
           @click="home"
         >
           <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{$t('home')}}
+          {{ $t("الرئيسيه") }}
         </v-btn>
       </div>
       <div
         class="flex flex-col items-center justify-between px-6  mx-auto md:col-span-10 lg:py-0"
       >
         <div class="text-center m-2">
-          <h1 class="text-4xl py-5 font-bold"> {{$t("sign_in")}}</h1>
-          <p class="text-3xl">
-            {{ $t("You_can_now_create_your_own_account_with_us_to_follow_up_your_requests_directly") }}
+          <h1 class="text-3xl py-5 font-bold">تسجيل الدخول</h1>
+          <p class="text-xl">
+            يمكنك الان تسجيل الدخول للحساب خاص بك لدينا لمتابعه طلباتك مباشره
           </p>
         </div>
 
@@ -36,13 +36,13 @@
           </div>
         </div>
         <form @submit.prevent="massegeerror.length == 0 ? parentStore.login(parent) : null"
-        style=" backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 12%;margin-bottom: 12%;"
-          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:w-[30%] xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 12%;margin-bottom: 12%;"
+          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
         <div v-for="error in massegeerror" :key="error" class="text-center my-2 py-2">
                 <p class="text-red-600">{{error}}</p>
               </div>
-          <div class="w-full p-2 md:space-y-4 sm:p-8">
+          <div class="p-2 md:space-y-4 sm:p-8">
             <div class="space-y-6 text-center rounded-2xl p-4 bg-none">
               <div class="flex flex-col">
                 <input
@@ -50,8 +50,8 @@
                   v-model="parent.email"
                   type="email"
                   id="child_name"
-                  :placeholder="$t('email')"
-                  class="min-w-full text-xl  bg-white/10  focus:ring-0 text-center"
+                  placeholder=" الايميل الالكتروني"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
                 />
               </div>
               <div class="flex flex-col">
@@ -60,22 +60,22 @@
                   v-model="parent.password"
                   type="password"
                   id="child_name"
-                  :placeholder="$t('password')"
-                  class="min-w-full text-xl  bg-white/10  focus:ring-0 text-center"
+                  placeholder="كلمه السر"
+                  class="min-w-full   bg-white/10  focus:ring-0 text-center"
                 />
               </div>
               
               <button
-                class="w-[90%] text-xl font-bold p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
+                class="w-[90%] p-2 lg:m-0 rounded-3xl bg-[#23D1E6]"
                 @click="vaild"
                 type="submit"
               >
-                {{ $t("sign_in") }} 
+                تسجيل دخول
               </button>
-              <p class="text-xl">
-                {{ $t("If_you_do_not_have_an_account") }}
+              <p>
+                اذا كنت تمتلك حساب اضغط هنا
                 <router-link :to="{name:'SingUp'}" class="px-2 text-[#649297]">
-                  {{ $t("Create_an_account") }} </router-link
+                  انشاء حساب</router-link
                 >
               </p>
             </div>

@@ -159,42 +159,9 @@ export default {
     <div class="container mx-auto flex items-center justify-between">
       <!-- Your logo or brand content goes here -->
       
-      <div class="flex space-x-4">
-        <div><img src="../image/header/Group22.png" /></div>
-      </div>
-
+      
       <!-- Your navigation links go here -->
       <div class="hidden md:flex space-x-4">
-        <li
-        style="font-size: 24px;"
-          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
-        >
-          <router-link :to="{ name: 'home' }"> التربيه الخاصه </router-link>
-        </li>
-        <li
-        style="font-size: 24px;"
-          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
-        >
-          <router-link :to="{ name: 'about' }"> تواصل معنا</router-link>
-        </li>
-        <li
-        style="font-size: 24px;"
-          class="block font-bold mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
-        >
-          <router-link :to="{ name: 'about' }">ماذا عنا</router-link>
-        </li>
-        <li
-        style="font-size: 24px;"
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
-        >
-          <router-link :to="{ name: 'ReAction' }"> الرئيسيه</router-link>
-        </li>
-        <li
-        style="font-size: 24px;"
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
-        >
-         <locale-select id="local-switcher"></locale-select>
-        </li>
         <div class="flex space-x-2" v-if="parentStore.parentAuth">
           <div>
             <div class="relative">
@@ -237,8 +204,8 @@ export default {
                   :to="{ name: 'Profile' }"
                   class="block px-4 py-2 text-sm text-indigo-100 hover:bg-indigo-400 hover:text-indigo-100 border-b-2"
                 >
-                  <div class="flex space-x-2">
-                    <p class="text-lg">الملف الشخصي</p>
+                  <div class="flex justify-between">
+                    <p class="text-lg"> {{$t("Profile_personly")}}</p>
                     <svg
                       class="w-6 h-6 text-[yellow]"
                       fill="yellow"
@@ -266,8 +233,8 @@ export default {
                   to="/"
                   class="block px-4 py-2 text-sm text-indigo-100 hover:bg-indigo-400 hover:text-indigo-100"
                 >
-                  <div class="flex space-x-4">
-                    <p class="text-lg">تسجيل الخروج</p>
+                  <div class="flex  justify-between">
+                    <p class="text-xl"> {{$t("sign_out")}}</p>
                     <svg
                       fill="#FF2A5B"
                       class="w-6 h-6"
@@ -297,6 +264,40 @@ export default {
             </div>
           </div>
         </div>
+        <locale-select id="local-switcher"></locale-select>
+        <li
+        style="font-size: 130%;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+          <router-link :to="{ name: 'ReAction' }"> {{$t('home')}}</router-link>
+        </li>
+        <li
+        style="font-size: 130%;"
+          class="block font-bold mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+          <router-link :to="{ name: 'about' }">{{$t("about_us")}}</router-link>
+        </li>
+        <li
+        style="font-size: 130%;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+          <router-link :to="{ name: 'about' }"> {{$t("connect_us")}}</router-link>
+        </li>
+        <li
+        style="font-size: 130%;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+          <router-link :to="{ name: 'home' }"> {{$t("special_education")}}</router-link>
+        </li>
+        
+       
+        
+        <li
+        style="font-size: 130%;"
+          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        >
+        </li>
+        
       </div>
 
       <!-- Mobile menu toggle button -->
@@ -318,6 +319,10 @@ export default {
           </svg>
         </button>
       </div>
+      <div class="flex space-x-4">
+        <div><img src="../image/header/Group22.png" /></div>
+      </div>
+
     </div>
     <!-- Mobile menu -->
     <div v-if="isMobileMenuOpen" class="md:hidden fix bg-[#ffffff] p-4">

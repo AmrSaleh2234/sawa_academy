@@ -44,7 +44,9 @@ export default {
    </div>
   
   
-    <v-card-actions>
+    <v-card-actions class="ssc">
+      <p class="text-xl lg:text-2xl p-2 text-[#135C65] z-10">{{$t("evaluation_result")}}</p>
+      <v-spacer></v-spacer>
       <v-btn
       icon="mdi-arrow-left"
       size="small"
@@ -53,10 +55,6 @@ export default {
       style="border: 2px solid #135C65;"
     
     ></v-btn>
-     
-  
-      <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65] z-10">نتيجه التقييم</p>
     
     </v-card-actions>
   
@@ -83,6 +81,8 @@ export default {
   
   
     <v-card-actions>
+      <p class="text-xl lg:text-2xl p-2 text-[#135C65] z-10"> {{$t("Book_an_appointment")}}</p>
+      <v-spacer></v-spacer>
       <v-btn
       icon="mdi-arrow-left"
       size="small"
@@ -91,11 +91,6 @@ export default {
       style="border: 2px solid #135C65;"
     
     ></v-btn>
-     
-  
-      <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65] z-10"> احجز موعد لابنك</p>
-    
     </v-card-actions>
   
     
@@ -120,6 +115,10 @@ export default {
   
   
     <v-card-actions>
+      
+     
+      <p class="lg:text-2xl text-xl p-2 text-[#135C65] z-10">{{$t("Register_your_child")}}</p>
+      <v-spacer></v-spacer>
       <v-btn
       icon="mdi-arrow-left"
       size="small"
@@ -128,11 +127,6 @@ export default {
       style="border: 2px solid #135C65;"
     
     ></v-btn>
-     
-  
-      <v-spacer></v-spacer>
-      <p class="text-2xl p-2 text-[#135C65] z-10">تسجيل طفلك معنا</p>
-    
     </v-card-actions>
   
     
