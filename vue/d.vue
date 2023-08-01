@@ -56,6 +56,14 @@
       </div>
       <form class="py-4 min-w-full space-y-4 p-2" @submit.prevent="bookTime">
         <div
+          class="text-red-600 bg-red-200 font-semibold text-lg py-4"
+          v-if="errors"
+        >
+          <p v-for="error in errors">
+            <span v-if="error"></span>
+          </p>
+        </div>
+        <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
@@ -68,14 +76,6 @@
             v-model="booking.requester_name"
             class="focus:ring-0 text-center"
           />
-        </div>
-        <div
-          v-if="errors['requester_name'] != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['requester_name']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -91,12 +91,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['relative_degree']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -111,36 +105,12 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_name']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
           <label class="text-base font-bold text-right pl-2">{{
-            $t("تاريخ الميلاد")
-          }}</label>
-          <input
-            type="date"
-            id="child_name"
-            v-model="booking.child_birth_date"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_birth_date']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("مكان الميلاد  ")
+            $t("مكان وتاريخ الميلاد  ")
           }}</label>
           <input
             type="text"
@@ -149,12 +119,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_birth_place']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -168,11 +132,6 @@
             v-model="booking.child_lang"
             class="border-b focus:ring-0 text-center"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_lang']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -188,11 +147,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_nationalty']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -206,12 +160,6 @@
             v-model="booking.child_national_id"
             class="border-b focus:ring-0 text-center"
           />
-        </div>
-
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_national_id']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -227,17 +175,12 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_address']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
+
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
           <label class="text-base font-bold text-right pl-2">{{
-
             $t("رقم هاتف ولي الامر")
           }}</label>
           <input
@@ -246,11 +189,6 @@
             v-model="booking.requester_phone"
             class="border-b focus:ring-0 text-center"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['requester_phone']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -266,11 +204,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['addtional_phone']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -284,11 +217,6 @@
             v-model="booking.addtional_phone_owner"
             class="border-b focus:ring-0 text-center"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['addtional_phone_owner']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -304,11 +232,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['addtional_phone_degree']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -322,11 +245,6 @@
             v-model="booking.conversion_type"
             class="border-b focus:ring-0 text-center"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['conversion_type']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -342,11 +260,6 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_doctor']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
 
         <p class="p-4 font-bold text-base text-right">اجب عن الاسئله الاتيه</p>
         <div class="w-full">
@@ -360,11 +273,6 @@
             class="w-full text-left"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_gender']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div class="w-full">
           <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
           <Dropdown
@@ -375,11 +283,6 @@
             placeholder="نرجو تحديد نوع المشكله"
             class="w-full text-left"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_problem']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div
           class="flex flex-col"
@@ -393,11 +296,6 @@
             v-model="booking.child_problems_notes"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_problems_notes']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div class="w-full">
           <h3 class="py-2">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
           <Dropdown
@@ -408,11 +306,6 @@
             placeholder="هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه"
             class="w-full text-left"
           />
-          <div class="text-red-600 font-semibold text-sm rounded-md">
-            <p v-for="error in errors['child_aids']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
           <div v-if="booking.child_aids" class="flex flex-col border-b py-4">
             <p class="text-right text-lg">اضف ملاحظات</p>
             <Textarea
@@ -421,11 +314,6 @@
               rows="5"
               cols="30"
             />
-          </div>
-          <div class="text-red-600 font-semibold text-sm rounded-md">
-            <p v-for="error in errors['child_aids_notes']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
           </div>
         </div>
         <div class="space-y-4">
@@ -439,11 +327,6 @@
             cols="30"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['child_parents_problems']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div class="space-y-4">
           <p class="text-right text-lg">
             :ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
@@ -455,11 +338,6 @@
             cols="30"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['parents_priorities']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div>
           <input
             class="border-0 border-b text-xl text-center focus:ring-0"
@@ -467,11 +345,6 @@
             v-model="booking.doctor_code"
             placeholder="ادخل كود استشاري تريده"
           />
-        </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
-          <p v-for="error in errors['doctor_code']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
         </div>
         <div class="text-right m-auto w-full space-x-4">
           <span class="m-auto text-xl">انا اوافق علي كافه الشروط والاحكام</span>
@@ -549,15 +422,13 @@ export default {
     };
   },
   methods: {
-    async bookTime() {
-      delete this.errors;
+    bookTime() {
       this.booking.user_id = this.parentStore.user.id;
       this.booking.event_id = this.event_id;
       console.log(this.booking);
-      await axios
+      axios
         .post("/api/calender/store-booking", this.booking)
         .then((res) => {
-          this.errors = null;
           console.log(res);
         })
         .catch((err) => {

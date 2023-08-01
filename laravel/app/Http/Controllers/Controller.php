@@ -9,4 +9,18 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    public function getAuthUser(string $guard)
+    {
+        if (auth($guard)->check()) {
+            return auth($guard)->user();
+        }
+    }
+
+    public function getAuthUserID(string $guard)
+    {
+        if (auth($guard)->check()) {
+            return auth($guard)->user()->id;
+        }
+    }
 }
