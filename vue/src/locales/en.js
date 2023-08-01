@@ -87,7 +87,11 @@ export default {
   contact:"communication : 0096265522688-00962791017001",
   File_a_complaint:"File a complaint  ",
   Adopt_us:"Adopt us ",
-  address:" The address"
+  address:" The address",
+  Sawa_Academy_team:"Sawa Academy team  ",
+  We_have_a_group_of_highly_experienced_therapists:"We have a group of highly experienced therapists  ",
+  Contact_now:"Contact now  ",
+  Neurologist:"Neurologist"
 
 
 
