@@ -185,23 +185,24 @@ export default {
       <!-- Your logo or brand content goes here -->
       <div class="flex mx-2">
         <div>
-          <p style="font-size: 20px" class="text-white text-base">
-            عمان-الرابيه-شارع ميسلون
+          <p style="font-size: 100%" class="text-white text-base">
             <v-icon
-              end
-              icon="mdi-map-marker"
-              class="text-[#FFCF24] h-full"
-            ></v-icon>
+            end
+            icon="mdi-map-marker"
+            class="text-[#FFCF24] h-full"
+          ></v-icon>
+            {{ $t("Amman_Rabieh_Maysaloon_Street") }}
           </p>
         </div>
         <div class="mx-2">
-          <p style="font-size: 20px" class="text-white text-base">
-            التواصل : 0096265522688-00962791017001
+          <p style="font-size: 100%" class="text-white text-base">
             <v-icon
-              end
-              icon="mdi-phone"
-              class="text-[#FFCF24] h-full rotate-180"
-            ></v-icon>
+            end
+            icon="mdi-phone"
+            class="text-[#FFCF24] h-full rotate-180"
+          ></v-icon>
+           {{ $t('contact') }}
+           
           </p>
         </div>
       </div>
@@ -220,7 +221,7 @@ export default {
               class="text-2xl text-white w-[20%] bg-[#0D4047] h-full"
             ></v-icon>
             <input
-              style="font-size: 18px"
+              style="font-size: 15px"
               class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
               :type="pass_type"
               placeholder="كلمه المرور"
@@ -236,7 +237,7 @@ export default {
               class="text-white bg-[#0D4047] h-full"
             ></v-icon>
             <input
-              style="font-size: 18px"
+              style="font-size: 15px"
               class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
               type="text"
               placeholder="اسم المستخدم"

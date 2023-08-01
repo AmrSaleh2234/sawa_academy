@@ -25,10 +25,13 @@
               icon="fa-solid fa-circle"
             ></font-awesome-icon>
           </div>
-          <div class="flex rtl:flex-row-reverse space-x-2">
-            <p class="text-white text-xl">اخر المستجدات</p>
-            <svg class="m-auto" width="24px" height="24px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M29.977 29.889h132.021v131.89H29.977zm33.749 34.092v0m30.34 0h36.211M63.726 96.06v0m30.34 0h36.211m-67.05 31.936v0m30.34 0h36.211" style="fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:57.5;paint-order:stroke markers fill"></path></g></svg>
-          </div>
+          <div class="flex rtl:flex-row-reverse space-x-2 items-end text-">
+            <p class="text-white text-xl m-auto">{{$t("latest_developments")  }} </p>
+            <svg id="af363570e9b2b9df3a3ac855b6fdaee0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path id="Path_216" data-name="Path 216" d="M0,0H24V24H0Z" fill="none"/>
+              <path id="Path_217" data-name="Path 217" d="M18,16V11c0-3.07-1.64-5.64-4.5-6.32V4a1.507,1.507,0,0,0-1.51-1.5A1.49,1.49,0,0,0,10.5,4v.68C7.63,5.36,6,7.92,6,11v5L4.7,17.29A1,1,0,0,0,5.4,19H18.57a1,1,0,0,0,.71-1.71Zm-6.01,6a2.006,2.006,0,0,0,2-2h-4A2,2,0,0,0,11.99,22ZM6.77,4.73A.985.985,0,0,0,6.8,3.3a1,1,0,0,0-1.39-.02A10.424,10.424,0,0,0,2.14,9.34a1.011,1.011,0,0,0,1,1.16,1,1,0,0,0,.98-.83A8.44,8.44,0,0,1,6.77,4.73ZM18.6,3.28a1.012,1.012,0,0,0-1.4.02.982.982,0,0,0,.03,1.42,8.5,8.5,0,0,1,2.65,4.94.982.982,0,0,0,.98.83,1,1,0,0,0,.99-1.16A10.488,10.488,0,0,0,18.6,3.28Z" fill="#fff"/>
+            </svg>
+                      </div>
         </router-link>
       </div>
       <div class=" ">
@@ -43,29 +46,11 @@
             ></font-awesome-icon>
           </div>
           <div class="flex space-x-2 rtl:flex-row-reverse">
-            <p class="text-white text-xl">الحجوزات</p>
-            <svg
-              class="m-auto"
-              width="20px"
-              height="20px"
-              viewBox="0 0 15 15"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              stroke="#ffffff"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  d="M3.5 0V5M11.5 0V5M3 7.5H6M12 7.5H9M3 10.5H6M9 10.5H12M1.5 2.5H13.5C14.0523 2.5 14.5 2.94772 14.5 3.5V13.5C14.5 14.0523 14.0523 14.5 13.5 14.5H1.5C0.947716 14.5 0.5 14.0523 0.5 13.5V3.5C0.5 2.94772 0.947715 2.5 1.5 2.5Z"
-                  stroke="#ffffff"
-                ></path>
-              </g>
+            <p class="text-white text-xl">{{$t("bookings")}}</p>
+            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+              <path id="Path_215" data-name="Path 215" d="M2,19a2.946,2.946,0,0,0,3,3H19a2.946,2.946,0,0,0,3-3V11H2ZM19,4H17V3a1,1,0,0,0-2,0V4H9V3A.945.945,0,0,0,8,2,.945.945,0,0,0,7,3V4H5A2.946,2.946,0,0,0,2,7V9H22V7A2.946,2.946,0,0,0,19,4Z" transform="translate(-2 -2)" fill="#fff"/>
             </svg>
+            
           </div>
         </router-link>
       </div>
@@ -81,35 +66,11 @@
             ></font-awesome-icon>
           </div>
           <div class="flex rtl:flex-row-reverse">
-            <p class="text-white text-xl">متابعه الطفل</p>
-            <svg
-              class="m-auto"
-              fill="#ffffff"
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="26px"
-              height="26px"
-              viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
-              xml:space="preserve"
-              stroke="#ffffff"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <g>
-                  <path
-                    d="M74.656,56.818c3.895,3.729,5.788,8.795,5.788,15.491c0,1.104,0.896,2,2,2s2-0.885,2-1.989 c0-7.736-2.362-13.91-7.022-18.369C66.646,43.639,46.325,44.551,30,45.269c-2.28,0.101-4.461,0.211-6.499,0.28L38.428,30.62 c0.781-0.781,0.781-2.047,0-2.828s-2.048-0.781-2.828,0L17.479,45.915c-0.375,0.375-0.586,0.884-0.586,1.414 s0.211,1.039,0.586,1.414l18.123,18.12c0.391,0.391,0.902,0.586,1.414,0.586s1.024-0.195,1.415-0.586 c0.781-0.781,0.781-2.048,0-2.828L24.142,49.75c1.915-0.11,3.932-0.261,6.033-0.354C44.919,48.748,65.114,47.688,74.656,56.818z"
-                  ></path>
-                </g>
-              </g>
+            <p class="text-white text-xl px-2">{{$t("follow_the_child")}}</p>
+            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="22.609" height="20" viewBox="0 0 22.609 20">
+              <path id="arrow-undo" d="M25.118,25.066a.87.87,0,0,1-.686-.334,12.265,12.265,0,0,0-3.985-3.642,13.27,13.27,0,0,0-5.765-1.23V24.2a.87.87,0,0,1-1.467.629L3.648,15.694a.87.87,0,0,1,0-1.258L13.215,5.3a.87.87,0,0,1,1.467.629V10.3c4.03.186,7.032,1.68,8.933,4.45,1.575,2.294,2.372,5.472,2.372,9.446A.87.87,0,0,1,25.118,25.066Z" transform="translate(-3.379 -5.066)" fill="#fff"/>
             </svg>
+            
           </div>
         </router-link>
       </div>
@@ -125,51 +86,12 @@
             ></font-awesome-icon>
           </div>
           <div class="flex rtl:flex-row-reverse space-x-2">
-            <p class="text-white text-xl">نتيجه التقييم</p>
-            <svg
-              class="m-auto"
-              width="24px"
-              height="24px"
-              viewBox="0 -5.5 21 21"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              fill="#ffffff"
-              stroke="#ffffff"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-
-              <g id="SVGRepo_iconCarrier">
-                <title>header [#ffffff]</title>
-                <desc>Created with Sketch.</desc>
-                <defs></defs>
-                <g
-                  id="Page-1"
-                  stroke="none"
-                  stroke-width="1"
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <g
-                    id="Dribbble-Light-Preview"
-                    transform="translate(-99.000000, -165.000000)"
-                    fill="#ffffff"
-                  >
-                    <g id="icons" transform="translate(56.000000, 160.000000)">
-                      <path
-                        d="M46.15,5 C47.88985,5 49.3,6.343 49.3,8 C49.3,9.657 47.88985,11 46.15,11 C44.41015,11 43,9.657 43,8 C43,6.343 44.41015,5 46.15,5 L46.15,5 Z M46.15,7 C45.57145,7 45.1,7.449 45.1,8 C45.1,8.551 45.57145,9 46.15,9 C46.72855,9 47.2,8.551 47.2,8 C47.2,7.449 46.72855,7 46.15,7 L46.15,7 Z M43,15 L64,15 L64,13 L43,13 L43,15 Z M51.4,7 L64,7 L64,5 L51.4,5 L51.4,7 Z M51.4,11 L64,11 L64,9 L51.4,9 L51.4,11 Z"
-                        id="header-[#ffffff]"
-                      ></path>
-                    </g>
-                  </g>
-                </g>
-              </g>
+            <p class="text-white text-xl">{{$t("evaluation_result")}}</p>
+            <svg class="m-auto" id="license-solid" xmlns="http://www.w3.org/2000/svg" width="22.125" height="19.47" viewBox="0 0 22.125 19.47">
+              <path id="Path_218" data-name="Path 218" d="M13.754,22.594H3.383A1.383,1.383,0,0,1,2,21.211V7.383A1.383,1.383,0,0,1,3.383,6H22.742a1.383,1.383,0,0,1,1.383,1.383v7.17A5.766,5.766,0,0,0,14.8,21.322l-.643.788Zm-8.3-12.445v1.106H17.211V10.148Zm0,3.872h7.605V12.914H5.457Zm0,4.84h6.914V17.754H5.457Z" transform="translate(-2 -6)" fill="#fff"/>
+              <path id="Path_219" data-name="Path 219" d="M29.9,21.619a4.4,4.4,0,1,0-7.446,3.174l-1.341,1.639.622,2.5,2.531-3.084a4.328,4.328,0,0,0,2.454,0l2.531,3.084.622-2.5-1.341-1.639A4.384,4.384,0,0,0,29.9,21.619Zm-7.426,0a3.018,3.018,0,1,0,.007,0Z" transform="translate(-7.891 -9.457)" fill="#fff"/>
             </svg>
+            
           </div>
         </router-link>
       </div>
@@ -178,13 +100,13 @@
         <button
           class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
         >
-          <router-link :to="{ name: 'Profile' }">تعديل الملف الشخصي</router-link>
+          <router-link :to="{ name: 'Profile' }">{{$t("Modify_profile")}}</router-link>
         </button>
         <button
           @click="parentStore.logout"
           class="w-full py-2 my-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
         >
-          تسجيل الخروج
+          {{ $t("sign_out") }}
         </button>
       </div>
     </div>

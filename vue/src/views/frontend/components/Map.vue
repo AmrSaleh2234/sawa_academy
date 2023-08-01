@@ -6,18 +6,19 @@
     <div class="my-auto"><img src="../image/header/Group22.png" /></div>
     <div class="flex mx-2 ">
       <div class="m-auto">
-        <p style="font-size:20px" class="text-white text-base">
-
-          عمان-الرابيه-شارع ميسلون
+        <p style="font-size:10px" class="text-white text-base">
           <v-icon
-              end
-              icon="mdi-map-marker"
-              class="  text-[#FFCF24]  h-full  "
-          ></v-icon>
+          end
+          icon="mdi-map-marker"
+          class="  text-[#FFCF24]  h-full  "
+      ></v-icon>
+          عمان-الرابيه-شارع ميسلون
+          
         </p>
+        
       </div>
       <div class="mx-2 m-auto">
-        <p style="font-size:20px" class=" text-white text-base">
+        <p style="font-size:10px"  class=" text-white text-base">
           التواصل : 0096265522688-00962791017001
           <v-icon
               end
@@ -26,7 +27,9 @@
           ></v-icon>
         </p>
       </div>
-      <LocaleSelect id="local-switcher" />
+    <div class="h-full pt-3">
+      <LocaleSelect class="" id="local-switcher" />
+    </div>
 
     </div>
   </div>
