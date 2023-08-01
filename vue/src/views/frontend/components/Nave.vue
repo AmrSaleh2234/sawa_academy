@@ -9,22 +9,26 @@
       <!-- Your navigation links go here -->
       <div class="hidden md:flex space-x-4">
         <li
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        style="font-size: 24px;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
           <router-link :to="{ name: 'BookingTime' }"> التربيه الخاصه </router-link>
         </li>
         <li
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        style="font-size: 24px;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
           <router-link :to="{ name: 'about' }"> تواصل معنا</router-link>
         </li>
         <li
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        style="font-size: 24px;"
+          class="block font-bold mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
           <router-link :to="{ name: 'about' }">ماذا عنا</router-link>
         </li>
         <li
-          class="block font-bold text-2xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        style="font-size: 24px;"
+          class="block font-bold  mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
           <router-link :to="{ name: 'home' }"> الرئيسيه</router-link>
         </li>

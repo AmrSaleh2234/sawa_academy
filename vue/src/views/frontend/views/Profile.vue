@@ -5,6 +5,7 @@
       <div class="m-auto">
         <v-btn
             height="45"
+            to="/web"
             class="mb-5 text-lg m-auto text-white"
             color="#135C65"
         >
@@ -69,6 +70,89 @@
                     v-model="value"
                 />
               </div>
+<<<<<<< HEAD
+              <form
+                class="space-y-10 text-center rounded-2xl p-6 bg-[#F8F8F8]"
+                action="#"
+              >
+                <div class="grid grid-cols-2">
+                  <div
+                    class="m-auto ml-4 bg-[#F8F8F8]"
+                    style="
+                      display: flex;
+                      align-items: center;
+                      border-bottom: 2px solid rgb(0, 0, 0);
+                    "
+                  >
+                    <input
+                      
+                      style="font-size: 20px"
+                      class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
+                      type="email"
+                      v-model="last_name"
+                    />
+                    
+                  </div>
+                  <div
+                    class="m-auto ml-4 bg-[#F8F8F8]"
+                    style="
+                      display: flex;
+                      align-items: center;
+                      border-bottom: 2px solid rgb(0, 0, 0);
+                    "
+                  >
+                    <input
+               
+                      style="font-size: 20px"
+                      class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
+                      type="email"
+                      v-model="first_name"
+                    />
+                    
+                  </div>
+                </div>
+                <div
+                  class="m-auto bg-[#F8F8F8]"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 2px solid rgb(0, 0, 0);
+                  "
+                >
+                  <input
+                   
+                    style="font-size: 18px"
+                    class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
+                    type="email"
+                    v-model="email"
+                  />
+                  
+                </div>
+                <div
+                  class="m-auto bg-[#F8F8F8]"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 2px solid rgb(0, 0, 0);
+                  "
+                >
+                  <input
+                    :readonly="!editing"
+                    style="font-size: 18px"
+                    class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
+                    type="password"
+                    v-model="password"
+                  />
+                  
+                </div>
+              </form>
+              <button
+                class="p-4 mt-10 text-center bg-[#148A98] text-white w-full rounded-2xl text-xl"
+              >
+                حفظ التغيرات
+              </button>
+=======
+>>>>>>> 225066767d0f1de8f6dee1195400e211f7fe3bac
             </div>
             <div class="grid grid-cols-2">
               <div
