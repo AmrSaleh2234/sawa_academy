@@ -27,12 +27,13 @@
          
         </p>
       </div>
-    </div>
-      <div class="flex">
       <div class="h-full pt-3">
         <LocaleSelect class="" id="local-switcher" />
       </div>
-      <div class="my-auto"><img src="../image/header/Group22.png" /></div>
+    </div>
+      <div class="flex">
+     
+      <div class="my-auto "><img class="h-[80%]" src="../image/header/Group22.png" /></div>
       </div>
 
   </div>

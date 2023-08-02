@@ -93,7 +93,22 @@ export default {
   Contact_now:"تواصل الان",
   Neurologist:"اخصائي مخ واعصاب",
   user_name:"اسم المستخدم  ",
+  date_of_birth:"تاريخ الميلاد",
+  phone_number:" رقم هاتف للتواصل ",
+  Full_Name:"الاسم الثلاثي",
+  if_your_child_suffers_from_any_diseases_please_write_them_down:" اذا كان طفلك يعاني من اي امراض يرجي كتابتها  ",
+  Note:"ملاحظه",
+  Register_now:"التسجيل الان",
+  From_here_you_can_register_your_child_with_us_to_be_monitored:"يمكنك من هنا تسجيل طفلك معنا لمراقبه  ",
+  The_extent_to_which_his_mental_and_physical_skill_developed:"مدي تطور مهارته العقليه والجسديه  "
+
+
+
+
   
+
+
+
 
 
 
