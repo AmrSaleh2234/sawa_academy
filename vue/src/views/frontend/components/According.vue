@@ -50,6 +50,7 @@
       </div>
       <button @click="isopen = !isopen">
         <svg
+          @click="$emit(getLatestReport)"
           class="mx-auto"
           width="24px"
           height="24px"

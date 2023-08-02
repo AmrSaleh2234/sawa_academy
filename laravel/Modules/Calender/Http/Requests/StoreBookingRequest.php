@@ -16,6 +16,7 @@ class StoreBookingRequest extends FormRequest
         return [
             'event_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
+            'child_id' => ['required', 'integer'],
             // Requester Info
             'requester_name' => ['required', 'string'],
             'requester_phone' => ['required', 'string'],
@@ -24,14 +25,7 @@ class StoreBookingRequest extends FormRequest
             'addtional_phone_owner' => ['required', 'string'],
             'addtional_phone_degree' => ['required', 'string'],
             //Child
-            'child_name' => ['required', 'string'],
-            'child_gender' => ['required', 'in:0,1'],
-            'child_lang' => ['required', 'string'],
-            'child_nationalty' => ['required', 'string'],
-            'child_national_id' => ['required', 'string'],
-            'child_birth_date' => ['required', 'date'],
-            'child_birth_place' => ['required', 'string'],
-            'child_address' => ['required', 'string'],
+
             "conversion_type" => ['required', 'string'],
             'child_doctor' => ['required', 'string'],
 

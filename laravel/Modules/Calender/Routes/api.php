@@ -19,6 +19,7 @@ Route::middleware('auth:parent')->group(function () {
         Route::get('/events', [\Modules\Calender\Http\Controllers\CalenderController::class, 'groupedEventsForParents'])->name('calender.events_parents');
         Route::get('/appointments', [\Modules\Calender\Http\Controllers\CalenderController::class, 'getAllAcceptedBookingDoctors'])->name('calender.getAllAcceptedBookingDoctors');
         Route::post('/store-booking', [\Modules\Calender\Http\Controllers\CalenderController::class, 'storeBookingForChild'])->name('calender.store_booking');
+        Route::get('/booking/{calender}', [\Modules\Calender\Http\Controllers\CalenderController::class, 'show'])->name('calender.event.show');
     });
 });
 

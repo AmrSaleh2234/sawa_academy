@@ -1,5 +1,6 @@
 <template>
   <Map />
+
   <div
     class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
   >
@@ -9,47 +10,42 @@
     >
       <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
     </div>
+
     <div>
       <p
-        class="w-full text-left font-bold m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
+        class="w-full font-bold text-left m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
       >
-
-        <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
-      </div>
-      <div>
-        <p
-          class="w-full text-left m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
-        >
-          الملف الشخصي
-        </p>
-      </div>
-      <div class="text-left m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
-      </div>
+        الملف الشخصي
+      </p>
+    </div>
+    <div class="text-left m-auto">
+      <button class=" ">
+        <router-link class="flex" to="/web">
+          <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
+          <font-awesome-icon
+            class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
+            icon="fa-solid fa-arrow-left"
+          />
+        </router-link>
+      </button>
     </div>
   </div>
-  <div class="relative overflow-clip max-w-full max-h-screen flex">
+  <div class="relative max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />
-    <div class="flex-1 py-9 my-6 overflow-y-scroll">
+    <div class="flex-1 py-9 my-6">
       <div
         class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
       >
         اخر المستجدات
       </div>
-      <NewAcorrding
-        class="mx-4"
-        date="15 مايو"
-        v-for="notification in notifications"
-        :notification="notification"
-      />
+      <div class="overflow-auto" style="height: 67vh">
+        <NewAcorrding
+          class="mx-4"
+          date="15 مايو"
+          v-for="notification in notifications"
+          :notification="notification"
+        />
+      </div>
     </div>
   </div>
   <About />

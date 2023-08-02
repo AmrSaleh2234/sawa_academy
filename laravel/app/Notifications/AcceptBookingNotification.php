@@ -45,7 +45,7 @@ class AcceptBookingNotification extends Notification
                 'event' => $this->event->id,
                 'booking' => $this->booking->id,
                 'event_date' => Carbon::parse($this->event->start)->isoFormat("dddd D"),
-                'event_start' => Carbon::parse($this->event->start)->format("H:i A"),
+                'event_start' => Carbon::parse($this->event->start)->format("h:i A"),
                 "doctor_name" => $this->doctor["doctor_name"],
                 "doctor_title" => $this->doctor["doctor_title"]
             ]

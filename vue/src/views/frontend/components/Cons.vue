@@ -5,8 +5,16 @@
         <img class="m-auto" src="../image/header/calendar-01nobg-01.png" />
       </div>
       <div class="col-span-4 text-center m-auto">
-        <p class="flex text-3xl">
-          السبت-12:00 م
+        <p class="flex items-center text-3xl">
+
+          <div class="flex items-center">
+            <p class=" text-[#FF3765]">
+                {{ event_day(event) }}
+              </p>
+              <p class="px-2  text-[#FF3765]">
+                {{ event_hour(event) }}
+              </p>
+          </div>
           <svg
             fill="#135C65"
             width="35px"
@@ -60,6 +68,17 @@
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
           <label class="text-base font-bold text-right pl-2">{{
+            $t("اسم الطفل")
+          }}</label>
+         <select name="" id="" v-model="booking.child_id" class="py-2">
+          <option v-for="child in childs" :value="child.id" class="py-4">{{ child.name }}</option>
+        </select>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
             $t("اسم ولي امر  مقدم الطلب")
           }}</label>
           <input
@@ -105,163 +124,6 @@
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
           <label class="text-base font-bold text-right pl-2">{{
-            $t("الاسم الرباعي للطفل  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_name"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_name']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("تاريخ الميلاد")
-          }}</label>
-          <input
-            type="date"
-            id="child_name"
-            v-model="booking.child_birth_date"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_birth_date']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("مكان الميلاد  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_birth_place"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_birth_place']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("لغة الطفل الاساسيه  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_lang"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_lang']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الجنسيه")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_nationalty"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_nationalty']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الرقم الوطني")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_national_id"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-
-          <p v-for="error in errors['child_national_id']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("العنوان")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_address"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_address']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-
             $t("رقم هاتف ولي الامر")
           }}</label>
           <input
@@ -391,45 +253,6 @@
         </div>
 
         <p class="p-4 font-bold text-base text-right">اجب عن الاسئله الاتيه</p>
-        <div class="w-full">
-          <h3 class="py-2 text-lg">الجنس</h3>
-          <label for="female" class="text-lg">FeMale</label>
-          <input
-            type="radio"
-            id="female"
-            class="border ring-1 ring-gray-600 mx-2"
-            name="female"
-            value="0"
-            v-model="booking.child_gender"
-          />
-
-          <label for="male" class="text-lg">Male</label>
-          <input
-            type="radio"
-            class="border ring-1 ring-gray-600 mx-2"
-            id="male"
-            name="male"
-            value="1"
-            v-model="booking.child_gender"
-          />
-
-          <!-- <Dropdown
-            v-model=""
-            :options="fruits"
-            optionLabel="name"
-            optionValue="id"
-            placeholder="الجنس"
-            class="w-full text-left"
-          /> -->
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_gender']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div class="w-full">
           <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
           <Dropdown
@@ -578,6 +401,7 @@ import axios from "axios";
 import Dropdown from "primevue/dropdown";
 import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
+import moment from "moment";
 export default {
   props: ["event_id"],
   components: {
@@ -605,23 +429,18 @@ export default {
         { id: 0, name: "لا" },
       ],
       errors: [],
+      childs: [],
+      event: {},
       booking: {
         event_id: "",
         user_id: "",
+        child_id: "",
         requester_name: "",
         requester_phone: "",
         relative_degree: "",
         addtional_phone: "",
         addtional_phone_owner: "",
         addtional_phone_degree: "",
-        child_name: "",
-        child_gender: "",
-        child_lang: "",
-        child_nationalty: "",
-        child_national_id: "",
-        child_birth_date: "",
-        child_birth_place: "",
-        child_address: "",
         conversion_type: "",
         child_doctor: "",
         child_problem: "",
@@ -655,9 +474,41 @@ export default {
           console.log(err);
         });
     },
+    async getEvent() {
+      await axios
+        .get(`/api/calender/booking/${this.event_id}`)
+        .then((res) => {
+          this.event = res.data.calender.start;
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async getChilds() {
+      await axios
+        .get("/api/parent/child/all")
+        .then((res) => {
+          this.childs = res.data.childs;
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    event_day(event_day) {
+      let day = moment(event_day).format("dddd");
+      return `${day}`;
+    },
+    event_hour(event_hour) {
+      let hour = moment(event_hour).format("hh:mm: A");
+      return `${hour}`;
+    },
   },
 
   mounted() {
+    this.getEvent();
+    this.getChilds();
     console.log(this.event_id);
   },
 };

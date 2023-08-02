@@ -37,7 +37,7 @@
             alt=""
             srcset=""
           />
-          <p class="flex flex-col text-center py-2">
+          <p class="flex flex-col text-center py-2" v-if="doctor">
             <span style="color: #00897b; font-size: 2rem">
               {{ doctor.name }}
             </span>
@@ -62,6 +62,17 @@
               rows="4"
             ></textarea>
           </div>
+          <div class="flex flex-col">
+            <label for="notes" class="my-2"> : تقديم تقرير</label>
+            <textarea
+              name="notes"
+              v-model="booking_result"
+              id="notes"
+              class="border ring-1 ring-black border-black rounded-md focus:ring-black"
+              cols="30"
+              rows="4"
+            ></textarea>
+          </div>
           <p class="my-9 py-2 border-black">
             <span class="">
               <span style="color: #00897b">{{ booking.requester_name }}</span>
@@ -71,8 +82,10 @@
         </div>
         <button
           @click.prevent="acceptBooking"
+          id="submit"
           class="w-full text-center py-2.5 px-4 text-white rounded-lg"
           style="background-color: #00838f"
+          :disabled="doctor == null"
         >
           تاكيد الحجز
         </button>
@@ -371,7 +384,7 @@
               </span>
             </p>
 
-            <p class="border-b-2 my-9 py-2 border-black">
+            <p class="border-b-2 my-9 py-2 border-black" v-if="doctor">
               <span class="text-gray-500 flex items-center justify-end">
                 <span
                   class="font-bold text-lg w-1/2 block"
@@ -420,6 +433,7 @@ export default {
       booking: {},
       doctor: {},
       accept_notes: "",
+      booking_result: "",
       show_answer_modal: false,
       show_accept_modal: false,
     };
@@ -446,6 +460,7 @@ export default {
           user_id: this.booking.user_id,
           doctor_name: this.doctor.name,
           doctor_title: this.doctor.title,
+          booking_result: this.booking_result,
         })
         .then((res) => {
           this.show_accept_modal = true;
@@ -485,5 +500,11 @@ export default {
 .item:hover {
   background-color: #e6f8f6;
   transition: all linear 300ms;
+}
+
+#submit:disabled {
+  background-color: #5fbec7;
+  color: #5fbec7;
+  cursor: not-allowed;
 }
 </style>

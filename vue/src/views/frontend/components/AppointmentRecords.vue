@@ -101,7 +101,7 @@ export default {
       return `${day}`;
     },
     event_hour(event_hour) {
-      let hour = moment(event_hour).format("HH:mm: A");
+      let hour = moment(event_hour).format("hh:mm: A");
       return `${hour}`;
     },
   },

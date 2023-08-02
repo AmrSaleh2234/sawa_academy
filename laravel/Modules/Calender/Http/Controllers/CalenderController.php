@@ -18,6 +18,7 @@ use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Http\Requests\StoreBookingRequest;
 use Modules\Calender\Transformers\EventResource;
+use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Services\ChildService;
 
 class CalenderController extends Controller
@@ -56,11 +57,13 @@ class CalenderController extends Controller
         $bookings = Booking::query()
             ->select(
                 'id',
-                'child_name',
-                'child_birth_date as child_age',
                 'requester_phone'
             )
-            ->addSelect(['event_date' => Calender::select('start')->whereColumn('id', 'bookings.event_id')])
+            ->addSelect([
+                'event_date' => Calender::select('start')->whereColumn('id', 'bookings.event_id'),
+                'child_name' => Child::select('name')->whereColumn('id', 'bookings.child_id'),
+                'child_age' => Child::select('birth_date')->whereColumn('id', 'bookings.child_id'),
+            ])
             ->get();
 
         $bookings->map(function ($booking) {
@@ -102,11 +105,8 @@ class CalenderController extends Controller
             ->get();
 
 
-
-
         return $this->bookingControllerHandler->show('bookings', $data);
     }
-
 
     public function showBooking($booking_id, Request $request)
     {
@@ -114,7 +114,16 @@ class CalenderController extends Controller
         $data['booking'] = Booking::query()
             ->select("*")
             ->addSelect([
-                "event_date" => Calender::select('start')->whereColumn('id', 'bookings.event_id')
+                "event_date" => Calender::select('start')->whereColumn('id', 'bookings.event_id'),
+                "child_name" => Child::select('name')->whereColumn('id', 'bookings.child_id'),
+                "child_birth_place" => Child::select('birth_place')->whereColumn('id', 'bookings.child_id'),
+                "child_birth_date" => Child::select('birth_date')->whereColumn('id', 'bookings.child_id'),
+                "child_lang" => Child::select('lang')->whereColumn('id', 'bookings.child_id'),
+                "child_gender" => Child::select('gender')->whereColumn('id', 'bookings.child_id'),
+                "child_nationalty" => Child::select('nationalty')->whereColumn('id', 'bookings.child_id'),
+                "child_national_id" => Child::select('national_id')->whereColumn('id', 'bookings.child_id'),
+                "child_address" => Child::select('address')->whereColumn('id', 'bookings.child_id'),
+
             ])
             ->where('id', $booking_id)
             ->first();
@@ -122,8 +131,7 @@ class CalenderController extends Controller
         if ($data['booking']['doctor_code']) {
             $data['doctor'] = DB::table("users")
                 ->select('users.name', 'users.title')
-                ->leftJoin("events", "events.user_id", '=', 'users.id')
-                ->where('events.id', '=', $data['booking']['event_id'])
+                ->where("id", '=', $data['booking']['doctor_code'])
                 ->first();
         }
 
@@ -156,12 +164,14 @@ class CalenderController extends Controller
             'user_id' => ['required', 'integer'],
             'accepted_notes' => ['nullable', 'string'],
             'doctor_name' => ['required', 'string'],
-            'doctor_title' => ['required', 'string']
+            'doctor_title' => ['required', 'string'],
+            'booking_result' => ['nullable', 'string']
         ]);
 
         $booking->update([
             'accepted' => $request->status,
             'accepted_notes' => $request->accepted_notes,
+            "booking_result" => $request->booking_result ?? null
         ]);
 
         $event = Calender::where('id', $request->event_id)->first();
