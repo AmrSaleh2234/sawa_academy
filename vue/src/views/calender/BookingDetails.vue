@@ -243,7 +243,7 @@
                 <span
                   class="font-normal text-gray-400"
                   style="color: #00897b"
-                  >{{ booking.child_gender }}</span
+                  >{{ booking.child_gender == 1 ? "male" : "female" }}</span
                 >
                 : الجنس
               </span>
@@ -268,7 +268,7 @@
                 <span
                   class="font-normal text-gray-400"
                   style="color: #00897b"
-                  >{{ booking.child_aids }}</span
+                  >{{ booking.child_aids == 1 ? "yes" : "no" }}</span
                 >
                 : هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه
               </span>
@@ -444,6 +444,8 @@ export default {
           accepted_notes: this.accept_notes,
           event_id: this.booking.event_id,
           user_id: this.booking.user_id,
+          doctor_name: this.doctor.name,
+          doctor_title: this.doctor.title,
         })
         .then((res) => {
           this.show_accept_modal = true;

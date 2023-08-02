@@ -56,7 +56,7 @@
           />
         </div>
         <div
-          v-if="errors['requester_name'] != null"
+          v-if="errors != null"
           class="text-red-600 font-semibold text-sm rounded-md"
         >
           <p v-for="error in errors['requester_name']">
@@ -77,7 +77,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['relative_degree']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -97,7 +100,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_name']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -116,7 +122,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_birth_date']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -135,7 +144,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_birth_place']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -155,7 +167,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_lang']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -174,7 +189,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_nationalty']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -193,8 +211,11 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
 
-        <div class="text-red-600 font-semibold text-sm rounded-md">
           <p v-for="error in errors['child_national_id']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -213,7 +234,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_address']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -233,7 +257,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['requester_phone']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -252,7 +279,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['addtional_phone']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -271,7 +301,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['addtional_phone_owner']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -290,7 +323,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['addtional_phone_degree']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -309,7 +345,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['conversion_type']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -328,7 +367,10 @@
             class="border-b focus:ring-0 text-center"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_doctor']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -337,16 +379,39 @@
         <p class="p-4 font-bold text-base text-right">اجب عن الاسئله الاتيه</p>
         <div class="w-full">
           <h3 class="py-2 text-lg">الجنس</h3>
-          <Dropdown
+          <label for="female" class="text-lg">FeMale</label>
+          <input
+            type="radio"
+            id="female"
+            class="border ring-1 ring-gray-600 mx-2"
+            name="female"
+            value="0"
             v-model="booking.child_gender"
+          />
+
+          <label for="male" class="text-lg">Male</label>
+          <input
+            type="radio"
+            class="border ring-1 ring-gray-600 mx-2"
+            id="male"
+            name="male"
+            value="1"
+            v-model="booking.child_gender"
+          />
+
+          <!-- <Dropdown
+            v-model=""
             :options="fruits"
             optionLabel="name"
             optionValue="id"
             placeholder="الجنس"
             class="w-full text-left"
-          />
+          /> -->
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_gender']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -362,7 +427,10 @@
             class="w-full text-left"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_problem']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -379,7 +447,10 @@
             v-model="booking.child_problems_notes"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_problems_notes']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -394,7 +465,10 @@
             placeholder="هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه"
             class="w-full text-left"
           />
-          <div class="text-red-600 font-semibold text-sm rounded-md">
+          <div
+            class="text-red-600 font-semibold text-sm rounded-md"
+            v-if="errors != null"
+          >
             <p v-for="error in errors['child_aids']">
               <span v-for="err in error">{{ err }} </span>
             </p>
@@ -408,7 +482,10 @@
               cols="30"
             />
           </div>
-          <div class="text-red-600 font-semibold text-sm rounded-md">
+          <div
+            v-if="errors != null"
+            class="text-red-600 font-semibold text-sm rounded-md"
+          >
             <p v-for="error in errors['child_aids_notes']">
               <span v-for="err in error">{{ err }} </span>
             </p>
@@ -425,7 +502,10 @@
             cols="30"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['child_parents_problems']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -441,7 +521,10 @@
             cols="30"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['parents_priorities']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -454,7 +537,10 @@
             placeholder="ادخل كود استشاري تريده"
           />
         </div>
-        <div class="text-red-600 font-semibold text-sm rounded-md">
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
           <p v-for="error in errors['doctor_code']">
             <span v-for="err in error">{{ err }} </span>
           </p>
@@ -536,7 +622,7 @@ export default {
   },
   methods: {
     async bookTime() {
-      delete this.errors;
+      this.errors = null;
       this.booking.user_id = this.parentStore.user.id;
       this.booking.event_id = this.event_id;
       console.log(this.booking);
@@ -544,6 +630,9 @@ export default {
         .post("/api/calender/store-booking", this.booking)
         .then((res) => {
           this.errors = null;
+          Object.keys(this.booking).forEach((key) => {
+            this.booking[key] = null;
+          });
           console.log(res);
         })
         .catch((err) => {

@@ -1,13 +1,19 @@
 <template>
-
-    <Map />
+  <Map />
+  <div
+    class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
+  >
     <div
-      class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
+      class="col-span-1 text-right m-auto visible md:invisible"
+      @click="toggle()"
     >
-      <div
-        class="col-span-1 text-right m-auto visible md:invisible"
-        @click="toggle()"
+      <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
+    </div>
+    <div>
+      <p
+        class="w-full text-left font-bold m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
       >
+
         <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
       </div>
       <div>
@@ -29,21 +35,24 @@
         </button>
       </div>
     </div>
-    <div class="relative overflow-clip max-w-full max-h-screen flex">
-      <sidbar :sole="showsider" />
-      <div class="flex-1 py-9 overflow-scroll">
-        <div
-          class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow"
-        >
-          اخر المستجدات
-        </div>
-        <NewAcorrding date="15 مايو" v-for="notification in notifications">
-          {{ notification.data.message }}
-        </NewAcorrding>
+  </div>
+  <div class="relative overflow-clip max-w-full max-h-screen flex">
+    <sidbar :sole="showsider" />
+    <div class="flex-1 py-9 my-6 overflow-y-scroll">
+      <div
+        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
+      >
+        اخر المستجدات
       </div>
+      <NewAcorrding
+        class="mx-4"
+        date="15 مايو"
+        v-for="notification in notifications"
+        :notification="notification"
+      />
     </div>
-    <About />
-
+  </div>
+  <About />
 </template>
 <script>
 import Map from "../components/Map.vue";

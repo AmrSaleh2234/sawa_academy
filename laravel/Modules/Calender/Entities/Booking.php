@@ -2,8 +2,10 @@
 
 namespace Modules\Calender\Entities;
 
+use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Booking extends Model
 {
@@ -39,6 +41,10 @@ class Booking extends Model
         "doctor_code",
         'accepted',
         'accepted_notes',
+    ];
+
+    protected $casts = [
+        'child_gender' => Gender::class,
     ];
 
     protected static function newFactory()

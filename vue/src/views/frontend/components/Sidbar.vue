@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#135C65]  z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%]   px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
+    class="bg-[#135C65] z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%] px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
     :class="{ 'fixed translate-x-0 ': sole }"
   >
     <div
@@ -13,7 +13,7 @@
       </p>
       <p class="text-center text-white">{{ parentStore.user.email }}</p>
     </div>
-    <div class="  space-y-4 py-6">
+    <div class="space-y-4 py-6">
       <div class=" ">
         <router-link
           class="flex  justify-between p-4"
@@ -32,6 +32,7 @@
               <circle id="Ellipse_34" data-name="Ellipse 34" cx="7.5" cy="7.5" r="7.5" fill="white"/>
             </svg>
           </div>
+
         </router-link>
       </div>
       <div class=" ">
@@ -96,11 +97,12 @@
           
         </router-link>
       </div>
-      <div class="w-full" style="border: 1px solid;"></div>
-      <div class=" bottom-0">
+      <div class="w-full" style="border: 1px solid"></div>
+      <div class="bottom-0">
         <button
           class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
         >
+
           <router-link :to="{ name: 'Profile' }">{{$t("Modify_profile")}}</router-link>
         </button>
         <button
@@ -111,7 +113,6 @@
         </button>
       </div>
     </div>
-   
   </div>
 </template>
 <script>

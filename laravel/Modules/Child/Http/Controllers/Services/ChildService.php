@@ -20,6 +20,15 @@ class ChildService
         return $childAgeInMonth;
     }
 
+    public function calcChildAgeInMonthsWithAgeParam($age)
+    {
+        $childAgeInMonth = (Carbon::parse($age)->diffInMonths(Carbon::now('EET')));
+        if ((int)Carbon::parse($age)->diff(Carbon::now('EET'))->format('%d') >= 15)
+            $childAgeInMonth++;
+        return $childAgeInMonth;
+    }
+
+
     public function getChildWithAgeInMonthAndCheckIfCanDoExam($child, $evaluation)
     {
         $child->childInMonths = $this->calcChildAgeInMonths($child);

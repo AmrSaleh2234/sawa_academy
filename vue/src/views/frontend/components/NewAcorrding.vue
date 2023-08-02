@@ -1,21 +1,41 @@
 <template>
-  <div class="border-b-2 rounded max-w-full mb-4 min-w-min bg-[#F8F8F8]">
-    <div class="shadow p-4 font-bold rounded flex justify-between">
+  <div
+    class="rounded-lg py-2 shadow-md px-4 max-w-full mb-4 min-w-min bg-gray-100"
+  >
+    <div class="pt-4 font-bold rounded flex justify-between">
       <div class="flex">
         <div><img src="../image/header/Group463.png" /></div>
-        <p class="text-xl m-auto p-2 font-thin">اكاديميه سوا</p>
+        <p class="text-xl m-auto p-2 text-right font-semibold">اكاديميه سوا</p>
       </div>
-      <div class="my-auto font-thin text-[#148A98]">{{ date }}</div>
+      <div class="my-auto text-right font-semibold text-lg text-[#148A98]">
+        {{ notification.data.data.event_date }}
+      </div>
     </div>
-    <div class="mt-4 border-b-2 p-2 rounded font-thin text-right">
-      <slot></slot>
+    <div class="rounded text-right font-semibold text-lg">
+      <p class="block py-2">{{ notification.data.message }}</p>
+      <p class="block py-2">
+        <span style="color: #135c65">{{
+          notification.data.data.doctor_name
+        }}</span>
+        : اسم الاخصائي
+      </p>
+      <p class="block py-2">
+        الاختصاص :
+        <span style="color: #135c65">{{
+          notification.data.data.doctor_title
+        }}</span>
+      </p>
+      <p class="block py-2">
+        <span style="color: #135c65">{{
+          notification.data.data.event_start
+        }}</span>
+        : موعد الاستشاره
+      </p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: {
-    date: String,
-  },
+  props: ["date", "notification"],
 };
 </script>

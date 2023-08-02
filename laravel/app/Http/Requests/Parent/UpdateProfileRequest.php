@@ -25,7 +25,7 @@ class UpdateProfileRequest extends FormRequest
             "fname" => ['required', 'string'],
             "lname" => ['required', 'string'],
             "email" => ['required', 'string', 'email'],
-            'image' => ['required', 'image'],
+            'image' => ['required'],
         ];
     }
 }
