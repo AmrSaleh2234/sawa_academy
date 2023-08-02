@@ -51,7 +51,7 @@ export default {
   bookings:"Bookings",
   follow_the_child:"follow the child",
   evaluation_result:"Evaluation result",
-  Modify_profile:"Modify profile",
+  Modify_profile:"Edite profile",
   sign_out:"sign out",
   Save_changes:"Save changes",
   sign_in:"Sing in" ,
@@ -91,7 +91,16 @@ export default {
   Sawa_Academy_team:"Sawa Academy team  ",
   We_have_a_group_of_highly_experienced_therapists:"We have a group of highly experienced therapists  ",
   Contact_now:"Contact now  ",
-  Neurologist:"Neurologist"
+  Neurologist:"Neurologist",
+  user_name:"user name",
+  date_of_birth:"date of birth ",
+  phone_number:"Contact phone number  ",
+  Full_Name:"Full Name ",
+  if_your_child_suffers_from_any_diseases_please_write_them_down:" if your child suffers from any diseases, please write them down",
+  Note:"Note",
+  Register_now:"Register now ",
+  From_here_you_can_register_your_child_with_us_to_be_monitored:"From here you can register your child with us to be monitored  ",
+  The_extent_to_which_his_mental_and_physical_skill_developed:"The extent to which his mental and physical skill developed"
 
 
 

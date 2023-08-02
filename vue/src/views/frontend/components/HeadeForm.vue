@@ -8,7 +8,7 @@
             <div style="color: white;" class="relative flex  justify-between bg-black p-2 opacity-70 w-[100%] rounded-3xl">
                 <button class="p-2 text-[#FFCF24]">{{$t("search")}}</button>
                 <div class="flex w-[90%]">
-                    <input type="search" class="text-center  border-0 flex text-xs w-[90%] break-words   bg-black md:text-xl" :placeholder="$t('looking_for_a_doctor_health_care_courses')">
+                    <input type="search" class="text-center focus:ring-0 border-0 flex text-xs w-[90%] break-words   bg-black md:text-xl" :placeholder="$t('looking_for_a_doctor_health_care_courses')">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <button class="m-auto text-2xl" ><v-icon small>mdi-magnify</v-icon></button>
                     
