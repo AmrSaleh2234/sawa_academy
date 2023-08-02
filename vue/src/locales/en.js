@@ -91,7 +91,8 @@ export default {
   Sawa_Academy_team:"Sawa Academy team  ",
   We_have_a_group_of_highly_experienced_therapists:"We have a group of highly experienced therapists  ",
   Contact_now:"Contact now  ",
-  Neurologist:"Neurologist"
+  Neurologist:"Neurologist",
+  user_name:"user name"
 
 
 

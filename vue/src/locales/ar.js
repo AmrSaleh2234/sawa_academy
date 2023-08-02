@@ -91,7 +91,10 @@ export default {
   Sawa_Academy_team:"فريق اكاديميه سوا",
   We_have_a_group_of_highly_experienced_therapists:"لدينا مجموعه من الاخصائين العالجين ذو خبره عاليه",
   Contact_now:"تواصل الان",
-  Neurologist:"اخصائي مخ واعصاب"
+  Neurologist:"اخصائي مخ واعصاب",
+  user_name:"اسم المستخدم  ",
+  
+
 
 
 
