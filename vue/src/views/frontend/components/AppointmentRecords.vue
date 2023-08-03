@@ -1,35 +1,37 @@
 <template>
   <div class="">
-    <div
-      class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
-    >
-      <div class="text-right m-auto visible md:invisible" @click="toggle()">
-        <font-awesome-icon
-          class="text-2xl md:text-3xl text-right p-4 text-black hover:text-red-600"
-          icon="fa-solid fa-bars "
-        ></font-awesome-icon>
-      </div>
+    <div class="grid grid-cols-3 border-b-2 p-2 border-x-cyan-950 border-solid">
+    <div class="m-auto">
+      <v-btn
+          height="45"
+          class="mb-5 text-lg m-auto text-white"
+          color="#135C65"
+      >
+        <router-link :to="{ name: 'home' }">
+          <v-icon start icon="mdi-arrow-left"></v-icon>
+          {{ $t("home") }}
+        </router-link>
+      </v-btn>
+    </div>
+    <div @click="toggle" class="m-auto invisible">
+      <svg fill="#000000" width="54px" height="54px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"></path>
+        </g>
+      </svg>
+    </div>
       <div>
         <p
-          class="text-center m-auto col-span-2 px-2 py-4 text-xl font-bold text-[#6EB7BF]"
+          class="text-center   text-xl font-bold text-[#6EB7BF]"
         >
           الملف الشخصي
         </p>
       </div>
-      <div class="text-right m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
-      </div>
     </div>
     <div class="relative overflow-clip max-w-full max-h-screen flex">
-      <sidbar :sole="showsider" />
+      <sidbar class="z-10" :sole="showsider" />
       <div class="flex-1 overflow-scroll">
         <div class="bg-white text-2xl w-full text-[#6EB7BF] p-6 text-right">
           الحجوزات

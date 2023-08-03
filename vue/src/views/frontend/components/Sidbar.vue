@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#135C65] z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%] px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
+    class="bg-[#135C65]  z-10 text-cyan-100 md:w-80 w-72 h-full py-[2%]   px-2 absolute inset-y-0 left-0 md:relative md:-translate-x-0 transform -translate-x-full transition duration-200 ease-in-out"
     :class="{ 'fixed translate-x-0 ': sole }"
   >
     <div
@@ -13,7 +13,7 @@
       </p>
       <p class="text-center text-white">{{ parentStore.user.email }}</p>
     </div>
-    <div class="space-y-4 py-6">
+    <div class="  space-y-4 py-6">
       <div class=" ">
         <router-link
           class="flex  justify-between p-4"
@@ -32,7 +32,6 @@
               <circle id="Ellipse_34" data-name="Ellipse 34" cx="7.5" cy="7.5" r="7.5" fill="white"/>
             </svg>
           </div>
-
         </router-link>
       </div>
       <div class=" ">
@@ -57,22 +56,23 @@
           </div>
         </router-link>
       </div>
-      <div class="sid ">
+      <div class=" ">
         <router-link
           class="flex  justify-between p-4"
           :to="{ name: 'Following' }"
         >
         
-          <div class="flex ">
+          <div class="flex sid">
             <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="22.609" height="20" viewBox="0 0 22.609 20">
               <path id="arrow-undo" d="M25.118,25.066a.87.87,0,0,1-.686-.334,12.265,12.265,0,0,0-3.985-3.642,13.27,13.27,0,0,0-5.765-1.23V24.2a.87.87,0,0,1-1.467.629L3.648,15.694a.87.87,0,0,1,0-1.258L13.215,5.3a.87.87,0,0,1,1.467.629V10.3c4.03.186,7.032,1.68,8.933,4.45,1.575,2.294,2.372,5.472,2.372,9.446A.87.87,0,0,1,25.118,25.066Z" transform="translate(-3.379 -5.066)" fill="#fff"/>
             </svg>
-            <p class="text-white  text-xl px-2">{{$t("follow_the_child")}}</p>            
+            <p class="text-white px-2 text-xl px-2">{{$t("follow_the_child")}}</p>            
           </div>
           <div class="my-auto ">
             <svg class="m-auto " xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
               <circle id="Ellipse_34" data-name="Ellipse 34" cx="7.5" cy="7.5" r="7.5" fill="white"/>
-            </svg>  
+            </svg>
+            
           </div>
         </router-link>
       </div>
@@ -97,12 +97,11 @@
           
         </router-link>
       </div>
-      <div class="w-full" style="border: 1px solid"></div>
-      <div class="bottom-0">
+      <div class="w-full" style="border: 1px solid;"></div>
+      <div class=" bottom-0">
         <button
           class="w-full py-2 my-2 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
         >
-
           <router-link :to="{ name: 'Profile' }">{{$t("Modify_profile")}}</router-link>
         </button>
         <button
@@ -113,6 +112,7 @@
         </button>
       </div>
     </div>
+   
   </div>
 </template>
 <script>
@@ -128,8 +128,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.sid:hover svg{
-
-}
-</style>

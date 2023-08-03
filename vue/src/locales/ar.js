@@ -52,7 +52,7 @@ export default {
   bookings:"الحجوزات",
   follow_the_child:"متابعه الطفل",
   evaluation_result:" نتيجه التقييم ",
-  Modify_profile:" نتيجه التقييم ",
+  Modify_profile:" تعديل الملف السخصي ",
   sign_out:" تسجيل الخروج",
   Save_changes:" حفظ التغيرات",
   sign_in:" تسجيل دخول ",
