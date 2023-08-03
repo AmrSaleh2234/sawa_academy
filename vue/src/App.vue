@@ -5,6 +5,5 @@
     <div class="switcher">
       <RouterView />
     </div>
-
   </v-app>
 </template>
