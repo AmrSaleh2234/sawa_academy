@@ -4,35 +4,48 @@
       class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
     >
       <div class="text-right m-auto visible md:invisible" @click="toggle()">
-        <font-awesome-icon
-          class="text-2xl md:text-3xl text-right p-4 text-black hover:text-red-600"
-          icon="fa-solid fa-bars "
-        ></font-awesome-icon>
+        <svg
+        fill="#000000"
+        width="54px"
+        height="54px"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
+          ></path>
+        </g>
+      </svg>
       </div>
-      <div>
-        <p
-          class="text-center m-auto col-span-2 px-2 py-4 text-xl font-bold text-[#6EB7BF]"
+      <div class="m-auto">
+        <p class="text-center font-bold text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+      </div>
+      <div class="m-auto">
+        <v-btn
+          height="45"
+          to="/web"
+          class=" text-lg m-auto text-white"
+          color="#135C65"
         >
-          الملف الشخصي
-        </p>
-      </div>
-      <div class="text-right m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
-              icon="fa-solid fa-arrow-left"
-            />
+          <router-link :to="{ name: 'home' }">
+            <v-icon start icon="mdi-arrow-left"></v-icon>
+            {{ $t("home") }}
           </router-link>
-        </button>
+        </v-btn>
       </div>
     </div>
-    <div class="relative overflow-clip max-w-full max-h-screen flex">
+    <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="bg-white text-2xl w-full text-[#6EB7BF] p-6 text-right">
-          الحجوزات
+        <div class="bg-white text-2xl w-full text-[#6EB7BF] p-6 font-bold">
+          {{ $t("bookings") }}
         </div>
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a

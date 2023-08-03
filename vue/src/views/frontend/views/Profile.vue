@@ -11,12 +11,12 @@
         >
           <router-link :to="{ name: 'home' }">
             <v-icon start icon="mdi-arrow-left"></v-icon>
-            {{ $t("الرئيسيه") }}
+            {{ $t("home") }}
           </router-link>
         </v-btn>
       </div>
       <div class="m-auto">
-        <p class="text-center p-6 text-2xl text-[#6EB7BF]">الملف الشخصي</p>
+        <p class="text-center p-6 text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
       </div>
       <div @click="toggle" class="m-auto md:invisible">
         <svg
@@ -44,7 +44,7 @@
       <sidbar class="" :sole="showsider" />
       <div class="flex-1 space-y-10">
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
-          <button>تعديل الملف الشخصي</button>
+          <button class="font-bold">{{$t("Modify_profile")}}</button>
         </div>
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
@@ -161,7 +161,7 @@
                 style="font-size: 18px"
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
-                placeholder="password"
+                :placeholder="$t('password')"
                 v-model="parent.password"
               />
             </div>
@@ -169,8 +169,8 @@
               @click="updateProfile"
               class="p-4 mt-10 text-center bg-[#148A98] text-white w-full rounded-2xl text-xl"
             >
-              حفظ التغيرات
-            </button>
+            {{ $t("Save_changes") }}
+                      </button>
           </div>
         </div>
       </div>

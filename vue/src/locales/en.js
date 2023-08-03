@@ -100,7 +100,10 @@ export default {
   Note:"Note",
   Register_now:"Register now ",
   From_here_you_can_register_your_child_with_us_to_be_monitored:"From here you can register your child with us to be monitored  ",
-  The_extent_to_which_his_mental_and_physical_skill_developed:"The extent to which his mental and physical skill developed"
+  The_extent_to_which_his_mental_and_physical_skill_developed:"The extent to which his mental and physical skill developed",
+  bookings:"bookings",
+  The_latest_developments:"The latest developments",
+  Child_follow_up:"Child follow-up"
 
 
 

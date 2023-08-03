@@ -9,18 +9,22 @@
         @click="toggle()"
       ></div>
       <div>
-        <p
-          class="w-full font-bold text-left m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
-        >
-          الملف الشخصي
-        </p>
+        <div class="m-auto">
+          <p class="ont text-center font-bold text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+        </div>
       </div>
       <div class="text-left m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
+        <v-btn
+          height="45"
+          to="/web"
+          class=" text-lg m-auto text-white"
+          color="#135C65"
+        >
+          <router-link :to="{ name: 'home' }">
+            <v-icon start icon="mdi-arrow-left"></v-icon>
+            {{ $t("home") }}
           </router-link>
-        </button>
+        </v-btn>
       </div>
     </div>
     <div class="relative overflow-clip max-w-full max-h-screen flex">
@@ -29,8 +33,8 @@
         <div
           class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow"
         >
-          نتيجه التقيم
-        </div>
+        {{ $t("evaluation_result") }}
+      </div>
         <according class="text-xs block" name="محمد عماد محمد الشيخ" age="15">
           <p>طفلي اصبح اكثر مهاره</p>
         </according>
