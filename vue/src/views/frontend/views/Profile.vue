@@ -1,4 +1,3 @@
-
 <template>
   <div class="switcher">
     <Map />
@@ -47,24 +46,25 @@
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
           <button>تعديل الملف الشخصي</button>
         </div>
-
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
             <div class="relative m-auto">
               <input
                 type="file"
                 ref="fileInput"
-                style="display: none"
+                name="image"
+                id="image"
+                hidden
                 @change="handleFileUpload"
               />
               <img
-                @click="openFileUpload"
+                @click="openFile"
                 :src="imageSrc"
                 class="uploaded-image relative m-auto cursor-pointer rounded-full"
               />
 
               <svg
-                @click="openFileUpload"
+                @click="openFile"
                 class="cursor-pointer absolute left-[50%] m-auto bottom-0 bg-white rounded-full p-1 h-8 w-8"
                 viewBox="-2.4 -2.4 28.80 28.80"
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,6 @@
                 </g>
               </svg>
             </div>
-
             <div style="font-size: 16px" class="flex">
               <p class="m-auto text-center text-[#FF3765]">
                 تنبيه هام : برجاء اختيار حجم الصوره 440 بسكل * 660 بسكيل
@@ -163,7 +162,7 @@
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
                 placeholder="password"
-                v-model="password"
+                v-model="parent.password"
               />
             </div>
             <button
@@ -172,11 +171,9 @@
             >
               حفظ التغيرات
             </button>
-
           </div>
         </div>
       </div>
-      <About />
     </div>
     <About />
   </div>
@@ -195,13 +192,14 @@ export default {
   data() {
     return {
       imageSrc: null,
+      image: null,
       parentStore: useParentStore(),
       parent: {
         fname: "",
         lname: "",
         email: "",
         password: "",
-        image: {},
+        image: null,
       },
       showsider: false,
       value: 65,
@@ -221,50 +219,46 @@ export default {
         .get("/api/parent/user")
         .then((res) => {
           this.parent = res.data.user;
+          this.imageSrc = `http://localhost:8000${this.parent.image}`;
           console.log(res);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    onUpload() {
-      this.$toast.add({
-        severity: "info",
-        summary: "Success",
-        detail: "File Uploaded",
-        life: 3000,
-      });
+    openFile() {
+      this.$refs.fileInput.click();
     },
-    openFileUpload() {
-      // Get the file input element using the "ref" attribute
-      const fileInput = this.$refs.fileInput;
-
-      // Trigger the click event on the file input element
-      fileInput.click();
-    },
-    handleFileUpload(event) {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.imageSrc = e.target.result;
-        };
-        reader.readAsDataURL(selectedFile);
-        this.parent.image = event.target.files[0];
-        console.log(this.parent.image);
-      }
+    handleFileUpload(e) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = (e) => {
+        this.imageSrc = e.target.result;
+        this.parent.image = image;
+        console.log(this.imageSrc);
+      };
     },
     updateProfile() {
       let self = this;
       const formData = new FormData();
-      Object.keys(self.parent).forEach((key) => {
-        console.log(key);
-        if ((key == "image" || key == "video") && self.parent[key] == null)
-          return;
-        formData.append(key, self.parent[key]);
-      });
+
+      formData.append("fname", this.parent.fname);
+      formData.append("lname", this.parent.lname);
+      formData.append("email", this.parent.email);
+      if (this.$refs.fileInput.files[0] != null) {
+        formData.append("image", this.$refs.fileInput.files[0]);
+      }
+      if (this.parent.password != null) {
+        formData.append("password", this.parent.password);
+      }
+
       axios
-        .post("/api/parent/profile", formData)
+        .post("/api/parent/profile", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((res) => {
           console.log(res);
         })
@@ -277,59 +271,55 @@ export default {
     imageClass() {
       // Return a string of Tailwind CSS classes to set the width of the image
       return this.imageSrc ? ["w-40", "h-0"] : ""; // Adjust the 'w-64' class to set the desired width
-
     },
-      methods: {
-          toggleEditing() {
-        this.editing = !this.editing;
-      },
-          toggle(){
-              this.showsider=!this.showsider
-          },
-          home(){
-              
-          },
-          onUpload() {
-              this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-          },
-          openFileUpload() {
-        // Get the file input element using the "ref" attribute
-        const fileInput = this.$refs.fileInput;
-  
-        // Trigger the click event on the file input element
-        fileInput.click();
-      },
-      handleFileUpload(event) {
-        // Handle the file selection here
-        const selectedFile = event.target.files[0];
-        if (selectedFile) {
-          // Create a FileReader to read the file as a data URL
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            // Set the imageSrc data property with the data URL of the selected image
-            this.imageSrc = e.target.result;
-          };
-          // Read the selected file as a data URL
-          reader.readAsDataURL(selectedFile);
-        }
-      },
-      },
-    }
-  
-  </script>
-  <style>
-  .uploaded-image {
-    width: 101px; 
-    height:101px;
-   
-  }
+    //   methods: {
+    //     toggleEditing() {
+    //       this.editing = !this.editing;
+    //     },
+    //     toggle() {
+    //       this.showsider = !this.showsider;
+    //     },
+    //     home() {},
+    //     onUpload() {
+    //       this.$toast.add({
+    //         severity: "info",
+    //         summary: "Success",
+    //         detail: "File Uploaded",
+    //         life: 3000,
+    //       });
+    //     },
+    //     openFileUpload() {
+    //       // Get the file input element using the "ref" attribute
+    //       const fileInput = this.$refs.fileInput;
+
+    //       // Trigger the click event on the file input element
+    //       fileInput.click();
+    //     },
+    //     handleFileUpload(event) {
+    //       // Handle the file selection here
+    //       const selectedFile = event.target.files[0];
+    //       if (selectedFile) {
+    //         // Create a FileReader to read the file as a data URL
+    //         const reader = new FileReader();
+    //         reader.onload = (e) => {
+    //           // Set the imageSrc data property with the data URL of the selected image
+    //           this.imageSrc = e.target.result;
+    //         };
+    //         // Read the selected file as a data URL
+    //         reader.readAsDataURL(selectedFile);
+    //       }
+    //     },
+    //   },
+    // },
+  },
+  mounted() {
+    this.getUserProfile();
+  },
+};
+</script>
+<style>
+.uploaded-image {
+  width: 101px;
+  height: 101px;
+}
 </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  

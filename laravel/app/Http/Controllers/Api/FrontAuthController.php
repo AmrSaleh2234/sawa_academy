@@ -95,10 +95,8 @@ class FrontAuthController extends Controller
     public function profile(UpdateProfileRequest $request)
     {
         $user = $request->user('parent');
-        $data = $request->validated();
-        // $data = json_decode($request->validated(), true);
 
-        // return $data;
+        $data = $request->validated();
 
         if ($request->file('image')) {
             if (!empty($user->image)) {

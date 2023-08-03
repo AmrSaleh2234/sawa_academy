@@ -6,14 +6,11 @@
     <div
       class="col-span-1 text-right m-auto visible md:invisible"
       @click="toggle()"
-    >
-      <font-awesome-icon
-        class="text-2xl md:text-3xl text-right p-4 text-black hover:text-red-600"
-        icon="fa-solid fa-bars "
-      ></font-awesome-icon>
-    </div>
+    ></div>
     <div>
-      <p class="text-center m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]">
+      <p
+        class="text-center m-auto font-bold col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
+      >
         الملف الشخصي
       </p>
     </div>
@@ -27,20 +24,24 @@
   </div>
   <div class="relative max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />
-    <div class="flex-1 overflow-auto">
+    <div class="flex-1">
       <div
-        class="bg-white text-2xl overflow-auto w-full text-[#6EB7BF] py-4 text-center shadow"
+        class="bg-white text-2xl w-full text-[#6EB7BF] py-4 text-center shadow"
       >
         متابعه الطفل
       </div>
-      <according
-        v-for="child in childs"
-        class="text-xs block"
-        :name="child.name"
-        :age="child.age"
-      >
-        <p>طفلي اصبح اكثر مهاره</p>
-      </according>
+
+      <div class="overflow-auto" style="height: 70vh">
+        <according
+          @getLatestReport="getLatestReport"
+          v-for="child in childs"
+          class="text-xs block"
+          :name="child.name"
+          :age="child.age"
+        >
+          <p>طفلي اصبح اكثر مهاره</p>
+        </according>
+      </div>
 
       <v-row justify="center" class="mx-auto text-center">
         <v-col sm="12" md="6">
@@ -58,26 +59,181 @@
                   title="  اضافه طفل جديد"
                 ></v-toolbar>
                 <div class="flex flex-col gap-4 p-3">
-                  <div class="flex flex-col">
-                    <label for="child_name" class="text-sm pl-2">{{
-                      $t("child_name")
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("الاسم الرباعي للطفل  ")
                     }}</label>
                     <input
                       type="text"
-                      id="child_name"
+                      id="name"
                       v-model="child.name"
-                      class="border-b focus:ring-0"
+                      class="border-b focus:ring-0 text-center"
                     />
                   </div>
-                  <div class="flex flex-col space-y-1">
-                    <label for="child_age" class="text-sm pl-2">{{
-                      $t("child_age")
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['name']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("تاريخ الميلاد")
                     }}</label>
                     <input
                       type="date"
-                      id="child_age"
+                      id="birth_date"
                       v-model="child.birth_date"
-                      class="border-b focus:ring-0"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['birth_date']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("مكان الميلاد  ")
+                    }}</label>
+                    <input
+                      type="text"
+                      id="birth_place"
+                      v-model="child.birth_place"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['birth_place']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("لغة الطفل الاساسيه  ")
+                    }}</label>
+                    <input
+                      type="text"
+                      id="lang"
+                      v-model="child.lang"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['lang']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("الجنسيه")
+                    }}</label>
+                    <input
+                      type="text"
+                      id="nationalty"
+                      v-model="child.nationalty"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['nationalty']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("الرقم الوطني")
+                    }}</label>
+                    <input
+                      type="text"
+                      id="national_id"
+                      v-model="child.national_id"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['national_id']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div
+                    class="flex flex-col"
+                    style="border-bottom: 2px solid rgb(194, 188, 188)"
+                  >
+                    <label class="text-base font-bold text-right pl-2">{{
+                      $t("العنوان")
+                    }}</label>
+                    <input
+                      type="text"
+                      id="address"
+                      v-model="child.address"
+                      class="border-b focus:ring-0 text-center"
+                    />
+                  </div>
+                  <div
+                    v-if="errors != null"
+                    class="text-red-600 font-semibold text-sm rounded-md"
+                  >
+                    <p v-for="error in errors['address']">
+                      <span v-for="err in error">{{ err }} </span>
+                    </p>
+                  </div>
+                  <div class="w-full text-right">
+                    <h3 class="text-base font-bold text-right pl-2">الجنس</h3>
+                    <label for="female" class="text-lg">FeMale</label>
+                    <input
+                      type="radio"
+                      id="female"
+                      class="border ring-1 ring-gray-600 mx-2"
+                      name="female"
+                      value="0"
+                      v-model="child.gender"
+                    />
+
+                    <label for="male" class="text-lg">Male</label>
+                    <input
+                      type="radio"
+                      class="border ring-1 ring-gray-600 mx-2"
+                      id="male"
+                      name="male"
+                      value="1"
+                      v-model="child.gender"
                     />
                   </div>
                 </div>
@@ -102,9 +258,7 @@ import According from "../components/According.vue";
 import Sidbar from "../components/Sidbar.vue";
 import About from "../components/About.vue";
 import { useParentStore } from "../../../stores/ParentStore";
-import { parse } from "date-fns";
 import axios from "axios";
-import moment from "moment";
 export default {
   components: { Map, According, Sidbar, About },
   data() {
@@ -112,10 +266,20 @@ export default {
       showsider: false,
       childs: [],
       parentStore: useParentStore(),
+      errors: [],
+      report: "",
       child: {
         name: "",
         parent_id: "",
         birth_date: "",
+        name: "",
+        gender: "",
+        lang: "",
+        nationalty: "",
+        national_id: "",
+        birth_date: "",
+        birth_place: "",
+        address: "",
       },
     };
   },
@@ -135,12 +299,28 @@ export default {
         });
     },
     addChild() {
+      this.errors = null;
       this.child.parent_id = this.parentStore.user.id;
       axios
         .post("/api/parent/child/create", this.child)
         .then((res) => {
-          // this.childs.push(res.data.children);
+          this.errors = null;
+          Object.keys(this.child).forEach((key) => {
+            this.child[key] = null;
+          });
           this.getChilds();
+          console.log(res);
+        })
+        .catch((err) => {
+          this.errors = err.response.data.errors;
+          console.log(err);
+        });
+    },
+    async getLatestReport() {
+      await axios
+        .get("/api/parent/child/report")
+        .then((res) => {
+          this.report = res.data.report;
           console.log(res);
         })
         .catch((err) => {

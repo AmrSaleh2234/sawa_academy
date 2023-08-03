@@ -5,7 +5,9 @@
     <div class="pt-4 font-bold rounded flex justify-between">
       <div class="flex">
         <div><img src="../image/header/Group463.png" /></div>
-        <p class="text-xl m-auto p-2 text-right font-semibold">اكاديميه سوا</p>
+        <p class="text-xl m-auto p-2 pb-0 text-right font-semibold">
+          اكاديميه سوا
+        </p>
       </div>
       <div class="my-auto text-right font-semibold text-lg text-[#148A98]">
         {{ notification.data.data.event_date }}

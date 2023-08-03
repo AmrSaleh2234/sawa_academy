@@ -21,11 +21,11 @@ class Child extends Model
 
     public function evaluations()
     {
-        return $this->belongsToMany(Evaluation::class,'evaluation_results');
+        return $this->belongsToMany(Evaluation::class, 'evaluation_results');
     }
     public function sideProfile()
     {
-        return $this->belongsToMany(Evaluation::class,'evaluation_results')->with('sideProfile');
+        return $this->belongsToMany(Evaluation::class, 'evaluation_results')->with('sideProfile');
     }
 
     public function resultEavluation()
@@ -35,14 +35,11 @@ class Child extends Model
 
     public function delete()
     {
-        DB::transaction(function()
-        {
+        DB::transaction(function () {
             $this->evaluations()->detach();
             $this->sideProfile()->detach();
             $this->resultEavluation()->delete();
             parent::delete();
-
         });
-
     }
 }
