@@ -48,24 +48,31 @@
           ></textarea>
         </div>
         <button style="padding: 2%;" class="w-full rounded-3xl bg-[#148A98] text-white text-xl">{{$t("Register_now")}}</button>
+        
       </form>
     </div>
+   
+  
   </div>
 </template>
 <script>
 import Calendar from 'primevue/calendar';
 import Textarea from 'primevue/textarea';
+
 export default {
   components:{Calendar,Textarea},
   data(){
     return{
-      date:""
+      date:"",
+      otpCode: '',
+      
     }
   },
   methods:{
     goback(){
       this.$router.go(-1);
-    }
+    },
+     
   }
 }
 </script>

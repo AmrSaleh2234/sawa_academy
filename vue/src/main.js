@@ -18,6 +18,7 @@ import VueCarousel from 'vue-carousel';
 import "primevue/resources/primevue.min.css";
 
 /* import font awesome icon component */
+import OtpInput from "@bachdgvn/vue-otp-input";
 
 // import vuetify sass
 // import './main.scss'
@@ -39,6 +40,8 @@ pinia.use(({ store }) => {
 });
 pinia.use(resetStore);
 const app = createApp(App);
+app.component("v-otp-input", OtpInput);
+
 app.use(pinia);
 app.use(i18n);
 app.use(vuetify);
