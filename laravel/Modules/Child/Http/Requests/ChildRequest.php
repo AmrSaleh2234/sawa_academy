@@ -20,7 +20,7 @@ class ChildRequest extends FormRequest
             'lang' => ['required', 'string'],
             'nationalty' => ['required', 'string'],
             'national_id' => ['required', 'string'],
-            "birth_date" => "required|date",
+            "birth_date" => ["required", "date"],
             'birth_place' => ['required', 'string'],
             'address' => ['required', 'string'],
 

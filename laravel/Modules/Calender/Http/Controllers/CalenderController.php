@@ -78,17 +78,6 @@ class CalenderController extends Controller
     {
         $data = [];
 
-        // $bookings = Booking::query()
-        //     ->with('user')
-        //     ->addSelect([
-        //         "event_date" => Calender::select('start')->whereColumn('id', 'bookings.event_id'),
-        //     ])
-        //     ->where('accepted', 1)
-        //     ->where('user_id', $request->user('parent')->id)
-        //     ->get();
-
-        // $data['bookings'] = $bookings;
-
         $data = DB::table('bookings')
             ->select(
                 "bookings.id as booking_id",
