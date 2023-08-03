@@ -100,7 +100,10 @@ export default {
   Note:"ملاحظه",
   Register_now:"التسجيل الان",
   From_here_you_can_register_your_child_with_us_to_be_monitored:"يمكنك من هنا تسجيل طفلك معنا لمراقبه  ",
-  The_extent_to_which_his_mental_and_physical_skill_developed:"مدي تطور مهارته العقليه والجسديه  "
+  The_extent_to_which_his_mental_and_physical_skill_developed:"مدي تطور مهارته العقليه والجسديه  ",
+  bookings:"الحجوزات",
+  The_latest_developments:"اخر المستجدات",
+  Child_follow_up:"متابعه الطفل  "
 
 
 
