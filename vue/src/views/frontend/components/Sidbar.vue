@@ -15,13 +15,8 @@
     </div>
     <div class="space-y-4 py-6">
       <div class=" ">
-        <router-link
-          class="flex rtl:flex-row-reverse justify-between p-4"
-          :to="{ name: 'New' }"
-        >
-          <div></div>
-          <div class="flex rtl:flex-row-reverse space-x-2">
-            <p class="text-white text-xl">اخر المستجدات</p>
+        <router-link class="flex justify-between p-4" :to="{ name: 'New' }">
+          <div class="flex items-end text-">
             <svg
               id="af363570e9b2b9df3a3ac855b6fdaee0"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,17 +37,33 @@
                 fill="#fff"
               />
             </svg>
+            <p class="text-white px-2 text-xl m-auto">
+              {{ $t("latest_developments") }}
+            </p>
+          </div>
+          <div class="my-auto">
+            <svg
+              class="m-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+            >
+              <circle
+                id="Ellipse_34"
+                data-name="Ellipse 34"
+                cx="7.5"
+                cy="7.5"
+                r="7.5"
+                fill="white"
+              />
+            </svg>
           </div>
         </router-link>
       </div>
       <div class=" ">
-        <router-link
-          class="flex rtl:flex-row-reverse justify-between p-4"
-          :to="{ name: 'Booking' }"
-        >
-          <div></div>
-          <div class="flex space-x-2 rtl:flex-row-reverse">
-            <p class="text-white text-xl">{{ $t("bookings") }}</p>
+        <router-link class="flex justify-between p-4" :to="{ name: 'Booking' }">
+          <div class="flex space-x-2">
             <svg
               class="m-auto"
               xmlns="http://www.w3.org/2000/svg"
@@ -68,17 +79,34 @@
                 fill="#fff"
               />
             </svg>
+            <p class="text-white px-2 text-xl">{{ $t("bookings") }}</p>
+          </div>
+          <div class="my-auto">
+            <svg
+              class="m-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+            >
+              <circle
+                id="Ellipse_34"
+                data-name="Ellipse 34"
+                cx="7.5"
+                cy="7.5"
+                r="7.5"
+                fill="white"
+              />
+            </svg>
           </div>
         </router-link>
       </div>
-      <div class=" ">
+      <div class="sid">
         <router-link
-          class="flex rtl:flex-row-reverse justify-between p-4"
+          class="flex justify-between p-4"
           :to="{ name: 'Following' }"
         >
-          <div></div>
-          <div class="flex rtl:flex-row-reverse">
-            <p class="text-white text-xl px-2">{{ $t("follow_the_child") }}</p>
+          <div class="flex">
             <svg
               class="m-auto"
               xmlns="http://www.w3.org/2000/svg"
@@ -93,17 +121,31 @@
                 fill="#fff"
               />
             </svg>
+            <p class="text-white text-xl px-2">{{ $t("follow_the_child") }}</p>
+          </div>
+          <div class="my-auto">
+            <svg
+              class="m-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+            >
+              <circle
+                id="Ellipse_34"
+                data-name="Ellipse 34"
+                cx="7.5"
+                cy="7.5"
+                r="7.5"
+                fill="white"
+              />
+            </svg>
           </div>
         </router-link>
       </div>
-      <div class=" ">
-        <router-link
-          class="flex rtl:flex-row-reverse justify-between p-4"
-          :to="{ name: 'Edit' }"
-        >
-          <div></div>
-          <div class="flex rtl:flex-row-reverse space-x-2">
-            <p class="text-white text-xl">{{ $t("evaluation_result") }}</p>
+      <div class="hover:text-[red]">
+        <router-link class="flex justify-between p-4" :to="{ name: 'Edit' }">
+          <div class="flex">
             <svg
               class="m-auto"
               id="license-solid"
@@ -125,6 +167,27 @@
                 d="M29.9,21.619a4.4,4.4,0,1,0-7.446,3.174l-1.341,1.639.622,2.5,2.531-3.084a4.328,4.328,0,0,0,2.454,0l2.531,3.084.622-2.5-1.341-1.639A4.384,4.384,0,0,0,29.9,21.619Zm-7.426,0a3.018,3.018,0,1,0,.007,0Z"
                 transform="translate(-7.891 -9.457)"
                 fill="#fff"
+              />
+            </svg>
+            <p class="text-white text-xl m-auto px-2">
+              {{ $t("evaluation_result") }}
+            </p>
+          </div>
+          <div class="my-auto">
+            <svg
+              class="m-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+            >
+              <circle
+                id="Ellipse_34"
+                data-name="Ellipse 34"
+                cx="7.5"
+                cy="7.5"
+                r="7.5"
+                fill="white"
               />
             </svg>
           </div>
@@ -201,3 +264,7 @@ export default {
   },
 };
 </script>
+<style scoped>
+.sid:hover svg {
+}
+</style>

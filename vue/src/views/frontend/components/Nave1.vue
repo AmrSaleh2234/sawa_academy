@@ -224,7 +224,7 @@ export default {
               style="font-size: 15px"
               class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
               :type="pass_type"
-              placeholder="كلمه المرور"
+              :placeholder="$t('password')"
             />
           </div>
           <div
@@ -240,7 +240,7 @@ export default {
               style="font-size: 15px"
               class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
               type="text"
-              placeholder="اسم المستخدم"
+              :placeholder="$t('user_name')" 
             />
           </div>
           <div>
