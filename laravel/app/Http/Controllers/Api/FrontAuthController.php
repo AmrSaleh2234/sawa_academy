@@ -124,8 +124,9 @@ class FrontAuthController extends Controller
             $data['image'] = $user->image;
         }
 
-
-        $data['password'] = Hash::make($request->validated('password'));
+        if (!empty($request->validated('password'))) {
+            $data['password'] = Hash::make($request->validated('password'));
+        }
 
         $user->update($data);
 

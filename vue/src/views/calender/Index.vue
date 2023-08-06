@@ -8,30 +8,33 @@ import axios from "axios";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { ref } from "vue";
-import moment from 'moment';
-import Calendar from 'primevue/calendar';
-import InputText from 'primevue/inputtext';
-import { tr } from 'date-fns/locale'
+import moment from "moment";
+import Calendar from "primevue/calendar";
+import InputText from "primevue/inputtext";
+import { tr } from "date-fns/locale";
 
 export default {
   components: {
-    FullCalendar,Dialog,Button,Calendar,InputText // make the <FullCalendar> tag available
+    FullCalendar,
+    Dialog,
+    Button,
+    Calendar,
+    InputText, // make the <FullCalendar> tag available
   },
   data() {
     return {
-     visible:false,
-     create_visible:false,
-     event_id:null, 
-     creat_event:ref(false),
-     updat_event:ref(false),
-     event_title:"",
-     start_event:"",
-     end_event:"",
-     loading: false,
-     modal_text:"",
-     time_start:"",
-     time_end:"",
-     
+      visible: false,
+      create_visible: false,
+      event_id: null,
+      creat_event: ref(false),
+      updat_event: ref(false),
+      event_title: "",
+      start_event: "",
+      end_event: "",
+      loading: false,
+      modal_text: "",
+      time_start: "",
+      time_end: "",
 
       opts: {
         plugins: [dayGridPlugin, interactionPlugin, TimeGridplugin, listPlugin],
@@ -42,30 +45,27 @@ export default {
         selectable: true,
         droppable: false,
         editable: true,
-        selectHelper:true,
-        headerToolbar:{ 
-        center: "prev next today",
-        left: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
-       
-        
+        selectHelper: true,
+        headerToolbar: {
+          center: "prev next today",
+          left: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
         eventsTimeFormat: {
-
-hour: '2-digit',
-minute: '2-digit',
-second: '2-digit',
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
         },
-        eventDrop:function(event)
-        
-        {
-          console.log(event.event.id)
-          axios.post(`/api/calender/${event.event.id}/update`,{
-            start:event.event.start,
-            end:event.event.end
-          }).then(res =>{
-            console.log(res.data.k)
-          })
+        eventDrop: function (event) {
+          console.log(event.event.id);
+          axios
+            .post(`/api/calender/${event.event.id}/update`, {
+              start: event.event.start,
+              end: event.event.end,
+            })
+            .then((res) => {
+              console.log(res.data.k);
+            });
         },
         eventDrop: function (event) {
           axios
@@ -148,6 +148,8 @@ second: '2-digit',
           title: this.event_title,
           start: this.start_event,
           end: this.end_event,
+          time_start: this.time_start,
+          time_end: this.time_end,
         })
         .then((res) => {
           if (res.status != 200) {
@@ -182,68 +184,120 @@ second: '2-digit',
 };
 </script>
 <template>
-  <div >
-   <div class="mb-5 text-white">
-    <v-btn height="45" class="mx-5 text-white" color="#135c65" @click="goBack">
-      <v-icon
-        start
-        icon="mdi-arrow-left"
-      ></v-icon>
-      Back
-    </v-btn>
-    <v-btn height="45" class="mx-5 text-white" color="rgb(4, 171, 4)" @click="create_visible=true">
-      <v-icon
-        start
-        icon="mdi-plus-circle"
-        size="x-large"
-      ></v-icon>
-     Create Event
-    </v-btn>
-   
-   </div>
-    <FullCalendar :options="opts"  @change="refreshEvents()" ref="fullCalendar"   />
+  <div>
+    <div class="mb-5 text-white">
+      <v-btn
+        height="45"
+        class="mx-5 text-white"
+        color="#135c65"
+        @click="goBack"
+      >
+        <v-icon start icon="mdi-arrow-left"></v-icon>
+        Back
+      </v-btn>
+      <v-btn
+        height="45"
+        class="mx-5 text-white"
+        color="rgb(4, 171, 4)"
+        @click="create_visible = true"
+      >
+        <v-icon start icon="mdi-plus-circle" size="x-large"></v-icon>
+        Create Event
+      </v-btn>
+    </div>
+    <FullCalendar
+      :options="opts"
+      @change="refreshEvents()"
+      ref="fullCalendar"
+    />
     <div class="card flex justify-content-center">
-      <Dialog v-model:visible="create_visible" id="modal" modal header="Create Event" :style="{ width: '60vw' }">
-         <form >
-         <div  >
-          
-            <Calendar showIcon placeholder="dd-mm-yy" date-format=" yy-mm-dd"  v-model="start_event" style="width: 100%;"  />
-          <InputText type="time" v-model="time_start" />
-         
+      <Dialog
+        v-model:visible="create_visible"
+        id="modal"
+        modal
+        header="Create Event"
+        :style="{ width: '60vw' }"
+      >
+        <form>
+          <div>
+            <Calendar
+              showIcon
+              placeholder="dd-mm-yy"
+              date-format=" yy-mm-dd"
+              v-model="start_event"
+              style="width: 100%"
+            />
+            <InputText type="time" v-model="time_start" />
 
-          <Calendar showIcon placeholder="dd-mm-yy" date-format=" yy-mm-dd" v-model="end_event" style="width: 100%;margin-top: 10px;" />
-          
-          <InputText type="time" v-model="time_end" placeholder="Search" />
-          <v-text-field
-          v-model="event_title"
-            :rules="nameRules"
-            label="Enter Your Event Title "
-            required
-            class="mt-5"
-          ></v-text-field>
-          <Button style="background-color: rgb(4, 171, 4);" label="Create "  :loading="loading" @click="createvent" />
-        </div>
-         </form>
+            <Calendar
+              showIcon
+              placeholder="dd-mm-yy"
+              date-format=" yy-mm-dd"
+              v-model="end_event"
+              style="width: 100%; margin-top: 10px"
+            />
+
+            <InputText type="time" v-model="time_end" placeholder="Search" />
+            <v-text-field
+              v-model="event_title"
+              :rules="nameRules"
+              label="Enter Your Event Title "
+              required
+              class="mt-5"
+            ></v-text-field>
+            <Button
+              style="background-color: rgb(4, 171, 4)"
+              label="Create "
+              :loading="loading"
+              @click="createvent"
+            />
+          </div>
+        </form>
       </Dialog>
-      <Dialog v-model:visible="visible" id="modal" modal :header="modal_text" :style="{ width: '60vw' }">
-        
-         <form >
-         <div >
-        
-          <v-text-field
-          v-model="event_title"
-            :rules="nameRules"
-            label="Enter Your Event Title "
-            required
-          ></v-text-field>
-          <input type="time" v-model="time_start">
-          <input type="time" v-model="time_end">
-          <Button style="background-color: rgb(4, 171, 4);" label="Create " v-if="creat_event" :loading="loading" @click="createvent" />
-          <Button style="background-color:#6241F1; margin-left: 10px; margin-right: 10px;" label="update " v-if="updat_event" :loading="loading" @click="updateevent" />
-          <Button style="background-color:#B00020; border: no;" label="Delet " v-if="updat_event" :loading="loading" @click="deletevent" />
-         </div>
-         </form>
-
+      <Dialog
+        v-model:visible="visible"
+        id="modal"
+        modal
+        :header="modal_text"
+        :style="{ width: '60vw' }"
+      >
+        <form>
+          <div>
+            <v-text-field
+              v-model="event_title"
+              :rules="nameRules"
+              label="Enter Your Event Title "
+              required
+            ></v-text-field>
+            <input type="time" v-model="time_start" />
+            <input type="time" v-model="time_end" />
+            <Button
+              style="background-color: rgb(4, 171, 4)"
+              label="Create "
+              v-if="creat_event"
+              :loading="loading"
+              @click="createvent"
+            />
+            <Button
+              style="
+                background-color: #6241f1;
+                margin-left: 10px;
+                margin-right: 10px;
+              "
+              label="update "
+              v-if="updat_event"
+              :loading="loading"
+              @click="updateevent"
+            />
+            <Button
+              style="background-color: #b00020; border: no"
+              label="Delet "
+              v-if="updat_event"
+              :loading="loading"
+              @click="deletevent"
+            />
+          </div>
+        </form>
       </Dialog>
     </div>
   </div>

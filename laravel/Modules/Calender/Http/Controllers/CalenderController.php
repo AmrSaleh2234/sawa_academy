@@ -145,12 +145,13 @@ class CalenderController extends Controller
         ]);
 
         $doctors = Calender::query()
-            ->select('user_id')
+            ->select('user_id', 'start')
             ->addSelect([
                 'doctor_name' => User::select("name")->whereColumn('id', 'user_id'),
                 'title_name' => User::select("title")->whereColumn('id', 'user_id'),
             ])
             ->where('start', $request->start)
+
             ->get();
 
         return $this->bookingControllerHandler->show('doctors', $doctors);
@@ -223,8 +224,16 @@ class CalenderController extends Controller
     public function store(CalenderRequest $request)
     {
 
-        //        return response(['k'=>$request->start]);
-        return $this->ControllerHandler->store("calender", $request->validated());
+        $data = [];
+
+        $date_time = "$request->start $request->time_start";
+        $end_date_time = "$request->end $request->time_end";
+
+        $data['title'] = $request->validated('title');
+        $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $date_time);
+        $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
+
+        return $this->ControllerHandler->store("calender", $data);
     }
 
     /**

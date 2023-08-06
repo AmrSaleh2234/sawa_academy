@@ -46,17 +46,18 @@ class ChildController extends Controller
 
     public function getParentChilds(Request $request)
     {
+        $parent_id = auth('parent')->id();
 
         $childs = Child::query()
             ->select("id", "name", "birth_date")
             ->addSelect([
-                "report_text" => Booking::select("booking_result")->whereColumn("bookings.child_id", "children.id"),
-                "report_date" => Booking::select("updated_at")->whereColumn("bookings.child_id", "children.id"),
+                "report_text" => Booking::select("booking_result")->whereColumn("bookings.child_id", "children.id")->latest()->take(1),
+                "report_date" => Booking::select("updated_at")->whereColumn("bookings.child_id", "children.id")->latest()->take(1),
             ])
-            ->where('parent_id', auth('parent')->id())
+            ->where('parent_id', $parent_id)
             ->get();
 
-        $parent_id = auth('parent')->id();
+
         // $childs = DB::table("children")
         //     ->select(
         //         "children.id",
