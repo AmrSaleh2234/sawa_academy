@@ -27,10 +27,14 @@
                 d="M0,0V36H36V12.729l-5.906,5.906V30.094H5.906V5.906H17.365L23.271,0ZM31.5,0,29.195,2.305l4.5,4.5L36,4.5ZM28.107,3.393,14.915,16.585l4.5,4.5L32.607,7.893l-4.5-4.5ZM13.258,18.67c-.067,0-.135.006-.2.011v4.263h4.263A4.507,4.507,0,0,0,15.9,19.778a3.761,3.761,0,0,0-2.641-1.107Z"
               />
             </svg>
-            <p class="text-sm font-bold px-2">تغيير الاخصائي</p>
+            <p class="text-sm font-bold px-2">
+              {{ doctor ? "تغيير الاخصائي" : "اختر الاخصائي" }}
+            </p>
           </div>
 
           <img
+            v-if="doctor"
+            v-cloak
             src="@/assets/img/doctor.jpg"
             class="object-cover rounded-xl mt-12"
             width="400"
@@ -62,17 +66,7 @@
               rows="4"
             ></textarea>
           </div>
-          <div class="flex flex-col">
-            <label for="notes" class="my-2"> : تقديم تقرير</label>
-            <textarea
-              name="notes"
-              v-model="booking_result"
-              id="notes"
-              class="border ring-1 ring-black border-black rounded-md focus:ring-black"
-              cols="30"
-              rows="4"
-            ></textarea>
-          </div>
+
           <p class="my-9 py-2 border-black">
             <span class="">
               <span style="color: #00897b">{{ booking.requester_name }}</span>
@@ -85,9 +79,10 @@
           id="submit"
           class="w-full text-center py-2.5 px-4 text-white rounded-lg"
           style="background-color: #00838f"
-          :disabled="doctor == null"
+          :class="{ 'bg-emerald-500': booking.accepted }"
+          :disabled="doctor == null || booking.accepted == 1"
         >
-          تاكيد الحجز
+          {{ booking.accepted ? "تم الحجز" : "تاكيد الحجز" }}
         </button>
       </div>
       <!-- End Left Side -->
@@ -433,7 +428,6 @@ export default {
       booking: {},
       doctor: {},
       accept_notes: "",
-      booking_result: "",
       show_answer_modal: false,
       show_accept_modal: false,
     };
@@ -460,7 +454,6 @@ export default {
           user_id: this.booking.user_id,
           doctor_name: this.doctor.name,
           doctor_title: this.doctor.title,
-          booking_result: this.booking_result,
         })
         .then((res) => {
           this.show_accept_modal = true;
@@ -486,7 +479,7 @@ export default {
   computed: {
     event_data() {
       let day = moment(this.booking.event_date).format("dddd");
-      let hour = moment(this.booking.event_date).format("HH:mm: A");
+      let hour = moment(this.booking.event_date).format("hh:mm: A");
 
       return `${day} -- ${hour}`;
     },
@@ -506,5 +499,8 @@ export default {
   background-color: #5fbec7;
   color: #5fbec7;
   cursor: not-allowed;
+}
+[v-cloak] {
+  display: none;
 }
 </style>

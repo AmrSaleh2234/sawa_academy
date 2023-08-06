@@ -17,6 +17,7 @@ use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
 use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Http\Requests\StoreBookingRequest;
+use Modules\Calender\Http\Requests\UpdateBookingRequest;
 use Modules\Calender\Transformers\EventResource;
 use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Services\ChildService;
@@ -52,6 +53,7 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
+    ////////////////////////////////
     public function getAllBooking(Request $request)
     {
         $bookings = Booking::query()
@@ -127,6 +129,15 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->show('booking', $data);
     }
 
+    public function updateBooking($booking_id, UpdateBookingRequest $request)
+    {
+        $booking = Booking::where('id', $booking_id)->first();
+
+        $booking->update($request->validated());
+
+        return $this->bookingControllerHandler->show('booking', $booking);
+    }
+
     public function changeDoctor(Request $request)
     {
         $request->validate([
@@ -134,12 +145,13 @@ class CalenderController extends Controller
         ]);
 
         $doctors = Calender::query()
-            ->select('user_id')
+            ->select('user_id', 'start')
             ->addSelect([
                 'doctor_name' => User::select("name")->whereColumn('id', 'user_id'),
                 'title_name' => User::select("title")->whereColumn('id', 'user_id'),
             ])
             ->where('start', $request->start)
+
             ->get();
 
         return $this->bookingControllerHandler->show('doctors', $doctors);
@@ -179,6 +191,27 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->show('booking', $booking->fresh());
     }
 
+    public function getLatestReportForChild(Request $request)
+    {
+        $request->validate([
+            'child_id' => ['required', 'integer']
+        ]);
+
+        $child_id = $request->child_id;
+        $parent_id = auth('parent')->id();
+
+        $report = Booking::query()
+            ->select('booking_result', DB::raw("updated_at as report_date"))
+            ->where('user_id', $parent_id)
+            ->where('child_id', $child_id)
+            ->latest()
+            ->first();
+
+        return $this->bookingControllerHandler->show('report', $report);
+    }
+
+    /////////////////////////////////
+
     public function show(Calender $calender)
     {
         return $this->ControllerHandler->show("calender", $calender);
@@ -191,8 +224,16 @@ class CalenderController extends Controller
     public function store(CalenderRequest $request)
     {
 
-        //        return response(['k'=>$request->start]);
-        return $this->ControllerHandler->store("calender", $request->validated());
+        $data = [];
+
+        $date_time = "$request->start $request->time_start";
+        $end_date_time = "$request->end $request->time_end";
+
+        $data['title'] = $request->validated('title');
+        $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $date_time);
+        $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
+
+        return $this->ControllerHandler->store("calender", $data);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace Modules\Calender\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CalenderRequest extends FormRequest
+class UpdateBookingRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,11 +14,7 @@ class CalenderRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'start' => 'required',
-            'end' => 'required',
-            'time_start' => 'required',
-            'time_end' => 'required'
+            "booking_result" => ["nullable", 'string']
         ];
     }
 
@@ -29,6 +25,6 @@ class CalenderRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth('api')->check();
     }
 }

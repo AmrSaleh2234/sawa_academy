@@ -62,7 +62,11 @@ class FrontAuthController extends Controller
 
         // $userRole = Role::where('name', 'user')->where('guard_name', 'parent')->first();
         // $parent->assignRole($userRole);
-        $child_permissions = Permission::select('name')->where('guard_name', 'parent')->where('name', 'like', "%child%")->pluck('name');
+        $child_permissions = Permission::query()
+            ->select('name')
+            ->where('guard_name', 'parent')
+            ->where('name', 'like', "%child%")
+            ->pluck('name');
         $parent->givePermissionTo($child_permissions);
 
 
@@ -120,8 +124,9 @@ class FrontAuthController extends Controller
             $data['image'] = $user->image;
         }
 
-
-        $data['password'] = Hash::make($request->validated('password'));
+        if (!empty($request->validated('password'))) {
+            $data['password'] = Hash::make($request->validated('password'));
+        }
 
         $user->update($data);
 
