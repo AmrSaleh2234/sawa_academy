@@ -1,5 +1,5 @@
 <template>
-  <div class="border-b-2 p-2 rounded mt-2 max-w-full min-w-min">
+  <div class="p-2 rounded mt-2 max-w-full min-w-min">
     <div class="bg-[#F8F8F8] shadow p-4 font-bold rounded flex justify-between">
       <div class="flex">
         <div>

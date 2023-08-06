@@ -67,11 +67,7 @@ class ChildController extends Controller
      */
     public function store(ChildRequest $request)
     {
-
         $data = $request->validated();
-
-        // $data['age'] = (new ChildService)->calcChildAgeInMonths($data['birth_date']);
-
         return $this->ControllerHandler->store("children", $data);
     }
 
