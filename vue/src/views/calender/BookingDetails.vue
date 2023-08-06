@@ -62,17 +62,7 @@
               rows="4"
             ></textarea>
           </div>
-          <div class="flex flex-col">
-            <label for="notes" class="my-2"> : تقديم تقرير</label>
-            <textarea
-              name="notes"
-              v-model="booking_result"
-              id="notes"
-              class="border ring-1 ring-black border-black rounded-md focus:ring-black"
-              cols="30"
-              rows="4"
-            ></textarea>
-          </div>
+
           <p class="my-9 py-2 border-black">
             <span class="">
               <span style="color: #00897b">{{ booking.requester_name }}</span>
@@ -85,9 +75,10 @@
           id="submit"
           class="w-full text-center py-2.5 px-4 text-white rounded-lg"
           style="background-color: #00838f"
-          :disabled="doctor == null"
+          :class="{ 'bg-emerald-500': booking.accepted }"
+          :disabled="doctor == null || booking.accepted == 1"
         >
-          تاكيد الحجز
+          {{ booking.accepted ? "تم الحجز" : "تاكيد الحجز" }}
         </button>
       </div>
       <!-- End Left Side -->
@@ -433,7 +424,6 @@ export default {
       booking: {},
       doctor: {},
       accept_notes: "",
-      booking_result: "",
       show_answer_modal: false,
       show_accept_modal: false,
     };
@@ -460,7 +450,6 @@ export default {
           user_id: this.booking.user_id,
           doctor_name: this.doctor.name,
           doctor_title: this.doctor.title,
-          booking_result: this.booking_result,
         })
         .then((res) => {
           this.show_accept_modal = true;

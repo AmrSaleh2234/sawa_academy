@@ -50,7 +50,6 @@
       </div>
       <button @click="isopen = !isopen">
         <svg
-          @click="$emit(getLatestReport)"
           class="mx-auto"
           width="24px"
           height="24px"
@@ -81,13 +80,22 @@
       class="mt-4 border-2 p-2 rounded text-right"
       :class="isopen ? 'd-block' : 'hidden'"
     >
-      <p class="text-center text-[#148A98]">تقرير بتاريخ</p>
-      <p class="text-center p-2">{{ currentDate }}</p>
+      <div class="flex justify-center items-center space-x-3">
+        <p class="text-center">{{ report_date_mod }}</p>
+        <p class="text-center text-[#148A98]">تقرير بتاريخ</p>
+      </div>
+      <div class="flex justify-center items-center space-x-3 mt-6">
+        <p>{{ report_text ?? "there is no reports" }}</p>
+        <p class="text-center text-[#148A98]">التقرير</p>
+      </div>
       <slot></slot>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+import moment from "moment";
+
 export default {
   data() {
     return {
@@ -98,6 +106,18 @@ export default {
   props: {
     name: String,
     age: Number,
+    id: Number,
+    report_date: String,
+    report_text: String,
+  },
+  methods: {},
+  computed: {
+    report_date_mod() {
+      if (this.report_date) {
+        return moment(this.report_date).format("DD/MM/YYYY");
+      }
+      return "there is no reports";
+    },
   },
 };
 </script>

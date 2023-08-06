@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Modules\Calender\Entities\Booking;
 use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Repository\ChildRepository;
 use Modules\Child\Http\Controllers\Services\ChildService;
@@ -42,9 +44,31 @@ class ChildController extends Controller
         return $this->ControllerHandler->getAll("children");
     }
 
-    public function getParentChilds()
+    public function getParentChilds(Request $request)
     {
-        $childs = Child::where('parent_id', auth('parent')->id())->get();
+
+        $childs = Child::query()
+            ->select("id", "name", "birth_date")
+            ->addSelect([
+                "report_text" => Booking::select("booking_result")->whereColumn("bookings.child_id", "children.id"),
+                "report_date" => Booking::select("updated_at")->whereColumn("bookings.child_id", "children.id"),
+            ])
+            ->where('parent_id', auth('parent')->id())
+            ->get();
+
+        $parent_id = auth('parent')->id();
+        // $childs = DB::table("children")
+        //     ->select(
+        //         "children.id",
+        //         "children.name",
+        //         "children.birth_date",
+        //         "bookings.booking_result as report_text",
+        //         "bookings.updated_at as report_date"
+        //     )
+        //     ->join("bookings", "children.id", "=", "bookings.child_id")
+        //     ->where("user_id", $parent_id)
+        //     ->latest("bookings.created_at")
+        //     ->get();
 
         return $this->ControllerHandler->show('childs', AllChildResource::collection($childs));
     }

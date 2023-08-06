@@ -17,6 +17,7 @@ use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
 use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Http\Requests\StoreBookingRequest;
+use Modules\Calender\Http\Requests\UpdateBookingRequest;
 use Modules\Calender\Transformers\EventResource;
 use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Services\ChildService;
@@ -52,6 +53,7 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
+    ////////////////////////////////
     public function getAllBooking(Request $request)
     {
         $bookings = Booking::query()
@@ -127,6 +129,15 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->show('booking', $data);
     }
 
+    public function updateBooking($booking_id, UpdateBookingRequest $request)
+    {
+        $booking = Booking::where('id', $booking_id)->first();
+
+        $booking->update($request->validated());
+
+        return $this->bookingControllerHandler->show('booking', $booking);
+    }
+
     public function changeDoctor(Request $request)
     {
         $request->validate([
@@ -178,6 +189,27 @@ class CalenderController extends Controller
 
         return $this->bookingControllerHandler->show('booking', $booking->fresh());
     }
+
+    public function getLatestReportForChild(Request $request)
+    {
+        $request->validate([
+            'child_id' => ['required', 'integer']
+        ]);
+
+        $child_id = $request->child_id;
+        $parent_id = auth('parent')->id();
+
+        $report = Booking::query()
+            ->select('booking_result', DB::raw("updated_at as report_date"))
+            ->where('user_id', $parent_id)
+            ->where('child_id', $child_id)
+            ->latest()
+            ->first();
+
+        return $this->bookingControllerHandler->show('report', $report);
+    }
+
+    /////////////////////////////////
 
     public function show(Calender $calender)
     {
