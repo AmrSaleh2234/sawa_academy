@@ -1,5 +1,5 @@
 <template>
-    <div  class=" bg-[#A9AB7F] bg-[url('../image/sec1/about.png')] bg-cover bg-no-repeat mx-[7%] ">
+    <div  class=" bg-[#A9AB7F] bg-[url('../image/sec1/about.png')] bg-cover bg-no-repeat ">
         <div class=" grid grid-row-3 md:grid-cols-3 p-10 gap-5">
             <div  class=" grid grid-row-4 gap-5 md:gap-0">
                 <p class="text-xl text-teal-800 font-bold hover:text-[#8B6D00]">{{$t("home")}}</p>

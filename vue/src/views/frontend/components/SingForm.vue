@@ -30,10 +30,10 @@
           </div>
         </div>
         <div
-        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;"
-                  class=" lg:w-[45%] shadow-md   rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px);margin: 3%; background-color: rgb(247, 243, 243); opacity: 95%;"
+                  class=" lg:w-[44%] shadow-md   rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div  class=" w-full p-2 md:space-y-6 sm:p-8">
+          <div  class=" w-full  md:space-y-6 sm:p-8  ">
 
             <form  class="w-full space-y-6 text-center rounded-2xl  bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">
