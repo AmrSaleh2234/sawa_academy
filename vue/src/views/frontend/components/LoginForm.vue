@@ -37,7 +37,7 @@
         </div>
         <form @submit.prevent="massegeerror.length == 0 ? parentStore.login(parent) : null"
         style=" backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 13%;margin-bottom: 13%;"
-          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:w-[50%] xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:w-[55%] xl:p-0 dark:bg-gray-800 dark:border-gray-700  animate__animated animate__bounceInRight"
         >
         <div v-for="error in massegeerror" :key="error" class="text-center my-2 py-2">
                 <p class="text-red-600">{{error}}</p>

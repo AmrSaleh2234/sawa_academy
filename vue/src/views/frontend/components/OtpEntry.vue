@@ -30,8 +30,8 @@
             opacity: 95%;
             
           "
-          class="shadow-md relative rounded-3xl lg z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div class="w-full space-y-6 p-8">
+          class="shadow-md relative rounded-3xl lg z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 animate__animated animate__bounceInRight">
+          <div class="w-full space-y-6 p-8 ">
             <form style="padding: 2%" class="w-full text-center relative rounded-2xl bg-none">
               <div>
                 <p style="padding: 2%" class="text-xl font-bold">
@@ -44,6 +44,10 @@
                 </p>
               </div>
               <div style="border-bottom: 1px solid black; padding-bottom: 3%" class="flex space-x-3">
+                <v-otp-input ref="otpInput" v-model:value="bindModal" input-classes="otp-input" separator="-"
+                  :num-inputs="5" :should-auto-focus="true" input-type="letter-numeric"
+                  :conditionalClass="['one', 'two', 'three', 'four', 'five']" :placeholder="['*', '*', '*', '*', '*']"
+                  @on-change="handleOnChange" @on-complete="handleOnComplete" />
                 <div class="m-auto">
                   <svg  @click="clearInput()" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="23.121" height="23.121"
                     viewBox="0 0 23.121 23.121">
@@ -55,19 +59,19 @@
                     </g>
                   </svg>
                 </div>
-                <v-otp-input ref="otpInput" v-model:value="bindModal" input-classes="otp-input" separator="-"
-                  :num-inputs="5" :should-auto-focus="true" input-type="letter-numeric"
-                  :conditionalClass="['one', 'two', 'three', 'four', 'five']" :placeholder="['*', '*', '*', '*', '*']"
-                  @on-change="handleOnChange" @on-complete="handleOnComplete" />
+              
                 <div class="absolute top-0 right-0" >
-                  <svg  class="cursor-pointer"  xmlns="http://www.w3.org/2000/svg" width="25.243" height="25.243" viewBox="0 0 25.243 25.243">
+                   <router-link :to="{ name: 'SingUp' }">
+                    <svg  class="cursor-pointer"  xmlns="http://www.w3.org/2000/svg" width="25.243" height="25.243" viewBox="0 0 25.243 25.243">
                     <g id="Group_505" data-name="Group 505" transform="translate(-714.428 -441.428)">
                       <line id="Line_24" data-name="Line 24" x1="21" y2="21" transform="translate(716.549 443.549)"
                         fill="none" stroke="#000" stroke-linecap="round" stroke-width="3" />
                       <line id="Line_25" data-name="Line 25" x2="21" y2="21" transform="translate(716.549 443.549)"
                         fill="none" stroke="#000" stroke-linecap="round" stroke-width="3" />
                     </g>
-                  </svg>
+                  </svg></router-link>
+
+
                 </div>
 
                
@@ -125,7 +129,7 @@ const fillInput = (value: string) => {
 
 /* Background colour of an input field with value */
 .otp-input.is-complete {
-  background-color:rgb(218, 217, 217) ;
+  background-color:rgb(226, 219, 219) ;
 }
 
 .otp-input::-webkit-inner-spin-button,
