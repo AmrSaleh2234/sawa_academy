@@ -226,21 +226,65 @@ class CalenderController extends Controller
 
         $data = [];
 
-        $date_time = "$request->start $request->time_start";
-        $end_date_time = "$request->end $request->time_end";
+        $start_date = Carbon::parse($request->start)->format("Y-m-d");
+        $end_date = Carbon::parse($request->end)->subDay()->format("Y-m-d");
+
+        // $events = Calender::query()
+        //     ->where('status', 0)
+        //     ->where('user_id', auth('api')->id())
+
+        //     ->whereDate('start', "=", $start_date)
+        //     ->whereDate('end', "=", $end_date)
+
+        //     ->where(function ($q) use ($request) {
+        //         $q->where(DB::raw("TIME(start)"), ">=", $request->time_start)
+        //             ->where(DB::raw("TIME(end)"), "<=", $request->time_end);
+        //     })
+        //     ->orWhere(function ($q) use ($request) {
+        //         $q->where(DB::raw("TIME(start)"), "<=", $request->time_start)
+        //             ->where(DB::raw("TIME(end)"), ">=", $request->time_end);
+        //     })
+        //     ->orderBy('start')
+        //     ->get();
+
+
+        $events = Calender::query()
+            ->where('status', 0)
+            ->where('user_id', auth('api')->id())
+            ->whereDate('start', '=', $start_date)
+            ->whereDate('end', '=', $end_date)
+
+            ->where(function ($q) use ($request) {
+                $q->where(function ($q) use ($request) {
+                    $q->whereTime('start', '>=', $request->time_start)
+                        ->whereTime('end', '<=', $request->time_end);
+                })
+                    ->orWhere(function ($q) use ($request) {
+                        $q->whereTime('start', '<=', $request->time_start)
+                            ->whereTime('end', '>=', $request->time_end);
+                    });
+            })
+            ->orderBy('start')
+            ->get();
+
+
+
+        // return $events;
+
+        if (count($events)) {
+            return response()->json(['message' => "duplicate event"]);
+        }
+
+        $start_date_time = "$start_date $request->time_start";
+        $end_date_time = "$end_date $request->time_end";
 
         $data['title'] = $request->validated('title');
-        $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $date_time);
+        $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $start_date_time);
         $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
 
         return $this->ControllerHandler->store("calender", $data);
     }
 
-    /**
-     * @param CalenderRequest $request
-     * @param Calender $calender
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
 
     public function update(CalenderRequest $request, Calender $calender)
     {
