@@ -119,12 +119,18 @@ class CalenderController extends Controller
             ->where('id', $booking_id)
             ->first();
 
-        if ($data['booking']['doctor_code']) {
-            $data['doctor'] = DB::table("users")
-                ->select('users.name', 'users.title')
-                ->where("id", '=', $data['booking']['doctor_code'])
-                ->first();
-        }
+        // if ($data['booking']['doctor_code']) {
+        //     $data['doctor'] = DB::table("users")
+        //         ->select('users.name', 'users.title')
+        //         ->where("id", '=', $data['booking']['doctor_code'])
+        //         ->first();
+        // }
+
+        $data['doctor'] = DB::table("users")
+            ->select('users.name', 'users.title')
+            ->leftJoin("events", "events.user_id", '=', 'users.id')
+            ->where('events.id', '=', $data['booking']['event_id'])
+            ->first();
 
         return $this->bookingControllerHandler->show('booking', $data);
     }
@@ -147,8 +153,8 @@ class CalenderController extends Controller
         $doctors = Calender::query()
             ->select('user_id', 'start')
             ->addSelect([
-                'doctor_name' => User::select("name")->whereColumn('id', 'user_id'),
-                'title_name' => User::select("title")->whereColumn('id', 'user_id'),
+                'name' => User::select("name")->whereColumn('id', 'user_id'),
+                'title' => User::select("title")->whereColumn('id', 'user_id'),
             ])
             ->where('start', $request->start)
 
@@ -272,7 +278,7 @@ class CalenderController extends Controller
         // return $events;
 
         if (count($events)) {
-            return response()->json(['message' => "duplicate event"]);
+            return response()->json(['message' => "duplicate event"], 442);
         }
 
         $start_date_time = "$start_date $request->time_start";
