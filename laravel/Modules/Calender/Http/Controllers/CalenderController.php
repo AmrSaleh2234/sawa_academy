@@ -254,6 +254,27 @@ class CalenderController extends Controller
         //     ->get();
 
 
+        // $events = Calender::query()
+        //     ->where('status', 0)
+        //     ->where('user_id', auth('api')->id())
+        //     ->whereDate('start', '=', $start_date)
+        //     ->whereDate('end', '=', $end_date)
+
+        //     ->where(function ($q) use ($request) {
+        //         $q->where(function ($q) use ($request) {
+        //             $q->whereTime('start', '>=', $request->time_start)
+        //                 ->whereTime('end', '<=', $request->time_end);
+        //         })
+        //      ->orWhere(function ($q) use ($request) {
+        //                 $q->whereTime('start', '<=', $request->time_start)
+        //                     ->whereTime('end', '>=', $request->time_end);
+        //      });
+        //     })
+        //     ->orderBy('start')
+        //     ->get();
+
+
+
         $events = Calender::query()
             ->where('status', 0)
             ->where('user_id', auth('api')->id())
@@ -272,6 +293,9 @@ class CalenderController extends Controller
             })
             ->orderBy('start')
             ->get();
+
+
+
 
 
 
