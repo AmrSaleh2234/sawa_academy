@@ -12,7 +12,7 @@ class Calender extends Model
 
     protected $guarded = array();
 
-    protected $table="events";
+    protected $table = "events";
 
     protected static function newFactory()
     {
@@ -23,10 +23,10 @@ class Calender extends Model
     {
         return new CalenderBuilder($query);
     }
-//    public function scopeCurrentAuth($query)
-//    {
-//        return $query->where('user_id','=',auth()->user()->id );
-//
-//    }
+    //    public function scopeCurrentAuth($query)
+    //    {
+    //        return $query->where('user_id','=',auth()->user()->id );
+    //
+    //    }
 
 }
