@@ -328,22 +328,22 @@ export default {
     <!-- Mobile menu -->
     <div v-if="isMobileMenuOpen" class="md:hidden fix bg-[#ffffff] p-4">
       <li
-        class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        class="block text-2xl font-bold text-center cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
       >
         <router-link to="/"> الرئيسيه </router-link>
       </li>
       <li
-        class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        class="block text-2xl font-bold cursor-pointer text-center md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
       >
         <router-link :to="{ name: 'about' }"> ماذا عنا</router-link>
       </li>
       <li
-        class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        class="block text-2xl font-bold cursor-pointer text-center md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
       >
         <router-link to="/more"> تواصل معنا</router-link>
       </li>
       <li
-        class="block text-2xl font-bold cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+        class="block text-2xl font-bold text-center cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
       >
         <router-link to="/ReAction">التربيه الخاصه</router-link>
       </li>

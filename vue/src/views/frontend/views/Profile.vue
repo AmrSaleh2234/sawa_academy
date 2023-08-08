@@ -116,6 +116,9 @@
                   class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                   type="text"
                   v-model="parent.lname"
+                  :placeholder="$t('first_name')"
+                
+
                 />
               </div>
               <div
@@ -131,6 +134,7 @@
                   class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                   type="text"
                   v-model="parent.fname"
+                  :placeholder="$t('family_name')"
                 />
               </div>
             </div>
@@ -147,6 +151,7 @@
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="email"
                 v-model="parent.email"
+                :placeholder="$t('email')"
               />
             </div>
             <div

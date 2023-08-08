@@ -56,27 +56,6 @@
           {{ $t("home") }}
         </v-btn>
       </div>
-      <div class="col-span-4 text-center m-auto">
-        <div class="flex space-x-2">
-          <p class="m-auto flex text-3xl">
-            السبت-12:00 م
-          </p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="44.369" height="41.6" viewBox="0 0 44.369 41.6">
-              <g id="date-solid-badged" transform="translate(-1.842 -1)">
-                <rect id="Rectangle_230" data-name="Rectangle 230" width="42.847" height="34.813" rx="4" transform="translate(1.842 7.785)" fill="#f8f8f8" opacity="0"/>
-                <path id="Path_210" data-name="Path 210" d="M10.342,12.736a1.342,1.342,0,0,0,1.342-1.342V3.342A1.342,1.342,0,1,0,9,3.342v8.052A1.342,1.342,0,0,0,10.342,12.736Z" transform="translate(2.32 0.342)" fill="#135c65"/>
-                <path id="Path_211" data-name="Path 211" d="M39.574,16.065A10.065,10.065,0,0,1,29.51,6H15.688v4.026a2.952,2.952,0,0,1-5.9,0V6H4.416A2.389,2.389,0,0,0,2,8.429V38.462a2.389,2.389,0,0,0,2.348,2.429H42.594a2.389,2.389,0,0,0,2.348-2.429V14.508A10,10,0,0,1,39.574,16.065ZM12.736,32.839H10.052V30.155h2.684Zm0-6.71H10.052V23.445h2.684Zm0-6.71H10.052V16.736h2.684Zm8.052,13.419H18.1V30.155h2.684Zm0-6.71H18.1V23.445h2.684Zm0-6.71H18.1V16.736h2.684Zm8.052,13.419H26.155V30.155h2.684Zm0-6.71H26.155V23.445h2.684Zm0-6.71H26.155V16.736h2.684Zm8.052,13.419H34.207V30.155h2.684Zm0-6.71H34.207V23.445h2.684Zm0-6.71H34.207V16.736h2.684Z" transform="translate(-0.073 1.71)" fill="#135c65"/>
-                <path id="Path_212" data-name="Path 212" d="M38.419,7.71A6.71,6.71,0,1,1,31.71,1,6.71,6.71,0,0,1,38.419,7.71Z" transform="translate(7.791 0)" fill="#ff2a5b"/>
-              </g>
-            </svg>
-        </div>
-          
-        
-      </div>
-      <div class=" m-auto">
-        <img class="m-auto" src="../image/header/calendar-01nobg-01.png" />
-      </div>
-      
     </div>
     <div class="m-auto p-8 rounded-2xl max-w-2xl text-center">
       <div class="my-4">
@@ -518,7 +497,11 @@ export default {
         });
     },
     event_day(event_day) {
+      
       let day = moment(event_day).format("dddd");
+
+    
+      
       return `${day}`;
     },
     event_hour(event_hour) {
@@ -526,8 +509,10 @@ export default {
       return `${hour}`;
     },
   },
+ 
 
-  mounted() {
+  mounted( ) {
+   
     this.getEvent();
     this.getChilds();
     console.log(this.event_id);
