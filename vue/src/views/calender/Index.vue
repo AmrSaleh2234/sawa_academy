@@ -223,7 +223,7 @@ export default {
             <Calendar
               showIcon
               placeholder="dd-mm-yy"
-              date-format=" yy-mm-dd"
+              date-format="yy-mm-dd"
               v-model="start_event"
               style="width: 100%"
             />
@@ -232,7 +232,7 @@ export default {
             <Calendar
               showIcon
               placeholder="dd-mm-yy"
-              date-format=" yy-mm-dd"
+              date-format="yy-mm-dd"
               v-model="end_event"
               style="width: 100%; margin-top: 10px"
             />

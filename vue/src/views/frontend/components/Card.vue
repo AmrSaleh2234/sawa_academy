@@ -38,9 +38,12 @@ export default {
         </div>
 
         <v-card-actions class="ssc">
-          <p class="text-xl lg:text-2xl p-2 text-[#135C65] z-10">
+          <router-link
+            :to="{ name: 'Edit' }"
+            class="text-xl lg:text-2xl p-2 text-[#135C65] z-10"
+          >
             {{ $t("evaluation_result") }}
-          </p>
+          </router-link>
           <v-spacer></v-spacer>
           <v-btn
             icon="mdi-arrow-left"

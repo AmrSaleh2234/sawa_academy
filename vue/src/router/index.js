@@ -75,6 +75,7 @@ const routes = [
     path: "/web/booking-time",
     name: "BookingTime",
     component: BookingTime,
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/Cursale",
@@ -88,7 +89,7 @@ const routes = [
     component: AboutView,
   },
   {
-    path: "/web/New",
+    path: "/web/notifications",
     name: "New",
     component: () => import("../views/frontend/views/New.vue"),
     beforeEnter: authForNormalUser,
@@ -101,24 +102,25 @@ const routes = [
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/ReAction",
+    path: "/web/add-child",
     name: "ReAction",
     component: () => import("../views/frontend/views/ReAction.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Edit",
+    path: "/web/evaluation",
     name: "Edit",
     component: () => import("../views/frontend/views/Edit.vue"),
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Profile",
+    path: "/web/profile",
     name: "Profile",
     component: () => import("../views/frontend/views/Profile.vue"),
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Following",
+    path: "/web/following",
     name: "Following",
     component: () => import("../views/frontend/views/Following.vue"),
     beforeEnter: authForNormalUser,
