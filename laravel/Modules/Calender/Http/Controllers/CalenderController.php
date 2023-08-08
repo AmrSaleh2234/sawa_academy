@@ -85,13 +85,13 @@ class CalenderController extends Controller
                 "bookings.id as booking_id",
                 "bookings.user_id",
                 "event_id",
+                "accepted",
                 "start as event_date",
                 'users.name as user_name',
                 'users.title as user_title'
             )
             ->join('events', 'events.id', '=', 'bookings.event_id')
             ->join('users', 'users.id', '=', 'events.user_id')
-            ->where('bookings.accepted', 1)
             ->where('bookings.user_id', $this->getAuthUserID('parent'))
             ->get();
 
