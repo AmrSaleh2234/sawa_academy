@@ -35,15 +35,15 @@
     <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="flex  justify-between">
+        <div class="flex  justify-between shadow">
           <div class="bg-white text-3xl  text-[#6EB7BF] p-6 font-bold">
           {{ $t("bookings") }}
         </div>
-        <div class=" my-4  ">
+        <div class=" mx-4 my-auto ">
         <router-link
           :to="{ name: 'BookingTime' }"
           style="background-color: #135c65"
-          class="text-white w-full text-xl p-2  rounded-2xl"
+          class="text-white  w-full text-xl p-2  rounded-2xl"
         >
           {{ $t("Add_new_child") }} 
         </router-link>

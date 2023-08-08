@@ -18,7 +18,7 @@
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
         <div
-          class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow"
+          class="top-0 bg-white absolute font-bold text-2xl w-full text-[#6EB7BF] p-2 text-center shadow"
         >
         {{ $t("evaluation_result") }}
       </div>
@@ -28,8 +28,6 @@
           {{ $t("Important_alert") }}
           </p>
         </according>
-        
-        
         
       </div>
     </div>
