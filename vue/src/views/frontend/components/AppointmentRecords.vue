@@ -5,31 +5,33 @@
     >
       <div class="text-right m-auto visible md:invisible" @click="toggle()">
         <svg
-        fill="#000000"
-        width="54px"
-        height="54px"
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <path
-            d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
-          ></path>
-        </g>
-      </svg>
+          fill="#000000"
+          width="54px"
+          height="54px"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
+            ></path>
+          </g>
+        </svg>
       </div>
       
       <div class="m-auto w-full">
       <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
     </div>
       
+
     </div>
+
     <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
@@ -50,7 +52,7 @@
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a
             v-for="booking in bookings"
-            class="flex m-auto flex-wrap items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
+            class="flex flex-col items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
           >
             <img
               class="object-cover w-full md:w-auto md:h-auto rounded-xl"
@@ -71,6 +73,15 @@
               </p>
               <p class="px-2 pb-2 text-[#FF3765]">
                 {{ event_hour(booking.event_date) }}
+              </p>
+              <p
+                class="px-2 py-2 text-white rounded-lg font-medium text-center"
+                :class="{
+                  'bg-green-700': booking.accepted,
+                  'bg-yellow-400': booking.accepted == 0,
+                }"
+              >
+                {{ booking.accepted ? "Accepted" : "Pending" }}
               </p>
             </div>
           </a>

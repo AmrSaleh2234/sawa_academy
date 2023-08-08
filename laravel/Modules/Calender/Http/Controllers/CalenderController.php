@@ -17,6 +17,7 @@ use Modules\Calender\Http\Controllers\Repository\CalenderRepository;
 use Modules\Calender\Http\Controllers\Services\CalenderService;
 use Modules\Calender\Http\Requests\CalenderRequest;
 use Modules\Calender\Http\Requests\StoreBookingRequest;
+use Modules\Calender\Http\Requests\UpdateBookingRequest;
 use Modules\Calender\Transformers\EventResource;
 use Modules\Child\Entities\Child;
 use Modules\Child\Http\Controllers\Services\ChildService;
@@ -52,6 +53,7 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
+    ////////////////////////////////
     public function getAllBooking(Request $request)
     {
         $bookings = Booking::query()
@@ -83,13 +85,13 @@ class CalenderController extends Controller
                 "bookings.id as booking_id",
                 "bookings.user_id",
                 "event_id",
+                "accepted",
                 "start as event_date",
                 'users.name as user_name',
                 'users.title as user_title'
             )
             ->join('events', 'events.id', '=', 'bookings.event_id')
             ->join('users', 'users.id', '=', 'events.user_id')
-            ->where('bookings.accepted', 1)
             ->where('bookings.user_id', $this->getAuthUserID('parent'))
             ->get();
 
@@ -117,14 +119,29 @@ class CalenderController extends Controller
             ->where('id', $booking_id)
             ->first();
 
-        if ($data['booking']['doctor_code']) {
-            $data['doctor'] = DB::table("users")
-                ->select('users.name', 'users.title')
-                ->where("id", '=', $data['booking']['doctor_code'])
-                ->first();
-        }
+        // if ($data['booking']['doctor_code']) {
+        //     $data['doctor'] = DB::table("users")
+        //         ->select('users.name', 'users.title')
+        //         ->where("id", '=', $data['booking']['doctor_code'])
+        //         ->first();
+        // }
+
+        $data['doctor'] = DB::table("users")
+            ->select('users.name', 'users.title')
+            ->leftJoin("events", "events.user_id", '=', 'users.id')
+            ->where('events.id', '=', $data['booking']['event_id'])
+            ->first();
 
         return $this->bookingControllerHandler->show('booking', $data);
+    }
+
+    public function updateBooking($booking_id, UpdateBookingRequest $request)
+    {
+        $booking = Booking::where('id', $booking_id)->first();
+
+        $booking->update($request->validated());
+
+        return $this->bookingControllerHandler->show('booking', $booking);
     }
 
     public function changeDoctor(Request $request)
@@ -134,12 +151,13 @@ class CalenderController extends Controller
         ]);
 
         $doctors = Calender::query()
-            ->select('user_id')
+            ->select('user_id', 'start')
             ->addSelect([
-                'doctor_name' => User::select("name")->whereColumn('id', 'user_id'),
-                'title_name' => User::select("title")->whereColumn('id', 'user_id'),
+                'name' => User::select("name")->whereColumn('id', 'user_id'),
+                'title' => User::select("title")->whereColumn('id', 'user_id'),
             ])
             ->where('start', $request->start)
+
             ->get();
 
         return $this->bookingControllerHandler->show('doctors', $doctors);
@@ -179,6 +197,27 @@ class CalenderController extends Controller
         return $this->bookingControllerHandler->show('booking', $booking->fresh());
     }
 
+    public function getLatestReportForChild(Request $request)
+    {
+        $request->validate([
+            'child_id' => ['required', 'integer']
+        ]);
+
+        $child_id = $request->child_id;
+        $parent_id = auth('parent')->id();
+
+        $report = Booking::query()
+            ->select('booking_result', DB::raw("updated_at as report_date"))
+            ->where('user_id', $parent_id)
+            ->where('child_id', $child_id)
+            ->latest()
+            ->first();
+
+        return $this->bookingControllerHandler->show('report', $report);
+    }
+
+    /////////////////////////////////
+
     public function show(Calender $calender)
     {
         return $this->ControllerHandler->show("calender", $calender);
@@ -191,15 +230,91 @@ class CalenderController extends Controller
     public function store(CalenderRequest $request)
     {
 
-        //        return response(['k'=>$request->start]);
-        return $this->ControllerHandler->store("calender", $request->validated());
+        $data = [];
+
+        $start_date = Carbon::parse($request->start)->format("Y-m-d");
+        $end_date = Carbon::parse($request->end)->subDay()->format("Y-m-d");
+
+        // $events = Calender::query()
+        //     ->where('status', 0)
+        //     ->where('user_id', auth('api')->id())
+
+        //     ->whereDate('start', "=", $start_date)
+        //     ->whereDate('end', "=", $end_date)
+
+        //     ->where(function ($q) use ($request) {
+        //         $q->where(DB::raw("TIME(start)"), ">=", $request->time_start)
+        //             ->where(DB::raw("TIME(end)"), "<=", $request->time_end);
+        //     })
+        //     ->orWhere(function ($q) use ($request) {
+        //         $q->where(DB::raw("TIME(start)"), "<=", $request->time_start)
+        //             ->where(DB::raw("TIME(end)"), ">=", $request->time_end);
+        //     })
+        //     ->orderBy('start')
+        //     ->get();
+
+
+        // $events = Calender::query()
+        //     ->where('status', 0)
+        //     ->where('user_id', auth('api')->id())
+        //     ->whereDate('start', '=', $start_date)
+        //     ->whereDate('end', '=', $end_date)
+
+        //     ->where(function ($q) use ($request) {
+        //         $q->where(function ($q) use ($request) {
+        //             $q->whereTime('start', '>=', $request->time_start)
+        //                 ->whereTime('end', '<=', $request->time_end);
+        //         })
+        //      ->orWhere(function ($q) use ($request) {
+        //                 $q->whereTime('start', '<=', $request->time_start)
+        //                     ->whereTime('end', '>=', $request->time_end);
+        //      });
+        //     })
+        //     ->orderBy('start')
+        //     ->get();
+
+
+
+        $events = Calender::query()
+            ->where('status', 0)
+            ->where('user_id', auth('api')->id())
+            ->whereDate('start', '=', $start_date)
+            ->whereDate('end', '=', $end_date)
+
+            ->where(function ($q) use ($request) {
+                $q->where(function ($q) use ($request) {
+                    $q->whereTime('start', '>=', $request->time_start)
+                        ->whereTime('end', '<=', $request->time_end);
+                })
+                    ->orWhere(function ($q) use ($request) {
+                        $q->whereTime('start', '<=', $request->time_start)
+                            ->whereTime('end', '>=', $request->time_end);
+                    });
+            })
+            ->orderBy('start')
+            ->get();
+
+
+
+
+
+
+        // return $events;
+
+        if (count($events)) {
+            return response()->json(['message' => "duplicate event"], 442);
+        }
+
+        $start_date_time = "$start_date $request->time_start";
+        $end_date_time = "$end_date $request->time_end";
+
+        $data['title'] = $request->validated('title');
+        $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $start_date_time);
+        $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
+
+        return $this->ControllerHandler->store("calender", $data);
     }
 
-    /**
-     * @param CalenderRequest $request
-     * @param Calender $calender
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
 
     public function update(CalenderRequest $request, Calender $calender)
     {

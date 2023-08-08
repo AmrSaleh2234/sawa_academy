@@ -50,7 +50,6 @@
       </div>
       <button @click="isopen = !isopen">
         <svg
-          @click="$emit(getLatestReport)"
           class="mx-auto"
           width="24px"
           height="24px"
@@ -83,11 +82,15 @@
     >
       <p class="text-center text-[#148A98]">{{ $t("Date_report") }}</p>
       <p class="text-center p-2">{{ currentDate }}</p>
+
       <slot></slot>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+import moment from "moment";
+
 export default {
   data() {
     return {
@@ -98,6 +101,18 @@ export default {
   props: {
     name: String,
     age: Number,
+    id: Number,
+    report_date: String,
+    report_text: String,
+  },
+  methods: {},
+  computed: {
+    report_date_mod() {
+      if (this.report_date) {
+        return moment(this.report_date).format("DD/MM/YYYY");
+      }
+      return "there is no reports";
+    },
   },
 };
 </script>

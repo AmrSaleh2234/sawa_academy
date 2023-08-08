@@ -7,22 +7,21 @@
         <div>
           <p style="font-size: 100%" class="text-white text-base">
             <v-icon
-            end
-            icon="mdi-map-marker"
-            class="text-[#FFCF24] h-full"
-          ></v-icon>
+              end
+              icon="mdi-map-marker"
+              class="text-[#FFCF24] h-full"
+            ></v-icon>
             {{ $t("Amman_Rabieh_Maysaloon_Street") }}
           </p>
         </div>
         <div class="mx-2">
           <p style="font-size: 100%" class="text-white text-base">
             <v-icon
-            end
-            icon="mdi-phone"
-            class="text-[#FFCF24] h-full rotate-180"
-          ></v-icon>
-           {{ $t('contact') }}
-           
+              end
+              icon="mdi-phone"
+              class="text-[#FFCF24] h-full rotate-180"
+            ></v-icon>
+            {{ $t("contact") }}
           </p>
         </div>
       </div>
@@ -60,7 +59,7 @@
               style="font-size: 15px"
               class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
               type="text"
-              :placeholder="$t('user_name')" 
+              :placeholder="$t('user_name')"
             />
           </div>
           <div>
@@ -77,7 +76,6 @@
                 {{ $t("Create_an_account") }}
               </v-btn>
             </div>
-
           </div>
         </div>
       </div>
@@ -162,7 +160,6 @@
 import { useParentStore } from "../../../stores/ParentStore";
 import LocaleSelect from "../../../components/LocaleSelect.vue";
 
-
 export default {
   data() {
     return {
@@ -177,10 +174,9 @@ export default {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
   },
-  components:{
-   LocaleSelect
-
-  }
+  components: {
+    LocaleSelect,
+  },
 };
 </script>
 

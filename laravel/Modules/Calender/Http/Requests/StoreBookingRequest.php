@@ -30,7 +30,7 @@ class StoreBookingRequest extends FormRequest
             'child_doctor' => ['required', 'string'],
 
             'child_problem' => ['required', 'string'],
-            'child_problems_notes' => ['required', 'string'],
+            'child_problems_notes' => ['nullable', 'string'],
             "child_aids" => ['required', 'boolean'],
             "child_aids_notes" => ['required_if:child_aids,true'],
             'child_parents_problems' => ['required', 'string'],

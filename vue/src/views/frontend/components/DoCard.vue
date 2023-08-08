@@ -29,6 +29,7 @@
 
      </div>
    </div>
+
 </template>
 <!-- <script>
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
