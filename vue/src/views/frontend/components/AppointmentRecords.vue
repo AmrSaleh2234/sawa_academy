@@ -76,6 +76,15 @@
               <p class="px-2 pb-2 text-[#FF3765]">
                 {{ event_hour(booking.event_date) }}
               </p>
+              <p
+                class="px-2 py-2 text-white rounded-lg font-medium text-center"
+                :class="{
+                  'bg-green-700': booking.accepted,
+                  'bg-yellow-400': booking.accepted == 0,
+                }"
+              >
+                {{ booking.accepted ? "Accepted" : "Pending" }}
+              </p>
             </div>
           </a>
         </div>
