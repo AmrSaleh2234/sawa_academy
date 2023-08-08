@@ -39,7 +39,7 @@
     <sidbar :sole="showsider" />
     <div class="flex-1 py-9 my-6">
       <div
-        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
+        class="top-0 bg-white  text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
       >
       {{ $t("The_latest_developments") }}
     </div>

@@ -212,7 +212,7 @@
           </div>
           <div class="w-full text-right">
             <h3 class="text-base font-bold text-right pl-2 pb-2">الجنس</h3>
-            <label for="female" class="text-lg font-bold mt-4">FeMale</label>
+            <label for="female" class="text-lg font-bold mt-4">ذكر</label>
             <input
               type="radio"
               id="female"
@@ -222,7 +222,7 @@
               v-model="child.gender"
             />
 
-            <label for="male" class="text-lg font-bold mt-4">Male</label>
+            <label for="male" class="text-lg font-bold mt-4">انثي</label>
             <input
               type="radio"
               class="border ring-1 ring-gray-600 mx-2"
