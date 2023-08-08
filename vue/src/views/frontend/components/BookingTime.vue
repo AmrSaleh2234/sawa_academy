@@ -4,38 +4,26 @@
     <section
       class="bg-gray-50 dark:bg-gray-900 bl bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
     >
-      <div class="backdrop-blur-sm bg-white/30 p-6 md:grid md:grid-cols-12">
-        <div class>
-          <v-btn
-            height="45"
-            to="/"
-            class="mb-5 text-lg text-white"
-            color="#135C65"
-            @click="home"
-          >
-            <v-icon start icon="mdi-arrow-left"></v-icon>
-            {{ $t("الرئيسيه") }}
-          </v-btn>
-        </div>
+      <div class="backdrop-blur-sm bg-white/30 p-6">
+       
         <div
-          class="flex flex-col items-center justify-center px-6 col-span-10 mx-auto lg:py-0"
+          class="  mx-auto lg:py-0"
         >
           <div class="mb-4 text-center">
             <h1 class="text-3xl py-2 font-bold text-[#FF2A5B] pb-3">
-              احجز موعد لابنك
+              {{ $t("Book_an_appointment") }}  
             </h1>
-            <p class="text-xl text-[#6D9AA0]">استشارة الاطباء لحاله طفلك</p>
+            <p class="text-xl text-[#6D9AA0]">{{ $t("Consult_doctors_for_your_child_condition") }}</p>
             <p class="text-xl text-[#6D9AA0]">
-              والتواصل بشكل صحصيح لاعطائك التشخيص المناسب
+              {{ $t("And_communicate_correctly_to_give_you_the_appropriate_diagnosis") }}
             </p>
           </div>
         </div>
       </div>
-      <div class="px-[5%] py-[1%] text-right">
-        <p class="pb-4 text-2xl font-bold">احجز موعد مع الاخصائي</p>
-        <p class="text-[#3AD0FF]">
-          يمكنك اختيار الوقت المناسب الذي تريده وحجز استشاره مع اخصائي
-          الاكاديمية
+      <div class="px-[5%] py-[1%] ">
+        <p class="pb-4 text-3xl font-bold"> {{ $t("Book_an_appointment_with_the_specialist") }}</p>
+        <p class="text-[#3AD0FF] text-xl">
+          {{ $t("You_can_choose_the_appropriate") }}
         </p>
       </div>
       <div class="p-[5%]">

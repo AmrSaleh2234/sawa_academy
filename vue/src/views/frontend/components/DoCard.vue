@@ -14,8 +14,7 @@
                        <div class="text-center bg-teal-100 rounded-3xl m-2">
                            <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
                            <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
-                           <p class="text-center text-teal-400 p-1">{{$t("Neurologist")}}</p>
-                           <button  class="text-center w-[90%] m-2 p-2 rounded-3xl text-white bg-[#135C65] hover:bg-[#29CCFF]">{{$t("Contact_now")}}</button>
+                           <p class="text-center text-teal-400 pb-4 p-1">{{$t("Neurologist")}}</p>
                        </div>
                       </div>
                    </slide>

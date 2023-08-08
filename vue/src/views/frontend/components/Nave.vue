@@ -322,7 +322,7 @@ export default {
         </button>
       </div>
       <div class="flex space-x-4">
-        <div><img src="../image/header/Group22.png" /></div>
+        <div><router-link to="/web"><img class=" cursor-pointer" src="../image/header/Group22.png" /></router-link></div>
       </div>
     </div>
     <!-- Mobile menu -->

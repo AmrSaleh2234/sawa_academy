@@ -24,28 +24,28 @@
         </g>
       </svg>
       </div>
-      <div class="m-auto">
-        <p class="text-center font-bold text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
-      </div>
-      <div class="m-auto">
-        <v-btn
-          height="45"
-          to="/web"
-          class=" text-lg m-auto text-white"
-          color="#135C65"
-        >
-          <router-link :to="{ name: 'home' }">
-            <v-icon start icon="mdi-arrow-left"></v-icon>
-            {{ $t("home") }}
-          </router-link>
-        </v-btn>
-      </div>
+      
+      <div class="m-auto w-full">
+      <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+    </div>
+      
     </div>
     <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="bg-white text-2xl w-full text-[#6EB7BF] p-6 font-bold">
+        <div class="flex w-full justify-between">
+          <div class="bg-white text-3xl w-full text-[#6EB7BF] p-6 font-bold">
           {{ $t("bookings") }}
+        </div>
+        <div class="w-full my-4  ">
+        <router-link
+          :to="{ name: 'BookingTime' }"
+          style="background-color: #135c65"
+          class="text-white text-xl py-2 px-3  rounded-lg"
+        >
+          {{ $t("Add_new_child") }} 
+        </router-link>
+      </div>
         </div>
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a

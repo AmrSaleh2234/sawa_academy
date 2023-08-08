@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 rounded mt-2 max-w-full min-w-min">
-    <div class="bg-[#F8F8F8] shadow p-4 font-bold rounded flex justify-between">
+    <div class="bg-[#F8F8F8] shadow p-4 font-bold rounded flex justify-between mt-5 hover:bg-[#d9fbff]">
       <div class="flex">
         <div>
           <svg
@@ -43,8 +43,8 @@
         </div>
         <div class=" ">
           <p class="text-xs text-right p-2 font-medium">{{ name }}</p>
-          <p class="text-xs text-[#148A98] text-left rtl:text-right">
-            العمر : {{ age }} شهر
+          <p class="text-base text-[#148A98] text-left rtl:text-right">
+            {{ $t("age") }} : {{ age }} {{ $t("Month") }}
           </p>
         </div>
       </div>
@@ -74,14 +74,14 @@
             ></path>
           </g>
         </svg>
-        <p class="text-xs text-[#148A98]">متابعة التفاصيل</p>
+        <p class="text-xs text-[#148A98]">{{ $t("Follow_details") }}</p>
       </button>
     </div>
     <div
       class="mt-4 border-2 p-2 rounded text-right"
       :class="isopen ? 'd-block' : 'hidden'"
     >
-      <p class="text-center text-[#148A98]">تقرير بتاريخ</p>
+      <p class="text-center text-[#148A98]">{{ $t("Date_report") }}</p>
       <p class="text-center p-2">{{ currentDate }}</p>
       <slot></slot>
     </div>

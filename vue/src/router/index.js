@@ -52,14 +52,14 @@ const routes = [
     path: "/web/parent/register",
     name: "SingUp",
     component: () => import("../views/frontend/views/SingUp.vue"),
-    // beforeEnter: guestForNormalUser,
+    beforeEnter: guestForNormalUser,
   },
 
   {
     path: "/web/parent/login",
     name: "parentLogin",
     component: Login,
-    // beforeEnter: guestForNormalUser,
+    beforeEnter: guestForNormalUser,
   },
   {
     path: "/web/code",

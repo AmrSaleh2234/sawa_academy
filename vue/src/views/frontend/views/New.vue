@@ -30,22 +30,10 @@
  
     </div>
 
-    <div class="m-auto">
-      <p class="ont text-center font-bold text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+    <div class="m-auto w-full">
+      <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
     </div>
-    <div class="m-auto">
-      <v-btn
-        height="35"
-        to="/web"
-        class=" text-lg m-auto text-white"
-        color="#135C65"
-      >
-        <router-link :to="{ name: 'home' }">
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{ $t("home") }}
-        </router-link>
-      </v-btn>
-    </div>
+   
   </div>
   <div class="relative max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />

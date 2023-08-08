@@ -6,7 +6,7 @@
       <div class="flex">
         <div><img src="../image/header/Group463.png" /></div>
         <p class="text-xl m-auto p-2 pb-0 text-right font-semibold">
-          اكاديميه سوا
+          {{ $t("Sawa_Academy_for_Special_Education") }}
         </p>
       </div>
       <div class="my-auto text-right font-semibold text-lg text-[#148A98]">
@@ -16,22 +16,24 @@
     <div class="rounded text-right font-semibold text-lg">
       <p class="block py-2">{{ notification.data.message }}</p>
       <p class="block py-2">
+       
+        {{ $t("Jurisdiction_name") }} :  
         <span style="color: #135c65">{{
           notification.data.data.doctor_name
         }}</span>
-        : اسم الاخصائي
       </p>
       <p class="block py-2">
-        الاختصاص :
+        {{ $t("Jurisdiction") }} :
         <span style="color: #135c65">{{
           notification.data.data.doctor_title
         }}</span>
       </p>
       <p class="block py-2">
+       
+       {{ $t("Consultation_date") }} : 
         <span style="color: #135c65">{{
           notification.data.data.event_start
         }}</span>
-        : موعد الاستشاره
       </p>
     </div>
   </div>
