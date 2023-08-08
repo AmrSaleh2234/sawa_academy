@@ -11,9 +11,10 @@ import calender from "./calender.routes";
 import page_403 from "../views/pages/page_403.vue";
 import HomeView from "../views/frontend/views/HomeView.vue";
 import Login from "../views/frontend/views/Login.vue";
-import About from "../views/frontend/components/About.vue";
+import AboutView from "../views/frontend/views/AboutView.vue";
 import BookingTime from "../views/frontend/components/BookingTime.vue";
 import Cursale from "../views/frontend/components/Cursale.vue";
+import code from "../views/frontend/views/code.vue";
 
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
@@ -51,14 +52,19 @@ const routes = [
     path: "/web/parent/register",
     name: "SingUp",
     component: () => import("../views/frontend/views/SingUp.vue"),
-    beforeEnter: guestForNormalUser,
+    // beforeEnter: guestForNormalUser,
   },
 
   {
     path: "/web/parent/login",
     name: "parentLogin",
     component: Login,
-    beforeEnter: guestForNormalUser,
+    // beforeEnter: guestForNormalUser,
+  },
+  {
+    path: "/web/code",
+    name: "code",
+    component: code,
   },
   {
     path: "/web/",
@@ -78,9 +84,9 @@ const routes = [
   },
 
   {
-    path: "/web/about",
+    path: "/web/AboutView",
     name: "about",
-    component: About,
+    component: AboutView,
   },
   {
     path: "/web/notifications",

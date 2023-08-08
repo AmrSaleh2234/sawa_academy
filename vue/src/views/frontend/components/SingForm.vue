@@ -30,10 +30,10 @@
           </div>
         </div>
         <div
-        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;"
-                  class=" lg:w-[45%] shadow-md   rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px);margin: 3%; background-color: rgb(247, 243, 243); opacity: 95%;"
+                  class=" lg:w-[42%] shadow-md  animate__animated animate__bounceInRight  rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div  class=" w-full p-2 md:space-y-6 sm:p-8">
+          <div  class=" w-full  md:space-y-6 sm:p-8  ">
 
             <form  class="w-full space-y-6 text-center rounded-2xl  bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">
@@ -101,8 +101,9 @@
                   class="min-w-full  text-xl bg-white/10  focus:ring-0 text-center"
                 />
               </div>
-              
-              <button type="submit" @click="vaild()" class="mb-5 rounded-xl w-full p-2 text-xl text-white bg-[#23D1E6]">{{$t('Create_an_account')}}</button>
+              <div>              
+                <router-link class="" :to="{ name: 'code' }"><button type="submit" @click="vaild()"  class="mb-5 rounded-xl w-full p-2 text-xl text-white bg-[#23D1E6]">{{$t('Create_an_account')}}</button></router-link>
+              </div>
               <p>
                 {{ $t("If_you_have_an_account") }}
                   <router-link

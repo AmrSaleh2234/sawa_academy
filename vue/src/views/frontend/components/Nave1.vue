@@ -1,3 +1,4 @@
+
 <template>
   <nav class="bg-[#135C65] p-4">
     <div class="container mx-auto flex items-center justify-between">
@@ -29,7 +30,7 @@
       <div class="hidden lg:block space-x-4" v-if="!parentStore.parentAuth">
         <div class="flex flex-col md:flex-row m-auto space-x-4">
           <div
-            class="m-auto w-52 bg-[#0D4047] rounded-lg"
+            class="m-auto mx-2 bg-[#0D4047] rounded-lg"
             style="display: flex; align-items: center; border: 1px solid white"
           >
             <v-icon
@@ -66,13 +67,13 @@
               :to="{ name: 'parentLogin' }"
               class="bg-[#FFCF24] text-white text-base"
             >
-              تسجيل الدخول
+            {{ $t("sign_in") }}
             </v-btn>
           </div>
           <div>
             <div class="bg-none shadow-0 text-[#FFCF24] text-base">
               <v-btn :to="{ name: 'SingUp' }" class="text-base">
-                انشاء حساب
+                {{ $t("Create_an_account") }}
               </v-btn>
             </div>
           </div>
