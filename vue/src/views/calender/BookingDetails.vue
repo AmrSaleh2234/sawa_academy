@@ -488,11 +488,6 @@ export default {
           console.log(err);
         });
     },
-    changeCurrentDoctor(new_doctor) {
-      this.doctor = new_doctor;
-      console.log(this.doctor);
-      console.log(new_doctor);
-    },
   },
   computed: {
     event_data() {

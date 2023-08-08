@@ -102,7 +102,9 @@
                 />
               </div>
               <div>              
-                <router-link class="" :to="{ name: 'code' }"><button type="submit" @click="vaild()"  class="mb-5 rounded-xl w-full p-2 text-xl text-white bg-[#23D1E6]">{{$t('Create_an_account')}}</button></router-link>
+                <!-- <router-link class="" :to="{ name: 'code' }"> -->
+                  <button type="submit" @click="vaild()"  class="mb-5 rounded-xl w-full p-2 text-xl text-white bg-[#23D1E6]">{{$t('Create_an_account')}}</button>
+                <!-- </router-link> -->
               </div>
               <p>
                 {{ $t("If_you_have_an_account") }}

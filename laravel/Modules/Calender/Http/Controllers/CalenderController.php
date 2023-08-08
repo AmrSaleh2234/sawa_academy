@@ -85,13 +85,13 @@ class CalenderController extends Controller
                 "bookings.id as booking_id",
                 "bookings.user_id",
                 "event_id",
+                "accepted",
                 "start as event_date",
                 'users.name as user_name',
                 'users.title as user_title'
             )
             ->join('events', 'events.id', '=', 'bookings.event_id')
             ->join('users', 'users.id', '=', 'events.user_id')
-            ->where('bookings.accepted', 1)
             ->where('bookings.user_id', $this->getAuthUserID('parent'))
             ->get();
 
@@ -254,6 +254,27 @@ class CalenderController extends Controller
         //     ->get();
 
 
+        // $events = Calender::query()
+        //     ->where('status', 0)
+        //     ->where('user_id', auth('api')->id())
+        //     ->whereDate('start', '=', $start_date)
+        //     ->whereDate('end', '=', $end_date)
+
+        //     ->where(function ($q) use ($request) {
+        //         $q->where(function ($q) use ($request) {
+        //             $q->whereTime('start', '>=', $request->time_start)
+        //                 ->whereTime('end', '<=', $request->time_end);
+        //         })
+        //      ->orWhere(function ($q) use ($request) {
+        //                 $q->whereTime('start', '<=', $request->time_start)
+        //                     ->whereTime('end', '>=', $request->time_end);
+        //      });
+        //     })
+        //     ->orderBy('start')
+        //     ->get();
+
+
+
         $events = Calender::query()
             ->where('status', 0)
             ->where('user_id', auth('api')->id())
@@ -272,6 +293,9 @@ class CalenderController extends Controller
             })
             ->orderBy('start')
             ->get();
+
+
+
 
 
 
