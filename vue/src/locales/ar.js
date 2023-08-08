@@ -115,4 +115,23 @@ export default {
   submit: "تاكيد",
   Resend_the_code: "اعاده ارسال الكود",
   Enter_the_activation_code: "ادخل كود التفعيل",
+  Book_an_appointment: "احجز موعد لابنك",
+  Add_new_child: "اضافة طفل جديد",
+  My_child_is_getting_more_skilled: "طفلي اصبح اكثر مهاره",
+  Important_alert:
+    "تنبيه هام : لايمكن لطفلك الاختبار مره اخر الا بعر مرور 6 اشهر علي اخر اختبار",
+  Date_report: "تقرير بتاريخ",
+  Follow_details: "متابعه التفاصيل",
+  age: "العمر",
+  Consult_doctors_for_your_child_condition: "استشارة الاطباء لحاله طفلك ",
+  And_communicate_correctly_to_give_you_the_appropriate_diagnosis:
+    "والتواصل بشكل صحصيح لاعطائك التشخيص المناسب  ",
+  Book_an_appointment_with_the_specialist: "احجز موعد مع الاخصائي ",
+  You_can_choose_the_appropriate:
+    "يمكنك اختيار الوقت المناسب الذي تريده وحجز استشاره مع اخصائي الاكاديمية",
+  Month: "شهر",
+  Please_fill_in_the_information: "برجاء ملئ البيانات",
+  Jurisdiction: "الاختصاص",
+  Jurisdiction_name: "اسم الاخصائي ",
+  Consultation_date: "موعد الاستشاره",
 };

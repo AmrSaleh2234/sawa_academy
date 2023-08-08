@@ -1,5 +1,18 @@
 <template>
   <div>
+    <v-alert
+        type="success"
+        variant="tonal"
+        border="start"
+        elevation="2"
+        closable
+        :close-label="$t('close')"
+        :text="alert_text"
+        v-if="alert_text != null"
+        class="mb-8 fixed"
+        style="width: 30%;"
+      >
+      </v-alert>
     <div class="flex justify-between">
       <div style="width: 25%" class="m-auto">
         <img class="h-56 m-auto" src="../image/header/registernobg-01.png" />
@@ -72,6 +85,9 @@
                 v-model="child.birth_date"
                 dateFormat="dd/mm/yy"
                 :placeholder="$t('date_of_birth')"
+                :minDate="minDate"
+            :maxDate="maxDate"
+                
               />
             </div>
           </div>
@@ -234,10 +250,14 @@ import moment from "moment";
 import Calendar from "primevue/calendar";
 import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
+import Message from 'primevue/message';
 export default {
-  components: { Calendar, Textarea },
+  components: { Calendar, Textarea ,Message},
   data() {
     return {
+      show:false,
+      minDate: new Date(1640426400000),
+    maxDate: new Date(),
       parentStore: useParentStore(),
       errors: [],
       child: {
@@ -267,10 +287,12 @@ export default {
         .post("/api/parent/child/create", this.child)
         .then((res) => {
           this.errors = null;
+          this.alert_text = "Thanks  ";
           Object.keys(this.child).forEach((key) => {
             this.child[key] = null;
+    
           });
-          this.$router.push({ name: "Following" });
+          // this.$router.push({ name: "Following" });
           console.log(res);
         })
         .catch((err) => {

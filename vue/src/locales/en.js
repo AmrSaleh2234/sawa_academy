@@ -116,4 +116,25 @@ export default {
   submit: "submit",
   Resend_the_code: "Resend the code",
   Enter_the_activation_code: "Enter the activation code",
+  Book_an_appointment: "book appointment for child",
+  Add_new_child: "Add new child",
+  My_child_is_getting_more_skilled: "My child is getting more skilled",
+  Important_alert:
+    "Important alert: Your child cannot test again until 6 months have passed  The last test",
+  Date_report: "Date report",
+  Follow_details: "Follow details",
+  age: "age",
+  Consult_doctors_for_your_child_condition:
+    "Consult doctors for your child's condition",
+  And_communicate_correctly_to_give_you_the_appropriate_diagnosis:
+    "And communicate correctly to give you the appropriate diagnosis",
+  Book_an_appointment_with_the_specialist:
+    "Book an appointment with the specialist",
+  You_can_choose_the_appropriate:
+    "You can choose the appropriate time you want and book a consultation with the academy specialist",
+  Month: "Month",
+  Please_fill_in_the_information: "Please fill in the information",
+  Jurisdiction: "Jurisdiction",
+  Jurisdiction_name: "Jurisdiction name",
+  Consultation_date: "Consultation date",
 };

@@ -24,31 +24,33 @@
     <sidbar :sole="showsider" />
     <div class="flex-1">
       <div
-        class="bg-white text-2xl w-full text-[#6EB7BF] py-4 text-center shadow"
-      >
+        class="col-span-1 text-right m-auto visible md:invisible"
+        @click="toggle()"
+      ></div>
+        <div class="m-auto w-full">
+      <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+    </div>
+     
+     
+    </div>
+    <div class="relative overflow-clip max-w-full max-h-screen flex">
+      <sidbar :sole="showsider" />
+      <div class="flex-1 overflow-scroll">
+        <div
+          class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow"
+        >
         {{ $t("evaluation_result") }}
       </div>
-
-      <div class="overflow-auto" style="height: 70vh">
-        <according
-          v-for="child in childs"
-          class="text-xs block"
-          :name="child.name"
-          :id="child.id"
-          :age="child.age"
-          :report_date="child.report_date"
-          :report_text="child.report_text"
-        >
+        <according class="text-xs block" name="محمد عماد محمد الشيخ" age="15">
+          <p>  {{ $t("My_child_is_getting_more_skilled") }} </p>
+          <p class="text-[#FF3765]">
+          {{ $t("Important_alert") }}
+          </p>
         </according>
-      </div>
-      <div class="w-full mx-auto text-center my-2">
-        <router-link
-          :to="{ name: 'ReAction' }"
-          style="background-color: #135c65"
-          class="text-white py-2 px-3 rounded-lg"
-        >
-          اضافه طفل جديد
-        </router-link>
+        
+        
+        
+
       </div>
     </div>
   </div>
