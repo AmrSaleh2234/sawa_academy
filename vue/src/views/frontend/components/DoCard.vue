@@ -1,63 +1,35 @@
-<template>
-  <div
-    style="
-      background: linear-gradient(to right, #ff8b6a, #ff566f);
-      padding-bottom: 2%;
-      padding-top: 2%;
-    "
-    class="p-6 bg-center bg-cover m-auto relative"
-  >
-    <img
-      src="../image/sec1/m.png"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
-    <!--        -->
-    <div style="padding-bottom: 2%" class="text-center">
-      <h1 class="text-4xl font-bold text-white tracking-wide">
-        {{ $t("Sawa_Academy_team") }}
-      </h1>
-      <p class="text-2xl text-white tracking-wide pt-4">
-        {{ $t("We_have_a_group_of_highly_experienced_therapists") }}
-      </p>
-    </div>
-    <div class="m-auto">
-      <div class="m-auto">
-        <carousel
-          class="bg-none w-full"
-          v-bind="settings"
-          :wrap-around="true"
-          :breakpoints="breakpoints"
-        >
-          <slide v-for="image in 7" :key="image" class="w-full widths">
-            <div v-for="index in perPage" :key="index" class="w-[80%]">
-              <div class="text-center bg-teal-100 rounded-3xl m-2">
-                <div class="bg-white rounded-3xl">
-                  <img
-                    class="m-auto px-5"
-                    src="../image/sec1/Doctor-PNG-Clipart.png"
-                  />
-                </div>
-                <p class="text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
-                <p class="text-center text-teal-400 p-1">
-                  {{ $t("Neurologist") }}
-                </p>
-                <button
-                  class="text-center w-[90%] m-2 p-2 rounded-3xl text-white bg-[#135C65] hover:bg-[#29CCFF]"
-                >
-                  {{ $t("Contact_now") }}
-                </button>
-              </div>
-            </div>
-          </slide>
-          <!--                -->
-          <template #addons>
-            <!--                        -->
-            <pagination class="[&>div]:bg-[red]" />
-          </template>
-        </carousel>
-      </div>
-    </div>
-  </div>
+<template >
+   <div style="background: linear-gradient(to right, #FF8B6A, #FF566F);padding-bottom: 2%;padding-top: 2%;" class="p-6   bg-center bg-cover m-auto relative ">
+       <img src="../image/sec1/m.png" class="absolute inset-0 w-full h-full object-cover">
+<!--        -->
+       <div style="padding-bottom: 2%;" class="text-center ">
+           <h1 class="text-4xl  font-bold text-white tracking-wide ">{{$t("Sawa_Academy_team")}}</h1>
+           <p class="text-2xl text-white tracking-wide pt-4 ">{{$t("We_have_a_group_of_highly_experienced_therapists")}}</p>
+       </div>
+       <div class=" m-auto">
+           <div class=" m-auto">
+               <carousel class="bg-none w-full   " v-bind="settings" :wrap-around="true" :breakpoints="breakpoints" >
+                   <slide v-for="image in 7" :key="image" class="w-full widths">
+                      <div v-for="index in perPage" :key="index" class=" w-[80%] ">
+                       <div class="text-center bg-teal-100 rounded-3xl m-2">
+                           <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
+                           <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
+                           <p class="text-center text-teal-400 pb-4 p-1">{{$t("Neurologist")}}</p>
+                       </div>
+                      </div>
+                   </slide>
+<!--                -->
+                   <template  #addons >
+<!--                        -->
+                     <pagination class="[&>div]:bg-[red] " />
+                   </template>
+                 </carousel>
+
+           </div>
+
+     </div>
+   </div>
+
 </template>
 <!-- <script>
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes

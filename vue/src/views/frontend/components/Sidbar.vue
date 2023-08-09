@@ -193,40 +193,10 @@
           </div>
         </router-link>
       </div>
+      
       <div class="w-full" style="border: 1px solid"></div>
       <div class="bottom-0">
-        <button
-          class="w-full py-2 my-2 px-8 text-xl text-white rounded-2xl bg-[#23D1E6] hover:bg-[#0B8897]"
-        >
-          <router-link
-            :to="{ name: 'Profile' }"
-            class="flex items-center justify-between"
-          >
-            <p class="block">{{ $t("Modify_profile") }}</p>
-            <svg
-              id="edit-solid"
-              xmlns="http://www.w3.org/2000/svg"
-              width="22.761"
-              height="22.713"
-              viewBox="0 0 22.761 22.713"
-            >
-              <path
-                id="Path_220"
-                data-name="Path 220"
-                d="M3.651,18.582l-1.345,5.8a1.458,1.458,0,0,0,1.415,1.769,1.514,1.514,0,0,0,.3,0L9.865,24.81l11.21-11.168L14.819,7.4Z"
-                transform="translate(-2.272 -3.449)"
-                fill="#135c65"
-              />
-              <path
-                id="Path_221"
-                data-name="Path 221"
-                d="M30.284,6.419,26.108,2.244a1.465,1.465,0,0,0-2.067,0L21.72,4.565l6.249,6.249,2.321-2.321a1.465,1.465,0,0,0-.007-2.074Z"
-                transform="translate(-7.956 -1.817)"
-                fill="#135c65"
-              />
-            </svg>
-          </router-link>
-        </button>
+       
         <button
           @click="parentStore.logout"
           class="w-full py-2 flex items-center justify-between px-8 my-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
