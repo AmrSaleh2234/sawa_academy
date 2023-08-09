@@ -1,17 +1,8 @@
 <template>
   <section  class="bg-gray-50 relative dark:bg-gray-900  bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center  ">
     <div style="opacity: 10%;" class="bg-black h-full w-full absolute  "></div>
-    <div class=" bg-white/30 p-6 md:grid md:grid-cols-10" style="backdrop-filter: blur(1px);" >
-      <div class>
-        <v-btn to="/web" height="45" class="mb-5 text-lg text-white" color="#135C65" >
-          <v-icon
-            start
-            icon="mdi-arrow-left"
-          ></v-icon>
-            {{$t('home')}}
-        </v-btn>
-        
-      </div>
+    <div class=" bg-white/30 p-6" style="backdrop-filter: blur(1px);" >
+      
       <div
      
         class="flex flex-col items-center z-40 justify-center col-span-8  w-full mx-auto lg:py-0">
@@ -30,10 +21,10 @@
           </div>
         </div>
         <div
-        style="backdrop-filter: blur(10px);margin: 3%; background-color: rgb(247, 243, 243); opacity: 95%;"
-                  class=" lg:w-[42%] shadow-md  animate__animated animate__bounceInRight  rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        style="backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%; margin-top:5%; margin-bottom: 2%;"
+                  class="  shadow-md  animate__animated animate__bounceInRight  rounded-3xl z-30 dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div  class=" w-full  md:space-y-6 sm:p-8  ">
+          <div  class=" w-full  md:space-y-6 p-8  ">
 
             <form  class="w-full space-y-6 text-center rounded-2xl  bg-none " @submit.prevent="massegeerror.length == 0 ? parentStore.register(parent) : null">
               <div v-for="error in massegeerror" :key="error">

@@ -35,19 +35,21 @@
     <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="flex w-full justify-between">
-          <div class="bg-white text-3xl w-full text-[#6EB7BF] p-6 font-bold">
+        <div class="flex  justify-between shadow p-4">
+          <div class="bg-white text-3xl  text-[#6EB7BF]  font-bold">
           {{ $t("bookings") }}
         </div>
-        <div class="w-full my-4  ">
+        <div style="background-color: #135c65" class=" p-2 bg-[#135c65]  rounded-lg text-center ">
+        <v-icon left color="white">mdi-plus</v-icon>
         <router-link
           :to="{ name: 'BookingTime' }"
-          style="background-color: #135c65"
-          class="text-white text-xl py-2 px-3  rounded-lg"
+          
+          class="text-white   rounded-lg"
         >
           {{ $t("Add_new_child") }} 
         </router-link>
       </div>
+        
         </div>
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a

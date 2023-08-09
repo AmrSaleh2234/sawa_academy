@@ -3,19 +3,8 @@
     class=" dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center backdrop-blur-sm bg-white/40"
   >
   <div style="opacity: 10%;" class="bg-black h-full w-full absolute  "></div>
-    <div class="h-full p-6 md:grid md:grid-cols-12" style="backdrop-filter: blur(2px);" >
-      <div class="">
-        <v-btn
-          to="/web"
-          height="45"
-          class="mb-5 text-lg m-auto text-white"
-          color="#135C65"
-          @click="home"
-        >
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{$t('home')}}
-        </v-btn>
-      </div>
+    <div class="h-full p-6 " style="backdrop-filter: blur(2px);" >
+     
       <div
         class="flex flex-col items-center justify-between px-6  mx-auto md:col-span-10 lg:py-0"
       >
@@ -36,8 +25,8 @@
           </div>
         </div>
         <form @submit.prevent="massegeerror.length == 0 ? parentStore.login(parent) : null"
-        style=" backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 13%;margin-bottom: 13%;"
-          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 sm:w-[55%] xl:p-0 dark:bg-gray-800 dark:border-gray-700  animate__animated animate__bounceInRight"
+        style=" backdrop-filter: blur(10px); background-color: rgb(247, 243, 243); opacity: 95%;margin-top: 10%;margin-bottom: 10%;"
+          class=" space-y-4 rounded-3xl shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700  animate__animated animate__bounceInRight"
         >
         <div v-for="error in massegeerror" :key="error" class="text-center my-2 py-2">
                 <p class="text-red-600">{{error}}</p>

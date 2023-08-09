@@ -30,8 +30,8 @@
                   d="M0,0V36H36V12.729l-5.906,5.906V30.094H5.906V5.906H17.365L23.271,0ZM31.5,0,29.195,2.305l4.5,4.5L36,4.5ZM28.107,3.393,14.915,16.585l4.5,4.5L32.607,7.893l-4.5-4.5ZM13.258,18.67c-.067,0-.135.006-.2.011v4.263h4.263A4.507,4.507,0,0,0,15.9,19.778a3.761,3.761,0,0,0-2.641-1.107Z"
                 />
               </svg>
-              <p class="text-sm font-bold px-2">
-                {{ doctor ? "تغيير الاخصائي" : "اختر الاخصائي" }}
+              <p class="text-base font-bold px-2">
+                {{ doctor ? $t("change_of_specialist") : $t("Choose_a_specialist") }}
               </p>
             </div>
             <div class="flex-1">
@@ -62,12 +62,13 @@
         <div>
           <p class="py-2">
             <span>
+              {{ $t("Consultation_date") }} :  
               <span style="color: #00897b">{{ event_data }}</span>
-              : موعد الاستشارة
+           
             </span>
           </p>
           <div class="flex flex-col">
-            <label for="notes" class="my-2"> : تقديم ملاحظة</label>
+            <label for="notes" class="my-2 w-full"> {{ $t("Submit_a_note") }} :  </label>
             <textarea
               name="notes"
               v-model="accept_notes"
@@ -80,8 +81,8 @@
 
           <p class="my-9 py-2 border-black">
             <span class="">
+              {{ $t("request_sender") }} :  
               <span style="color: #00897b">{{ booking.requester_name }}</span>
-              : اسم مرسل الطلب
             </span>
           </p>
         </div>
@@ -93,105 +94,107 @@
           :class="{ 'bg-emerald-500': booking.accepted }"
           :disabled="doctor == null || booking.accepted == 1"
         >
-          {{ booking.accepted ? "تم الحجز" : "تاكيد الحجز" }}
+          {{ booking.accepted ? "تم الحجز" : $t("submit") }}
         </button>
       </div>
       <!-- End Left Side -->
       <!-- Right Side -->
-      <div class="flex-1 w-2/3 text-right">
+      <div class="flex-1 w-2/3 ">
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("applicant") }} :   
             <span style="color: #00897b">{{ booking.requester_name }}</span>
-            : إسم ولي الأمر ( مقدم الطلب)
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("degree_closeness_child") }} : 
             <span style="color: #00897b">{{ booking.relative_degree }}</span>
-            : درجة قرابته للطفل
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("Full_Name") }} :   
             <span style="color: #00897b">{{ booking.child_name }}</span>
-            : الاسم الرباعي للطفل
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("place_of_birth") }} : 
             <span style="color: #00897b">{{ booking.child_birth_place }}</span>
-            : مكان الميلاد
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("birth_date") }} :  
             <span style="color: #00897b">{{ booking.child_birth_date }}</span>
-            : تاريخ الميلاد
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("primary_language") }}:   
             <span style="color: #00897b">{{ booking.child_lang }}</span>
-            : لغة الطفل الاساسية
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("Nationality") }} : 
             <span style="color: #00897b">{{ booking.child_nationalty }}</span>
-            : الجنسية
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("national_number") }} : 
             <span style="color: #00897b">{{ booking.child_national_id }}</span>
-            : رقمه الوطني
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("address") }}  : 
             <span style="color: #00897b">{{ booking.child_address }}</span>
-            : العنوان
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("phone_number") }}:
             <span style="color: #00897b">{{ booking.requester_phone }}</span>
-            : رقم هاتف ولي الأمر
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("Additional_phone_number") }}  :   
             <span style="color: #00897b">{{ booking.addtional_phone }}</span>
-            : رقم هاتف إضافي
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("owner_extra_number") }} : 
             <span style="color: #00897b">{{
               booking.addtional_phone_owner
             }}</span>
-            : مالك الرقم الإضافي
+            
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("degree_closeness_child") }} :
             <span style="color: #00897b">{{
               booking.addtional_phone_degree
             }}</span>
-            : درجة قرابته للطفل
           </span>
         </p>
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
+            {{ $t("conversion_source") }}  :  
             <span style="color: #00897b">{{ booking.conversion_type }}</span>
-            : مصدر التحويل
           </span>
         </p>
         <div class="flex justify-between items-center">
           <p class="my-9 py-2 border-b" style="color: #00897b">
             <span class="">
+               {{ $t("Specialist_code") }}:  
               <span>{{ booking.doctor_code }}</span>
-              : كود الاخصائي
+             
             </span>
           </p>
           <p
@@ -223,7 +226,7 @@
                 fill-rule="evenodd"
               />
             </svg>
-            <span style="color: #00897b">إجابة الاسألة</span>
+            <span style="color: #00897b">{{ $t("Answer_the_questions") }}</span>
           </p>
         </div>
       </div>
@@ -239,7 +242,7 @@
       >
         <div class="w-1/2 p-6 bg-white rounded-md shadow-xl">
           <div class="flex items-center justify-between">
-            <h3 class="text-2xl text-center">اجابه الاسئله</h3>
+            <h3 class="text-3xl text-center">{{ $t("Answer_the_questions") }}</h3>
             <svg
               @click="show_answer_modal = false"
               xmlns="http://www.w3.org/2000/svg"
@@ -256,25 +259,27 @@
               />
             </svg>
           </div>
-          <div class="mt-4 text-right">
+          <div class="mt-4 ">
             <p class="border-b-2 my-9 py-2 border-black">
               <span class="font-bold">
+                {{ $t("Type") }} : 
                 <span
                   class="font-normal text-gray-400"
                   style="color: #00897b"
                   >{{ booking.child_gender == 1 ? "male" : "female" }}</span
                 >
-                : الجنس
+              
               </span>
             </p>
             <p class="border-b-2 my-9 py-2 border-black">
               <span class="font-bold">
+                {{ $t("problem_type") }} :
                 <span
                   class="font-normal text-gray-400"
                   style="color: #00897b"
                   >{{ booking.child_problem }}</span
                 >
-                : نرجو تحديد نوع المشكله
+                    
               </span>
               <span class="block">
                 <span class="text-sm font-normal text-gray-400">{{
@@ -284,12 +289,12 @@
             </p>
             <p class="border-b-2 my-9 py-2 border-black">
               <span class="font-bold">
+                {{ $t("child_problem") }} : 
                 <span
                   class="font-normal text-gray-400"
                   style="color: #00897b"
                   >{{ booking.child_aids == 1 ? "yes" : "no" }}</span
                 >
-                : هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه
               </span>
               <span class="block">
                 <span class="text-sm font-normal text-gray-400">{{
@@ -299,7 +304,7 @@
             </p>
             <p class="border-b-2 my-9 py-2 border-black">
               <span class="font-bold">
-                : المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل
+               {{ $t("main_problems") }} : 
                 <span class="block">
                   <span class="text-sm font-normal text-gray-400">{{
                     booking.child_aids_notes
@@ -309,7 +314,7 @@
             </p>
             <p class="border-b-2 my-9 py-2 border-black">
               <span class="font-bold">
-                : ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
+               {{ $t("priority_parents") }} : 
                 <span class="block font-normal text-gray-400">{{
                   booking.parents_priorities
                 }}</span>
