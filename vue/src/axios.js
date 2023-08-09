@@ -10,7 +10,7 @@ axios.interceptors.request.use((config) => {
   } catch (error) {
     config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
   }
-  config.headers.Accept = "application/json";
+  // config.headers.Accept = "application/json";
   // config.headers["Content-Type"] = "application/json";
   return config;
 });

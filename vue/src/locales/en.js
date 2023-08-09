@@ -116,4 +116,48 @@ export default {
   submit: "submit",
   Resend_the_code: "Resend the code",
   Enter_the_activation_code: "Enter the activation code",
+  Book_an_appointment: "book appointment for child",
+  Add_new_child: "Add new child",
+  My_child_is_getting_more_skilled: "My child is getting more skilled",
+  Important_alert:
+    "Important alert: Your child cannot test again until 6 months have passed  The last test",
+  Date_report: "Date report",
+  Follow_details: "Follow details",
+  age: "age",
+  Consult_doctors_for_your_child_condition:
+    "Consult doctors for your child's condition",
+  And_communicate_correctly_to_give_you_the_appropriate_diagnosis:
+    "And communicate correctly to give you the appropriate diagnosis",
+  Book_an_appointment_with_the_specialist:
+    "Book an appointment with the specialist",
+  You_can_choose_the_appropriate:
+    "You can choose the appropriate time you want and book a consultation with the academy specialist",
+  Month: "Month",
+  Please_fill_in_the_information: "Please fill in the information",
+  Jurisdiction: "Jurisdiction",
+  Jurisdiction_name: "Jurisdiction name",
+  Consultation_date: "Consultation date",
+  change_of_specialist: "change of specialist",
+  Choose_a_specialist: "Choose a specialist",
+  Submit_a_note: "Submit a note ",
+  request_sender: " name of the request sender",
+  applicant: "applicant",
+  degree_closeness_child: "degree of closeness to the child",
+  place_of_birth: "place of birth",
+  primary_language: "The child's primary language",
+  Nationality: "Nationality",
+  national_number: " national number ",
+  Additional_phone_number: "Additional phone number",
+  owner_extra_number: "The owner of the extra number",
+  degree_closeness_child: "degree of closeness to the child",
+  conversion_source: "conversion source",
+  Specialist_code: "Specialist code",
+  Answer_the_questions: "Answer the questions",
+  Type: "gender",
+  problem_type: "Please specify the type of problem",
+  child_problem: "Does the child use any kinesthetic/auditory/visual aids?",
+  main_problems:
+    "The main problems the child currently has from the point of view of the parents",
+  priority_parents:
+    " the priority of the parents in the rehabilitative programs to deal with the child?",
 };
