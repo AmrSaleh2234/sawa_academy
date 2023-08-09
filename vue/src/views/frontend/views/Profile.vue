@@ -1,44 +1,12 @@
 <template>
   <div class="switcher">
     <Map />
-    <div class="flex border-b-2 p-2 border-x-cyan-950 border-solid">
-      <div class="m-auto">
-        <v-btn
-          height="45"
-          to="/web"
-          class="mb-5 text-lg m-auto text-white"
-          color="#135C65"
-        >
-          <router-link :to="{ name: 'home' }">
-            <v-icon start icon="mdi-arrow-left"></v-icon>
-            {{ $t("home") }}
-          </router-link>
-        </v-btn>
+    <div class="w-full border-b-2  border-x-cyan-950 border-solid">
+      
+      <div class="m-auto w-full">
+        <p class="text-center p-4 text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
       </div>
-      <div class="m-auto">
-        <p class="text-center p-6 text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
-      </div>
-      <div @click="toggle" class="m-auto md:invisible">
-        <svg
-          fill="#000000"
-          width="54px"
-          height="54px"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
-            ></path>
-          </g>
-        </svg>
-      </div>
+    
     </div>
     <div class="relative flex selection max-h-full">
       <sidbar class="" :sole="showsider" />

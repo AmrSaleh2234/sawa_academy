@@ -33,7 +33,7 @@
     </div>
       <div class="flex">
      
-      <div class="my-auto "><img class="h-[80%]" src="../image/header/Group22.png" /></div>
+      <div class="my-auto  "> <router-link to="/web"><img class="h-[80%] cursor-pointer" src="../image/header/Group22.png" /></router-link></div>
       </div>
 
   </div>

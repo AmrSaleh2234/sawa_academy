@@ -125,7 +125,7 @@
           style="background-color: #00838f"
           :disabled="doctor == null"
         >
-          update
+          {{ $t("submit") }}
         </button>
       </div>
       <!-- End Left Side -->
@@ -365,9 +365,9 @@
           <div class="flex items-center justify-end">
             <h3
               class="text-2xl text-center w-full font-bold inline-flex items-center justify-center"
-              :class="modal_color"
+              :class="modal_color_c"
             >
-              {{ modal_text }}
+              {{ modal_text_c }}
               <!-- <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -474,7 +474,6 @@ export default {
       show_answer_modal: false,
       show_modal: false,
       modal_text: "",
-      modal_text: "",
       modal_color: "",
     };
   },
@@ -542,7 +541,7 @@ export default {
       }
     },
 
-    modal_text() {
+    modal_text_c() {
       if (this.new_status == 0) {
         return "الحجز تحت المراجعه";
       } else if (this.new_status == 1) {
@@ -551,7 +550,7 @@ export default {
         return "تم الغاء الحجز";
       }
     },
-    modal_color() {
+    modal_color_c() {
       if (this.new_status == 0) {
         return "text-yellow-400";
       } else if (this.new_status == 1) {
