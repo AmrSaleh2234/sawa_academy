@@ -44,23 +44,12 @@
           </svg>
         </p>
       </div>
-      <div class="m-auto md:mr-0">
-        <v-btn
-          height="45"
-          to="/web"
-          class="mb-5 text-lg m-auto text-white"
-          color="#135C65"
-         
-        >
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{ $t("home") }}
-        </v-btn>
-      </div>
+     
     </div>
     <div class="m-auto p-8 rounded-2xl max-w-2xl text-center">
       <div class="my-4">
-        <h2 class="text-right font-bold text-xl">احجز موعد مع الاخصائي</h2>
-        <p class="text-right text-[#29CCFF] text-xl">برجاء ملئ البيانات</p>
+        <h2 class="text-right font-bold text-xl">{{ $t("Book_an_appointment_with_the_specialist") }}</h2>
+        <p class="text-right text-[#29CCFF] text-xl">{{ $t("Please_fill_in_the_information") }}</p>
       </div>
       <form class="py-4 min-w-full space-y-4 p-2" @submit.prevent="bookTime">
         <div

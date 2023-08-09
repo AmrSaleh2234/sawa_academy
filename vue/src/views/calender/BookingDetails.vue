@@ -125,7 +125,7 @@
           style="background-color: #00838f"
           :disabled="doctor == null"
         >
-          update
+          {{ booking.accepted ? "تم الحجز" : $t("submit") }}
         </button>
       </div>
       <!-- End Left Side -->
