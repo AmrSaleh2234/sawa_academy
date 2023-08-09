@@ -103,7 +103,7 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
+            <label class="text-base font-bold  pl-2">{{
               $t("مكان الميلاد  ")
             }}</label>
             <input

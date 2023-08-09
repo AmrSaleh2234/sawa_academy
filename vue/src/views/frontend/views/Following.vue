@@ -16,17 +16,18 @@
     <sidbar :sole="showsider" />
     <div class="flex-1">
 
-     <div class="flex w-full justify-between shadow">
+     <div class="flex w-full justify-between shadow p-2">
       <div
-        class="bg-white text-2xl font-bold  text-[#6EB7BF] p-4 text-center shadow"
+        class="bg-white text-2xl font-bold  text-[#6EB7BF] p-4 text-center "
       >
       {{ $t("Child_follow_up") }}
       </div>
-      <div class="  text-center my-4">
+      <div style="background-color: #135c65" class=" bg-[#135c65] p-2 rounded-lg text-center my-4">
+        <v-icon left color="white">mdi-plus</v-icon>
         <router-link
           :to="{ name: 'ReAction' }"
-          style="background-color: #135c65"
-          class="text-white text-xl p-2  rounded-lg"
+          
+          class="text-white  p-2  rounded-lg"
         >
           {{ $t("Add_new_child") }} 
         </router-link>
