@@ -86,14 +86,43 @@
             </span>
           </p>
         </div>
+
+        <div class="flex flex-col relative">
+          <input
+            @click="show_status = !show_status"
+            type="button"
+            class="w-full my-2 text-center py-2.5 px-4 text-white rounded-lg text-lg font-bold tracking-wider cursor-pointer"
+            :class="{
+              'bg-emerald-500': new_status == 1,
+              'bg-red-500': new_status == 2,
+              'bg-yellow-400': new_status == 0,
+            }"
+            :value="status_text"
+          />
+
+          <div class="flex flex-col" v-show="show_status">
+            <select
+              v-model="new_status"
+              class="w-full my-2 text-center py-2.5 px-4 rounded-lg text-lg font-bold tracking-wider cursor-pointer"
+              @change="show_status = false"
+            >
+              <option value="0">Pending</option>
+              <option value="1">Accept</option>
+              <option value="2">Cancell</option>
+            </select>
+          </div>
+        </div>
+        <!--  {{
+          status_text
+          }} -->
         <button
-          @click.prevent="acceptBooking"
+          @click.prevent="updateBooking"
           id="submit"
           class="w-full text-center py-2.5 px-4 text-white rounded-lg"
           style="background-color: #00838f"
-          :class="{ 'bg-emerald-500': booking.accepted }"
-          :disabled="doctor == null || booking.accepted == 1"
+          :disabled="doctor == null"
         >
+
           {{ booking.accepted ? "تم الحجز" : $t("submit") }}
         </button>
       </div>
@@ -442,7 +471,9 @@ export default {
   data() {
     return {
       booking: {},
+      show_status: false,
       doctor: {},
+      new_status: null,
       new_doctors: [],
       accept_notes: "",
       show_answer_modal: false,
@@ -455,6 +486,7 @@ export default {
         .get(`/api/calender/bookings/${this.id}`)
         .then((res) => {
           this.booking = res.data.booking.booking;
+          this.new_status = res.data.booking.booking.accepted;
           this.doctor = res.data.booking.doctor;
           console.log(res);
         })
@@ -462,13 +494,13 @@ export default {
           console.log(err);
         });
     },
-    acceptBooking() {
+    updateBooking() {
       axios
         .post(`/api/calender/bookings/${this.id}/accept`, {
-          status: 1,
+          status: this.new_status,
           accepted_notes: this.accept_notes,
-          event_id: this.booking.event_id,
           user_id: this.booking.user_id,
+          event_id: this.doctor.event_id,
           doctor_name: this.doctor.name,
           doctor_title: this.doctor.title,
         })
@@ -500,6 +532,16 @@ export default {
       let hour = moment(this.booking.event_date).format("hh:mm: A");
 
       return `${day} -- ${hour}`;
+    },
+
+    status_text() {
+      if (this.new_status == 0) {
+        return "pending";
+      } else if (this.new_status == 1) {
+        return "accepted";
+      } else {
+        return "cancelled";
+      }
     },
   },
   mounted() {

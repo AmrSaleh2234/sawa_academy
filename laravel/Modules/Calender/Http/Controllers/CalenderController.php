@@ -127,7 +127,7 @@ class CalenderController extends Controller
         // }
 
         $data['doctor'] = DB::table("users")
-            ->select('users.name', 'users.title')
+            ->select('users.name', 'users.title', 'events.id as event_id')
             ->leftJoin("events", "events.user_id", '=', 'users.id')
             ->where('events.id', '=', $data['booking']['event_id'])
             ->first();
@@ -151,7 +151,7 @@ class CalenderController extends Controller
         ]);
 
         $doctors = Calender::query()
-            ->select('user_id', 'start')
+            ->select('user_id', 'start', 'events.id as event_id')
             ->addSelect([
                 'name' => User::select("name")->whereColumn('id', 'user_id'),
                 'title' => User::select("title")->whereColumn('id', 'user_id'),
@@ -166,7 +166,7 @@ class CalenderController extends Controller
     public function acceptBooking(Booking $booking, Request $request)
     {
         $request->validate([
-            'status' => ['required', 'boolean'],
+            'status' => ['required', 'in:0,1,2'],
             'event_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
             'accepted_notes' => ['nullable', 'string'],
@@ -177,11 +177,13 @@ class CalenderController extends Controller
 
         $booking->update([
             'accepted' => $request->status,
+            'event_id' => $request->event_id,
             'accepted_notes' => $request->accepted_notes,
             "booking_result" => $request->booking_result ?? null
         ]);
 
         $event = Calender::where('id', $request->event_id)->first();
+
         $doctor = [
             "doctor_name" => $request->doctor_name,
             "doctor_title" => $request->doctor_title
