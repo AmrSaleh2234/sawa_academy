@@ -15,6 +15,7 @@ import AboutView from "../views/frontend/views/AboutView.vue";
 import BookingTime from "../views/frontend/components/BookingTime.vue";
 import Cursale from "../views/frontend/components/Cursale.vue";
 import code from "../views/frontend/views/code.vue";
+import contactus from "../views/frontend/views/contactus.vue";
 
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
@@ -65,6 +66,11 @@ const routes = [
     path: "/web/code",
     name: "code",
     component: code,
+  },
+  {
+    path: "/web/contactus",
+    name: "contactus",
+    component: contactus,
   },
   {
     path: "/web/",

@@ -155,4 +155,8 @@ export default {
   child_problem: "هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه",
   main_problems: "المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل",
   priority_parents: "ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل",
+  contact_us: " تواصل معنا",
+  Company_information: "معلومات الشركة",
+  Support: "الدعم",
+  your_Message: "رسالتك",
 };

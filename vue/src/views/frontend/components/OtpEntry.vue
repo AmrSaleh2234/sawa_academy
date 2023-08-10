@@ -2,13 +2,8 @@
   <section
     class="bg-gray-50 relative dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center">
     <div style="opacity: 10%" class="bg-black h-full w-full absolute"></div>
-    <div class="bg-white/30 p-6 md:grid md:grid-cols-10" style="backdrop-filter: blur(1px)">
-      <div class>
-        <v-btn to="/web" height="45" class="mb-5 text-lg text-white" color="#135C65">
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{ $t("home") }}
-        </v-btn>
-      </div>
+    <div class="bg-white/30 p-6 " style="backdrop-filter: blur(1px)">
+     
       <div class="flex flex-col items-center z-40 justify-center col-span-8 w-full mx-auto lg:py-0">
         <div class="mb-4 text-center">
           <h1 class="text-4xl py-2 font-bold">{{ $t("Create_an_account") }}</h1>

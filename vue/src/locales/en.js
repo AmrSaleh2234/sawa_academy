@@ -160,4 +160,8 @@ export default {
     "The main problems the child currently has from the point of view of the parents",
   priority_parents:
     " the priority of the parents in the rehabilitative programs to deal with the child?",
+  contact_us: "Contact Us",
+  Company_information: "Company information",
+  Support: "Support",
+  your_Message: "your Message",
 };
