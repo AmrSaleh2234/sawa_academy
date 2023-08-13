@@ -13,8 +13,8 @@ class CalenderObserver
      */
     public function saving(Calender $calender)
     {
-//        $calender->start = Carbon::parse($calender->start);
-//        $calender->end = Carbon::parse($calender->end);
-        $calender->user_id = auth()->user()->id;
+        //        $calender->start = Carbon::parse($calender->start);
+        //        $calender->end = Carbon::parse($calender->end);
+        // $calender->user_id = auth()->user()->id;
     }
 }

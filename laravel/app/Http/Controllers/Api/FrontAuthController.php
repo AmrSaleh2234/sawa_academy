@@ -7,7 +7,11 @@ use App\Http\Requests\Parent\UpdateProfileRequest;
 use App\Http\Resources\ParentResource;
 use App\Http\Resources\UserResource;
 use App\Models\ChildParent;
+use App\Models\OTP;
+use App\Models\User;
 use App\Notifications\AcceptBookingNotification;
+use App\Notifications\SendOtpNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +45,7 @@ class FrontAuthController extends Controller
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
     }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -77,6 +82,7 @@ class FrontAuthController extends Controller
             'user' => $parent,
         ], 201);
     }
+
     public function user(Request $request)
     {
         $user = ParentResource::make($request->user('parent'));
@@ -84,6 +90,7 @@ class FrontAuthController extends Controller
 
         return response()->json(['user' => $user], 200);
     }
+
     public function logout(Request $request)
     {
 
@@ -143,6 +150,87 @@ class FrontAuthController extends Controller
 
         return response()->json([
             "notifications" => $user->notifications
+        ], 200);
+    }
+
+    public function doctors(Request $request)
+    {
+        $doctors = User::select("name", "title", "image")->where('name', '!=', 'admin')->limit(25)->get();
+
+        $doctors->map(function ($doctor) {
+            $doctor->image = url($doctor->image);
+        });
+
+        return response()->json([
+            "doctors" => $doctors
+        ], 200);
+    }
+
+    public function sendOTP(Request $request)
+    {
+        $user = $request->user('parent');
+
+        OTP::query()
+            ->where('identifier', $user->email)
+            ->delete();
+
+        $otp = rand(100000, 999999);
+
+        OTP::create([
+            'identifier' => $user->email,
+            'otp' => $otp,
+            'expire_at' => Carbon::now()->addMinutes(10)
+        ]);
+
+        $user->notify(new SendOtpNotification($otp));
+
+        return response()->json([
+            'otp' => $otp
+        ], 200);
+    }
+
+    public function validateOTP(Request $request)
+    {
+        $request->validate([
+            'otp' => ['required', 'integer']
+        ]);
+
+        $user = $request->user('parent');
+
+        $otp = OTP::query()
+            ->where('identifier', $user->email)
+            ->where('valid', true)
+            ->where('otp', $request->otp)
+            ->first();
+
+        if ($otp == null) {
+            return response()->json([
+                'message' => 'invalid otp'
+            ], 401);
+        }
+
+        $otp_expire_at = Carbon::parse($otp->expire_at);
+        $now = Carbon::now();
+
+        if ($otp_expire_at->lessThan($now)) {
+
+            $otp->delete();
+
+            return response()->json([
+                'message' => 'otp expired'
+            ], 401);
+        }
+
+        $otp->valid = false;
+
+        $otp->save();
+
+        $user->email_verified_at = Carbon::now();
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'otp validated successfully'
         ], 200);
     }
 }

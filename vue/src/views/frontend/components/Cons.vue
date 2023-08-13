@@ -440,6 +440,7 @@ export default {
         parents_priorities: "",
         doctor_code: "",
       },
+      
     };
   },
   methods: {
@@ -499,7 +500,6 @@ export default {
     },
   },
  
-
   mounted( ) {
    
     this.getEvent();

@@ -48,7 +48,7 @@
           <img
             v-if="doctor"
             v-cloak
-            src="@/assets/img/doctor.jpg"
+            :src="doctor.image"
             class="object-cover rounded-xl mt-12"
             width="400"
             alt=""
