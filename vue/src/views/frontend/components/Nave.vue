@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white p-2">
+  <nav class="bg-white p-2 ">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Your logo or brand content goes here -->
 

@@ -2,7 +2,8 @@
   <template>
     <nave-1 />
     <nave />
-   <div  class="flex flex-col  m-auto lg:flex-row justify-between  lg:py-16 lg:px-16">.
+   <div  class="flex relative flex-col  m-auto lg:flex-row justify-between  lg:py-16 lg:px-16  bg-[url('../image/contact.jpg')] bg-cover">
+    
      <div class="lg:w-[50%] lg:p-[2%] space-y-6">
         <div class="w-full">
             <p class="w-full text-center text-3xl  font-bold ">{{$t("contact_us")}}</p>
@@ -37,7 +38,7 @@
      </div>
         
      </div>
-    <div class="w-full lg:w-[50%] p-[2%] ">
+    <div class="w-full lg:w-[50%] p-[2%]  ">
       <form @submit.prevent="submitForm" class="space-y-6">
       <div class="flex justify-between">
         <div  style="width: 48%;">
