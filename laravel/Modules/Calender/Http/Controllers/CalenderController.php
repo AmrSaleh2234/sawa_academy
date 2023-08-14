@@ -88,12 +88,17 @@ class CalenderController extends Controller
                 "accepted",
                 "start as event_date",
                 'users.name as user_name',
-                'users.title as user_title'
+                'users.title as user_title',
+                'users.image as user_image'
             )
             ->join('events', 'events.id', '=', 'bookings.event_id')
             ->join('users', 'users.id', '=', 'events.user_id')
             ->where('bookings.user_id', $this->getAuthUserID('parent'))
             ->get();
+
+        $data->map(function ($item) {
+            $item->user_image = url($item->user_image);
+        });
 
 
         return $this->bookingControllerHandler->show('bookings', $data);
@@ -127,10 +132,17 @@ class CalenderController extends Controller
         // }
 
         $data['doctor'] = DB::table("users")
-            ->select('users.name', 'users.title')
+            ->select('users.name', 'users.title', 'users.image', 'events.id as event_id')
             ->leftJoin("events", "events.user_id", '=', 'users.id')
             ->where('events.id', '=', $data['booking']['event_id'])
             ->first();
+
+        $data = collect($data);
+
+        $data->map(function ($doctor) {
+            $doctor->image = url($doctor->image);
+        });
+
 
         return $this->bookingControllerHandler->show('booking', $data);
     }
@@ -151,14 +163,18 @@ class CalenderController extends Controller
         ]);
 
         $doctors = Calender::query()
-            ->select('user_id', 'start')
+            ->select('user_id', 'start', 'events.id as event_id')
             ->addSelect([
                 'name' => User::select("name")->whereColumn('id', 'user_id'),
                 'title' => User::select("title")->whereColumn('id', 'user_id'),
+                'image' => User::select("image")->whereColumn('id', 'user_id'),
             ])
             ->where('start', $request->start)
-
             ->get();
+
+        $doctors->map(function ($doctor) {
+            $doctor->image = url($doctor->image);
+        });
 
         return $this->bookingControllerHandler->show('doctors', $doctors);
     }
@@ -166,7 +182,7 @@ class CalenderController extends Controller
     public function acceptBooking(Booking $booking, Request $request)
     {
         $request->validate([
-            'status' => ['required', 'boolean'],
+            'status' => ['required', 'in:0,1,2'],
             'event_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
             'accepted_notes' => ['nullable', 'string'],
@@ -177,11 +193,13 @@ class CalenderController extends Controller
 
         $booking->update([
             'accepted' => $request->status,
+            'event_id' => $request->event_id,
             'accepted_notes' => $request->accepted_notes,
             "booking_result" => $request->booking_result ?? null
         ]);
 
         $event = Calender::where('id', $request->event_id)->first();
+
         $doctor = [
             "doctor_name" => $request->doctor_name,
             "doctor_title" => $request->doctor_title

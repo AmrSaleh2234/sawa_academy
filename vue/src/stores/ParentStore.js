@@ -25,8 +25,14 @@ export const useParentStore = defineStore("parentStore", {
           this.parent = res.data.user;
           this.token = res.data.token;
           this.parentAuth = true;
-          console.log(res);
-          this.router.push("/web/");
+
+          if (res.data.user.email_verified_at == null) {
+            console.log("asdf");
+            this.router.push({ name: "code" });
+          } else {
+            console.log(res);
+            this.router.push("/web/");
+          }
         })
         .catch((err) => {
           this.showErrors = true;

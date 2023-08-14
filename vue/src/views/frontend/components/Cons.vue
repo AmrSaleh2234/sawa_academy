@@ -432,6 +432,7 @@ export default {
         parents_priorities: "",
         doctor_code: "",
       },
+      
     };
   },
  
@@ -511,7 +512,6 @@ export default {
     },
   },
  
-
   mounted( ) {
    
     this.getEvent();

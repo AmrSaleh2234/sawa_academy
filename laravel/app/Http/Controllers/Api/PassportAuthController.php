@@ -30,7 +30,7 @@ class PassportAuthController extends Controller
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response([
                 'errors' => $validator->errors()->all()
             ], 422);
@@ -45,13 +45,13 @@ class PassportAuthController extends Controller
         ]);
 
         // if $request->role exist
-        if($request->role['id']){
+        if ($request->role['id']) {
             $role = Role::where('id', $request->role['id'])->first();
             $user->assignRole($role);
         }
         // assign role 
         $userRole = Role::where('name', 'user')->first();
-        if($userRole){
+        if ($userRole) {
             $user->assignRole($userRole);
         }
 
@@ -73,7 +73,7 @@ class PassportAuthController extends Controller
             'password' => ['required', 'min:6'],
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response([
                 'errors' => $validator->errors()->all()
             ], 422);
@@ -81,29 +81,26 @@ class PassportAuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if($user){
-            if(Hash::check($request->password, $user->password)){
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('LaravelPassportAuth')->accessToken;
                 $response = [
                     'token' => $token,
                     'user' => new UserResource($user),
                 ];
                 return response($response, 200);
-            }
-            else{
+            } else {
                 $response = [
                     'errors' => 'Password mismatch'
                 ];
                 return response($response, 422);
             }
-        }
-        else {
+        } else {
             $response = [
                 'errors' => 'User doesn\'t exist'
             ];
             return response($response, 422);
         }
-
     }
 
     public function userInfo()
@@ -130,7 +127,7 @@ class PassportAuthController extends Controller
         return response($resposne, 200);
     }
 
-        /**
+    /**
      * Handle an incoming password reset link request.
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -157,7 +154,7 @@ class PassportAuthController extends Controller
         return response()->json(['status' => __($status)]);
     }
 
-        /**
+    /**
      * Handle an incoming new password request.
      *
      * @throws \Illuminate\Validation\ValidationException
