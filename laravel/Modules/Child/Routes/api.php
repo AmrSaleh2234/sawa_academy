@@ -33,7 +33,7 @@ Route::middleware('auth:api')->group(function () {
 
 
 // This Is Temp For Parent Until We Remove The Above Routes.
-Route::middleware('auth:parent')->prefix('parent')->as('parent.')->group(function () {
+Route::middleware(['auth:parent', 'verified'])->prefix('parent')->as('parent.')->group(function () {
     Route::group(['prefix' => 'child'], function () {
         Route::post('/create', [ChildController::class, 'store'])->name('child.create');
         Route::get('/all', [ChildController::class, 'getParentChilds'])->name('all');

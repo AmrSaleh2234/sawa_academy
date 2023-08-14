@@ -24,32 +24,33 @@
           </g>
         </svg>
       </div>
-      
-      <div class="m-auto w-full">
-      <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
-    </div>
-      
 
+      <div class="m-auto w-full">
+        <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">
+          {{ $t("Profile_personly") }}
+        </p>
+      </div>
     </div>
 
     <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="flex  justify-between shadow p-4">
-          <div class="bg-white text-3xl  text-[#6EB7BF]  font-bold">
-          {{ $t("bookings") }}
-        </div>
-        <div style="background-color: #135c65" class=" p-2 bg-[#135c65]  rounded-lg text-center ">
-        <v-icon left color="white">mdi-plus</v-icon>
-        <router-link
-          :to="{ name: 'BookingTime' }"
-          
-          class="text-white   rounded-lg"
-        >
-          {{ $t("Add_new_child") }} 
-        </router-link>
-      </div>
-        
+        <div class="flex justify-between shadow p-4">
+          <div class="bg-white text-3xl text-[#6EB7BF] font-bold">
+            {{ $t("bookings") }}
+          </div>
+          <div
+            style="background-color: #135c65"
+            class="p-2 bg-[#135c65] rounded-lg text-center"
+          >
+            <v-icon left color="white">mdi-plus</v-icon>
+            <router-link
+              :to="{ name: 'BookingTime' }"
+              class="text-white rounded-lg"
+            >
+              {{ $t("Add_new_child") }}
+            </router-link>
+          </div>
         </div>
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a
@@ -57,8 +58,9 @@
             class="flex flex-col items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
           >
             <img
-              class="object-cover w-full md:w-auto md:h-auto rounded-xl"
-              src="../image/Rectangle63.png"
+              width="250"
+              class="rounded-xl"
+              :src="booking.user_image"
               alt=""
             />
             <div class="flex flex-col justify-between p-4 leading-normal">

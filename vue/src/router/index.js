@@ -65,6 +65,7 @@ const routes = [
     path: "/web/code",
     name: "code",
     component: code,
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/",

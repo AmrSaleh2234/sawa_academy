@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 
-Route::middleware('auth:parent')->group(function () {
+Route::middleware(['auth:parent', 'verified'])->group(function () {
     Route::group(['prefix' => 'calender'], function () {
         Route::get('/events', [\Modules\Calender\Http\Controllers\CalenderController::class, 'groupedEventsForParents'])->name('calender.events_parents');
         Route::get('/appointments', [\Modules\Calender\Http\Controllers\CalenderController::class, 'getAllAcceptedBookingDoctors'])->name('calender.getAllAcceptedBookingDoctors');

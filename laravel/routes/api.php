@@ -30,7 +30,7 @@ Route::post('register', [PassportAuthController::class, 'register'])->name('regi
 Route::post('login', [PassportAuthController::class, 'login'])->name('login.perform');
 Route::post('/forgot-password', [PassportAuthController::class, 'forgotPassword'])->name('password.forgot');
 Route::post('/reset-password', [PassportAuthController::class, 'resetPassword'])->name('password.reset');
-
+Route::get('/doctors', [FrontAuthController::class, 'doctors'])->name('doctors');
 Route::get('lookups/treatmentsType', [\App\Http\Controllers\LookupsController::class, 'treatmeantType']);
 
 
@@ -38,11 +38,16 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
     Route::post('register', 'register')->name('register');
     Route::post('login', 'login')->name('login');
 
-    Route::middleware('auth:parent')->group(function () {
+    Route::middleware(['auth:parent', 'verified'])->group(function () {
         Route::post('logout', 'logout')->name('logout');
         Route::post('profile', 'profile')->name('profile');
         Route::get('user', 'user')->name('user');
         Route::get('notification', 'getParentNotification')->name('notification');
+    });
+
+    Route::middleware('auth:parent')->group(function () {
+        Route::post('send-otp', 'sendOTP')->name('send_otp');
+        Route::post('validate-otp', 'validateOTP')->name('validate_otp');
     });
 });
 
