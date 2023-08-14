@@ -20,91 +20,82 @@
         {{ $t("We_have_a_group_of_highly_experienced_therapists") }}
       </p>
     </div>
-    <div class="m-auto">
-      <div class="m-auto">
-        <carousel
-          class="bg-none w-full"
-          v-bind="settings"
-          :wrap-around="true"
-          :breakpoints="breakpoints"
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <swiper
+          @slideChange="onSlideChange"
+          :modules="modules"
+          :scrollbar="{ draggable: true }"
+          :autoplay="{
+            delay: 2000,
+            disableOnInteraction: false,
+          }"
+          :breakpoints="{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 10,
+            },
+          }"
         >
-          <slide v-for="image in 5" class="w-full widths">
-            <div v-for="doctor in doctors" class="w-[80%]">
-              <div class="text-center bg-teal-100 rounded-3xl m-2">
-                <!-- Doctor -->
-                <div class="bg-white rounded-3xl">
-                  <img class="m-auto px-5" :src="doctor.image" />
-                </div>
-                <p class="text-center pt-2 opacity-80">{{ doctor.name }}</p>
-                <p class="text-center text-teal-400 pb-4 p-1">
-                  {{ doctor.title }}
-                </p>
-                <!-- Doctor -->
+          <SwiperSlide v-for="doctor in doctors">
+            <div class="text-center bg-teal-100 rounded-3xl m-2">
+              <!-- Doctor -->
+              <div class="bg-white rounded-3xl">
+                <img
+                  class="m-auto px-5 object-cover w-[100%] h-[100%]"
+                  :src="doctor.image"
+                />
               </div>
+              <p class="text-center pt-2 opacity-80">{{ doctor.name }}</p>
+              <p class="text-center text-teal-400 pb-4 p-1">
+                {{ doctor.title }}
+              </p>
             </div>
-          </slide>
-          <!--                -->
-          <template #addons>
-            <!--                        -->
-            <pagination class="[&>div]:bg-[red]" />
-          </template>
-        </carousel>
+            <!-- Doctor -->
+          </SwiperSlide>
+        </swiper>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { ref, watch, onMounted, onBeforeUnmount } from "vue";
-import { useWindowSize } from "@vueuse/core";
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+<script setup>
 import axios from "axios";
+import { computed, onMounted, ref, watch } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-export default {
-  components: {
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
-  },
-  setup() {
-    const perPage = ref(1);
+const modules = [Pagination, Navigation, Autoplay];
 
-    onMounted(() => {
-      console.log(window.innerWidth);
-      if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        perPage.value = 3;
-      } else if (window.innerWidth >= 1024) {
-        perPage.value = 5;
-      } else {
-        perPage.value = 1;
-      }
-      getDoctors();
+const doctors = ref([]);
+onMounted(() => {
+  getDoctors();
+});
+const getDoctors = () => {
+  axios
+    .get("/api/doctors")
+    .then((res) => {
+      doctors.value = res.data.doctors;
+      console.log(doctors.value);
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-    onBeforeUnmount(() => {
-      // Cleanup if necessary
-    });
-
-    const doctors = ref([]);
-
-    const getDoctors = () => {
-      axios
-        .get("/api/doctors")
-        .then((res) => {
-          doctors.value = res.data.doctors;
-          console.log(doctors.value);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    return {
-      perPage,
-      doctors,
-    };
-  },
 };
 </script>
+<style>
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+</style>

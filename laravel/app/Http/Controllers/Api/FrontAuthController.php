@@ -147,7 +147,6 @@ class FrontAuthController extends Controller
     {
         $user = auth('parent')->user();
 
-
         return response()->json([
             "notifications" => $user->notifications
         ], 200);
@@ -155,7 +154,7 @@ class FrontAuthController extends Controller
 
     public function doctors(Request $request)
     {
-        $doctors = User::select("name", "title", "image")->where('name', '!=', 'admin')->limit(25)->get();
+        $doctors = User::select("name", "title", "image")->where('status', 2)->get();
 
         $doctors->map(function ($doctor) {
             $doctor->image = url($doctor->image);
