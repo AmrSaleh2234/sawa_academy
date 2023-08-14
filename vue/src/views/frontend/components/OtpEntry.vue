@@ -3,6 +3,7 @@
     class="bg-gray-50 relative dark:bg-gray-900 bl bg-[url('../image/header/112.png')] bg-no-repeat bg-cover bg-center"
   >
     <div style="opacity: 10%" class="bg-black h-full w-full absolute"></div>
+
     <div
       class="bg-white/30 p-6 md:grid md:grid-cols-10"
       style="backdrop-filter: blur(1px)"

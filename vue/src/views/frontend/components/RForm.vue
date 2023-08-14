@@ -53,8 +53,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الاسم الرباعي للطفل  ")
+            <label class="text-base font-bold  pl-2">{{
+              $t("Full_Name")
             }}</label>
             <input
               type="text"
@@ -75,8 +75,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("تاريخ الميلاد")
+            <label class="text-base font-bold  pl-2">{{
+              $t("date_of_birth")
             }}</label>
             <div class="flex justify-center items-center" id="calender">
               <Calendar
@@ -104,7 +104,7 @@
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
             <label class="text-base font-bold  pl-2">{{
-              $t("مكان الميلاد  ")
+              $t("place_of_birth")
             }}</label>
             <input
               type="text"
@@ -126,8 +126,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("لغة الطفل الاساسيه  ")
+            <label class="text-base font-bold  pl-2">{{
+              $t("primary_language")
             }}</label>
             <input
               type="text"
@@ -148,8 +148,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الجنسيه")
+            <label class="text-base font-bold  pl-2">{{
+              $t("Nationality")
             }}</label>
             <input
               type="text"
@@ -170,8 +170,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الرقم الوطني")
+            <label class="text-base font-bold  pl-2">{{
+              $t("Mobile_number")
             }}</label>
             <input
               type="text"
@@ -192,8 +192,8 @@
             class="flex flex-col"
             style="border-bottom: 2px solid rgb(194, 188, 188)"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("العنوان")
+            <label class="text-base font-bold  pl-2">{{
+              $t("address")
             }}</label>
             <input
               type="text"
@@ -211,8 +211,8 @@
             </p>
           </div>
           <div class="w-full text-right">
-            <h3 class="text-base font-bold text-right pl-2 pb-2">الجنس</h3>
-            <label for="female" class="text-lg font-bold mt-4">ذكر</label>
+            <h3 class="text-base font-bold text-right pl-2 pb-2">{{ $t("Type") }}</h3>
+            <label for="female" class="text-lg font-bold mt-4">{{ $t("male") }}</label>
             <input
               type="radio"
               id="female"
@@ -222,7 +222,7 @@
               v-model="child.gender"
             />
 
-            <label for="male" class="text-lg font-bold mt-4">انثي</label>
+            <label for="male" class="text-lg font-bold mt-4">{{ $t("female") }}</label>
             <input
               type="radio"
               class="border ring-1 ring-gray-600 mx-2"

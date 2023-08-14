@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white p-2">
+  <nav class="bg-white p-2 ">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Your logo or brand content goes here -->
 
@@ -125,7 +125,7 @@
           style="font-size: 130%"
           class="block font-bold mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
-          <router-link :to="{ name: 'about' }">
+          <router-link :to="{ name: 'contactus' }">
             {{ $t("connect_us") }}</router-link
           >
         </li>
