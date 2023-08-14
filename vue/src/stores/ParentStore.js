@@ -26,7 +26,7 @@ export const useParentStore = defineStore("parentStore", {
           this.token = res.data.token;
           this.parentAuth = true;
 
-          if (res.data.user.email_verified_at == null) {
+          if (res.data.user.phone_verified_at == null) {
             console.log("asdf");
             this.router.push({ name: "code" });
           } else {
