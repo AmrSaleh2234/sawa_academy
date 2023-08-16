@@ -4,7 +4,7 @@
 
       <div class="switcher">
         <nave-1 />
-        <nave />
+        <nave class=" w-full z-30" />
         <HeadeForm />
         <Services />
         <card />

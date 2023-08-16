@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Parent\UpdateProfileRequest;
-use App\Http\Resources\ParentResource;
-use App\Http\Resources\UserResource;
+use Carbon\Carbon;
+use App\Models\OTP;
+use App\Models\User;
 use App\Models\ChildParent;
-use App\Notifications\AcceptBookingNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use App\Http\Resources\ParentResource;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\SendOtpNotification;
+use App\Notifications\AcceptBookingNotification;
+use App\Http\Requests\Parent\UpdateProfileRequest;
 
 class FrontAuthController extends Controller
 {
@@ -41,6 +46,7 @@ class FrontAuthController extends Controller
             return response()->json(['message' => 'email or password does not match our records'], 401);
         }
     }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -62,7 +68,11 @@ class FrontAuthController extends Controller
 
         // $userRole = Role::where('name', 'user')->where('guard_name', 'parent')->first();
         // $parent->assignRole($userRole);
-        $child_permissions = Permission::select('name')->where('guard_name', 'parent')->where('name', 'like', "%child%")->pluck('name');
+        $child_permissions = Permission::query()
+            ->select('name')
+            ->where('guard_name', 'parent')
+            ->where('name', 'like', "%child%")
+            ->pluck('name');
         $parent->givePermissionTo($child_permissions);
 
 
@@ -73,6 +83,7 @@ class FrontAuthController extends Controller
             'user' => $parent,
         ], 201);
     }
+
     public function user(Request $request)
     {
         $user = ParentResource::make($request->user('parent'));
@@ -80,6 +91,7 @@ class FrontAuthController extends Controller
 
         return response()->json(['user' => $user], 200);
     }
+
     public function logout(Request $request)
     {
 
@@ -95,10 +107,8 @@ class FrontAuthController extends Controller
     public function profile(UpdateProfileRequest $request)
     {
         $user = $request->user('parent');
-        $data = $request->validated();
-        // $data = json_decode($request->validated(), true);
 
-        // return $data;
+        $data = $request->validated();
 
         if ($request->file('image')) {
             if (!empty($user->image)) {
@@ -122,8 +132,9 @@ class FrontAuthController extends Controller
             $data['image'] = $user->image;
         }
 
-
-        $data['password'] = Hash::make($request->validated('password'));
+        if (!empty($request->validated('password'))) {
+            $data['password'] = Hash::make($request->validated('password'));
+        }
 
         $user->update($data);
 
@@ -137,9 +148,99 @@ class FrontAuthController extends Controller
     {
         $user = auth('parent')->user();
 
-
         return response()->json([
             "notifications" => $user->notifications
+        ], 200);
+    }
+
+    public function doctors(Request $request)
+    {
+        $doctors = User::select("name", "title", "image")->where('status', 2)->get();
+
+        $doctors->map(function ($doctor) {
+            $doctor->image = url($doctor->image);
+        });
+
+        return response()->json([
+            "doctors" => $doctors
+        ], 200);
+    }
+
+    public function sendOTP(Request $request)
+    {
+        $user = $request->user('parent');
+
+        OTP::query()
+            ->where('identifier', $user->phone)
+            ->delete();
+
+        $otp = rand(100000, 999999);
+
+        OTP::create([
+            'identifier' => $user->phone,
+            'otp' => $otp,
+            'expire_at' => Carbon::now()->addMinutes(10)
+        ]);
+
+        $response = Http::get(
+            "https://josmsservice.com/SMSServices/Clients/Prof/RestSingleSMS_General/SendSMS?senderid=Visualinn&numbers=$user->phone&accname=Visualinn&AccPass=DkAAnSg!GFYw20AJ&msg=$otp"
+        );
+
+        if ($response->status() == '200') {
+            return response()->json([
+                'otp' => $otp,
+                'message' => $response->body()
+
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => $response->status()
+            ], 400);
+        }
+    }
+
+    public function validateOTP(Request $request)
+    {
+        $request->validate([
+            'otp' => ['required', 'integer']
+        ]);
+
+        $user = $request->user('parent');
+
+        $otp = OTP::query()
+            ->where('identifier', $user->phone)
+            ->where('valid', true)
+            ->where('otp', $request->otp)
+            ->first();
+
+        if ($otp == null) {
+            return response()->json([
+                'message' => 'invalid otp'
+            ], 401);
+        }
+
+        $otp_expire_at = Carbon::parse($otp->expire_at);
+        $now = Carbon::now();
+
+        if ($otp_expire_at->lessThan($now)) {
+
+            $otp->delete();
+
+            return response()->json([
+                'message' => 'otp expired'
+            ], 401);
+        }
+
+        $otp->valid = false;
+
+        $otp->save();
+
+        $user->phone_verified_at = Carbon::now();
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'otp validated successfully'
         ], 200);
     }
 }

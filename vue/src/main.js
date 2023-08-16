@@ -10,6 +10,7 @@ import VueHtmlToPaper from "vue-html-to-paper";
 import "vuetify/styles";
 import vuetify from "@/plugins/vuetify";
 
+
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import print from "vue3-print-nb";
 import VueCarousel from 'vue-carousel';
@@ -32,6 +33,16 @@ import "./style.css";
 import "./views/frontend/assets/main.css";
 import App from "@/App.vue";
 const pinia = createPinia();
+//
+//  main.js or main.ts
+
+
+
+import VOtpInput from "vue3-otp-input";
+
+
+
+
 
 // use router in pinia store
 pinia.use(({ store }) => {
@@ -47,5 +58,6 @@ app.use(PrimeVue);
 app.use(print);
 app.use(VueHtmlToPaper);
 app.use(VueCarousel);
+app.component('v-otp-input', VOtpInput)
 
 app.mount("#app");

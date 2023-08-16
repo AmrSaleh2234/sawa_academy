@@ -46,21 +46,41 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
+
         // return response(Guard::getDefaultName(static::class));
         $this->validate($request, [
             'name' => 'required|min:4',
             'email' => 'required|email',
+            'title' => 'required|string',
+            'image' => 'required|image',
             'password' => ['required', 'min:6'],
             'role' => ['required']
         ]);
 
+        if ($request->file('image')) {
+
+            $file = $request->file('image');
+
+            $extension = $file->getClientOriginalExtension();
+
+            $name = date('y-d-m') . '-' . time() . '.' . $extension;
+
+            $request->image->move(public_path() . '/images/',  $name);
+
+            $user_image_name = '/images/' . $name;
+
+            $data['image'] = $user_image_name;
+        }
+
         $user = null;
-        DB::transaction(function () use (&$user, $request) {
+        DB::transaction(function () use (&$user, $request, $user_image_name) {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'title' => $request->title,
+                'image' => $user_image_name,
                 'password' => bcrypt($request->password),
                 'email_verified_at' => now(),
                 'remember_token' => Str::random(10),

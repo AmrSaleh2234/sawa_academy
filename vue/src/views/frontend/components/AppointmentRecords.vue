@@ -4,44 +4,63 @@
       class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
     >
       <div class="text-right m-auto visible md:invisible" @click="toggle()">
-        <font-awesome-icon
-          class="text-2xl md:text-3xl text-right p-4 text-black hover:text-red-600"
-          icon="fa-solid fa-bars "
-        ></font-awesome-icon>
-      </div>
-      <div>
-        <p
-          class="text-center m-auto col-span-2 px-2 py-4 text-xl font-bold text-[#6EB7BF]"
+        <svg
+          fill="#000000"
+          width="54px"
+          height="54px"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          الملف الشخصي
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
+            ></path>
+          </g>
+        </svg>
+      </div>
+
+      <div class="m-auto w-full">
+        <p class="w-full font-bold text-center text-2xl text-[#6EB7BF]">
+          {{ $t("Profile_personly") }}
         </p>
       </div>
-      <div class="text-right m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
-      </div>
     </div>
-    <div class="relative overflow-clip max-w-full max-h-screen flex">
+
+    <div class="relative overflow-clip max-w-full min-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
-        <div class="bg-white text-2xl w-full text-[#6EB7BF] p-6 text-right">
-          الحجوزات
+        <div class="flex justify-between shadow p-4">
+          <div class="bg-white text-3xl text-[#6EB7BF] font-bold">
+            {{ $t("bookings") }}
+          </div>
+          <div
+            style="background-color: #135c65"
+            class="p-2 bg-[#135c65] rounded-lg text-center"
+          >
+            <v-icon left color="white">mdi-plus</v-icon>
+            <router-link
+              :to="{ name: 'BookingTime' }"
+              class="text-white rounded-lg"
+            >
+              {{ $t("Add_new_child") }}
+            </router-link>
+          </div>
         </div>
         <div class="p-2 grid gap-5 grid-cols-2 md:grid-cols-3 text-cyan-700">
           <a
             v-for="booking in bookings"
-            class="flex m-auto flex-wrap items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
+            class="flex flex-col items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
           >
             <img
-              class="object-cover w-full md:w-auto md:h-auto rounded-xl"
-              src="../image/Rectangle63.png"
+              width="250"
+              class="rounded-xl"
+              :src="booking.user_image"
               alt=""
             />
             <div class="flex flex-col justify-between p-4 leading-normal">
@@ -58,6 +77,15 @@
               </p>
               <p class="px-2 pb-2 text-[#FF3765]">
                 {{ event_hour(booking.event_date) }}
+              </p>
+              <p
+                class="px-2 py-2 text-white rounded-lg font-medium text-center"
+                :class="{
+                  'bg-green-700': booking.accepted,
+                  'bg-yellow-400': booking.accepted == 0,
+                }"
+              >
+                {{ booking.accepted ? "Accepted" : "Pending" }}
               </p>
             </div>
           </a>
@@ -101,7 +129,7 @@ export default {
       return `${day}`;
     },
     event_hour(event_hour) {
-      let hour = moment(event_hour).format("HH:mm: A");
+      let hour = moment(event_hour).format("hh:mm: A");
       return `${hour}`;
     },
   },

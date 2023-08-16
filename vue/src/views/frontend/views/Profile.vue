@@ -1,69 +1,38 @@
 <template>
   <div class="switcher">
     <Map />
-    <div class="flex border-b-2 p-2 border-x-cyan-950 border-solid">
-      <div class="m-auto">
-        <v-btn
-          height="45"
-          to="/web"
-          class="mb-5 text-lg m-auto text-white"
-          color="#135C65"
-        >
-          <router-link :to="{ name: 'home' }">
-            <v-icon start icon="mdi-arrow-left"></v-icon>
-            {{ $t("الرئيسيه") }}
-          </router-link>
-        </v-btn>
-      </div>
-      <div class="m-auto">
-        <p class="text-center p-6 text-2xl text-[#6EB7BF]">الملف الشخصي</p>
-      </div>
-      <div @click="toggle" class="m-auto md:invisible">
-        <svg
-          fill="#000000"
-          width="54px"
-          height="54px"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
-            ></path>
-          </g>
-        </svg>
+    <div class="w-full border-b-2 border-x-cyan-950 border-solid">
+      <div class="m-auto w-full">
+        <p class="text-center p-4 text-2xl text-[#6EB7BF]">
+          {{ $t("Profile_personly") }}
+        </p>
       </div>
     </div>
     <div class="relative flex selection max-h-full">
       <sidbar class="" :sole="showsider" />
       <div class="flex-1 space-y-10">
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
-          <button>تعديل الملف الشخصي</button>
+          <button class="font-bold">{{ $t("Modify_profile") }}</button>
         </div>
-
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
             <div class="relative m-auto">
               <input
                 type="file"
                 ref="fileInput"
-                style="display: none"
+                name="image"
+                id="image"
+                hidden
                 @change="handleFileUpload"
               />
               <img
-                @click="openFileUpload"
+                @click="openFile"
                 :src="imageSrc"
                 class="uploaded-image relative m-auto cursor-pointer rounded-full"
               />
 
               <svg
-                @click="openFileUpload"
+                @click="openFile"
                 class="cursor-pointer absolute left-[50%] m-auto bottom-0 bg-white rounded-full p-1 h-8 w-8"
                 viewBox="-2.4 -2.4 28.80 28.80"
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +54,6 @@
                 </g>
               </svg>
             </div>
-
             <div style="font-size: 16px" class="flex">
               <p class="m-auto text-center text-[#FF3765]">
                 تنبيه هام : برجاء اختيار حجم الصوره 440 بسكل * 660 بسكيل
@@ -116,6 +84,7 @@
                   class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                   type="text"
                   v-model="parent.lname"
+                  :placeholder="$t('first_name')"
                 />
               </div>
               <div
@@ -131,6 +100,7 @@
                   class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                   type="text"
                   v-model="parent.fname"
+                  :placeholder="$t('family_name')"
                 />
               </div>
             </div>
@@ -147,6 +117,7 @@
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="email"
                 v-model="parent.email"
+                :placeholder="$t('email')"
               />
             </div>
             <div
@@ -191,13 +162,14 @@ export default {
   data() {
     return {
       imageSrc: null,
+      image: null,
       parentStore: useParentStore(),
       parent: {
         fname: "",
         lname: "",
         email: "",
         password: "",
-        image: {},
+        image: null,
       },
       showsider: false,
       value: 65,
@@ -217,50 +189,46 @@ export default {
         .get("/api/parent/user")
         .then((res) => {
           this.parent = res.data.user;
+          this.imageSrc = `http://localhost:8000${this.parent.image}`;
           console.log(res);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    onUpload() {
-      this.$toast.add({
-        severity: "info",
-        summary: "Success",
-        detail: "File Uploaded",
-        life: 3000,
-      });
+    openFile() {
+      this.$refs.fileInput.click();
     },
-    openFileUpload() {
-      // Get the file input element using the "ref" attribute
-      const fileInput = this.$refs.fileInput;
-
-      // Trigger the click event on the file input element
-      fileInput.click();
-    },
-    handleFileUpload(event) {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.imageSrc = e.target.result;
-        };
-        reader.readAsDataURL(selectedFile);
-        this.parent.image = event.target.files[0];
-        console.log(this.parent.image);
-      }
+    handleFileUpload(e) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = (e) => {
+        this.imageSrc = e.target.result;
+        this.parent.image = image;
+        console.log(this.imageSrc);
+      };
     },
     updateProfile() {
       let self = this;
       const formData = new FormData();
-      Object.keys(self.parent).forEach((key) => {
-        console.log(key);
-        if ((key == "image" || key == "video") && self.parent[key] == null)
-          return;
-        formData.append(key, self.parent[key]);
-      });
+
+      formData.append("fname", this.parent.fname);
+      formData.append("lname", this.parent.lname);
+      formData.append("email", this.parent.email);
+      if (this.$refs.fileInput.files[0] != null) {
+        formData.append("image", this.$refs.fileInput.files[0]);
+      }
+      if (this.parent.password != null) {
+        formData.append("password", this.parent.password);
+      }
+
       axios
-        .post("/api/parent/profile", formData)
+        .post("/api/parent/profile", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((res) => {
           console.log(res);
         })

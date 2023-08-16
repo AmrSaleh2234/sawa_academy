@@ -11,9 +11,11 @@ import calender from "./calender.routes";
 import page_403 from "../views/pages/page_403.vue";
 import HomeView from "../views/frontend/views/HomeView.vue";
 import Login from "../views/frontend/views/Login.vue";
-import About from "../views/frontend/components/About.vue";
+import AboutView from "../views/frontend/views/AboutView.vue";
 import BookingTime from "../views/frontend/components/BookingTime.vue";
 import Cursale from "../views/frontend/components/Cursale.vue";
+import code from "../views/frontend/views/code.vue";
+import contactus from "../views/frontend/views/contactus.vue";
 
 function auth(to, from, next) {
   if (!localStorage.getItem("token")) {
@@ -61,6 +63,17 @@ const routes = [
     beforeEnter: guestForNormalUser,
   },
   {
+    path: "/web/code",
+    name: "code",
+    component: code,
+    beforeEnter: authForNormalUser,
+  },
+  {
+    path: "/web/contactus",
+    name: "contactus",
+    component: contactus,
+  },
+  {
     path: "/web/",
     name: "home",
     component: HomeView,
@@ -69,6 +82,7 @@ const routes = [
     path: "/web/booking-time",
     name: "BookingTime",
     component: BookingTime,
+    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/Cursale",
@@ -77,12 +91,12 @@ const routes = [
   },
 
   {
-    path: "/web/about",
+    path: "/web/AboutView",
     name: "about",
-    component: About,
+    component: AboutView,
   },
   {
-    path: "/web/New",
+    path: "/web/notifications",
     name: "New",
     component: () => import("../views/frontend/views/New.vue"),
     beforeEnter: authForNormalUser,
@@ -95,24 +109,25 @@ const routes = [
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/ReAction",
+    path: "/web/add-child",
     name: "ReAction",
     component: () => import("../views/frontend/views/ReAction.vue"),
+    beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Edit",
+    path: "/web/evaluation",
     name: "Edit",
     component: () => import("../views/frontend/views/Edit.vue"),
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Profile",
+    path: "/web/profile",
     name: "Profile",
     component: () => import("../views/frontend/views/Profile.vue"),
     beforeEnter: authForNormalUser,
   },
   {
-    path: "/web/Following",
+    path: "/web/following",
     name: "Following",
     component: () => import("../views/frontend/views/Following.vue"),
     beforeEnter: authForNormalUser,

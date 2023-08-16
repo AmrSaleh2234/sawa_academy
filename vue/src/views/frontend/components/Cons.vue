@@ -5,8 +5,16 @@
         <img class="m-auto" src="../image/header/calendar-01nobg-01.png" />
       </div>
       <div class="col-span-4 text-center m-auto">
-        <p class="flex text-3xl">
-          السبت-12:00 م
+        <p class="flex items-center text-3xl">
+
+          <div class="flex items-center">
+            <p class=" text-[#FF3765]">
+                {{ event_day(event) }}
+              </p>
+              <p class="px-2  text-[#FF3765]">
+                {{ event_hour(event) }}
+              </p>
+          </div>
           <svg
             fill="#135C65"
             width="35px"
@@ -36,31 +44,31 @@
           </svg>
         </p>
       </div>
-      <div class="m-auto md:mr-0">
-        <v-btn
-          height="45"
-          to="/web"
-          class="mb-5 text-lg m-auto text-white"
-          color="#135C65"
-          @click="home"
-        >
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{ $t("الرئيسيه") }}
-        </v-btn>
-      </div>
+     
     </div>
-    <div class="m-auto p-8 rounded-2xl max-w-2xl text-center">
+    <div class="m-auto p-8 rounded-2xl max-w-2xl">
       <div class="my-4">
-        <h2 class="text-right font-bold text-xl">احجز موعد مع الاخصائي</h2>
-        <p class="text-right text-[#29CCFF] text-xl">برجاء ملئ البيانات</p>
+        <h2 class="text-right font-bold text-xl">{{ $t("Book_an_appointment_with_the_specialist") }}</h2>
+        <p class="text-right text-[#29CCFF] text-xl">{{ $t("Please_fill_in_the_information") }}</p>
       </div>
       <form class="py-4 min-w-full space-y-4 p-2" @submit.prevent="bookTime">
+        <div
+          class="flex flex-col w-full"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold w-full pl-2">{{
+            $t("child_name")
+          }}</label>
+         <select name="" id="" v-model="booking.child_id" class="py-2">
+          <option v-for="child in childs" :value="child.id" class="py-4">{{ child.name }}</option>
+        </select>
+        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("اسم ولي امر  مقدم الطلب")
+          <label class="text-base font-bold  pl-2">{{
+            $t("Name_of_guardian")
           }}</label>
           <input
             type="text"
@@ -81,8 +89,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("درجه قرابته للطفل ")
+          <label class="text-base font-bold pl-2">{{
+            $t("degree_closeness_child")
           }}</label>
           <input
             type="text"
@@ -281,8 +289,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("رقم هاتف اضافي")
+          <label class="text-base font-bold  pl-2">{{
+            $t("additional_phone_number")
           }}</label>
           <input
             type="tel"
@@ -303,8 +311,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("مالك الرقم الاضافي")
+          <label class="text-base font-bold  pl-2">{{
+            $t("owner_extra_number")
           }}</label>
           <input
             type="text"
@@ -325,8 +333,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("درجه قرابته بالطفل")
+          <label class="text-base font-bold pl-2">{{
+            $t("degree_closeness_child")
           }}</label>
           <input
             type="text"
@@ -347,8 +355,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("مصدر التحويل")
+          <label class="text-base font-bold  pl-2">{{
+            $t("conversion_source")
           }}</label>
           <input
             type="text"
@@ -369,8 +377,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الطبيب الخاص بالطفل")
+          <label class="text-base font-bold pl-2">{{
+            $t("Child_doctor")
           }}</label>
           <input
             type="text"
@@ -388,55 +396,16 @@
           </p>
         </div>
 
-        <p class="p-4 font-bold text-base text-right">اجب عن الاسئله الاتيه</p>
+        <p class="p-4 font-bold text-base ">{{ $t("Answer_the_questions")}} </p>
         <div class="w-full">
-          <h3 class="py-2 text-lg">الجنس</h3>
-          <label for="female" class="text-lg">FeMale</label>
-          <input
-            type="radio"
-            id="female"
-            class="border ring-1 ring-gray-600 mx-2"
-            name="female"
-            value="0"
-            v-model="booking.child_gender"
-          />
-
-          <label for="male" class="text-lg">Male</label>
-          <input
-            type="radio"
-            class="border ring-1 ring-gray-600 mx-2"
-            id="male"
-            name="male"
-            value="1"
-            v-model="booking.child_gender"
-          />
-
-          <!-- <Dropdown
-            v-model=""
-            :options="fruits"
-            optionLabel="name"
-            optionValue="id"
-            placeholder="الجنس"
-            class="w-full text-left"
-          /> -->
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_gender']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div class="w-full">
-          <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
+          <h3 class="py-2 text-lg">{{ $t("problem_type") }} </h3>
           <Dropdown
             v-model="booking.child_problem"
-            :options="problem_type"
+            :options="problem"
             optionLabel="name"
             optionValue="name"
-            placeholder="نرجو تحديد نوع المشكله"
-            class="w-full text-left"
+            :placeholder='$t("problem_type")'
+            class="w-full "
           />
         </div>
         <div
@@ -454,8 +423,8 @@
           <input
             type="tel"
             id="child_name"
-            placeholder="التسخيص ان وجد"
-            class="border-b focus:ring-0 text-center"
+            :placeholder="$t('Diagnosis')"
+            class="border-b focus:ring-0 text-lg text-center"
             v-model="booking.child_problems_notes"
           />
         </div>
@@ -468,14 +437,14 @@
           </p>
         </div>
         <div class="w-full">
-          <h3 class="py-2">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
+          <h3 class="py-2">{{ $t("child_problem") }}</h3>
           <Dropdown
             v-model="booking.child_aids"
-            :options="approve"
+            :options="select"
             optionLabel="name"
             optionValue="id"
-            placeholder="هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه"
-            class="w-full text-left"
+            :placeholder='$t("child_problem")'
+            class="w-full "
           />
           <div
             class="text-red-600 font-semibold text-sm rounded-md"
@@ -504,8 +473,8 @@
           </div>
         </div>
         <div class="space-y-4">
-          <p class="text-right text-lg">
-            :المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل
+          <p class=" text-lg">
+            {{$t("main_problems")}}
           </p>
           <Textarea
             class="w-full"
@@ -523,8 +492,8 @@
           </p>
         </div>
         <div class="space-y-4">
-          <p class="text-right text-lg">
-            :ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
+          <p class=" text-lg">
+            {{$t("priority_parents")}}
           </p>
           <Textarea
             class="w-full"
@@ -541,12 +510,12 @@
             <span v-for="err in error">{{ err }} </span>
           </p>
         </div>
-        <div>
+        <div class="w-full">
           <input
-            class="border-0 border-b text-xl text-center focus:ring-0"
+            class="border-0 w-full border-b text-xl text-center focus:ring-0"
             type="text"
             v-model="booking.doctor_code"
-            placeholder="ادخل كود استشاري تريده"
+            :placeholder='$t("consultant_code")'
           />
         </div>
         <div
@@ -557,16 +526,16 @@
             <span v-for="err in error">{{ err }} </span>
           </p>
         </div>
-        <div class="text-right m-auto w-full space-x-4">
-          <span class="m-auto text-xl">انا اوافق علي كافه الشروط والاحكام</span>
+        <div class=" m-auto w-full space-x-4">
+          <span class="m-auto text-xl ">{{ $t("agree_conditions") }}</span>
           <input style="border: 2px solid black" type="checkbox" />
         </div>
         <button
           type="submit"
           class="w-full p-2 text-2xl text-white bg-[#148A98] rounded-2xl"
         >
-          احجز الان
-        </button>
+        {{ $t("Book_now") }}
+      </button>
       </form>
     </div>
   </div>
@@ -576,50 +545,38 @@ import axios from "axios";
 import Dropdown from "primevue/dropdown";
 import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
+import LocaleSelect from "../../../components/LocaleSelect.vue"
+import moment from "moment";
 export default {
   props: ["event_id"],
   components: {
     Dropdown,
     Textarea,
+    
   },
   data() {
     return {
+      approve:[],
+
+      problem_type:[],
       parentStore: useParentStore(),
       selectedFruit: null,
-      fruits: [
-        { id: 0, name: "انثي" },
-        { id: 1, name: "ذكر" },
-      ],
-      problem_type: [
-        { name: "حركيه" },
-        { name: "سمعيه" },
-        { name: "بصريه" },
-        { name: "عقليه/نمائيه" },
-        { name: "توحد" },
-        { name: "اخر" },
-      ],
-      approve: [
-        { id: 1, name: "نعم" },
-        { id: 0, name: "لا" },
-      ],
+    
+      
+     
       errors: [],
+      childs: [],
+      event: {},
       booking: {
         event_id: "",
         user_id: "",
+        child_id: "",
         requester_name: "",
         requester_phone: "",
         relative_degree: "",
         addtional_phone: "",
         addtional_phone_owner: "",
         addtional_phone_degree: "",
-        child_name: "",
-        child_gender: "",
-        child_lang: "",
-        child_nationalty: "",
-        child_national_id: "",
-        child_birth_date: "",
-        child_birth_place: "",
-        child_address: "",
         conversion_type: "",
         child_doctor: "",
         child_problem: "",
@@ -630,7 +587,28 @@ export default {
         parents_priorities: "",
         doctor_code: "",
       },
+      
     };
+  },
+ 
+  computed:{
+    problem (){
+     return this.problem_type = [
+        { name: this.$t("Move") },
+        { name: this.$t("audio") },
+        { name: this.$t("Visual") },
+        { name: this.$t("Mental_developmental") },
+        { name: this.$t("Autism") },
+        { name: this.$t("other") },
+      
+      ];
+    },
+    select (){
+      return this.approve = [
+        { id: 1, name: this.$t("no") },
+        { id: 0, name: this.$t("yes") },
+      ];
+    }
   },
   methods: {
     async bookTime() {
@@ -653,9 +631,46 @@ export default {
           console.log(err);
         });
     },
-  },
+    async getEvent() {
+      await axios
+        .get(`/api/calender/booking/${this.event_id}`)
+        .then((res) => {
+          this.event = res.data.calender.start;
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async getChilds() {
+      await axios
+        .get("/api/parent/child/all")
+        .then((res) => {
+          this.childs = res.data.childs;
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    event_day(event_day) {
+      
+      let day = moment(event_day).format("dddd");
 
-  mounted() {
+    
+      
+      return `${day}`;
+    },
+    event_hour(event_hour) {
+      let hour = moment(event_hour).format("hh:mm: A");
+      return `${hour}`;
+    },
+  },
+ 
+  mounted( ) {
+   
+    this.getEvent();
+    this.getChilds();
     console.log(this.event_id);
   },
 };

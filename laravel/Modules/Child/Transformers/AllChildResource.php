@@ -21,6 +21,8 @@ class AllChildResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "age" => (new childService)->calcChildAgeInMonths($this),
+            "report_text" => $this->report_text,
+            "report_date" => $this->report_date
         ];
     }
 }

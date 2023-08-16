@@ -1,5 +1,6 @@
 <template>
   <Map />
+
   <div
     class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
   >
@@ -40,18 +41,20 @@
 
   <div class="relative overflow-clip max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />
-    <div class="flex-1 py-9 my-6 overflow-y-scroll">
+    <div class="flex-1">
       <div
-        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
+        class="bg-white font-bold text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
       >
-        اخر المستجدات
+        {{ $t("The_latest_developments") }}
       </div>
-      <NewAcorrding
-        class="mx-4"
-        date="15 مايو"
-        v-for="notification in notifications"
-        :notification="notification"
-      />
+      <div class="overflow-auto" style="height: 67vh">
+        <NewAcorrding
+          class="mx-4"
+          date="15 مايو"
+          v-for="notification in notifications"
+          :notification="notification"
+        />
+      </div>
     </div>
   </div>
   <About />

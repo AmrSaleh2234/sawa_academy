@@ -9,9 +9,9 @@
             <img class="p-5" src="../image/sec1/3.png">
         </div>
         <div class="col-span-6 m-auto w-full">
-            <carousel class="max-w-3xl m-auto min-w-full"   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
+            <carousel class="max-w-3xl m-auto "   :autoplay="3000" :wrap-around="true" :breakpoints="breakpoints" >
                 <slide  v-for="image in images" :key="image">
-             <div style="width: 75%;" class=" m-auto rounded-2xl border-2 border-white">
+             <div style="width: 80%;" class=" m-auto rounded-2xl border-2 border-white">
                 <img class="w-full p-2" src="../image/sec1/113.png" >
              </div>
                 </slide>
