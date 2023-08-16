@@ -33,6 +33,7 @@ class FrontAuthController extends Controller
 
         if ($user != null) {
             if (Hash::check($request->password, $user->password)) {
+                $user->image = url($user->image);
                 $response = [
                     'token' => $user->createToken($user->email)->plainTextToken,
                     'user' => $user,

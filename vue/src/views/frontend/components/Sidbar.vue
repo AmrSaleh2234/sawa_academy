@@ -7,7 +7,12 @@
       v-if="parentStore.parentAuth"
       class="space-y-2 py-4 border-b-2 border-white border-solid"
     >
-      <div><img class="m-auto" src="../image/Ellipse2.png" /></div>
+      <div>
+        <img
+          class="rounded-full w-[100px] m-auto"
+          :src="parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'"
+        />
+      </div>
       <p class="text-white text-center">
         {{ parentStore.user.fname }} {{ parentStore.user.lname }}
       </p>
@@ -193,10 +198,9 @@
           </div>
         </router-link>
       </div>
-      
+
       <div class="w-full" style="border: 1px solid"></div>
       <div class="bottom-0">
-       
         <button
           @click="parentStore.logout"
           class="w-full py-2 flex items-center justify-between px-8 my-2 text-xl rounded-2xl bg-[#EB486D] hover:bg-[#E4234F]"
