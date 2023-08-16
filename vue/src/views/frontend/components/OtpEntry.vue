@@ -57,7 +57,7 @@
               </div>
               <div style="padding: 4%" class="flex m-auto text-xl">
                 <p class="m-auto text-[#135C65]">
-                  <span class="px-4">+20</span>01204521021
+                  <span class="px-4">{{ parentStore.user.phone }}</span>
                 </p>
               </div>
               <div
@@ -144,9 +144,13 @@
 import axios from "axios";
 import { ref } from "vue";
 import VOtpInput from "vue3-otp-input";
+import { useParentStore } from "../../../stores/ParentStore";
+import { useRouter } from "vue-router";
 
 const otpInput = ref<InstanceType<typeof VOtpInput> | null>(null);
 const bindModal = ref("");
+const parentStore = useParentStore();
+const router = useRouter();
 
 const handleOnComplete = (value: string) => {
   console.log("OTP completed: ", value);
@@ -183,6 +187,7 @@ const validateOTP = () => {
     })
     .then((res) => {
       console.log(res);
+      router.push({ name: "home" });
     })
     .catch((err) => {
       console.log(err);

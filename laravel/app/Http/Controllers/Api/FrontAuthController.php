@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Parent\UpdateProfileRequest;
-use App\Http\Resources\ParentResource;
-use App\Http\Resources\UserResource;
-use App\Models\ChildParent;
+use Carbon\Carbon;
 use App\Models\OTP;
 use App\Models\User;
-use App\Notifications\AcceptBookingNotification;
-use App\Notifications\SendOtpNotification;
-use Carbon\Carbon;
+use App\Models\ChildParent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use App\Http\Resources\ParentResource;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\SendOtpNotification;
+use App\Notifications\AcceptBookingNotification;
+use App\Http\Requests\Parent\UpdateProfileRequest;
 
 class FrontAuthController extends Controller
 {
@@ -170,22 +171,32 @@ class FrontAuthController extends Controller
         $user = $request->user('parent');
 
         OTP::query()
-            ->where('identifier', $user->email)
+            ->where('identifier', $user->phone)
             ->delete();
 
         $otp = rand(100000, 999999);
 
         OTP::create([
-            'identifier' => $user->email,
+            'identifier' => $user->phone,
             'otp' => $otp,
             'expire_at' => Carbon::now()->addMinutes(10)
         ]);
 
-        $user->notify(new SendOtpNotification($otp));
+        $response = Http::get(
+            "https://josmsservice.com/SMSServices/Clients/Prof/RestSingleSMS_General/SendSMS?senderid=Visualinn&numbers=$user->phone&accname=Visualinn&AccPass=DkAAnSg!GFYw20AJ&msg=$otp"
+        );
 
-        return response()->json([
-            'otp' => $otp
-        ], 200);
+        if ($response->status() == '200') {
+            return response()->json([
+                'otp' => $otp,
+                'message' => $response->body()
+
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => $response->status()
+            ], 400);
+        }
     }
 
     public function validateOTP(Request $request)
@@ -197,7 +208,7 @@ class FrontAuthController extends Controller
         $user = $request->user('parent');
 
         $otp = OTP::query()
-            ->where('identifier', $user->email)
+            ->where('identifier', $user->phone)
             ->where('valid', true)
             ->where('otp', $request->otp)
             ->first();
@@ -224,7 +235,7 @@ class FrontAuthController extends Controller
 
         $otp->save();
 
-        $user->email_verified_at = Carbon::now();
+        $user->phone_verified_at = Carbon::now();
 
         $user->save();
 
