@@ -112,8 +112,163 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold  pl-2">{{
-            $t("Parent_phone_number")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("الاسم الرباعي للطفل  ")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_name"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_name']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("تاريخ الميلاد")
+          }}</label>
+          <input
+            type="date"
+            id="child_name"
+            v-model="booking.child_birth_date"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_birth_date']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("مكان الميلاد  ")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_birth_place"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_birth_place']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("لغة الطفل الاساسيه  ")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_lang"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_lang']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("الجنسيه")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_nationalty"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_nationalty']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("الرقم الوطني")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_national_id"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_national_id']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("العنوان")
+          }}</label>
+          <input
+            type="text"
+            id="child_name"
+            v-model="booking.child_address"
+            class="border-b focus:ring-0 text-center"
+          />
+        </div>
+        <div
+          v-if="errors != null"
+          class="text-red-600 font-semibold text-sm rounded-md"
+        >
+          <p v-for="error in errors['child_address']">
+            <span v-for="err in error">{{ err }} </span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col"
+          style="border-bottom: 2px solid rgb(194, 188, 188)"
+        >
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("رقم هاتف ولي الامر")
           }}</label>
           <input
             type="tel"

@@ -37,9 +37,7 @@ class Booking extends Model
         'accepted_notes',
     ];
 
-    protected $casts = [
-        'child_gender' => Gender::class,
-    ];
+
 
     protected static function newFactory()
     {
