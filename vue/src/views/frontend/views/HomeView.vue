@@ -1,22 +1,20 @@
 <script setup></script>
 
 <template>
-
-      <div class="switcher">
-        <nave-1 />
-        <nave class=" w-full z-30" />
-        <HeadeForm />
-        <Services />
-        <card />
-        <Cursale></Cursale>
-        <DoCard />
-        <See />
-        <About />
-
-      </div>
-
+  <div class="switcher">
+    <nave-1 />
+    <nave class="w-full z-30" />
+    <HeadeForm />
+    <Services />
+    <card />
+    <Cursale></Cursale>
+    <DoCard />
+    <See />
+    <About />
+  </div>
 </template>
 <script setup(props) { }>
+import { useParentStore } from "../../../stores/ParentStore";
 import Nave from "../components/Nave.vue";
 import HeadeForm from "../components/HeadeForm.vue";
 import Services from "../components/Services.vue";
@@ -44,6 +42,14 @@ export default {
     return {
       mycard: getcard,
     };
+  },
+
+  mounted() {
+    if (useParentStore().parentAuth) {
+      if (useParentStore().user.phone_verified_at == null) {
+        this.$router.push({ name: "code" });
+      }
+    }
   },
 };
 </script>

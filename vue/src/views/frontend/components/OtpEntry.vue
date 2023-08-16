@@ -187,6 +187,7 @@ const validateOTP = () => {
     })
     .then((res) => {
       console.log(res);
+      parentStore.user.phone_verified_at = res.data.phone_verified_at;
       router.push({ name: "home" });
     })
     .catch((err) => {

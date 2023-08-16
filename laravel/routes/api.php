@@ -39,13 +39,13 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
     Route::post('login', 'login')->name('login');
 
     Route::middleware(['auth:parent', 'phone_verified'])->group(function () {
-        Route::post('logout', 'logout')->name('logout');
         Route::post('profile', 'profile')->name('profile');
         Route::get('user', 'user')->name('user');
         Route::get('notification', 'getParentNotification')->name('notification');
     });
 
     Route::middleware('auth:parent')->group(function () {
+        Route::post('logout', 'logout')->name('logout');
         Route::post('send-otp', 'sendOTP')->name('send_otp');
         Route::post('validate-otp', 'validateOTP')->name('validate_otp');
     });

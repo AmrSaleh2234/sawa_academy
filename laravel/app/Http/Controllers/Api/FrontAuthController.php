@@ -240,7 +240,8 @@ class FrontAuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'otp validated successfully'
+            'message' => 'otp validated successfully',
+            'phone_verified_at' => Carbon::now()
         ], 200);
     }
 }
