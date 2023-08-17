@@ -241,6 +241,23 @@ onMounted(async () => {
               :to="{ name: 'ShowBooking' }"
             ></v-list-item>
           </v-list-group>
+          <v-list-group value="Settings">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props" :title="$t('Settings')"></v-list-item>
+            </template>
+            <v-list-item
+              prepend-icon="mdi-message-question-outline"
+              :title="$t('Pages')"
+              value="Pages"
+              :to="{ name: 'pages' }"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-message-question-outline"
+              :title="$t('Settings')"
+              value="Settings"
+              :to="{ name: 'settings' }"
+            ></v-list-item>
+          </v-list-group>
         </v-list>
       </v-navigation-drawer>
 

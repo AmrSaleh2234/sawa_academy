@@ -7,7 +7,7 @@ use App\Models\SiteSettings as SiteSettingsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SiteSettings extends Controller
+class SiteSettingsController extends Controller
 {
     public function index_pages(Request $request)
     {
@@ -84,7 +84,48 @@ class SiteSettings extends Controller
         ], 200);
     }
 
-    public function update_settings()
+    public function update_settings(Request $request)
     {
+        $request->validate([
+            "name" => ["required", "string"],
+            "number_1" => ["required", "string"],
+            "number_2" => ["required", "string"],
+            "address" => ["required", "string"],
+            "email" => ["required", "string"],
+            "description" => ["required", "string"],
+            "social_links" => ["required", "string"],
+        ]);
+
+        $setting = SiteSettingsModel::first();
+
+        if ($setting != null) {
+            $setting->update([
+                "name" => $request->name,
+                "number_1" => $request->number_1,
+                "number_2" => $request->number_2,
+                "address" => $request->address,
+                "email" => $request->email,
+                "description" => $request->description,
+                "social_links" => $request->social_links,
+            ]);
+
+            return response()->json([
+                'settings' => $setting->fresh(),
+            ], 200);
+        }
+
+        $setting = SiteSettingsModel::create([
+            "name" => $request->name,
+            "number_1" => $request->number_1,
+            "number_2" => $request->number_2,
+            "address" => $request->address,
+            "email" => $request->email,
+            "description" => $request->description,
+            "social_links" => $request->social_links,
+        ]);
+
+        return response()->json([
+            'settings' => $setting,
+        ], 200);
     }
 }

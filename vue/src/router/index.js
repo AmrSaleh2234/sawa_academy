@@ -3,6 +3,7 @@ import Home from "@/components/Home.vue";
 import permissionsRoutes from "./permissions.routes";
 import rolesRoutes from "./roles.routes";
 import usersRoutes from "./users.routes";
+import siteRoutes from "./settings.routes";
 import childrenRoutes from "./children.routes";
 import QuestionHeadersRoutes from "./question-headers.routes";
 import EvaluationsRoutes from "./evaluation.routes";
@@ -159,6 +160,7 @@ const routes = [
     beforeEnter: auth,
     children: [
       ...Object.values(permissionsRoutes),
+      ...Object.values(siteRoutes),
       ...Object.values(rolesRoutes),
       ...Object.values(usersRoutes),
       ...Object.values(childrenRoutes),

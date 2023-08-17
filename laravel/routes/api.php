@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\FrontAuthController;
+use App\Http\Controllers\Api\SiteSettingsController;
 use Illuminate\Http\Request;
 
 /*
@@ -55,6 +56,14 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
 Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo'])->name('users.get');
     Route::post('logout', [PassportAuthController::class, 'logout'])->name('logout.perform');
+
+
+
+    Route::controller(SiteSettingsController::class)->prefix('site')->as('site.')->group(function () {
+        Route::get('settings', 'index_settings')->name('settings');
+        Route::post('settings', 'update_settings')->name('settings.update');
+    });
+
 
     /**
      * roles

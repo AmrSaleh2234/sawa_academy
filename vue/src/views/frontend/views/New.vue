@@ -4,46 +4,55 @@
   <div
     class="flex justify-between border-b-2 p-2 border-x-cyan-950 border-solid"
   >
-    <div>
-      <div
-        class="col-span-1 text-right m-auto visible md:invisible"
-        @click="toggle()"
+    <div
+      class="col-span-1 text-right m-auto visible md:invisible"
+      @click="toggle()"
+    >
+      <svg
+        fill="#000000"
+        width="44px"
+        height="44px"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
-      </div>
-      <div>
-        <p
-          class="w-full text-left font-bold m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
-        >
-          <v-toolbar-title class="">My Menu Bar</v-toolbar-title>
-        </p>
-      </div>
-      <div>
-        <p
-          class="w-full text-left m-auto col-span-2 px-2 py-4 text-xl text-[#6EB7BF]"
-        >
-          الملف الشخصي
-        </p>
-      </div>
-      <div class="text-left m-auto">
-        <button class=" ">
-          <router-link class="flex" to="/web">
-            <p class="md:pt-4 py-2 md:text-2xl">الرئيسيه</p>
-            <font-awesome-icon
-              class="bg-[#135C65] rounded-[50%] m-2 md:p-4 p-2"
-              icon="fa-solid fa-arrow-left"
-            />
-          </router-link>
-        </button>
-      </div>
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+
+    <div class="m-auto">
+      <p class="ont text-center font-bold text-2xl text-[#6EB7BF]">
+        {{ $t("Profile_personly") }}
+      </p>
+    </div>
+    <div class="m-auto">
+      <v-btn
+        height="35"
+        to="/web"
+        class="text-lg m-auto text-white"
+        color="#135C65"
+      >
+        <router-link :to="{ name: 'home' }">
+          <v-icon start icon="mdi-arrow-left"></v-icon>
+          {{ $t("home") }}
+        </router-link>
+      </v-btn>
     </div>
   </div>
-
-  <div class="relative overflow-clip max-w-full max-h-screen flex">
+  <div class="relative max-w-full max-h-screen flex">
     <sidbar :sole="showsider" />
-    <div class="flex-1">
+    <div class="flex-1 py-9 my-6">
       <div
-        class="bg-white font-bold text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
+        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
       >
         {{ $t("The_latest_developments") }}
       </div>
