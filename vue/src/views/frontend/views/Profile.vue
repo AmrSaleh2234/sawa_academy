@@ -1,18 +1,18 @@
 <template>
   <div class="switcher">
     <Map />
-    <div class="w-full border-b-2  border-x-cyan-950 border-solid">
-      
+    <div class="w-full border-b-2 border-x-cyan-950 border-solid">
       <div class="m-auto w-full">
-        <p class="text-center p-4 text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+        <p class="text-center p-4 text-2xl text-[#6EB7BF]">
+          {{ $t("Profile_personly") }}
+        </p>
       </div>
-    
     </div>
     <div class="relative flex selection max-h-full">
       <sidbar class="" :sole="showsider" />
       <div class="flex-1 space-y-10">
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
-          <button class="font-bold">{{$t("Modify_profile")}}</button>
+          <button class="font-bold">{{ $t("Modify_profile") }}</button>
         </div>
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
@@ -85,8 +85,6 @@
                   type="text"
                   v-model="parent.lname"
                   :placeholder="$t('first_name')"
-                
-
                 />
               </div>
               <div
@@ -134,16 +132,15 @@
                 style="font-size: 18px"
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
-                :placeholder="$t('password')"
-                v-model="parent.password"
+                placeholder="password"
               />
             </div>
             <button
               @click="updateProfile"
               class="p-4 mt-10 text-center bg-[#148A98] text-white w-full rounded-2xl text-xl"
             >
-            {{ $t("Save_changes") }}
-                      </button>
+              حفظ التغيرات
+            </button>
           </div>
         </div>
       </div>
@@ -245,43 +242,42 @@ export default {
       // Return a string of Tailwind CSS classes to set the width of the image
       return this.imageSrc ? ["w-40", "h-0"] : ""; // Adjust the 'w-64' class to set the desired width
     },
-    //   methods: {
-    //     toggleEditing() {
-    //       this.editing = !this.editing;
-    //     },
-    //     toggle() {
-    //       this.showsider = !this.showsider;
-    //     },
-    //     home() {},
-    //     onUpload() {
-    //       this.$toast.add({
-    //         severity: "info",
-    //         summary: "Success",
-    //         detail: "File Uploaded",
-    //         life: 3000,
-    //       });
-    //     },
-    //     openFileUpload() {
-    //       // Get the file input element using the "ref" attribute
-    //       const fileInput = this.$refs.fileInput;
+    // methods: {
+    //   toggleEditing() {
+    //     this.editing = !this.editing;
+    //   },
+    //   toggle() {
+    //     this.showsider = !this.showsider;
+    //   },
+    //   home() {},
+    //   onUpload() {
+    //     this.$toast.add({
+    //       severity: "info",
+    //       summary: "Success",
+    //       detail: "File Uploaded",
+    //       life: 3000,
+    //     });
+    //   },
+    //   openFileUpload() {
+    //     // Get the file input element using the "ref" attribute
+    //     const fileInput = this.$refs.fileInput;
 
-    //       // Trigger the click event on the file input element
-    //       fileInput.click();
-    //     },
-    //     handleFileUpload(event) {
-    //       // Handle the file selection here
-    //       const selectedFile = event.target.files[0];
-    //       if (selectedFile) {
-    //         // Create a FileReader to read the file as a data URL
-    //         const reader = new FileReader();
-    //         reader.onload = (e) => {
-    //           // Set the imageSrc data property with the data URL of the selected image
-    //           this.imageSrc = e.target.result;
-    //         };
-    //         // Read the selected file as a data URL
-    //         reader.readAsDataURL(selectedFile);
-    //       }
-    //     },
+    //     // Trigger the click event on the file input element
+    //     fileInput.click();
+    //   },
+    //   handleFileUpload(event) {
+    //     // Handle the file selection here
+    //     const selectedFile = event.target.files[0];
+    //     if (selectedFile) {
+    //       // Create a FileReader to read the file as a data URL
+    //       const reader = new FileReader();
+    //       reader.onload = (e) => {
+    //         // Set the imageSrc data property with the data URL of the selected image
+    //         this.imageSrc = e.target.result;
+    //       };
+    //       // Read the selected file as a data URL
+    //       reader.readAsDataURL(selectedFile);
+    //     }
     //   },
     // },
   },

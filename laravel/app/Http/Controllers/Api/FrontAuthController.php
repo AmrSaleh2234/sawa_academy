@@ -33,6 +33,7 @@ class FrontAuthController extends Controller
 
         if ($user != null) {
             if (Hash::check($request->password, $user->password)) {
+                $user->image = url($user->image);
                 $response = [
                     'token' => $user->createToken($user->email)->plainTextToken,
                     'user' => $user,
@@ -240,7 +241,8 @@ class FrontAuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'otp validated successfully'
+            'message' => 'otp validated successfully',
+            'phone_verified_at' => Carbon::now()
         ], 200);
     }
 }

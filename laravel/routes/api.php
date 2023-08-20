@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\FrontAuthController;
+use App\Http\Controllers\Api\SiteSettingsController;
 use Illuminate\Http\Request;
 
 /*
@@ -39,13 +40,13 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
     Route::post('login', 'login')->name('login');
 
     Route::middleware(['auth:parent', 'phone_verified'])->group(function () {
-        Route::post('logout', 'logout')->name('logout');
         Route::post('profile', 'profile')->name('profile');
         Route::get('user', 'user')->name('user');
         Route::get('notification', 'getParentNotification')->name('notification');
     });
 
     Route::middleware('auth:parent')->group(function () {
+        Route::post('logout', 'logout')->name('logout');
         Route::post('send-otp', 'sendOTP')->name('send_otp');
         Route::post('validate-otp', 'validateOTP')->name('validate_otp');
     });
@@ -55,6 +56,18 @@ Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->
 Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo'])->name('users.get');
     Route::post('logout', [PassportAuthController::class, 'logout'])->name('logout.perform');
+
+
+
+    Route::controller(SiteSettingsController::class)->prefix('site')->as('site.')->group(function () {
+        Route::get('settings', 'index_settings')->name('settings');
+        Route::post('settings', 'update_settings')->name('settings.update');
+
+        Route::get('pages', 'index_pages')->name('pages');
+        Route::post('pages', 'store_page')->name('pages.store');
+        Route::post('pages/{page}', 'update_page')->name('pages.update');
+    });
+
 
     /**
      * roles

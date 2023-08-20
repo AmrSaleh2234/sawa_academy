@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('parents', function (Blueprint $table) {
-            $table->string("image")->change()->nullable();
+        Schema::create('pages', function (Blueprint $table) {
+            $table->id();
+            $table->string("title");
+            $table->string("image");
+            $table->text("description");
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('parents', function (Blueprint $table) {
-            $table->dropColumn("image");
-        });
+        Schema::dropIfExists('pages');
     }
 };

@@ -181,4 +181,8 @@ export default {
   yes: "yes",
   consultant_code: "Enter the consultant code",
   agree_conditions: "I agree to all terms and conditions",
+  Settings: "Settings",
+  settings_menu: "Site Settings Menu",
+  Pages: "Pages",
+  Pages_menu: "Site Pages Menu",
 };

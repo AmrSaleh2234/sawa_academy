@@ -3,6 +3,7 @@ import Home from "@/components/Home.vue";
 import permissionsRoutes from "./permissions.routes";
 import rolesRoutes from "./roles.routes";
 import usersRoutes from "./users.routes";
+import siteRoutes from "./settings.routes";
 import childrenRoutes from "./children.routes";
 import QuestionHeadersRoutes from "./question-headers.routes";
 import EvaluationsRoutes from "./evaluation.routes";
@@ -16,32 +17,40 @@ import BookingTime from "../views/frontend/components/BookingTime.vue";
 import Cursale from "../views/frontend/components/Cursale.vue";
 import code from "../views/frontend/views/code.vue";
 import contactus from "../views/frontend/views/contactus.vue";
+import { useParentStore } from "../stores/ParentStore";
+import { useAuthStore } from "../stores/Auth";
 
 function auth(to, from, next) {
-  if (!localStorage.getItem("token")) {
+  if (!useAuthStore().authenticated) {
     return next({ name: "Login" });
   }
-
   next();
 }
 
 function guest(to, from, next) {
-  if (localStorage.getItem("token")) {
+  if (useAuthStore().authenticated) {
     return next({ name: "Home" });
   }
   next();
 }
 
 function authForNormalUser(to, from, next) {
-  if (!localStorage.getItem("token")) {
+  if (!useParentStore().parentAuth) {
     return next({ name: "parentLogin" });
   }
 
   next();
 }
 
+function phoneIsVerified(to, from, next) {
+  if (useParentStore().user.phone_verified_at == null) {
+    return next({ name: "code" });
+  }
+  next();
+}
+
 function guestForNormalUser(to, from, next) {
-  if (localStorage.getItem("token")) {
+  if (useParentStore().parentAuth) {
     return next({ name: "home" });
   }
   next();
@@ -55,7 +64,6 @@ const routes = [
     component: () => import("../views/frontend/views/SingUp.vue"),
     beforeEnter: guestForNormalUser,
   },
-
   {
     path: "/web/parent/login",
     name: "parentLogin",
@@ -79,58 +87,14 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/web/booking-time",
-    name: "BookingTime",
-    component: BookingTime,
-    beforeEnter: authForNormalUser,
-  },
-  {
     path: "/web/Cursale",
     name: "Cursale",
     component: Cursale,
   },
-
   {
     path: "/web/AboutView",
     name: "about",
     component: AboutView,
-  },
-  {
-    path: "/web/notifications",
-    name: "New",
-    component: () => import("../views/frontend/views/New.vue"),
-    beforeEnter: authForNormalUser,
-  },
-  {
-    path: "/web/more/:event_id",
-    name: "more",
-    props: true,
-    component: () => import("../views/frontend/views/more.vue"),
-    beforeEnter: authForNormalUser,
-  },
-  {
-    path: "/web/add-child",
-    name: "ReAction",
-    component: () => import("../views/frontend/views/ReAction.vue"),
-    beforeEnter: authForNormalUser,
-  },
-  {
-    path: "/web/evaluation",
-    name: "Edit",
-    component: () => import("../views/frontend/views/Edit.vue"),
-    beforeEnter: authForNormalUser,
-  },
-  {
-    path: "/web/profile",
-    name: "Profile",
-    component: () => import("../views/frontend/views/Profile.vue"),
-    beforeEnter: authForNormalUser,
-  },
-  {
-    path: "/web/following",
-    name: "Following",
-    component: () => import("../views/frontend/views/Following.vue"),
-    beforeEnter: authForNormalUser,
   },
   {
     path: "/web/Number",
@@ -138,10 +102,55 @@ const routes = [
     component: () => import("../views/frontend/views/Number.vue"),
   },
   {
+    path: "/web/booking-time",
+    name: "BookingTime",
+    component: BookingTime,
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+
+  {
+    path: "/web/notifications",
+    name: "New",
+    component: () => import("../views/frontend/views/New.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+  {
+    path: "/web/more/:event_id",
+    name: "more",
+    props: true,
+    component: () => import("../views/frontend/views/more.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+  {
+    path: "/web/add-child",
+    name: "ReAction",
+    component: () => import("../views/frontend/views/ReAction.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+  {
+    path: "/web/evaluation",
+    name: "Edit",
+    component: () => import("../views/frontend/views/Edit.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+  {
+    path: "/web/profile",
+    name: "Profile",
+    component: () => import("../views/frontend/views/Profile.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+  {
+    path: "/web/following",
+    name: "Following",
+    component: () => import("../views/frontend/views/Following.vue"),
+    beforeEnter: [authForNormalUser, phoneIsVerified],
+  },
+
+  {
     path: "/web/appointment",
     name: "Booking",
     component: () => import("../views/frontend/views/Booking.vue"),
-    beforeEnter: authForNormalUser,
+    beforeEnter: [authForNormalUser, phoneIsVerified],
   },
   ///////////////End Front End Users Routes //////////////////
 
@@ -152,6 +161,7 @@ const routes = [
     beforeEnter: auth,
     children: [
       ...Object.values(permissionsRoutes),
+      ...Object.values(siteRoutes),
       ...Object.values(rolesRoutes),
       ...Object.values(usersRoutes),
       ...Object.values(childrenRoutes),

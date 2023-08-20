@@ -1,10 +1,10 @@
 <template>
-  <nav class="bg-white p-2 ">
+  <nav class="bg-white p-2">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Your logo or brand content goes here -->
 
       <!-- Your navigation links go here -->
-      <div class="hidden md:flex space-x-4">
+      <div class="hidden md:flex md:items-center space-x-4">
         <div class="flex space-x-2" v-if="parentStore.parentAuth">
           <div>
             <div class="relative">
@@ -12,9 +12,14 @@
                 @click="show = !show"
                 class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
               >
-                <span class="mr-4"
-                  ><img src="../image/header/Ellipse2.png"
-                /></span>
+                <span class="mr-4">
+                  <img
+                    class="rounded-full w-[65px] m-auto object-cover"
+                    :src="
+                      parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
+                    "
+                  />
+                </span>
                 <svg
                   onclick="rate()"
                   class="w-8 h-8"
@@ -164,7 +169,11 @@
         </button>
       </div>
       <div class="flex space-x-4">
-        <div><router-link to="/web"><img class=" cursor-pointer" src="../image/header/Group22.png" /></router-link></div>
+        <div>
+          <router-link to="/web"
+            ><img class="cursor-pointer" src="../image/header/Group22.png"
+          /></router-link>
+        </div>
       </div>
     </div>
     <!-- Mobile menu -->

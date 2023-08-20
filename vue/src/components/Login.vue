@@ -5,11 +5,11 @@ import sawaLogo from "../assets/img/sawa_logo.svg";
 import { useAuthStore } from "../stores/Auth";
 
 // variables
-const authStore  = useAuthStore();
+const authStore = useAuthStore();
 const visible = ref(false);
 const form = ref({
-  email: "admin@admin.com",
-  password: "password",
+  email: "",
+  password: "",
 });
 
 // validation
@@ -52,10 +52,7 @@ const rules = ref({
         >
           {{ item }}
         </small>
-        <small
-          class="d-block"
-          v-else="typeof authStore.errors === 'string'"
-        >
+        <small class="d-block" v-else="typeof authStore.errors === 'string'">
           {{ authStore.errors }}
         </small>
       </v-alert>

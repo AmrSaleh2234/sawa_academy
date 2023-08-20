@@ -178,4 +178,8 @@ export default {
   yes: "نعم",
   consultant_code: "ادخل كود الاستشاري ",
   agree_conditions: "انا اوافق علي كافه الشروط والاحكام ",
+  Settings: "الاعدادات",
+  settings_menu: "قائمه الاعدادات الخاصه بالموقع",
+  Pages: "الصفحات",
+  Pages_menu: "قائمه صفحات الموقع",
 };
