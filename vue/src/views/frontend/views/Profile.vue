@@ -198,7 +198,7 @@ export default {
         .get("/api/parent/user")
         .then((res) => {
           this.parent = res.data.user;
-          this.imageSrc = `http://localhost:8000${this.parent.image}`;
+          this.imageSrc = this.parent.image;
           console.log(res);
         })
         .catch((err) => {

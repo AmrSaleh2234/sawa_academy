@@ -19,7 +19,7 @@ class ParentResource extends JsonResource
             'fname' => $this->fname,
             'lname' => $this->lname,
             'email' => $this->email,
-            "image" => $this->image
+            "image" => $this->image ? url($this->image) : null,
         ];
     }
 }

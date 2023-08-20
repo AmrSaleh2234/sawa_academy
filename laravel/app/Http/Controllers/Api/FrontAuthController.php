@@ -19,6 +19,7 @@ use Spatie\Permission\Models\Permission;
 use App\Notifications\SendOtpNotification;
 use App\Notifications\AcceptBookingNotification;
 use App\Http\Requests\Parent\UpdateProfileRequest;
+use Modules\Child\Entities\Child;
 
 class FrontAuthController extends Controller
 {
@@ -79,9 +80,12 @@ class FrontAuthController extends Controller
 
         $token = $parent->createToken($parent->email)->plainTextToken;
 
+        $code = $this->sendFirstOTP($parent);
+
         return response()->json([
             'token' => $token,
             'user' => $parent,
+            'code' => $code,
         ], 201);
     }
 
@@ -165,6 +169,24 @@ class FrontAuthController extends Controller
         return response()->json([
             "doctors" => $doctors
         ], 200);
+    }
+
+    public function sendFirstOTP(ChildParent $parent)
+    {
+
+        $otp = rand(100000, 999999);
+
+        OTP::create([
+            'identifier' => $parent->phone,
+            'otp' => $otp,
+            'expire_at' => Carbon::now()->addMinutes(10)
+        ]);
+
+        $response = Http::get(
+            "https://josmsservice.com/SMSServices/Clients/Prof/RestSingleSMS_General/SendSMS?senderid=Visualinn&numbers=$parent->phone&accname=Visualinn&AccPass=DkAAnSg!GFYw20AJ&msg=$otp"
+        );
+
+        return  $response->status();
     }
 
     public function sendOTP(Request $request)
