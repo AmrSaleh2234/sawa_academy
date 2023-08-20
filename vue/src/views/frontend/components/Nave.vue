@@ -14,7 +14,7 @@
               >
                 <span class="mr-4">
                   <img
-                    class="rounded-full w-[65px] m-auto"
+                    class="rounded-full w-[65px] m-auto object-cover"
                     :src="
                       parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
                     "

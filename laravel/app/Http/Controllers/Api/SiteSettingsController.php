@@ -17,6 +17,7 @@ class SiteSettingsController extends Controller
             'pages' => $pages,
         ], 200);
     }
+
     public function store_page(Request $request)
     {
         $request->validate([
@@ -41,11 +42,12 @@ class SiteSettingsController extends Controller
             'pages' => $page,
         ], 200);
     }
+
     public function update_page(SitePage $page, Request $request)
     {
         $request->validate([
             'title' => ['required', 'string'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable',],
             'description' => ['required', 'string'],
         ]);
 
@@ -76,9 +78,16 @@ class SiteSettingsController extends Controller
             'pages' => $page->fresh(),
         ], 200);
     }
+
     public function index_settings(Request $request)
     {
         $settings = SiteSettingsModel::first();
+
+        if ($settings != null) {
+            $settings->logo =  $settings->logo  ?  url($settings->logo)  : null;
+            $settings->cover = $settings->cover ?   url($settings->cover) : null;
+        }
+
         return response()->json([
             'settings' => $settings,
         ], 200);
@@ -86,6 +95,10 @@ class SiteSettingsController extends Controller
 
     public function update_settings(Request $request)
     {
+
+        $logo_image = null;
+        $cover_image = null;
+
         $request->validate([
             "name" => ["required", "string"],
             "number_1" => ["required", "string"],
@@ -93,24 +106,69 @@ class SiteSettingsController extends Controller
             "address" => ["required", "string"],
             "email" => ["required", "string"],
             "description" => ["required", "string"],
+            "logo" => ["nullable", "image"],
+            "cover" => ["nullable", "image"],
             "social_links" => ["required", "string"],
         ]);
 
         $setting = SiteSettingsModel::first();
 
+        if ($request->file('logo')) {
+
+            if (!empty($setting->logo)) {
+                $currentImage = public_path() . $setting->logo;
+
+                if (file_exists($currentImage)) {
+                    unlink($currentImage);
+                }
+            }
+
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $name = time() . '.' . $extension;
+            $request->logo->move(public_path() . '/images/',  $name);
+            $logo_image = '/images/' . $name;
+        }
+
+        if ($request->file('cover')) {
+
+            if (!empty($setting->cover)) {
+                $currentImage = public_path() . $setting->cover;
+
+                if (file_exists($currentImage)) {
+                    unlink($currentImage);
+                }
+            }
+
+            $file = $request->file('cover');
+            $extension = $file->getClientOriginalExtension();
+            $name = time() . '.' . $extension;
+            $request->cover->move(public_path() . '/images/',  $name);
+            $cover_image = '/images/' . $name;
+        }
+
+
         if ($setting != null) {
+
             $setting->update([
                 "name" => $request->name,
                 "number_1" => $request->number_1,
                 "number_2" => $request->number_2,
                 "address" => $request->address,
                 "email" => $request->email,
+                "logo" => $logo_image ?? null,
+                "cover" => $cover_image ?? null,
                 "description" => $request->description,
                 "social_links" => $request->social_links,
             ]);
 
+            $setting = $setting->fresh();
+
+            $setting->logo =  $setting->logo  ?  url($setting->logo)  : null;
+            $setting->cover = $setting->cover ?   url($setting->cover) : null;
+
             return response()->json([
-                'settings' => $setting->fresh(),
+                'settings' => $setting,
             ], 200);
         }
 
@@ -120,6 +178,8 @@ class SiteSettingsController extends Controller
             "number_2" => $request->number_2,
             "address" => $request->address,
             "email" => $request->email,
+            "logo" => $logo_image ?? null,
+            "cover" => $cover_image ?? null,
             "description" => $request->description,
             "social_links" => $request->social_links,
         ]);

@@ -62,6 +62,10 @@ Route::middleware('auth:api')->group(function () {
     Route::controller(SiteSettingsController::class)->prefix('site')->as('site.')->group(function () {
         Route::get('settings', 'index_settings')->name('settings');
         Route::post('settings', 'update_settings')->name('settings.update');
+
+        Route::get('pages', 'index_pages')->name('pages');
+        Route::post('pages', 'store_page')->name('pages.store');
+        Route::post('pages/{page}', 'update_page')->name('pages.update');
     });
 
 

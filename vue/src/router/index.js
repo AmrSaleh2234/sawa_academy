@@ -18,17 +18,17 @@ import Cursale from "../views/frontend/components/Cursale.vue";
 import code from "../views/frontend/views/code.vue";
 import contactus from "../views/frontend/views/contactus.vue";
 import { useParentStore } from "../stores/ParentStore";
+import { useAuthStore } from "../stores/Auth";
 
 function auth(to, from, next) {
-  if (!localStorage.getItem("token")) {
+  if (!useAuthStore().authenticated) {
     return next({ name: "Login" });
   }
-
   next();
 }
 
 function guest(to, from, next) {
-  if (localStorage.getItem("token")) {
+  if (useAuthStore().authenticated) {
     return next({ name: "Home" });
   }
   next();
@@ -38,6 +38,7 @@ function authForNormalUser(to, from, next) {
   if (!useParentStore().parentAuth) {
     return next({ name: "parentLogin" });
   }
+
   next();
 }
 
