@@ -1,5 +1,17 @@
 <template>
   <div class="px-4 relative">
+    <div>
+      <v-alert
+        class="fixed z-10"
+        color="success"
+        icon="$success"
+        title="Booked Successfully"
+        :text="alert_text"
+        v-if="show_alert"
+        >
+    </v-alert>
+
+    </div>
     <div class="md:grid flex flex-col gap-5 sm:grid-cols-6">
       <div class="p-0 m-auto">
         <img class="m-auto" src="../image/header/calendar-01nobg-01.png" />
@@ -46,18 +58,18 @@
       </div>
      
     </div>
-    <div class="m-auto p-8 rounded-2xl max-w-2xl">
+    <div class="m-auto p-8 rounded-2xl max-w-2xl text-center">
       <div class="my-4">
         <h2 class="text-right font-bold text-xl">{{ $t("Book_an_appointment_with_the_specialist") }}</h2>
         <p class="text-right text-[#29CCFF] text-xl">{{ $t("Please_fill_in_the_information") }}</p>
       </div>
       <form class="py-4 min-w-full space-y-4 p-2" @submit.prevent="bookTime">
         <div
-          class="flex flex-col w-full"
+          class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold w-full pl-2">{{
-            $t("child_name")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("اسم الطفل")
           }}</label>
          <select name="" id="" v-model="booking.child_id" class="py-2">
           <option v-for="child in childs" :value="child.id" class="py-4">{{ child.name }}</option>
@@ -67,8 +79,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold  pl-2">{{
-            $t("Name_of_guardian")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("اسم ولي امر  مقدم الطلب")
           }}</label>
           <input
             type="text"
@@ -89,8 +101,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold pl-2">{{
-            $t("degree_closeness_child")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("درجه قرابته للطفل ")
           }}</label>
           <input
             type="text"
@@ -108,161 +120,6 @@
           </p>
         </div>
 
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الاسم الرباعي للطفل  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_name"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_name']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("تاريخ الميلاد")
-          }}</label>
-          <input
-            type="date"
-            id="child_name"
-            v-model="booking.child_birth_date"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_birth_date']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("مكان الميلاد  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_birth_place"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_birth_place']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("لغة الطفل الاساسيه  ")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_lang"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_lang']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الجنسيه")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_nationalty"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_nationalty']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("الرقم الوطني")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_national_id"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_national_id']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
-        <div
-          class="flex flex-col"
-          style="border-bottom: 2px solid rgb(194, 188, 188)"
-        >
-          <label class="text-base font-bold text-right pl-2">{{
-            $t("العنوان")
-          }}</label>
-          <input
-            type="text"
-            id="child_name"
-            v-model="booking.child_address"
-            class="border-b focus:ring-0 text-center"
-          />
-        </div>
-        <div
-          v-if="errors != null"
-          class="text-red-600 font-semibold text-sm rounded-md"
-        >
-          <p v-for="error in errors['child_address']">
-            <span v-for="err in error">{{ err }} </span>
-          </p>
-        </div>
         <div
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -289,8 +146,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold  pl-2">{{
-            $t("additional_phone_number")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("رقم هاتف اضافي")
           }}</label>
           <input
             type="tel"
@@ -311,8 +168,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold  pl-2">{{
-            $t("owner_extra_number")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("مالك الرقم الاضافي")
           }}</label>
           <input
             type="text"
@@ -333,8 +190,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold pl-2">{{
-            $t("degree_closeness_child")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("درجه قرابته بالطفل")
           }}</label>
           <input
             type="text"
@@ -355,8 +212,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold  pl-2">{{
-            $t("conversion_source")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("مصدر التحويل")
           }}</label>
           <input
             type="text"
@@ -377,8 +234,8 @@
           class="flex flex-col"
           style="border-bottom: 2px solid rgb(194, 188, 188)"
         >
-          <label class="text-base font-bold pl-2">{{
-            $t("Child_doctor")
+          <label class="text-base font-bold text-right pl-2">{{
+            $t("الطبيب الخاص بالطفل")
           }}</label>
           <input
             type="text"
@@ -396,16 +253,16 @@
           </p>
         </div>
 
-        <p class="p-4 font-bold text-base ">{{ $t("Answer_the_questions")}} </p>
+        <p class="p-4 font-bold text-base text-right">اجب عن الاسئله الاتيه</p>
         <div class="w-full">
-          <h3 class="py-2 text-lg">{{ $t("problem_type") }} </h3>
+          <h3 class="py-2 text-lg">نرجو تحديد نوع المشكله</h3>
           <Dropdown
             v-model="booking.child_problem"
-            :options="problem"
+            :options="problem_type"
             optionLabel="name"
             optionValue="name"
-            :placeholder='$t("problem_type")'
-            class="w-full "
+            placeholder="نرجو تحديد نوع المشكله"
+            class="w-full text-left"
           />
         </div>
         <div
@@ -423,8 +280,8 @@
           <input
             type="tel"
             id="child_name"
-            :placeholder="$t('Diagnosis')"
-            class="border-b focus:ring-0 text-lg text-center"
+            placeholder="التسخيص ان وجد"
+            class="border-b focus:ring-0 text-center"
             v-model="booking.child_problems_notes"
           />
         </div>
@@ -437,14 +294,14 @@
           </p>
         </div>
         <div class="w-full">
-          <h3 class="py-2">{{ $t("child_problem") }}</h3>
+          <h3 class="py-2">هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه</h3>
           <Dropdown
             v-model="booking.child_aids"
-            :options="select"
+            :options="approve"
             optionLabel="name"
             optionValue="id"
-            :placeholder='$t("child_problem")'
-            class="w-full "
+            placeholder="هل يستخدم الطفل اي معينات حركيه / سمعيه/ بصريه"
+            class="w-full text-left"
           />
           <div
             class="text-red-600 font-semibold text-sm rounded-md"
@@ -473,8 +330,8 @@
           </div>
         </div>
         <div class="space-y-4">
-          <p class=" text-lg">
-            {{$t("main_problems")}}
+          <p class="text-right text-lg">
+            :المشاكل الرئيسيه لدي الطفل حاليا من وجهه نظر الاهل
           </p>
           <Textarea
             class="w-full"
@@ -492,8 +349,8 @@
           </p>
         </div>
         <div class="space-y-4">
-          <p class=" text-lg">
-            {{$t("priority_parents")}}
+          <p class="text-right text-lg">
+            :ما هي اولويه الاهل في البرامج التاهليه للتعامل مع الطفل
           </p>
           <Textarea
             class="w-full"
@@ -510,12 +367,12 @@
             <span v-for="err in error">{{ err }} </span>
           </p>
         </div>
-        <div class="w-full">
+        <div>
           <input
-            class="border-0 w-full border-b text-xl text-center focus:ring-0"
+            class="border-0 border-b text-xl text-center focus:ring-0"
             type="text"
             v-model="booking.doctor_code"
-            :placeholder='$t("consultant_code")'
+            placeholder="ادخل كود استشاري تريده"
           />
         </div>
         <div
@@ -526,16 +383,16 @@
             <span v-for="err in error">{{ err }} </span>
           </p>
         </div>
-        <div class=" m-auto w-full space-x-4">
-          <span class="m-auto text-xl ">{{ $t("agree_conditions") }}</span>
+        <div class="text-right m-auto w-full space-x-4">
+          <span class="m-auto text-xl">انا اوافق علي كافه الشروط والاحكام</span>
           <input style="border: 2px solid black" type="checkbox" />
         </div>
         <button
           type="submit"
           class="w-full p-2 text-2xl text-white bg-[#148A98] rounded-2xl"
         >
-        {{ $t("Book_now") }}
-      </button>
+          احجز الان
+        </button>
       </form>
     </div>
   </div>
@@ -545,28 +402,38 @@ import axios from "axios";
 import Dropdown from "primevue/dropdown";
 import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
-import LocaleSelect from "../../../components/LocaleSelect.vue"
 import moment from "moment";
 export default {
   props: ["event_id"],
   components: {
     Dropdown,
     Textarea,
-    
   },
   data() {
     return {
-      approve:[],
-
-      problem_type:[],
       parentStore: useParentStore(),
       selectedFruit: null,
-    
-      
-     
+      fruits: [
+        { id: 0, name: "انثي" },
+        { id: 1, name: "ذكر" },
+      ],
+      problem_type: [
+        { name: "حركيه" },
+        { name: "سمعيه" },
+        { name: "بصريه" },
+        { name: "عقليه/نمائيه" },
+        { name: "توحد" },
+        { name: "اخر" },
+      ],
+      approve: [
+        { id: 1, name: "نعم" },
+        { id: 0, name: "لا" },
+      ],
       errors: [],
       childs: [],
       event: {},
+      alert_text:'',
+show_alert:false,
       booking: {
         event_id: "",
         user_id: "",
@@ -587,43 +454,30 @@ export default {
         parents_priorities: "",
         doctor_code: "",
       },
-      
     };
-  },
- 
-  computed:{
-    problem (){
-     return this.problem_type = [
-        { name: this.$t("Move") },
-        { name: this.$t("audio") },
-        { name: this.$t("Visual") },
-        { name: this.$t("Mental_developmental") },
-        { name: this.$t("Autism") },
-        { name: this.$t("other") },
-      
-      ];
-    },
-    select (){
-      return this.approve = [
-        { id: 1, name: this.$t("no") },
-        { id: 0, name: this.$t("yes") },
-      ];
-    }
   },
   methods: {
     async bookTime() {
       this.errors = null;
       this.booking.user_id = this.parentStore.user.id;
       this.booking.event_id = this.event_id;
+      this.alert_text = null;
+      this.show_alert = false;
       console.log(this.booking);
       await axios
         .post("/api/calender/store-booking", this.booking)
         .then((res) => {
+          this.alert_text='your booking was successfully submitted'
+          this.show_alert = true;
           this.errors = null;
           Object.keys(this.booking).forEach((key) => {
             this.booking[key] = null;
           });
           console.log(res);
+         setTimeout(()=>{
+          this.show_alert = false;
+          this.$router.push({name:'Booking'})
+         }, 3000);
         })
         .catch((err) => {
           this.errors = err.response.data.errors;
@@ -667,6 +521,7 @@ export default {
     },
   },
  
+
   mounted( ) {
    
     this.getEvent();

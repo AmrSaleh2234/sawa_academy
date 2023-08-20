@@ -185,4 +185,5 @@ export default {
   settings_menu: "Site Settings Menu",
   Pages: "Pages",
   Pages_menu: "Site Pages Menu",
+  Add_new_booking: "add new booking",
 };

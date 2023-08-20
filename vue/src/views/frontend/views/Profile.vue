@@ -14,6 +14,13 @@
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
           <button class="font-bold">{{ $t("Modify_profile") }}</button>
         </div>
+        <p
+          v-if="show_alert"
+          class="text-center text-xl font-bold tracking-wide"
+          style="color: green"
+        >
+          {{ alert_text }}
+        </p>
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
             <div class="relative m-auto">
@@ -171,6 +178,8 @@ export default {
         password: "",
         image: null,
       },
+      alert_text: "",
+      show_alert: false,
       showsider: false,
       value: 65,
       editableValue: "Edit me!",
@@ -210,6 +219,8 @@ export default {
       };
     },
     updateProfile() {
+      this.show_alert = false;
+      this.alert_text = null;
       let self = this;
       const formData = new FormData();
 
@@ -230,6 +241,8 @@ export default {
           },
         })
         .then((res) => {
+          this.show_alert = true;
+          this.alert_text = "Profile updated successfully";
           console.log(res);
         })
         .catch((err) => {
