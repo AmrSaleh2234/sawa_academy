@@ -303,7 +303,7 @@
             <img
               @click="openFile"
               :src="imageSrc"
-              class="uploaded-image relative m-auto cursor-pointer"
+              class="uploaded-image relative m-auto cursor-pointer object-cover"
             />
 
             <svg
@@ -345,7 +345,7 @@
             <img
               @click="openCoverFile"
               :src="imageSrcCover"
-              class="uploaded-image relative m-auto cursor-pointer"
+              class="uploaded-image relative m-auto cursor-pointer object-cover"
             />
 
             <svg
@@ -501,5 +501,9 @@ export default {
 }
 .m2 {
   margin: 2rem;
+}
+.uploaded-image {
+  width: 250px;
+  height: 250px;
 }
 </style>
