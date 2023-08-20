@@ -182,4 +182,5 @@ export default {
   settings_menu: "قائمه الاعدادات الخاصه بالموقع",
   Pages: "الصفحات",
   Pages_menu: "قائمه صفحات الموقع",
+  Add_new_booking: "اضف حجز جديد",
 };

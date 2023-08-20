@@ -48,7 +48,7 @@
               :to="{ name: 'BookingTime' }"
               class="text-white rounded-lg"
             >
-              {{ $t("Add_new_child") }}
+              {{ $t("Add_new_booking") }}
             </router-link>
           </div>
         </div>
@@ -85,7 +85,7 @@
                   'bg-yellow-400': booking.accepted == 0,
                 }"
               >
-                {{ booking.accepted ? "Accepted" : "Pending" }}
+                {{ bookingStatusText(booking) }}
               </p>
             </div>
           </a>
@@ -131,6 +131,15 @@ export default {
     event_hour(event_hour) {
       let hour = moment(event_hour).format("hh:mm: A");
       return `${hour}`;
+    },
+    bookingStatusText(booking) {
+      if (booking.accepted == 1) {
+        return this.$t("Accepted");
+      } else if (booking.accepted == 0) {
+        return this.$t("Pending");
+      } else {
+        return this.$t("Rejected");
+      }
     },
   },
   mounted() {

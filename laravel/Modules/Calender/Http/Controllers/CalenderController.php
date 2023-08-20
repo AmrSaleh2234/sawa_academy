@@ -50,6 +50,7 @@ class CalenderController extends Controller
 
     public function storeBookingForChild(StoreBookingRequest $request)
     {
+
         return $this->bookingControllerHandler->store("booking", $request->validated());
     }
 
@@ -208,9 +209,11 @@ class CalenderController extends Controller
 
         $user->notify(new AcceptBookingNotification($event, $booking, $doctor));
 
-        $event->update([
-            'status' => 1
-        ]);
+        if ($request->status == 1) {
+            $event->update([
+                'status' => 1
+            ]);
+        }
 
         return $this->bookingControllerHandler->show('booking', $booking->fresh());
     }
@@ -329,6 +332,7 @@ class CalenderController extends Controller
         $data['title'] = $request->validated('title');
         $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $start_date_time);
         $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
+        $data['user_id'] = $request->user()->id;
 
         return $this->ControllerHandler->store("calender", $data);
     }
