@@ -7,7 +7,7 @@ import { max } from "date-fns";
 export default {
   components: { InputText, Calendar },
   data: () => ({
-    minDate: new Date(1640426400000),
+    
     maxDate: new Date(),
 
     NameRules: [
@@ -89,7 +89,7 @@ export default {
             v-model.number="child.birth_date"
             showIcon
             placeholder="dd/mm/yy"
-            :minDate="minDate"
+           
             :maxDate="maxDate"
           />
         </div>

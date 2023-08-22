@@ -5,7 +5,7 @@
   >
     <div class="flex mx-2 ">
       <div class="m-auto">
-        <p style="font-size:100%" class="text-white text-base">
+        <p style="font-size:80%" class="text-white text-base">
           <v-icon
           end
           icon="mdi-map-marker"
@@ -17,7 +17,7 @@
         
       </div>
       <div class="mx-2 m-auto">
-        <p style="font-size:100%"  class=" text-white text-base">
+        <p style="font-size:80%"  class=" text-white text-base">
           <v-icon
           end
           icon="mdi-phone"

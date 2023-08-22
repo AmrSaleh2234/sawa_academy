@@ -4,11 +4,11 @@
     class="relative bg-[url('../image/sec1/76.png')] bg-[#EFFBFD] bg-center bg-cover bg-no-repeat"
   >
   <div class="h-full w-full absolute  " style="opacity: 50% ; background-color: white; z-index: ;"></div>
-    <div class="text-center p-[5%] " style="z-index:s2;">
+    <div class="text-center p-[2%] " style="z-index:s2;">
       <h2 class="text-4xl font-bold text-[#FF2A5B] p-1">{{$t("opinions_of_our_customers")}}</h2>
       <p class="text-[#135C65] text-2xl">{{$t("We_strive_for_what_your_child_needs")}}</p>
     </div>
-    <div class="grid grid-row-2 lg:grid lg:grid-cols-2 p-[5%] gap-10">
+    <div class="grid grid-row-2 lg:grid lg:grid-cols-2 p-[2%] gap-10">
       
       <div class="grid grid-row-4 z-20">
         <div class="flex border-b-2 border-neutral-300 border-solid pt-2">

@@ -30,7 +30,7 @@
       <div class="hidden lg:block space-x-4" v-if="!parentStore.parentAuth">
         <div class="flex flex-col md:flex-row m-auto space-x-4">
           <div
-            class="m-auto mx-2 bg-[#0D4047] rounded-lg"
+            class="m-auto mx-2 bg-[#0D4047] w-48 rounded-lg"
             style="display: flex; align-items: center; border: 1px solid white"
           >
             <v-icon
@@ -47,7 +47,7 @@
             />
           </div>
           <div
-            class="bg-[#0D4047] m-auto w-52 rounded-lg md:max-w-xs"
+            class="bg-[#0D4047] m-auto w-48 rounded-lg md:max-w-xs"
             style="display: flex; align-items: center; border: 1px solid white"
           >
             <v-icon
@@ -65,13 +65,13 @@
           <div>
             <v-btn
               :to="{ name: 'parentLogin' }"
-              class="bg-[#FFCF24] text-white text-base"
+              class="bg-[#FFCF24] text-white text-sm"
             >
             {{ $t("sign_in") }}
             </v-btn>
           </div>
           <div>
-            <div class="bg-none shadow-0 text-[#FFCF24] text-base">
+            <div class="bg-none shadow-0 text-[#FFCF24] text-sm">
               <v-btn :to="{ name: 'SingUp' }" class="text-base">
                 {{ $t("Create_an_account") }}
               </v-btn>

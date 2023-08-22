@@ -116,7 +116,7 @@ export default {
   submit: "submit",
   Resend_the_code: "Resend the code",
   Enter_the_activation_code: "Enter the activation code",
-  Book_an_appointment: "book appointment for child",
+  Book_an_appointment: "book appointment ",
   Add_new_child: "Add new child",
   My_child_is_getting_more_skilled: "My child is getting more skilled",
   Important_alert:

@@ -7,10 +7,10 @@
       <div class="hidden md:flex md:items-center space-x-4">
         <div class="flex space-x-2" v-if="parentStore.parentAuth">
           <div>
-            <div class="relative">
+            <div class="relative h-full w-full">
               <button
                 @click="show = !show"
-                class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
+                class="flex items-center p-2 text-indigo-100 w-full rounded-md"
               >
                 <span class="mr-4">
                   <img
@@ -46,7 +46,7 @@
 
               <div
                 v-show="show"
-                class="absolute right-0 py-2 mt-2 bg-[#0D4047] rounded-md shadow-xl w-52 z-10 animate__animated animate__backInDown p-2"
+                class="absolute  py-2 mt-2 bg-[#0D4047] rounded-md shadow-xl w-52 z-10 animate__animated animate__backInDown p-2"
               >
                 <router-link
                   :to="{ name: 'Profile' }"
@@ -119,8 +119,8 @@
           <router-link :to="{ name: 'home' }"> {{ $t("home") }}</router-link>
         </li>
         <li
-          style="font-size: 130%"
-          class="block font-bold mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
+          style="font-size: 130%;"
+          class="block font-bold text-base md:text-xl mr-6 m-auto cursor-pointer md-:p-0 text-[#125B64] hover:border-b-2 border-[#FF5C82]"
         >
           <router-link :to="{ name: 'about' }">{{
             $t("about_us")

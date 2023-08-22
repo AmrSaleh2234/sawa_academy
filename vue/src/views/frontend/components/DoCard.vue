@@ -1,7 +1,7 @@
 <template>
   <div
     style="
-      background: linear-gradient(to right, #ff8b6a, #ff566f);
+      background: linear-gradient(to right, #FF8B6A, #FF566F);
       padding-bottom: 2%;
       padding-top: 2%;
     "
@@ -64,7 +64,6 @@
     </swiper>
   </div>
 </template>
-
 <script setup>
 import axios from "axios";
 import { computed, onMounted, ref, watch } from "vue";
@@ -72,11 +71,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-
 const modules = [Pagination, Navigation, Autoplay];
-
 const doctors = ref([]);
 onMounted(() => {
+  
   getDoctors();
 });
 const getDoctors = () => {
