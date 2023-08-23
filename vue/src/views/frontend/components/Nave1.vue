@@ -28,40 +28,9 @@
 
       <!-- Your navigation links go here -->
       <div class="hidden lg:block space-x-4" v-if="!parentStore.parentAuth">
-        <div class="flex flex-col md:flex-row m-auto space-x-4">
-          <div
-            class="m-auto mx-2 bg-[#0D4047] rounded-lg"
-            style="display: flex; align-items: center; border: 1px solid white"
-          >
-            <v-icon
-              end
-              @click="show"
-              :icon="show_Password"
-              class="text-2xl text-white w-[20%] bg-[#0D4047] h-full"
-            ></v-icon>
-            <input
-              style="font-size: 15px"
-              class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
-              :type="pass_type"
-              :placeholder="$t('password')"
-            />
-          </div>
-          <div
-            class="bg-[#0D4047] m-auto w-52 rounded-lg md:max-w-xs"
-            style="display: flex; align-items: center; border: 1px solid white"
-          >
-            <v-icon
-              end
-              icon="mdi-account"
-              class="text-white bg-[#0D4047] h-full"
-            ></v-icon>
-            <input
-              style="font-size: 15px"
-              class="focus:ring-0 text-center text-sm text-white rounded-lg w-full bg-[#0D4047]"
-              type="text"
-              :placeholder="$t('user_name')"
-            />
-          </div>
+        <div class="flex flex-col md:flex-row m-auto ">
+          
+          
           <div>
             <v-btn
               :to="{ name: 'parentLogin' }"
@@ -70,7 +39,7 @@
             {{ $t("sign_in") }}
             </v-btn>
           </div>
-          <div>
+          <div class="mx-2">
             <div class="bg-none shadow-0 text-[#FFCF24] text-base">
               <v-btn :to="{ name: 'SingUp' }" class="text-base">
                 {{ $t("Create_an_account") }}

@@ -5,7 +5,7 @@
 
       <!-- Your navigation links go here -->
       <div class="hidden md:flex md:items-center space-x-4">
-        <div class="flex space-x-2" v-if="parentStore.parentAuth">
+        <div class="flex space-x-2">
           <div>
             <div class="relative">
               <button
@@ -13,10 +13,13 @@
                 class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
               >
                 <span class="mr-4">
+                  <img  style="width: 70px; height: 70px;" class="uploaded-image relative  m-auto rounded-full" v-if="!parentStore.parent.image" src="../image/Ellipse2.png" >
                   <img
-                    class="uploaded-image relative m-auto rounded-full"
+                 v-else
+                 style="width: 50px; height: 50px;"
+                    class="uploaded-image relative  m-auto rounded-full"
                     :src="
-                      parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
+                      parentStore.parent.image ?? '../image/Ellipse2.png'
                     "
                   />
                 </span>

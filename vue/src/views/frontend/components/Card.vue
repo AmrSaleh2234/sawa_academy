@@ -45,12 +45,17 @@ export default {
             {{ $t("evaluation_result") }}
           </router-link>
           <v-spacer></v-spacer>
+          <router-link
+            :to="{ name: 'Edit' }"
+           
+          >
           <v-btn
             icon="mdi-arrow-left"
             size="small"
             color="#135C65"
             style="border: 2px solid #135c65"
           ></v-btn>
+          </router-link>
         </v-card-actions>
       </v-card>
     </div>
@@ -75,12 +80,18 @@ export default {
             {{ $t("Book_an_appointment") }}
           </router-link>
           <v-spacer></v-spacer>
+          <router-link
+            :to="{ name: 'BookingTime' }"
+           
+          >
           <v-btn
             icon="mdi-arrow-left"
             size="small"
             color="#135C65"
             style="border: 2px solid #135c65"
           ></v-btn>
+          </router-link>
+         
         </v-card-actions>
       </v-card>
     </div>
@@ -103,12 +114,17 @@ export default {
             {{ $t("Register_your_child") }}
           </router-link>
           <v-spacer></v-spacer>
+          <router-link
+            :to="{ name: 'ReAction' }"
+           
+          >
           <v-btn
             icon="mdi-arrow-left"
             size="small"
             color="#135C65"
             style="border: 2px solid #135c65"
           ></v-btn>
+          </router-link>
         </v-card-actions>
       </v-card>
     </div>
