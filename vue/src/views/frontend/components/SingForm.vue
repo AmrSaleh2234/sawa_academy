@@ -31,16 +31,7 @@
                 <p class="text-red-600">{{error}}</p>
               </div>
               <div class="grid grid-cols-2 gap-5">
-                <div  class="flex flex-col">
-                  <input
-                  v-model="parent.lname"
-                    style="border-bottom: 2px solid black;"
-                    type="text"
-                    id="child_name"
-                    :placeholder="$t('family_name')"
-                    class="min-w-full  text-xl bg-white/10  focus:ring-0 text-center"
-                  />
-                </div>
+               
                 <div class="flex flex-col">
                   <input
                   v-model="parent.fname"
@@ -48,6 +39,16 @@
                     type="text"
                     id="child_name"
                     :placeholder="$t('first_name')"
+                    class="min-w-full  text-xl bg-white/10  focus:ring-0 text-center"
+                  />
+                </div>
+                <div  class="flex flex-col">
+                  <input
+                  v-model="parent.lname"
+                    style="border-bottom: 2px solid black;"
+                    type="text"
+                    id="child_name"
+                    :placeholder="$t('family_name')"
                     class="min-w-full  text-xl bg-white/10  focus:ring-0 text-center"
                   />
                 </div>

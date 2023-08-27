@@ -5,20 +5,10 @@
     <div style="opacity: 10%" class="bg-black h-full w-full absolute"></div>
 
     <div
-      class="bg-white/30 p-6 md:grid md:grid-cols-10"
+      class="bg-white/30 p-6"
       style="backdrop-filter: blur(1px)"
     >
-      <div class>
-        <v-btn
-          to="/web"
-          height="45"
-          class="mb-5 text-lg text-white"
-          color="#135C65"
-        >
-          <v-icon start icon="mdi-arrow-left"></v-icon>
-          {{ $t("home") }}
-        </v-btn>
-      </div>
+     
       <div
         class="flex flex-col items-center z-40 justify-center col-span-8 w-full mx-auto lg:py-0"
       >
@@ -36,9 +26,9 @@
         <div
           style="
             backdrop-filter: blur(10px);
-            margin-top: 9%;
+            margin-top: 6%;
 
-            margin-bottom: 9%;
+            margin-bottom: 6%;
             background-color: rgb(247, 243, 243);
             opacity: 95%;
           "
@@ -181,6 +171,8 @@ const sendOTP = () => {
 };
 
 const validateOTP = () => {
+  router.push({ name: "home" });
+
   axios
     .post("/api/parent/validate-otp", {
       otp: otpInput.value?.value,

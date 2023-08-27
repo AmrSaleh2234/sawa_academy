@@ -65,7 +65,7 @@
           <textarea v-model="message" id="message" name="message" rows="4" class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-300 focus:border-indigo-300"></textarea>
         </div>
         <div>
-          <button type="submit" class="px-4 py-2 bg-[#125B64] text-white rounded-md hover:bg-[#153539] focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-offset-2">{{ $t("submit") }}</button>
+          <button type="submit" class="px-4 py-2 bg-[#125B64] text-white rounded-md hover:bg-[#153539] focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-offset-2">{{ $t("send") }}</button>
         </div>
       </form>
     </div>

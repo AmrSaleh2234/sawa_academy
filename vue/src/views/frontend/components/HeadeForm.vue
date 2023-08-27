@@ -1,5 +1,5 @@
 <template>
-  <div class="py-[8%] relative bg-center bg-cover max-h-screen">
+  <div style="padding-top: 6%; padding-bottom: 6%;" class=" relative bg-center bg-cover max-h-screen">
     <img
       src="../image/header/112.png"
       class="absolute inset-0 w-full h-full object-cover"
@@ -11,16 +11,16 @@
       "
       class="absolute inset-0 bg-black"
     ></div>
-    <div class="relative background-color lg:w-[50%] px-[5%] z-10">
-      <h1 style="font-size: 40px" class="font-bold text-right pr-6 text-white">
+    <div class="relative background-color  px-[5%] z-10">
+      <h1 style="font-size: 35px" class="font-bold  pr-6 text-white">
         {{ $t("Sawa_Academy_for_Special_Education") }}
       </h1>
-      <h2 style="font-size: 35px" class="text-3xl m-10 text-right text-white">
+      <h2 style="font-size: 30px" class="text-3xl m-10  text-white">
         {{ $t("Better_self_care_for_your_child_through_us") }}
       </h2>
       <div
         style="color: white"
-        class="relative flex justify-between bg-black p-2 opacity-70 w-[100%] rounded-3xl"
+        class="relative flex justify-between bg-black max-w-xl p-2 opacity-70 w-[90%] rounded-3xl"
       >
         <button class="p-2 text-[#FFCF24]">{{ $t("search") }}</button>
         <div class="flex w-[90%]">
