@@ -32,15 +32,10 @@ import "./axios";
 import "./style.css";
 import "./views/frontend/assets/main.css";
 
-let k= document.getElementsByClassName("switcher")
-console.log(k)
-if( i18n.global.locale.value = 'ar')
-k[0].dir="rtl"
-else
-  k[0].dir="ltr"
 
 import App from "@/App.vue";
 const pinia = createPinia();
+
 
 
 
@@ -72,3 +67,11 @@ app.use(VueCarousel);
 app.component('v-otp-input', VOtpInput)
 
 app.mount("#app");
+
+
+let k= document.getElementsByClassName("switcher")
+console.log(k)
+if( i18n.global.locale.value = 'ar')
+  k[0].dir="rtl"
+else
+  k[0].dir="ltr"
