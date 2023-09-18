@@ -79,7 +79,7 @@
                 v-model="child.birth_date"
                 dateFormat="dd/mm/yy"
                 :placeholder="$t('date_of_birth')"
-                :minDate="minDate"
+            
                 :maxDate="maxDate"
               />
             </div>
@@ -253,7 +253,7 @@ export default {
   data() {
     return {
       show: false,
-      minDate: new Date(1640426400000),
+     
       maxDate: new Date(),
       parentStore: useParentStore(),
       errors: [],
@@ -292,8 +292,9 @@ export default {
           this.alert_text = "Child Added successfully";
           Object.keys(this.child).forEach((key) => {
             this.child[key] = null;
+          
           });
-          // this.$router.push({ name: "Following" });
+          this.$router.push({ name: "home" });
           console.log(res);
         })
         .catch((err) => {
