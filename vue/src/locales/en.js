@@ -200,4 +200,5 @@ export default {
   personal_image: "Personal Image",
   choose_role: "Choose Role For User",
   user_created: "User Created Successfully",
+  profile_updated: "Profile updated successfully",
 };

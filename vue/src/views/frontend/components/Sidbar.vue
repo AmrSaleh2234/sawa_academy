@@ -9,7 +9,7 @@
     >
       <div>
         <img
-          class="uploaded-image relative m-auto rounded-full"
+          class="rounded-full w-[100px] h-[100px] object-cover m-auto"
           :src="parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'"
         />
       </div>
@@ -239,8 +239,6 @@ export default {
 };
 </script>
 <style scoped>
-.uploaded-image {
-  width: 101px;
-  height: 101px;
+.sid:hover svg {
 }
 </style>

@@ -243,7 +243,8 @@ export default {
         })
         .then((res) => {
           this.show_alert = true;
-          this.alert_text = "Profile updated successfully";
+          this.alert_text = this.$t("profile_updated");
+          this.parentStore.parent.image = res.data.profile.image;
           console.log(res);
         })
         .catch((err) => {
