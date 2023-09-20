@@ -3,7 +3,6 @@
 
 return [
 
-
     'kinetic' => 'تأهيل حركي',
     'listing' => 'تأهيل سمعي',
     'natural' => 'تأهيل طبيعي',
@@ -16,7 +15,6 @@ return [
     'familyInterview' => 'مقابله عائليه',
     'teamInterview' => 'مقابله فريق',
     'other' => 'اخري',
-
 
     'sideProfile' => 'الصورة الجانبيه',
     'Elm' => 'مقابله عائليه',

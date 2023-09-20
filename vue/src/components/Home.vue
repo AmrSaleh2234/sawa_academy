@@ -166,12 +166,12 @@ onMounted(async () => {
               value="users"
               :to="{ name: 'Users' }"
             ></v-list-item>
-            <v-list-item
+            <!-- <v-list-item
               prepend-icon="mdi-security"
               :title="$t('permissions')"
               value="permissions"
               :to="{ name: 'Permissions' }"
-            ></v-list-item>
+            ></v-list-item> -->
             <v-list-item
               prepend-icon="mdi-shield-account"
               :title="$t('roles')"

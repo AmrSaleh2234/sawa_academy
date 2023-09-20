@@ -184,7 +184,7 @@ const routes = [
     name: "Home",
     beforeEnter: auth,
     children: [
-      ...Object.values(permissionsRoutes),
+      // ...Object.values(permissionsRoutes),
       ...Object.values(siteRoutes),
       ...Object.values(rolesRoutes),
       ...Object.values(usersRoutes),

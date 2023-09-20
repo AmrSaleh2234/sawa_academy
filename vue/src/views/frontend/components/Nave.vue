@@ -12,20 +12,12 @@
                 @click="show = !show"
                 class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
               >
-                <span class="mr-4">
-                  <img
-                    style="width: 70px; height: 70px"
-                    class="uploaded-image relative m-auto rounded-full"
-                    v-if="!parentStore.parent.image"
-                    src="../image/Ellipse2.png"
-                  />
-                  <img
-                    v-else
-                    style="width: 50px; height: 50px"
-                    class="uploaded-image relative m-auto rounded-full"
-                    :src="parentStore.parent.image ?? '../image/Ellipse2.png'"
-                  />
-                </span>
+                <img
+                  class="rounded-full w-[60px] h-[60px] object-cover"
+                  :src="
+                    parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
+                  "
+                />
                 <svg
                   onclick="rate()"
                   class="w-8 h-8"
@@ -234,8 +226,5 @@ export default {
 </script>
 
 <style>
-.uploaded-image {
-  width: 56px;
-  height: 56px;
-}
+/* No custom styling required since we're using Tailwind CSS classes */
 </style>
