@@ -187,4 +187,17 @@ export default {
   Pages_menu: "Site Pages Menu",
   Add_new_booking: "add new booking",
   send: "Send",
+
+  prev: "prev",
+  next: "next",
+  today: "today",
+  to: "To",
+  from: "From",
+  create_event: "Create Event",
+  update_event: "Update Event",
+  child_added: "Child added successfully",
+  national_id: "National ID",
+  personal_image: "Personal Image",
+  choose_role: "Choose Role For User",
+  user_created: "User Created Successfully",
 };

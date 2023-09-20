@@ -329,7 +329,7 @@ class CalenderController extends Controller
         $start_date_time = "$start_date $request->time_start";
         $end_date_time = "$end_date $request->time_end";
 
-        $data['title'] = $request->validated('title');
+        $data['title'] = $request->user()->name;
         $data['start'] = Carbon::createFromFormat("Y-m-d H:i", $start_date_time);
         $data['end'] = Carbon::createFromFormat("Y-m-d H:i", $end_date_time);
         $data['user_id'] = $request->user()->id;
