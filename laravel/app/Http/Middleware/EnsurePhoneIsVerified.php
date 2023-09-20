@@ -15,9 +15,9 @@ class EnsurePhoneIsVerified
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if (!$request->user('parent') || $request->user('parent')->phone_verified_at == null) {
-            return abort(403, 'Your Phone is not verified.');
-        }
+        // if (!$request->user('parent') || $request->user('parent')->phone_verified_at == null) {
+        //     return abort(403, 'Your Phone is not verified.');
+        // }
 
         return $next($request);
     }
