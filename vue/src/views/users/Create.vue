@@ -2,13 +2,16 @@
 import { ref, onMounted, computed } from "vue";
 import { useUsersStore } from "../../stores/Users";
 import axios from "axios";
-
+import { useI18n } from "vue-i18n";
+const t = useI18n();
 const usersStore = useUsersStore();
 
 const imageSrc = ref("");
 const doctor_image = ref("");
 const fileInput = ref(null);
 
+const alert_text = ref("");
+const show_alert = ref(false);
 const openFile = () => {
   fileInput.value.click();
 };
@@ -88,16 +91,18 @@ const create = async (form) => {
 
   console.log(formData.get("image"));
 
-  // await usersStore.addUser(formData);
+  usersStore.addUser(formData);
 
-  axios
-    .post("/api/users/create", formData)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // axios
+  //   .post("/api/users/create", formData)
+  //   .then((res) => {
+  //     alert_text.value = t("user_created");
+  //     show_alert.value = true;
+  //     console.log(res);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 };
 
 onMounted(async () => {
@@ -136,15 +141,28 @@ onMounted(async () => {
         :key="index"
         v-if="typeof usersStore.errors === 'object'"
       >
-        {{ item }}
+        {{ item[0] }}
       </small>
       <small class="d-block" v-else="typeof usersStore.errors === 'string'">
         {{ usersStore.errors }}
       </small>
     </v-alert>
     <v-card-title class="mb-2"> Create User </v-card-title>
+    <!-- Alert -->
+    <!-- <v-alert
+      class="custom-alert-class"
+      type="success"
+      variant="tonal"
+      closable
+      :close-label="$t('close')"
+      v-if="show_alert == true"
+    >
+      <small>{{ alert_text }}</small>
+    </v-alert> -->
+    <!-- End Alert -->
     <v-form v-model="valid" @submit.prevent="create(form)">
       <v-row>
+        <!--  Name -->
         <v-col cols="12" md="4">
           <v-text-field
             v-model="form.name"
@@ -155,6 +173,9 @@ onMounted(async () => {
             required
           ></v-text-field>
         </v-col>
+        <!-- End  Name -->
+
+        <!-- Title -->
         <v-col cols="12" md="4">
           <v-text-field
             v-model="form.title"
@@ -164,19 +185,52 @@ onMounted(async () => {
             required
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="4">
-          <v-select
-            v-model="form.role"
-            :items="usersStore.roles"
-            label="Role"
-            variant="solo"
-            :item-title="(role) => role.name"
-            :item-value="(role) => role.id"
-            :item-disabled="false"
-          ></v-select>
-        </v-col>
+        <!-- End Title -->
       </v-row>
       <v-row>
+        <!-- Role  -->
+        <v-col cols="12" md="4">
+          <label for="role" style="display: block">{{
+            $t("choose_role")
+          }}</label>
+          <select
+            name="role"
+            id="role"
+            v-model="form.role"
+            style="width: 100%; border: 1px solid gray; border-radius: 5px"
+          >
+            <option :value="role.id" v-for="role in usersStore.roles">
+              {{ role.name }}
+            </option>
+          </select>
+        </v-col>
+        <!-- End Role  -->
+        <!-- Image -->
+        <v-col cols="12" md="4" style="display: flex; align-items: center">
+          <div class="relative">
+            <label for="image">{{ $t("personal_image") }}</label>
+            <input
+              style="border: 1px solid gray; padding: 0 1rem"
+              class="rounded"
+              type="file"
+              ref="fileInput"
+              name="image"
+              id="image"
+              @change="handleFileUpload"
+              :rules="rules.name"
+            />
+          </div>
+          <img
+            @click="openFile"
+            v-if="imageSrc.length > 0"
+            :src="imageSrc"
+            class="uploaded-image relative cursor-pointer rounded object-cover"
+          />
+        </v-col>
+        <!-- Image -->
+      </v-row>
+      <v-row>
+        <!-- Email  -->
         <v-col cols="12" md="4">
           <v-text-field
             v-model="form.email"
@@ -186,6 +240,9 @@ onMounted(async () => {
             required
           ></v-text-field>
         </v-col>
+        <!-- End Email  -->
+
+        <!--Password  -->
         <v-col cols="12" md="4">
           <v-text-field
             v-model="form.password"
@@ -196,50 +253,10 @@ onMounted(async () => {
             required
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="4">
-          <div class="relative m-auto p-2">
-            <input
-              type="file"
-              ref="fileInput"
-              name="image"
-              id="image"
-              hidden
-              @change="handleFileUpload"
-            />
-            <img
-              @click="openFile"
-              :src="imageSrc"
-              width="200"
-              class="uploaded-image relative m-auto cursor-pointer rounded"
-            />
-
-            <svg
-              @click="openFile"
-              class="cursor-pointer absolute left-[50%] m-auto bottom-0 bg-white rounded-full p-1 h-8 w-8"
-              viewBox="-2.4 -2.4 28.80 28.80"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="#29CCFF"
-              transform="matrix(-1, 0, 0, 1, 0, 0)"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  fill="#29CCFF"
-                  d="M21 3H3C1.35 3 0 4.35 0 6v12c0 1.55 1.19 2.83 2.7 2.98.1.01.2.02.3.02h18c.1 0 .2 0 .29-.02.03 0 .06-.01.09-.01C22.86 20.78 24 19.52 24 18V6c0-1.65-1.35-3-3-3zm1 13.53l-2.21-4.42c-.25-.5-.69-.87-1.22-1.03-.19-.05-.38-.08-.57-.08-.35 0-.7.09-1.01.27l-6.41 3.74-2.46-1.67C7.78 13.11 7.39 13 7 13c-.52 0-1.03.2-1.41.59L2 17.18V6c0-.55.45-1 1-1h18c.55 0 1 .45 1 1v10.53z"
-                ></path>
-                <circle fill="#29CCFF" cx="11" cy="10" r="2"></circle>
-              </g>
-            </svg>
-          </div>
-        </v-col>
+        <!-- End Password  -->
       </v-row>
       <v-card-actions>
-        <v-btn color="error" variant="elevated">Cancel</v-btn>
+        <!-- <v-btn color="error" variant="elevated">Cancel</v-btn> -->
         <v-btn type="submit" color="success" variant="elevated">
           <v-progress-circular
             indeterminate

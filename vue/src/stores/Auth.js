@@ -38,6 +38,7 @@ export const useAuthStore = defineStore("Auth", {
         this.token = response.data.token;
         this.authUser = response.data.user;
         this.userPermissions = response.data.user.permissions;
+
         this.router.push({ name: "Home" });
       } catch (error) {
         if (error.response.status === 422) {

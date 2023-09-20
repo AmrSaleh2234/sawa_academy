@@ -2,26 +2,31 @@
   <div class="switcher">
     <Map />
     <section
-      class="bg-gray-50 dark:bg-gray-900 bl bg-no-repeat bg-cover backdrop-blur-sm bg-white/30"
+      class="bg-gray-50 dark:bg-gray-900 bl bg-no-repeat bg-cover backdrop-blur-sm bg-white/30 my-4"
     >
       <div class="backdrop-blur-sm bg-white/30 p-6">
-       
-        <div
-          class="  mx-auto lg:py-0"
-        >
+        <div class="mx-auto lg:py-0">
           <div class="mb-4 text-center">
             <h1 class="text-3xl py-2 font-bold text-[#FF2A5B] pb-3">
-              {{ $t("Book_an_appointment") }}  
+              {{ $t("Book_an_appointment") }}
             </h1>
-            <p class="text-xl text-[#6D9AA0]">{{ $t("Consult_doctors_for_your_child_condition") }}</p>
             <p class="text-xl text-[#6D9AA0]">
-              {{ $t("And_communicate_correctly_to_give_you_the_appropriate_diagnosis") }}
+              {{ $t("Consult_doctors_for_your_child_condition") }}
+            </p>
+            <p class="text-xl text-[#6D9AA0]">
+              {{
+                $t(
+                  "And_communicate_correctly_to_give_you_the_appropriate_diagnosis"
+                )
+              }}
             </p>
           </div>
         </div>
       </div>
-      <div class="px-[5%] py-[1%] ">
-        <p class="pb-4 text-3xl font-bold"> {{ $t("Book_an_appointment_with_the_specialist") }}</p>
+      <div class="px-[5%] py-[1%]">
+        <p class="pb-4 text-3xl font-bold">
+          {{ $t("Book_an_appointment_with_the_specialist") }}
+        </p>
         <p class="text-[#3AD0FF] text-xl">
           {{ $t("You_can_choose_the_appropriate") }}
         </p>
@@ -41,8 +46,8 @@
           <tbody>
             <tr v-if="events.events" v-for="i in events.max">
               <td
-                class="w-56"
-                style="position: relative"
+                class="w-60"
+                style="position: relative; padding: 0 0.3rem"
                 v-if="events.max"
                 v-for="j in Object.keys(events.events).length"
               >
@@ -51,15 +56,17 @@
                   class="rounded-full border-2 border-gray-500 w-full py-2"
                 >
                   <p
-                    class="m-auto w-full text-center item hover:hidden lg:hover:block text-sm"
+                    class="m-auto w-full text-center item hover:hidden lg:hover:block text-sm text-gray-700 font-medium"
                     v-if="events.events"
                   >
+                    {{ Object.values(tableEvent)[j - 1][i - 1]?.day }}
+                    \
                     {{ Object.values(tableEvent)[j - 1][i - 1]?.start_time }}
                   </p>
                   <button
                     style="position: absolute"
                     @click="submit(Object.values(tableEvent)[j - 1][i - 1]?.id)"
-                    class="top-[35%] left-0 text-xs trans pr-2"
+                    class="top-[30%] left-0 text-sm trans pr-2 bg-gray-200 font-medium rounded-full px-2"
                   >
                     احجز الان
                   </button>
@@ -87,7 +94,7 @@ import About from "../components/About.vue";
 import Sidbar from "@/views/frontend/components/Sidbar.vue";
 import Knob from "primevue/knob";
 import FileUpload from "primevue/fileupload";
-
+import moment from "moment";
 export default {
   data() {
     return {
@@ -180,6 +187,6 @@ td {
 }
 
 td:hover button {
-  transform: translateX(50%);
+  transform: translateX(20%);
 }
 </style>

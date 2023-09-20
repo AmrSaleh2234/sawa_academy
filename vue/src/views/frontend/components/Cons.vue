@@ -1,5 +1,17 @@
 <template>
   <div class="px-4 relative">
+    <div>
+      <v-alert
+        class="fixed z-10"
+        color="success"
+        icon="$success"
+        title="Booked Successfully"
+        :text="alert_text"
+        v-if="show_alert"
+        >
+    </v-alert>
+
+    </div>
     <div class="md:grid flex flex-col gap-5 sm:grid-cols-6">
       <div class="p-0 m-auto">
         <img class="m-auto" src="../image/header/calendar-01nobg-01.png" />
@@ -420,6 +432,8 @@ export default {
       errors: [],
       childs: [],
       event: {},
+      alert_text:'',
+show_alert:false,
       booking: {
         event_id: "",
         user_id: "",
@@ -447,15 +461,23 @@ export default {
       this.errors = null;
       this.booking.user_id = this.parentStore.user.id;
       this.booking.event_id = this.event_id;
+      this.alert_text = null;
+      this.show_alert = false;
       console.log(this.booking);
       await axios
         .post("/api/calender/store-booking", this.booking)
         .then((res) => {
+          this.alert_text='your booking was successfully submitted'
+          this.show_alert = true;
           this.errors = null;
           Object.keys(this.booking).forEach((key) => {
             this.booking[key] = null;
           });
           console.log(res);
+         setTimeout(()=>{
+          this.show_alert = false;
+          this.$router.push({name:'Booking'})
+         }, 3000);
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

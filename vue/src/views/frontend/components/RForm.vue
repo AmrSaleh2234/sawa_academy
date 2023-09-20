@@ -1,18 +1,5 @@
 <template>
-  <div>
-    <v-alert
-        type="success"
-        variant="tonal"
-        border="start"
-        elevation="2"
-        closable
-        :close-label="$t('close')"
-        :text="alert_text"
-        v-if="alert_text != null"
-        class="mb-8 fixed"
-        style="width: 30%;"
-      >
-      </v-alert>
+  <div class="">
     <div class="flex justify-between">
       <div style="width: 25%" class="m-auto">
         <img class="h-56 m-auto" src="../image/header/registernobg-01.png" />
@@ -43,176 +30,220 @@
         ></v-icon>
       </div>
     </div>
+
     <div
       style="margin-bottom: 2%"
-      class="m-auto w-[95%] lg:w-[45%] shadow-xl p-[2%] rounded-xl"
+      class="m-auto w-[95%] lg:w-[45%] shadow-xl p-[2%] rounded-xl relative"
     >
-      <form class="space-y-6 p-[5%]">
-        <div class="flex flex-col gap-4 p-3">
-          <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
-          >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الاسم الرباعي للطفل  ")
-            }}</label>
-            <input
-              type="text"
-              id="name"
-              v-model="child.name"
-              class="border-b focus:ring-0 text-center"
-            />
-          </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['name']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
-          <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
-          >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("تاريخ الميلاد")
-            }}</label>
-            <div class="flex justify-center items-center" id="calender">
-              <Calendar
-                style="width: 100%; padding: "
-                showButtonBar
-                v-model="child.birth_date"
-                dateFormat="dd/mm/yy"
-                :placeholder="$t('date_of_birth')"
-                :minDate="minDate"
-            :maxDate="maxDate"
-                
+      <!-- Alert -->
+      <p
+        v-if="show_alert"
+        class="text-center text-xl font-bold tracking-wide"
+        style="color: green"
+      >
+        {{ alert_text }}
+      </p>
+      <!-- End Alert -->
+
+      <form class="space-y-6">
+        <div class="flex flex-col gap-4">
+          <!--  Child Name -->
+          <div>
+            <div
+              class="flex flex-col"
+              style="border-bottom: 2px solid rgb(194, 188, 188)"
+            >
+              <label class="text-base font-bold">{{ $t("Full_Name") }}</label>
+              <input
+                type="text"
+                id="name"
+                v-model="child.name"
+                class="border-b focus:ring-0"
               />
             </div>
+            <div
+              v-if="errors != null"
+              class="text-red-600 font-semibold text-sm rounded-md"
+            >
+              <p v-for="error in errors['name']">
+                <span v-for="err in error">{{ err }} </span>
+              </p>
+            </div>
           </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['birth_date']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
-          <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
-          >
-            <label class="text-base font-bold  pl-2">{{
-              $t("مكان الميلاد  ")
-            }}</label>
-            <input
-              type="text"
-              id="birth_place"
-              v-model="child.birth_place"
-              class="border-b focus:ring-0 text-center"
-            />
-          </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['birth_place']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
+          <!-- End Child Name -->
 
+          <!-- Birth Data -->
           <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
+            class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("لغة الطفل الاساسيه  ")
-            }}</label>
-            <input
-              type="text"
-              id="lang"
-              v-model="child.lang"
-              class="border-b focus:ring-0 text-center"
-            />
+            <div class="flex-1">
+              <div class="flex flex-col">
+                <label class="text-base font-bold">{{
+                  $t("date_of_birth")
+                }}</label>
+                <div class="flex justify-center items-center" id="calender">
+                  <Calendar
+                    style="width: 100%; padding: "
+                    showButtonBar
+                    v-model="child.birth_date"
+                    dateFormat="dd/mm/yy"
+                    :maxDate="maxDate"
+                  />
+                </div>
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['birth_date']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex-1">
+              <div
+                class="flex flex-col"
+                style="border-bottom: 2px solid rgb(194, 188, 188)"
+              >
+                <label class="text-base font-bold">{{
+                  $t("place_of_birth")
+                }}</label>
+                <input
+                  type="text"
+                  id="birth_place"
+                  v-model="child.birth_place"
+                  class="border-b focus:ring-0"
+                />
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['birth_place']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
           </div>
+          <!-- End Birth Data -->
+
+          <!-- Child Lang And Address -->
           <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
+            class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
-            <p v-for="error in errors['lang']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
+            <div class="flex-1">
+              <div
+                class="flex flex-col"
+                style="border-bottom: 2px solid rgb(194, 188, 188)"
+              >
+                <label class="text-base font-bold">{{
+                  $t("primary_language")
+                }}</label>
+                <input
+                  type="text"
+                  id="lang"
+                  v-model="child.lang"
+                  class="border-b focus:ring-0"
+                />
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['lang']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div
+                class="flex flex-col"
+                style="border-bottom: 2px solid rgb(194, 188, 188)"
+              >
+                <label class="text-base font-bold">{{ $t("address") }}</label>
+                <input
+                  type="text"
+                  id="address"
+                  v-model="child.address"
+                  class="border-b focus:ring-0"
+                />
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['address']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
           </div>
+          <!-- End Child Lang And Nationalty -->
+
+          <!-- Child Nationalty and National ID -->
           <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
+            class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الجنسيه")
-            }}</label>
-            <input
-              type="text"
-              id="nationalty"
-              v-model="child.nationalty"
-              class="border-b focus:ring-0 text-center"
-            />
+            <div class="flex-1">
+              <div
+                class="flex flex-col"
+                style="border-bottom: 2px solid rgb(194, 188, 188)"
+              >
+                <label class="text-base font-bold">{{
+                  $t("Nationality")
+                }}</label>
+                <input
+                  type="text"
+                  id="nationalty"
+                  v-model="child.nationalty"
+                  class="border-b focus:ring-0"
+                />
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['nationalty']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex-1">
+              <div
+                class="flex flex-col"
+                style="border-bottom: 2px solid rgb(194, 188, 188)"
+              >
+                <label class="text-base font-bold">{{
+                  $t("national_id")
+                }}</label>
+                <input
+                  type="text"
+                  id="national_id"
+                  v-model="child.national_id"
+                  class="border-b focus:ring-0"
+                />
+              </div>
+              <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['national_id']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
+              </div>
+            </div>
           </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['nationalty']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
-          <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
-          >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("الرقم الوطني")
-            }}</label>
-            <input
-              type="text"
-              id="national_id"
-              v-model="child.national_id"
-              class="border-b focus:ring-0 text-center"
-            />
-          </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['national_id']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
-          <div
-            class="flex flex-col"
-            style="border-bottom: 2px solid rgb(194, 188, 188)"
-          >
-            <label class="text-base font-bold text-right pl-2">{{
-              $t("العنوان")
-            }}</label>
-            <input
-              type="text"
-              id="address"
-              v-model="child.address"
-              class="border-b focus:ring-0 text-center"
-            />
-          </div>
-          <div
-            v-if="errors != null"
-            class="text-red-600 font-semibold text-sm rounded-md"
-          >
-            <p v-for="error in errors['address']">
-              <span v-for="err in error">{{ err }} </span>
-            </p>
-          </div>
+          <!-- End Child Nationalty and National ID -->
+
           <div class="w-full text-right">
-            <h3 class="text-base font-bold text-right pl-2 pb-2">الجنس</h3>
-            <label for="female" class="text-lg font-bold mt-4">ذكر</label>
+            <h3 class="text-base font-bold text-right pb-2">
+              {{ $t("Type") }}
+            </h3>
+            <label for="female" class="text-lg font-bold mt-4">{{
+              $t("male")
+            }}</label>
             <input
               type="radio"
               id="female"
@@ -222,7 +253,9 @@
               v-model="child.gender"
             />
 
-            <label for="male" class="text-lg font-bold mt-4">انثي</label>
+            <label for="male" class="text-lg font-bold mt-4">{{
+              $t("female")
+            }}</label>
             <input
               type="radio"
               class="border ring-1 ring-gray-600 mx-2"
@@ -250,16 +283,18 @@ import moment from "moment";
 import Calendar from "primevue/calendar";
 import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
-import Message from 'primevue/message';
+import Message from "primevue/message";
 export default {
-  components: { Calendar, Textarea ,Message},
+  components: { Calendar, Textarea, Message },
   data() {
     return {
-      show:false,
-      minDate: new Date(1640426400000),
-    maxDate: new Date(),
+      show: false,
+
+      maxDate: new Date(),
       parentStore: useParentStore(),
       errors: [],
+      alert_text: "",
+      show_alert: false,
       child: {
         parent_id: "",
         name: "",
@@ -279,6 +314,8 @@ export default {
     },
     addChild() {
       this.errors = null;
+      this.show_alert = false;
+      this.alert_text = null;
       this.child.parent_id = this.parentStore.user.id;
       this.child.birth_date = moment(this.child.birth_date).format(
         "YYYY-MM-DD"
@@ -287,12 +324,12 @@ export default {
         .post("/api/parent/child/create", this.child)
         .then((res) => {
           this.errors = null;
-          this.alert_text = "Thanks  ";
+          this.show_alert = true;
+          this.alert_text = this.$t("child_added");
           Object.keys(this.child).forEach((key) => {
             this.child[key] = null;
-    
           });
-          // this.$router.push({ name: "Following" });
+          // this.$router.push({ name: "home" });
           console.log(res);
         })
         .catch((err) => {

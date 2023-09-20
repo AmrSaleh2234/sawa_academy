@@ -2,6 +2,8 @@
 
 namespace Modules\Calender\Http\Controllers\Services;
 
+use Carbon\Carbon;
+
 class CalenderService
 {
 
@@ -12,7 +14,8 @@ class CalenderService
         $events->each(function ($event) use (&$result, &$max) {
             $result[$event->day][] = [
                 'title' => $event->title,
-                'start_time' => $event->start_time,
+                'start_time' => Carbon::parse($event->start_time)->format("h:i A"),
+                'day' => Carbon::parse($event->day)->format("M-d"),
                 'id' => $event->id,
             ];
 

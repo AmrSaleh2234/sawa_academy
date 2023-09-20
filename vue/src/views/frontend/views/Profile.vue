@@ -1,19 +1,26 @@
 <template>
   <div class="switcher">
     <Map />
-    <div class="w-full border-b-2  border-x-cyan-950 border-solid">
-      
+    <div class="w-full border-b-2 border-x-cyan-950 border-solid">
       <div class="m-auto w-full">
-        <p class="text-center p-4 text-2xl text-[#6EB7BF]">{{$t("Profile_personly")}}</p>
+        <p class="text-center p-4 text-2xl text-[#6EB7BF]">
+          {{ $t("Profile_personly") }}
+        </p>
       </div>
-    
     </div>
     <div class="relative flex selection max-h-full">
       <sidbar class="" :sole="showsider" />
       <div class="flex-1 space-y-10">
         <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
-          <button class="font-bold">{{$t("Modify_profile")}}</button>
+          <button class="font-bold">{{ $t("Modify_profile") }}</button>
         </div>
+        <p
+          v-if="show_alert"
+          class="text-center text-xl font-bold tracking-wide"
+          style="color: green"
+        >
+          {{ alert_text }}
+        </p>
         <div class="p-2">
           <div class="block max-w-lg m-auto rounded-lg space-y-6 bg-white">
             <div class="relative m-auto">
@@ -85,8 +92,6 @@
                   type="text"
                   v-model="parent.lname"
                   :placeholder="$t('first_name')"
-                
-
                 />
               </div>
               <div
@@ -134,7 +139,7 @@
                 style="font-size: 18px"
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
-                :placeholder="$t('password')"
+                placeholder="password"
                 v-model="parent.password"
               />
             </div>
@@ -142,8 +147,8 @@
               @click="updateProfile"
               class="p-4 mt-10 text-center bg-[#148A98] text-white w-full rounded-2xl text-xl"
             >
-            {{ $t("Save_changes") }}
-                      </button>
+              حفظ التغيرات
+            </button>
           </div>
         </div>
       </div>
@@ -174,6 +179,8 @@ export default {
         password: "",
         image: null,
       },
+      alert_text: "",
+      show_alert: false,
       showsider: false,
       value: 65,
       editableValue: "Edit me!",
@@ -192,7 +199,7 @@ export default {
         .get("/api/parent/user")
         .then((res) => {
           this.parent = res.data.user;
-          this.imageSrc = `http://localhost:8000${this.parent.image}`;
+          this.imageSrc = this.parent.image;
           console.log(res);
         })
         .catch((err) => {
@@ -213,6 +220,8 @@ export default {
       };
     },
     updateProfile() {
+      this.show_alert = false;
+      this.alert_text = null;
       let self = this;
       const formData = new FormData();
 
@@ -233,6 +242,9 @@ export default {
           },
         })
         .then((res) => {
+          this.show_alert = true;
+          this.alert_text = this.$t("profile_updated");
+          this.parentStore.parent.image = res.data.profile.image;
           console.log(res);
         })
         .catch((err) => {
@@ -245,43 +257,42 @@ export default {
       // Return a string of Tailwind CSS classes to set the width of the image
       return this.imageSrc ? ["w-40", "h-0"] : ""; // Adjust the 'w-64' class to set the desired width
     },
-    //   methods: {
-    //     toggleEditing() {
-    //       this.editing = !this.editing;
-    //     },
-    //     toggle() {
-    //       this.showsider = !this.showsider;
-    //     },
-    //     home() {},
-    //     onUpload() {
-    //       this.$toast.add({
-    //         severity: "info",
-    //         summary: "Success",
-    //         detail: "File Uploaded",
-    //         life: 3000,
-    //       });
-    //     },
-    //     openFileUpload() {
-    //       // Get the file input element using the "ref" attribute
-    //       const fileInput = this.$refs.fileInput;
+    // methods: {
+    //   toggleEditing() {
+    //     this.editing = !this.editing;
+    //   },
+    //   toggle() {
+    //     this.showsider = !this.showsider;
+    //   },
+    //   home() {},
+    //   onUpload() {
+    //     this.$toast.add({
+    //       severity: "info",
+    //       summary: "Success",
+    //       detail: "File Uploaded",
+    //       life: 3000,
+    //     });
+    //   },
+    //   openFileUpload() {
+    //     // Get the file input element using the "ref" attribute
+    //     const fileInput = this.$refs.fileInput;
 
-    //       // Trigger the click event on the file input element
-    //       fileInput.click();
-    //     },
-    //     handleFileUpload(event) {
-    //       // Handle the file selection here
-    //       const selectedFile = event.target.files[0];
-    //       if (selectedFile) {
-    //         // Create a FileReader to read the file as a data URL
-    //         const reader = new FileReader();
-    //         reader.onload = (e) => {
-    //           // Set the imageSrc data property with the data URL of the selected image
-    //           this.imageSrc = e.target.result;
-    //         };
-    //         // Read the selected file as a data URL
-    //         reader.readAsDataURL(selectedFile);
-    //       }
-    //     },
+    //     // Trigger the click event on the file input element
+    //     fileInput.click();
+    //   },
+    //   handleFileUpload(event) {
+    //     // Handle the file selection here
+    //     const selectedFile = event.target.files[0];
+    //     if (selectedFile) {
+    //       // Create a FileReader to read the file as a data URL
+    //       const reader = new FileReader();
+    //       reader.onload = (e) => {
+    //         // Set the imageSrc data property with the data URL of the selected image
+    //         this.imageSrc = e.target.result;
+    //       };
+    //       // Read the selected file as a data URL
+    //       reader.readAsDataURL(selectedFile);
+    //     }
     //   },
     // },
   },

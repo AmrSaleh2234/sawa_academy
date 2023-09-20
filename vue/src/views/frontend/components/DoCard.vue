@@ -1,103 +1,93 @@
-<template >
-   <div style="background: linear-gradient(to right, #FF8B6A, #FF566F);padding-bottom: 2%;padding-top: 2%;" class="p-6   bg-center bg-cover m-auto relative ">
-       <img src="../image/sec1/m.png" class="absolute inset-0 w-full h-full object-cover">
-<!--        -->
-       <div style="padding-bottom: 2%;" class="text-center ">
-           <h1 class="text-4xl  font-bold text-white tracking-wide ">{{$t("Sawa_Academy_team")}}</h1>
-           <p class="text-2xl text-white tracking-wide pt-4 ">{{$t("We_have_a_group_of_highly_experienced_therapists")}}</p>
-       </div>
-       <div class=" m-auto">
-           <div class=" m-auto">
-               <carousel class="bg-none w-full   " v-bind="settings" :wrap-around="true" :breakpoints="breakpoints" >
-                   <slide v-for="image in 7" :key="image" class="w-full widths">
-                      <div v-for="index in perPage" :key="index" class=" w-[80%] ">
-                       <div class="text-center bg-teal-100 rounded-3xl m-2">
-                           <div class="bg-white rounded-3xl"><img class="m-auto px-5" src="../image/sec1/Doctor-PNG-Clipart.png"></div>
-                           <p class=" text-center pt-2 opacity-80">د/ احمد ابراهيم</p>
-                           <p class="text-center text-teal-400 pb-4 p-1">{{$t("Neurologist")}}</p>
-                       </div>
-                      </div>
-                   </slide>
-<!--                -->
-                   <template  #addons >
-<!--                        -->
-                     <pagination class="[&>div]:bg-[red] " />
-                   </template>
-                 </carousel>
+<template>
+  <div
+    style="
+      background: linear-gradient(to right, #ff8b6a, #ff566f);
+      padding-bottom: 2%;
+      padding-top: 2%;
+    "
+    class="p-6 bg-center bg-cover m-auto relative"
+  >
+    <img
+      src="../image/sec1/m.png"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <!--        -->
+    <div style="padding-bottom: 2%" class="text-center">
+      <h1 class="text-4xl font-bold text-white tracking-wide">
+        {{ $t("Sawa_Academy_team") }}
+      </h1>
+      <p class="text-2xl text-white tracking-wide pt-4">
+        {{ $t("We_have_a_group_of_highly_experienced_therapists") }}
+      </p>
+    </div>
 
-           </div>
-
-     </div>
-   </div>
-
+    <swiper
+      @slideChange="onSlideChange"
+      :modules="modules"
+      :scrollbar="{ draggable: true }"
+      :autoplay="{
+        delay: 2000,
+        disableOnInteraction: false,
+      }"
+      :breakpoints="{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 5,
+          spaceBetween: 10,
+        },
+      }"
+    >
+      <SwiperSlide v-for="doctor in doctors">
+        <div class="text-center bg-teal-100 rounded-3xl m-2">
+          <!-- Doctor -->
+          <div class="bg-white rounded-3xl">
+            <img
+              style="width: 210px; height: 310px"
+              class="m-auto px-5 object-cover w-[100%] h-[100%]"
+              :src="doctor.image"
+            />
+          </div>
+          <p class="text-center pt-2 opacity-80">{{ doctor.name }}</p>
+          <p class="text-center text-teal-400 pb-4 p-1">
+            {{ doctor.title }}
+          </p>
+        </div>
+        <!-- Doctor -->
+      </SwiperSlide>
+    </swiper>
+  </div>
 </template>
-<!-- <script>
-// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
-export default {
-  name: 'App',
-  components: {
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
-  },
-  data() {
-  return {
-   
-  };
-}
+<script setup>
+import axios from "axios";
+import { computed, onMounted, ref, watch } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-}
-</script> -->
-<script>
-import { ref, watch, onMounted, onBeforeUnmount } from "vue";
-import { useWindowSize } from "@vueuse/core";
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+const modules = [Pagination, Navigation, Autoplay];
 
-export default {
-  components: {
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
-  },
-  setup() {
-    const perPage = ref(1);
-
-    // Adjust the number of slides per page based on screen size
-    // watch(windowSize, () => {
-    //     if (windowSize.width >= 768 && windowSize.width < 1024) {
-    //     perPage.value = 2;
-    //   } else if (windowSize.width >= 1024) {
-    //     perPage.value = 3;
-    //   } else {
-    //     perPage.value = 1;
-    //   }
-    // });
-
-    onMounted(() => {
-      // Initialize the number of slides per page on component mount
-      console.log(window.innerWidth);
-      if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        perPage.value = 3;
-      } else if (window.innerWidth >= 1024) {
-        perPage.value = 5;
-      } else {
-        perPage.value = 1;
-      }
+const doctors = ref([]);
+onMounted(() => {
+  getDoctors();
+});
+const getDoctors = () => {
+  axios
+    .get("/api/doctors")
+    .then((res) => {
+      doctors.value = res.data.doctors;
+      console.log(doctors.value);
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-    onBeforeUnmount(() => {
-      // Cleanup if necessary
-    });
-
-    return {
-      perPage,
-    };
-  },
 };
 </script>

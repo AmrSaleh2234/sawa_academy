@@ -57,6 +57,31 @@ class AdminUserSeeder extends Seeder
             $userRole->syncPermissions($userPermissions);
             $user->assignRole([$userRole->id]);
             $user->syncPermissions($userPermissions);
+
+
+            // test user
+            $doctor = User::create([
+                'name' => 'Doctor',
+                'email' => 'doctor@doctor.com',
+                'title' => 'Ear & Eye Problems',
+                'password' => bcrypt('password'),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]);
+
+            $doctorRole = Role::create(['name' => 'doctor']);
+            // get only users permissions
+            $doctorPermissions = collect($allPermissions)->whereIn('module', [
+                'register',
+                'login',
+                'logout',
+                'password',
+                'verification',
+                "calender",
+            ])->all();
+            $doctorRole->syncPermissions($doctorPermissions);
+            $doctor->assignRole([$doctorRole->id]);
+            $doctor->syncPermissions($doctorPermissions);
         });
     }
 }

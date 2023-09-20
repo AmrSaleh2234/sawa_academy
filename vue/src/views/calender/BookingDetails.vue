@@ -3,7 +3,7 @@
     <h1 class="border-b text-3xl w-full md:w-1/2 uppercase text-green-800 py-4">
       {{ $t("bookings") }} / {{ booking.requester_name }}
     </h1>
-    <div class="flex flex-col md:flex-row md:justify-between w-full mt-4 py-2">
+    <div class="grid grid-cols-2 w-full mt-4 py-2">
       <!-- Left Side -->
       <div
         class="bg-gray-100 rounded-xl text-right pb-6 md:pb-0 px-6 mx-6 self-start"
@@ -48,7 +48,7 @@
           <img
             v-if="doctor"
             v-cloak
-            src="@/assets/img/doctor.jpg"
+            :src="doctor.image"
             class="object-cover rounded-xl mt-12"
             width="400"
             alt=""
@@ -130,7 +130,7 @@
       </div>
       <!-- End Left Side -->
       <!-- Right Side -->
-      <div class="flex-1 w-2/3">
+      <div class="">
         <p class="border-b-2 my-9 py-2 border-black">
           <span class="">
             {{ $t("applicant") }} :
@@ -267,7 +267,7 @@
     <div class="flex justify-center">
       <div
         v-show="show_answer_modal"
-        class="absolute inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50"
+        class="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50"
       >
         <div class="w-1/2 p-6 bg-white rounded-md shadow-xl">
           <div class="flex items-center justify-between">
