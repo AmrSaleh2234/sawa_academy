@@ -19,7 +19,7 @@ export default {
     Dialog,
     Button,
     Calendar,
-    InputText, // make the <FullCalendar> tag available
+    InputText,
   },
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
         eventClick: function (event) {
           this.event_id = event.event.id;
           this.event_title = event.event.title;
-          this.modal_text = "update Event";
+          this.modal_text = this.$t("update_event");
           this.creat_event = false;
           this.updat_event = true;
           this.visible = true;
@@ -94,7 +94,7 @@ export default {
         select: function (event) {
           console.log(event);
           this.event_title = "";
-          this.modal_text = "Create Event";
+          this.modal_text = this.$t("create_event");
           this.creat_event = true;
           this.updat_event = false;
           this.visible = true;
@@ -178,7 +178,6 @@ export default {
   },
   mounted() {
     this.update();
-
     console.log(this.opts);
   },
 };
@@ -195,15 +194,6 @@ export default {
         <v-icon start icon="mdi-arrow-left"></v-icon>
         Back
       </v-btn>
-      <v-btn
-        height="45"
-        class="mx-5 text-white"
-        color="rgb(4, 171, 4)"
-        @click="create_visible = true"
-      >
-        <v-icon start icon="mdi-plus-circle" size="x-large"></v-icon>
-        Create Event
-      </v-btn>
     </div>
     <FullCalendar
       :options="opts"
@@ -211,49 +201,6 @@ export default {
       ref="fullCalendar"
     />
     <div class="card flex justify-content-center">
-      <Dialog
-        v-model:visible="create_visible"
-        id="modal"
-        modal
-        header="Create Event"
-        :style="{ width: '60vw' }"
-      >
-        <form>
-          <div>
-            <Calendar
-              showIcon
-              placeholder="dd-mm-yy"
-              date-format="yy-mm-dd"
-              v-model="start_event"
-              style="width: 100%"
-            />
-            <InputText type="time" v-model="time_start" />
-
-            <Calendar
-              showIcon
-              placeholder="dd-mm-yy"
-              date-format="yy-mm-dd"
-              v-model="end_event"
-              style="width: 100%; margin-top: 10px"
-            />
-
-            <InputText type="time" v-model="time_end" placeholder="Search" />
-            <v-text-field
-              v-model="event_title"
-              :rules="nameRules"
-              label="Enter Your Event Title "
-              required
-              class="mt-5"
-            ></v-text-field>
-            <Button
-              style="background-color: rgb(4, 171, 4)"
-              label="Create "
-              :loading="loading"
-              @click="createvent"
-            />
-          </div>
-        </form>
-      </Dialog>
       <Dialog
         v-model:visible="visible"
         id="modal"
@@ -263,16 +210,28 @@ export default {
       >
         <form>
           <div>
-            <v-text-field
-              v-model="event_title"
-              :rules="nameRules"
-              label="Enter Your Event Title "
-              required
-            ></v-text-field>
-            <input type="time" v-model="time_start" />
-            <input type="time" v-model="time_end" />
+            <div>
+              <label for="time_start">{{ $t("from") }}</label>
+              <input
+                type="time"
+                name="time_start"
+                id="time_start"
+                v-model="time_start"
+                style="border-radius: 5px"
+              />
+            </div>
+            <div>
+              <label for="time_end">{{ $t("to") }}</label>
+              <input
+                type="time"
+                name="time_end"
+                id="time_end"
+                v-model="time_end"
+                style="border-radius: 5px"
+              />
+            </div>
             <Button
-              style="background-color: rgb(4, 171, 4)"
+              style="background-color: rgb(4, 171, 4); border: 0"
               label="Create "
               v-if="creat_event"
               :loading="loading"
@@ -283,6 +242,7 @@ export default {
                 background-color: #6241f1;
                 margin-left: 10px;
                 margin-right: 10px;
+                border: 0;
               "
               label="update "
               v-if="updat_event"
@@ -290,7 +250,7 @@ export default {
               @click="updateevent"
             />
             <Button
-              style="background-color: #b00020; border: no"
+              style="background-color: #b00020; border: 0"
               label="Delet "
               v-if="updat_event"
               :loading="loading"

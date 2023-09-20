@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\SawaException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
 use Spatie\Permission\Guard;
@@ -38,6 +40,9 @@ class UserController extends Controller
     public function index(Request $request): Response
     {
         $users = User::where('name', 'LIKE', '%' . $request->keyword . '%')->with('roles')->orderBy('id', 'DESC')->paginate($request->size);
+        $users->each(function ($user) {
+            $user->image = $user->image ? url($user->image) : null;
+        });
         return response([
             'users' => $users,
         ]);
@@ -52,7 +57,7 @@ class UserController extends Controller
         // return response(Guard::getDefaultName(static::class));
         $this->validate($request, [
             'name' => 'required|min:4',
-            'email' => 'required|email',
+            'email' => ['required', 'email', "unique:users,email"],
             'title' => 'required|string',
             'image' => 'required|image',
             'password' => ['required', 'min:6'],
@@ -112,16 +117,40 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user): Response
+    public function update(UpdateUserRequest $request, User $user): Response
     {
-        $this->validate($request, [
-            'name' => 'required|min:4',
-            'email' => 'required|unique:users,email,' . $user->id,
-            'role' => ['required']
-        ]);
 
-        DB::transaction(function () use (&$user, $request) {
-            $user->update($request->only(['name', 'email']));
+        $data = $request->validated();
+
+        if ($request->file('image')) {
+            if (!empty($user->image)) {
+                $currentImage = public_path() . $user->image;
+
+                if (file_exists($currentImage)) {
+                    unlink($currentImage);
+                }
+            }
+
+            $file = $request->file('image');
+
+            $extension = $file->getClientOriginalExtension();
+
+            $name = time() . '.' . $extension;
+
+            $request->image->move(public_path() . '/images/',  $name);
+
+            $user->image = '/images/' . $name;
+
+            $data['image'] = $user->image;
+        }
+
+        if (!empty($request->validated('password'))) {
+            $data['password'] = Hash::make($request->validated('password'));
+        }
+
+        DB::transaction(function () use (&$user, $request, $data) {
+
+            $user->update($data);
 
             $role = Role::where('id', $request->role)->first();
             // sync new roles

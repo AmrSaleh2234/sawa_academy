@@ -98,7 +98,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [UserController::class, 'index'])->name('users.index');
         Route::post('/create', [UserController::class, 'store'])->name('users.create');
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
-        Route::put('/{user}/edit', [UserController::class, 'update'])->name('users.edit');
+        Route::post('/{user}/edit', [UserController::class, 'update'])->name('users.edit');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('users.delete');
         Route::post('/{user}/add-permissions', [UserController::class, 'addPermissions'])->name('users.addPermissions');
         Route::get('/{user}/permissions', [UserController::class, 'getUserPermissions'])->name('users.getUserPermissions');

@@ -105,52 +105,76 @@ const routes = [
     path: "/web/booking-time",
     name: "BookingTime",
     component: BookingTime,
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
 
   {
     path: "/web/notifications",
     name: "New",
     component: () => import("../views/frontend/views/New.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   {
     path: "/web/more/:event_id",
     name: "more",
     props: true,
     component: () => import("../views/frontend/views/more.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   {
     path: "/web/add-child",
     name: "ReAction",
     component: () => import("../views/frontend/views/ReAction.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   {
     path: "/web/evaluation",
     name: "Edit",
     component: () => import("../views/frontend/views/Edit.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   {
     path: "/web/profile",
     name: "Profile",
     component: () => import("../views/frontend/views/Profile.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   {
     path: "/web/following",
     name: "Following",
     component: () => import("../views/frontend/views/Following.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
 
   {
     path: "/web/appointment",
     name: "Booking",
     component: () => import("../views/frontend/views/Booking.vue"),
-    beforeEnter: [authForNormalUser, phoneIsVerified],
+    beforeEnter: [
+      authForNormalUser,
+      //  phoneIsVerified
+    ],
   },
   ///////////////End Front End Users Routes //////////////////
 

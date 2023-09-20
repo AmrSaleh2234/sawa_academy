@@ -14,7 +14,7 @@ class CalenderRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+
             'start' => 'required',
             'end' => 'required',
             'time_start' => 'required',

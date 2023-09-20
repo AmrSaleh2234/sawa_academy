@@ -140,6 +140,7 @@
                 class="backdrop-blur-md bg-white/30 focus:ring-0 w-full p-2 text-center border-0"
                 type="password"
                 placeholder="password"
+                v-model="parent.password"
               />
             </div>
             <button

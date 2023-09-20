@@ -184,4 +184,19 @@ export default {
   Pages_menu: "قائمه صفحات الموقع",
   Add_new_booking: "اضف حجز جديد",
   send: "ارسال",
+
+  prev: "السابق",
+  next: "التالي",
+  today: "اليوم",
+
+  to: "الي",
+  from: "من",
+
+  create_event: "انشاء حدث",
+  update_event: "تحديث الحدث",
+  child_added: "تمت إضافة الطفل بنجاح",
+  national_id: "الرقم القومي",
+  personal_image: "الصوره الشخصيه",
+  choose_role: "اختر الدور للمستخدم",
+  user_created: "تم إنشاء المستخدم بنجاح",
 };

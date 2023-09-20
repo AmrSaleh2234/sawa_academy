@@ -26,7 +26,7 @@ class FrontAuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'string'],
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ]);
 
@@ -42,10 +42,14 @@ class FrontAuthController extends Controller
 
                 return response($response, 202);
             } else {
-                return response()->json(['message' => 'email or password does not match our records'], 401);
+                return response()->json(["errors" => [
+                    'email' => ['email or password does not match our records']
+                ]], 401);
             }
         } else {
-            return response()->json(['message' => 'email or password does not match our records'], 401);
+            return response()->json(["errors" => [
+                'email' => ['email or password does not match our records']
+            ]], 401);
         }
     }
 
@@ -54,8 +58,8 @@ class FrontAuthController extends Controller
         $request->validate([
             'fname' => ['required', 'string'],
             'lname' => ['required', 'string'],
-            'email' => ['required', 'string', Rule::unique('parents', 'email')],
-            'phone' => ['required', 'string', Rule::unique('parents', 'email')],
+            'email' => ['required', 'string', 'email', Rule::unique('parents', 'email')],
+            'phone' => ['required', 'string', Rule::unique('parents', 'phone')],
             'password' => ['required', 'string', 'confirmed'],
         ]);
 

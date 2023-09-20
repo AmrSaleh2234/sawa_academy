@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup(props) { }>
-import { useParentStore } from "../../../stores/ParentStore";
+// import { useParentStore } from "../../../stores/ParentStore";
 import Nave from "../components/Nave.vue";
 import HeadeForm from "../components/HeadeForm.vue";
 import Services from "../components/Services.vue";
@@ -44,12 +44,12 @@ export default {
     };
   },
 
-  mounted() {
-    if (useParentStore().parentAuth) {
-      if (useParentStore().user.phone_verified_at == null) {
-        this.$router.push({ name: "code" });
-      }
-    }
-  },
+  // mounted() {
+  //   if (useParentStore().parentAuth) {
+  //     if (useParentStore().user.phone_verified_at == null) {
+  //       this.$router.push({ name: "code" });
+  //     }
+  //   }
+  // },
 };
 </script>

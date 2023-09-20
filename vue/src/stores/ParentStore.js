@@ -26,13 +26,13 @@ export const useParentStore = defineStore("parentStore", {
           this.token = res.data.token;
           this.parentAuth = true;
 
-          if (res.data.user.phone_verified_at == null) {
-            console.log("asdf");
-            this.router.push({ name: "code" });
-          } else {
-            console.log(res);
-            this.router.push("/web/");
-          }
+          // if (res.data.user.phone_verified_at == null) {
+          //   console.log("asdf");
+          //   this.router.push({ name: "code" });
+          // } else {
+          //   console.log(res);
+          this.router.push("/web/");
+          // }
         })
         .catch((err) => {
           this.showErrors = true;

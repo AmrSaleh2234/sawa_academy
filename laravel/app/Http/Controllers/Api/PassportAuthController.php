@@ -108,7 +108,7 @@ class PassportAuthController extends Controller
 
         $user = auth()->user();
 
-        return response()->json(['user' => $user], 200);
+        return response()->json(['user' => new UserResource($user)], 200);
     }
 
     /**
