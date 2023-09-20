@@ -44,7 +44,7 @@
                   v-if="parentStore.errors && parentStore.errors['email']"
                   class="text-red-500 text-sm"
                 >
-                  {{ parentStore.errors["email"][0] }}
+                  {{ parentStore.errors["email"] }}
                 </p>
               </div>
               <div class="flex flex-col">

@@ -43,12 +43,12 @@ class FrontAuthController extends Controller
                 return response($response, 202);
             } else {
                 return response()->json(["errors" => [
-                    'email' => ['email or password does not match our records']
+                    'email' => __('auth.failed')
                 ]], 401);
             }
         } else {
             return response()->json(["errors" => [
-                'email' => ['email or password does not match our records']
+                'email' => __('auth.failed')
             ]], 401);
         }
     }
