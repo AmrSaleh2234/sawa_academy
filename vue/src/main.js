@@ -71,7 +71,7 @@ app.mount("#app");
 
 let k= document.getElementsByClassName("switcher")
 console.log(k)
-if( i18n.global.locale.value = 'ar')
+if( i18n.global.locale.value == 'ar')
   k[0].dir="rtl"
 else
   k[0].dir="ltr"
