@@ -58,6 +58,7 @@ class CalenderController extends Controller
     public function getAllBooking(Request $request)
     {
         $bookings = Booking::query()
+            ->where('user_id', $request->user()->id)
             ->select(
                 'id',
                 'requester_phone'
