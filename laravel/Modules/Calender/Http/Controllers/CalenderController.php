@@ -67,6 +67,7 @@ class CalenderController extends Controller
                 'child_name' => Child::select('name')->whereColumn('id', 'bookings.child_id'),
                 'child_age' => Child::select('birth_date')->whereColumn('id', 'bookings.child_id'),
             ])
+            ->latest()
             ->get();
 
         $bookings->map(function ($booking) {

@@ -7,7 +7,9 @@ use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\FrontAuthController;
 use App\Http\Controllers\Api\SiteSettingsController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ParentController;
 use Illuminate\Http\Request;
 
 /*
@@ -34,7 +36,15 @@ Route::post('/forgot-password', [PassportAuthController::class, 'forgotPassword'
 Route::post('/reset-password', [PassportAuthController::class, 'resetPassword'])->name('password.reset');
 Route::get('/doctors', [FrontAuthController::class, 'doctors'])->name('doctors');
 Route::get('lookups/treatmentsType', [\App\Http\Controllers\LookupsController::class, 'treatmeantType']);
+
+
 Route::post('/set-language', [LanguageController::class, 'setLanguage']);
+Route::get('/languages', [LanguageController::class, 'getLangs']);
+
+Route::get('/countries', [CountryController::class, 'getCountries']);
+
+
+Route::apiResource("admin-parents", ParentController::class);
 
 
 Route::controller(FrontAuthController::class)->prefix('parent')->as('parent.')->group(function () {
