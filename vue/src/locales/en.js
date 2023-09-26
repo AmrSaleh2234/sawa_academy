@@ -201,4 +201,11 @@ export default {
   choose_role: "Choose Role For User",
   user_created: "User Created Successfully",
   profile_updated: "Profile updated successfully",
+  parent: {
+    fname: "First Name",
+    lname: "Last Name",
+    email: "Email",
+    phone: "Phone",
+    image: "Image",
+  },
 };

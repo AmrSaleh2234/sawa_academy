@@ -3,6 +3,7 @@ import Home from "@/components/Home.vue";
 import permissionsRoutes from "./permissions.routes";
 import rolesRoutes from "./roles.routes";
 import usersRoutes from "./users.routes";
+import parentsRoutes from "./parents.routes";
 import siteRoutes from "./settings.routes";
 import childrenRoutes from "./children.routes";
 import QuestionHeadersRoutes from "./question-headers.routes";
@@ -193,6 +194,7 @@ const routes = [
       ...Object.values(EvaluationsRoutes),
       ...Object.values(sideProfileRoutes),
       ...Object.values(calender),
+      ...Object.values(parentsRoutes),
     ],
   },
   {

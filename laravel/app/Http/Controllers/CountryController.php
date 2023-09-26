@@ -9,7 +9,7 @@ class CountryController extends Controller
 {
     public function getCountries(Request $request)
     {
-        $countries = Country::select("id", "country", "nationality")->get();
+        $countries = Country::select("id", "nationality")->get();
 
         return response()->json([
             "countries" => $countries

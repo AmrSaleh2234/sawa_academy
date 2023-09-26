@@ -200,4 +200,11 @@ export default {
   choose_role: "اختر الدور للمستخدم",
   user_created: "تم إنشاء المستخدم بنجاح",
   profile_updated: "تم تحديث الملف الشخصي بنجاح",
+  parent: {
+    fname: "الاسم الاول",
+    lname: "الاسم الثاني",
+    email: "الايميل",
+    phone: "رقم الجوال",
+    image: "الصوره",
+  },
 };
