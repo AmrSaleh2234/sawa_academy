@@ -1,6 +1,8 @@
 export default {
   close: "Close",
   roles: "Roles",
+  Nationality_choose:"Choose the nationality name",
+
   permissions: "Permissions",
   users: "Users",
   children: "children",

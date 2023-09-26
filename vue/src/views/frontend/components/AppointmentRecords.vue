@@ -57,9 +57,11 @@
             v-for="booking in bookings"
             class="flex flex-col items-center bg-white border-gray-200 rounded-xl shadow-md md:flex-row max-w-sm hover:bg-gray-100"
           >
+          <img v-if="booking.user_image == null" src="../image/Rectangle63.png">
             <img
               width="250"
               class="rounded-xl"
+              v-if="booking.user_image != null"
               :src="booking.user_image"
               alt=""
             />
