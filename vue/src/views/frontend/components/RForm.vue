@@ -161,9 +161,10 @@
                   $t("primary_language")
                 }}</label>
                  
-                <select class="w-full" v-model="child.lang" name="cars" id="cars">
+              
+                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" name="drinks" id="cars" v-model="child.lang">
                   <option value="" disabled selected hidden>{{ $t('primary_language') }}</option>
-                  <option v-for="l in lan" value="volvo">{{ l.lang }}</option>
+                  <option v-for="l in lan" >{{ l.lang }}</option>
                 </select>
              </div>
 
@@ -216,9 +217,9 @@
                   $t("Nationality")
                 }}</label>
                  
-                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" v-model="child.nationalty" name="drinks" id="cars">
+                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" name="drinks" id="cars" v-model="child.nationalty">
                   <option value="" disabled selected hidden>{{ $t('Nationality_choose') }}</option>
-                  <option v-for="city in cities" value="volvo">{{ city.nationality }}</option>
+                  <option v-for="city in cities"  >{{ city.nationality }}</option>
 
                 </select>
                 <div
