@@ -12,10 +12,12 @@
                 @click="show = !show"
                 class="flex items-center p-2 text-indigo-100 bg-[] rounded-md"
               >
+              <img src="../image/Ellipse2.png" v-if="parentStore.parent.image == null">
                 <img
                   class="rounded-full w-[60px] h-[60px] object-cover"
+                  v-if="parentStore.parent.image != null"
                   :src="
-                    parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
+                    parentStore.parent.image 
                   "
                 />
                 <svg

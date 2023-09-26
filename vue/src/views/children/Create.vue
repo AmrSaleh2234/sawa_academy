@@ -89,6 +89,7 @@ export default {
             v-model.number="child.birth_date"
             showIcon
             placeholder="dd/mm/yy"
+            :maxDate="maxDate"
 
           />
         </div>
