@@ -47,12 +47,16 @@ export default {
         valid: false,
         buttonIcons: false,
         locale: null,
+        validRange: {
+          start: new Date(), // Set your minimum date here
+          
+        },
         selectable: true,
         droppable: false,
         editable: true,
         selectHelper: true,
         headerToolbar: {
-          center: "prev next today",
+          center: "prev,next today",
           left: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
