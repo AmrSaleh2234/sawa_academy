@@ -337,6 +337,32 @@ export default {
           console.log(err);
         });
     },
+
+    getCountries() {
+      axios
+        .get("/api/countries")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getLangs() {
+      axios
+        .get("/api/languages")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  mounted() {
+    this.getCountries();
+    this.getLangs();
   },
 };
 </script>
