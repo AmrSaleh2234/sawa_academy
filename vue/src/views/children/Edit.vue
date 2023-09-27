@@ -1,11 +1,11 @@
 <script>
 import axios from "axios";
 import InputText from 'primevue/inputtext';
-
+import Calendar from "primevue/calendar";
 export default {
-  components:{InputText},
+  components:{InputText,Calendar},
   data: () => ({
-
+    maxDate: new Date(),
     NameRules: [
       value => {
         if (value?.length >= 3) return true
@@ -76,9 +76,19 @@ export default {
             :label="$t('child_name')"
             :rules="NameRules"
         ></v-text-field>
-        <div style="width: 100%;" class="card flex  justify-content-center">
-          <InputText :label="$t('birth_date')" style="width: 100%;" type="date" :rules="NameRules"  dateFormat="dd/mm/yy" v-model="child.birth_date" />
-      </div>
+        <div class="card flex justify-content-center">
+          <Calendar
+            style="width: 100%"
+            showButtonBar
+            v-model="child.birth_date" 
+            showIcon
+            placeholder="dd/mm/yy"
+            :maxDate="maxDate"
+            :rules="NameRules"
+
+          />
+        </div>
+      
      
   
         <!-- <v-text-field
