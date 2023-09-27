@@ -9,10 +9,12 @@ import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { ref } from "vue";
 import moment from "moment";
-import arLocale from '@fullcalendar/core/locales/ar'; 
+import arLocale from "@fullcalendar/core/locales/ar";
+// import enLocale from "@fullcalendar/core/locales";
 import Calendar from "primevue/calendar";
 import InputText from "primevue/inputtext";
 import { tr } from "date-fns/locale";
+import { useAppLangStore } from "../../stores/AppLangStore";
 
 export default {
   components: {
@@ -24,7 +26,7 @@ export default {
   },
   data() {
     return {
-      v:localStorage.appLang,
+      langStore: useAppLangStore(),
       visible: false,
       create_visible: false,
       event_id: null,
@@ -50,6 +52,9 @@ export default {
         droppable: false,
         editable: true,
         selectHelper: true,
+        validRange: {
+          start: new Date(),
+        },
         headerToolbar: {
           center: "prev next today",
           left: "title",
@@ -191,19 +196,28 @@ export default {
       this.$refs.calendar.$emit("refetch-events");
     },
   },
+
   mounted() {
-    this.loo()
-    
-    
-    console.log(localStorage.appLang)
+    if (localStorage.appLang == "en") {
+      console.log("ascasc");
+    } else {
+      this.opts.locale = arLocale;
+    }
+    console.log(localStorage.appLang);
     this.update();
     console.log(this.opts);
   },
-  computed(){
-    this.loo()
+
+  watch: {
+    "langStore.appLang"(newLang) {
+      if (newLang == "en") {
+        this.opts.locale = "";
+      } else {
+        this.opts.locale = arLocale;
+      }
+      this.update();
+    },
   },
-  
- 
 };
 </script>
 <template>
@@ -216,7 +230,7 @@ export default {
         @click="goBack"
       >
         <v-icon start icon="mdi-arrow-left"></v-icon>
-        Back
+        {{ $t("back") }}
       </v-btn>
     </div>
     <FullCalendar

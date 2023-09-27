@@ -143,6 +143,7 @@ export default {
   place_of_birth: "مكان الميلاد",
   primary_language: "لغة الطفل الاساسية",
   Nationality: "الجنسيه",
+  Nationality_choose:"اختر اسم الجنسيه",
   national_number: "رقمه الوطني",
   Additional_phone_number: " رقم هاتف إضافي",
   owner_extra_number: "مالك الرقم الاضافي",
@@ -200,4 +201,11 @@ export default {
   choose_role: "اختر الدور للمستخدم",
   user_created: "تم إنشاء المستخدم بنجاح",
   profile_updated: "تم تحديث الملف الشخصي بنجاح",
+  parent: {
+    fname: "الاسم الاول",
+    lname: "الاسم الثاني",
+    email: "الايميل",
+    phone: "رقم الجوال",
+    image: "الصوره",
+  },
 };

@@ -132,7 +132,7 @@
           <div
             class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
-            <div class="flex-1">
+            <!-- <div class="flex-1">
               <div
                 class="flex flex-col"
                 style="border-bottom: 2px solid rgb(194, 188, 188)"
@@ -155,7 +155,19 @@
                   <span v-for="err in error">{{ err }} </span>
                 </p>
               </div>
-            </div>
+            </div> -->
+            <div  style="border-bottom: 2px solid rgb(194, 188, 188)"  class="card w-[50%]  justify-content-center">
+                <label class="text-base font-bold">{{
+                  $t("primary_language")
+                }}</label>
+                 
+              
+                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" name="drinks" id="cars" v-model="child.lang">
+                  <option value="" disabled selected hidden>{{ $t('primary_language') }}</option>
+                  <option v-for="l in lan" >{{ l.lang }}</option>
+                </select>
+             </div>
+
             <div class="flex-1">
               <div
                 class="flex flex-col"
@@ -186,7 +198,7 @@
             class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
             <div class="flex-1">
-              <div
+              <!-- <div
                 class="flex flex-col"
                 style="border-bottom: 2px solid rgb(194, 188, 188)"
               >
@@ -199,7 +211,26 @@
                   v-model="child.nationalty"
                   class="border-b focus:ring-0"
                 />
+              </div> -->
+              <div    class="card  justify-content-center">
+                <label class="text-base font-bold">{{
+                  $t("Nationality")
+                }}</label>
+                 
+                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" name="drinks" id="cars" v-model="child.nationalty">
+                  <option value="" disabled selected hidden>{{ $t('Nationality_choose') }}</option>
+                  <option v-for="city in cities"  >{{ city.nationality }}</option>
+
+                </select>
+                <div
+                v-if="errors != null"
+                class="text-red-600 font-semibold text-sm rounded-md"
+              >
+                <p v-for="error in errors['nationalty']">
+                  <span v-for="err in error">{{ err }} </span>
+                </p>
               </div>
+             </div>
               <div
                 v-if="errors != null"
                 class="text-red-600 font-semibold text-sm rounded-md"
@@ -235,36 +266,14 @@
               </div>
             </div>
           </div>
-          <!-- End Child Nationalty and National ID -->
-
-          <div class="w-full text-right">
-            <h3 class="text-base font-bold text-right pb-2">
+          
+          
+          <div class="card w-[49%]">
+            <h3 class="text-base font-bold text-right ">
               {{ $t("Type") }}
             </h3>
-            <label for="female" class="text-lg font-bold mt-4">{{
-              $t("male")
-            }}</label>
-            <input
-              type="radio"
-              id="female"
-              class="border ring-1 ring-gray-600 mx-2"
-              name="female"
-              value="0"
-              v-model="child.gender"
-            />
-
-            <label for="male" class="text-lg font-bold mt-4">{{
-              $t("female")
-            }}</label>
-            <input
-              type="radio"
-              class="border ring-1 ring-gray-600 mx-2"
-              id="male"
-              name="male"
-              value="1"
-              v-model="child.gender"
-            />
-          </div>
+                 <Dropdown id="pv_id_2" v-model="child.gender" :options="arr()" optionLabel="name" placeholder="Select a gender"  class="w-full  md:w-14rem focus:ring-0" />
+             </div>
         </div>
         <button
           style="padding: 2%"
@@ -278,6 +287,7 @@
   </div>
 </template>
 <script>
+import Dropdown from 'primevue/dropdown';
 import axios from "axios";
 import moment from "moment";
 import Calendar from "primevue/calendar";
@@ -285,11 +295,14 @@ import Textarea from "primevue/textarea";
 import { useParentStore } from "../../../stores/ParentStore";
 import Message from "primevue/message";
 export default {
-  components: { Calendar, Textarea, Message },
+  components: { Calendar, Textarea, Message ,Dropdown },
   data() {
     return {
       show: false,
-
+      lan:[],
+      selectedCity: null,
+            cities: {},
+            type:[ ],
       maxDate: new Date(),
       parentStore: useParentStore(),
       errors: [],
@@ -298,6 +311,7 @@ export default {
       child: {
         parent_id: "",
         name: "",
+        
         birth_date: "",
         birth_place: "",
         lang: "",
@@ -308,7 +322,21 @@ export default {
       },
     };
   },
+  computed: {
+    locale() {
+      return this.$i18n.locale;
+    },
+  },
   methods: {
+    arr (){
+      return this.type =[
+            { name:this.$t('male') },
+                { name:this.$t('female') },
+              
+               
+            ]
+    },
+   
     goback() {
       this.$router.go(-1);
     },
@@ -337,6 +365,35 @@ export default {
           console.log(err);
         });
     },
+
+    getCountries() {
+      axios
+        .get("/api/countries")
+        .then((res) => {
+          console.log(res.data.countries)
+          this.cities = res.data.countries
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getLangs() {
+      axios
+        .get("/api/languages")
+        .then((res) => {
+          this.lan=res.data.langs
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  mounted() {
+    this.getCountries();
+    this.getLangs();
   },
 };
 </script>
@@ -353,6 +410,27 @@ input::placeholder {
   font-family: "Cairo", sans-serif;
   font-size: 20px;
 }
+#pv_id_3  {
+  border: none;
+  border-bottom: 2px solid #818080;
+  text-align: center;
+  font-family: "Cairo", sans-serif;
+  font-size: 20px;
+  border-radius: 0;
+}
+#pv_id_2 {
+  border: none;
+  border-bottom: 2px solid #818080;
+  text-align: center;
+  font-family: "Cairo", sans-serif;
+  font-size: 20px;
+  border-radius: 0;
+}
+#pv_id_2:focus {
+  border: none;
+
+}
+
 input::placeholder {
   opacity: 50%;
   color: black;

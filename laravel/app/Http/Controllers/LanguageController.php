@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -23,6 +24,15 @@ class LanguageController extends Controller
         return response()->json([
             'message' => 'Language updated successfully',
             "app_locale" => app()->getLocale()
+        ]);
+    }
+
+    public function getLangs(Request $request)
+    {
+        $langs = Lang::select("id", "lang", "native")->get();
+
+        return response()->json([
+            "langs" => $langs
         ]);
     }
 }

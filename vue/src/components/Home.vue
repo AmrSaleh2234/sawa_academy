@@ -193,6 +193,13 @@ onMounted(async () => {
 
             <v-list-item
               prepend-icon="mdi-human-male-boy"
+              :title="$t('parents')"
+              value="parents"
+              :to="{ name: 'Parents' }"
+            ></v-list-item>
+
+            <v-list-item
+              prepend-icon="mdi-human-male-boy"
               :title="$t('children')"
               value="children"
               :to="{ name: 'Children' }"
