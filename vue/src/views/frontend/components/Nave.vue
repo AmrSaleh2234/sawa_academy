@@ -14,8 +14,16 @@
               >
                 <img
                   class="rounded-full w-[60px] h-[60px] object-cover"
+                  v-if="parentStore.parent.image == null"
+                  src="
+                  /src/assets/img/Ellipse2.png
+                  "
+                />
+                <img
+                  class="rounded-full w-[60px] h-[60px] object-cover"
+                  v-if="parentStore.parent.image != null"
                   :src="
-                    parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'
+                    parentStore.parent.image
                   "
                 />
                 <svg

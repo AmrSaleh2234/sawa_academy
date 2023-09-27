@@ -9,6 +9,7 @@ import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { ref } from "vue";
 import moment from "moment";
+import arLocale from '@fullcalendar/core/locales/ar'; 
 import Calendar from "primevue/calendar";
 import InputText from "primevue/inputtext";
 import { tr } from "date-fns/locale";
@@ -23,6 +24,7 @@ export default {
   },
   data() {
     return {
+      v:localStorage.appLang,
       visible: false,
       create_visible: false,
       event_id: null,
@@ -35,6 +37,7 @@ export default {
       modal_text: "",
       time_start: "",
       time_end: "",
+     
 
       opts: {
         plugins: [dayGridPlugin, interactionPlugin, TimeGridplugin, listPlugin],
@@ -42,6 +45,7 @@ export default {
         footerToolbar: true,
         valid: false,
         buttonIcons: false,
+        locale: null,
         selectable: true,
         droppable: false,
         editable: true,
@@ -107,7 +111,18 @@ export default {
       },
     };
   },
+  
+  
   methods: {
+    loo(){
+      if (localStorage.appLang == "en"){
+      console.log ("ascasc")
+    }
+    else{
+     this.opts.locale = arLocale
+   
+    }
+    },
     goBack() {
       this.$router.go(-1);
     },
@@ -177,9 +192,18 @@ export default {
     },
   },
   mounted() {
+    this.loo()
+    
+    
+    console.log(localStorage.appLang)
     this.update();
     console.log(this.opts);
   },
+  computed(){
+    this.loo()
+  },
+  
+ 
 };
 </script>
 <template>
@@ -197,6 +221,7 @@ export default {
     </div>
     <FullCalendar
       :options="opts"
+     
       @change="refreshEvents()"
       ref="fullCalendar"
     />

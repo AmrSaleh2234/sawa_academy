@@ -195,7 +195,7 @@ export default {
   create_event: "انشاء حدث",
   update_event: "تحديث الحدث",
   child_added: "تمت إضافة الطفل بنجاح",
-  national_id: "الرقم القومي",
+  national_id: "الرقم الوطني",
   personal_image: "الصوره الشخصيه",
   choose_role: "اختر الدور للمستخدم",
   user_created: "تم إنشاء المستخدم بنجاح",
