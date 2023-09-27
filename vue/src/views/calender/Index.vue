@@ -8,6 +8,9 @@ import axios from "axios";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { ref } from "vue";
+
+import 'primeicons/primeicons.css';
+
 import moment from "moment";
 import arLocale from "@fullcalendar/core/locales/ar";
 // import enLocale from "@fullcalendar/core/locales";
@@ -39,6 +42,7 @@ export default {
       modal_text: "",
       time_start: "",
       time_end: "",
+     
 
       opts: {
         plugins: [dayGridPlugin, interactionPlugin, TimeGridplugin, listPlugin],
@@ -59,7 +63,9 @@ export default {
           start: new Date(),
         },
         headerToolbar: {
-          center: "prev,next today",
+         
+          center: "prev next today",
+
           left: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
@@ -119,7 +125,18 @@ export default {
       },
     };
   },
+  
+  
   methods: {
+    loo(){
+      if (localStorage.appLang == "en"){
+      console.log ("ascasc")
+    }
+    else{
+     this.opts.locale = arLocale
+   
+    }
+    },
     goBack() {
       this.$router.go(-1);
     },
@@ -227,6 +244,7 @@ export default {
     </div>
     <FullCalendar
       :options="opts"
+     
       @change="refreshEvents()"
       ref="fullCalendar"
     />
@@ -309,5 +327,9 @@ p {
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+body{
+  font-family: "" !important;
+  
 }
 </style>

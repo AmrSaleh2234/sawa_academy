@@ -2,7 +2,7 @@ export default {
   close: "Close",
   roles: "Roles",
   Nationality_choose:"Choose the nationality name",
-
+  your_booking_was_successfully_submitted:"your booking was successfully submitted",
   permissions: "Permissions",
   users: "Users",
   children: "children",
