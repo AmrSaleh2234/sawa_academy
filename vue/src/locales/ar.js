@@ -113,6 +113,7 @@ export default {
   The_latest_developments: "اخر المستجدات",
   Child_follow_up: "متابعه الطفل  ",
   submit: "تاكيد",
+  your_booking_was_successfully_submitted:"تم تقديم الحجز الخاص بك بنجاح",
   Resend_the_code: "اعاده ارسال الكود",
   Enter_the_activation_code: "ادخل كود التفعيل",
   Book_an_appointment: "احجز موعد لابنك",

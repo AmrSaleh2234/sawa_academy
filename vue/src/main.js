@@ -48,6 +48,20 @@ import VOtpInput from "vue3-otp-input";
 
 
 
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUserSecret,faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret,faChevronLeft)
+
+
+
 
 
 // use router in pinia store
@@ -64,7 +78,8 @@ app.use(PrimeVue);
 app.use(print);
 app.use(VueHtmlToPaper);
 app.use(VueCarousel);
-app.component('v-otp-input', VOtpInput)
+app.component('v-otp-input', VOtpInput,'font-awesome-icon', FontAwesomeIcon)
+
 
 app.mount("#app");
 

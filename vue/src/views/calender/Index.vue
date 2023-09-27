@@ -8,6 +8,9 @@ import axios from "axios";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { ref } from "vue";
+
+import 'primeicons/primeicons.css';
+
 import moment from "moment";
 import arLocale from "@fullcalendar/core/locales/ar";
 // import enLocale from "@fullcalendar/core/locales";
@@ -56,6 +59,7 @@ export default {
           start: new Date(),
         },
         headerToolbar: {
+         
           center: "prev next today",
           left: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
@@ -318,5 +322,9 @@ p {
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+body{
+  font-family: "" !important;
+  
 }
 </style>

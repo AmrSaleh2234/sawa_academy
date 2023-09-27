@@ -467,7 +467,7 @@ show_alert:false,
       await axios
         .post("/api/calender/store-booking", this.booking)
         .then((res) => {
-          this.alert_text='your booking was successfully submitted'
+          this.alert_text=this.$t("your_booking_was_successfully_submitted")
           this.show_alert = true;
           this.errors = null;
           Object.keys(this.booking).forEach((key) => {
