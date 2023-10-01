@@ -330,8 +330,8 @@ export default {
   methods: {
     arr (){
       return this.type =[
-            { name:this.$t('male') , value:0 },
-                { name:this.$t('female') , value:1 },
+            { name:this.$t('male') , value:'0' },
+                { name:this.$t('female') , value:'1' },
               
                
             ]
