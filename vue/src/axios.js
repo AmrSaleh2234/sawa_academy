@@ -1,7 +1,8 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:8000";
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 axios.interceptors.request.use((config) => {
   config.headers.lang = localStorage.getItem("appLang");
@@ -13,7 +14,7 @@ axios.interceptors.request.use((config) => {
   } catch (error) {
     config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
   }
-  // config.headers.Accept = "application/json";
+  config.headers.Accept = "application/json";
   // config.headers["Content-Type"] = "application/json";
   return config;
 });

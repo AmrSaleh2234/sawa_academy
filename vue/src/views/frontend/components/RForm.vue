@@ -330,8 +330,8 @@ export default {
   methods: {
     arr (){
       return this.type =[
-            { name:this.$t('male') },
-                { name:this.$t('female') },
+            { name:this.$t('male') , value:0 },
+                { name:this.$t('female') , value:1 },
               
                
             ]
@@ -348,6 +348,8 @@ export default {
       this.child.birth_date = moment(this.child.birth_date).format(
         "YYYY-MM-DD"
       );
+      this.child.gender=this.child.gender.value
+      console.log(this.child.gender)
       axios
         .post("/api/parent/child/create", this.child)
         .then((res) => {

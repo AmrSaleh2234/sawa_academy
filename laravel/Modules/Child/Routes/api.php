@@ -21,7 +21,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::group(['prefix' => 'child'], function () {
         Route::get('/', [ChildController::class, 'index'])->name('child.index');
-        Route::post('/create', [ChildController::class, 'store'])->name('child.create');
+        Route::post('/create', [ChildController::class, 'store'])->name('create');
 
         Route::get('/{child}/{evaluation}', [ChildController::class, 'childAndEvaluation'])->name('child.childAndEvaluation');
         Route::post('/results', [ChildController::class, 'getResultsWithSideprofile'])->name('child.results');
@@ -35,10 +35,15 @@ Route::middleware('auth:api')->group(function () {
 // This Is Temp For Parent Until We Remove The Above Routes.
 Route::middleware(['auth:parent', 'phone_verified'])->prefix('parent')->as('parent.')->group(function () {
     Route::group(['prefix' => 'child'], function () {
-        Route::post('/create', [ChildController::class, 'store'])->name('child.create');
+        Route::post('/create', [ChildController::class, 'store'])->name('create');
+
         Route::get('/all', [ChildController::class, 'getParentChilds'])->name('all');
         Route::get('/{child}', [ChildController::class, 'show'])->name('child.show');
         Route::post('/{child}/update', [ChildController::class, 'update'])->name('child.update');
         Route::delete('/{child}/delete', [ChildController::class, 'destroy'])->name('child.delete');
     });
 });
+
+
+
+
