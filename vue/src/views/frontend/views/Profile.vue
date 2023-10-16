@@ -1,5 +1,5 @@
 <template>
-  <div class="switcher">
+  <div class="">
     <Map />
     <div class="w-full border-b-2 border-x-cyan-950 border-solid">
       <div class="m-auto w-full">

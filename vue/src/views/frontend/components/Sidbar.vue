@@ -7,19 +7,19 @@
       v-if="parentStore.parentAuth"
       class="space-y-2 py-4 border-b-2 border-white border-solid"
     >
-      <div>
+      <div class="sid">
         <img
           class="rounded-full w-[100px] h-[100px] object-cover m-auto"
           :src="parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'"
         />
       </div>
-      <p class="text-white text-center">
+      <p class="text-white text-center sid">
         {{ parentStore.user.fname }} {{ parentStore.user.lname }}
       </p>
-      <p class="text-center text-white">{{ parentStore.user.email }}</p>
+      <p class="sid text-center text-white">{{ parentStore.user.email }}</p>
     </div>
     <div class="space-y-4 py-6">
-      <div class=" ">
+      <div class="sid ">
         <router-link class="flex justify-between p-4" :to="{ name: 'New' }">
           <div class="flex items-end text-">
             <svg
@@ -66,7 +66,7 @@
           </div>
         </router-link>
       </div>
-      <div class=" ">
+      <div  class="sid ">
         <router-link class="flex justify-between p-4" :to="{ name: 'Booking' }">
           <div class="flex space-x-2">
             <svg
@@ -106,7 +106,7 @@
           </div>
         </router-link>
       </div>
-      <div class="sid">
+      <div  class="sid">
         <router-link
           class="flex justify-between p-4"
           :to="{ name: 'Following' }"
@@ -148,7 +148,7 @@
           </div>
         </router-link>
       </div>
-      <div class="hover:text-[red]">
+      <div class="sid">
         <router-link class="flex justify-between p-4" :to="{ name: 'Edit' }">
           <div class="flex">
             <svg
@@ -239,6 +239,10 @@ export default {
 };
 </script>
 <style scoped>
-.sid:hover svg {
+.sid:hover  {
+  scale: 1.03;
+  transition: .1s;
 }
+
+
 </style>

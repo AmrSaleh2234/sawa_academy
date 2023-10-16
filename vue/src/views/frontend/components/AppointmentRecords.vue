@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="relative overflow-clip max-w-full min-h-screen flex">
+    <div class="relative max-w-full max-h-screen flex">
       <sidbar :sole="showsider" />
       <div class="flex-1 overflow-scroll">
         <div class="flex justify-between shadow p-4">

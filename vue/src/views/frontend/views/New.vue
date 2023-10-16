@@ -29,8 +29,8 @@
       </svg>
     </div>
 
-    <div class="m-auto">
-      <p class="ont text-center font-bold text-2xl text-[#6EB7BF]">
+    <div class="m-auto w-full">
+      <p class="w-full p-2 font-bold text-center text-2xl text-[#6EB7BF]">
         {{ $t("Profile_personly") }}
       </p>
     </div>
@@ -39,9 +39,9 @@
     <sidbar :sole="showsider" />
     <div class="flex-1 py-9 my-6">
       <div
-        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2 text-center shadow mb-6"
+        class="top-0 bg-white absolute text-2xl w-full text-[#6EB7BF] p-2  shadow mb-6"
       >
-        {{ $t("The_latest_developments") }}
+        <p class="bg-white text-3xl py-2 text-[#6EB7BF] font-bold">{{ $t("The_latest_developments") }}</p>
       </div>
       <div class="overflow-auto" style="height: 67vh">
         <NewAcorrding
