@@ -31,7 +31,7 @@ export const useParentStore = defineStore("parentStore", {
           //   this.router.push({ name: "code" });
           // } else {
           //   console.log(res);
-          this.router.push("/web/");
+          this.router.push("/web/profile");
           // }
         })
         .catch((err) => {

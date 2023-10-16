@@ -132,37 +132,14 @@
           <div
             class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4"
           >
-            <!-- <div class="flex-1">
-              <div
-                class="flex flex-col"
-                style="border-bottom: 2px solid rgb(194, 188, 188)"
-              >
-                <label class="text-base font-bold">{{
-                  $t("primary_language")
-                }}</label>
-                <input
-                  type="text"
-                  id="lang"
-                  v-model="child.lang"
-                  class="border-b focus:ring-0"
-                />
-              </div>
-              <div
-                v-if="errors != null"
-                class="text-red-600 font-semibold text-sm rounded-md"
-              >
-                <p v-for="error in errors['lang']">
-                  <span v-for="err in error">{{ err }} </span>
-                </p>
-              </div>
-            </div> -->
+            
             <div  style="border-bottom: 2px solid rgb(194, 188, 188)"  class="card w-[50%]  justify-content-center">
                 <label class="text-base font-bold">{{
                   $t("primary_language")
                 }}</label>
                  
               
-                <select style="border-bottom: 2px solid rgb(194, 188, 188)" class="w-full" name="drinks" id="cars" v-model="child.lang">
+                <select  class="w-full" name="drinks" id="cars" v-model="child.lang">
                   <option value="" disabled selected hidden>{{ $t('primary_language') }}</option>
                   <option v-for="l in lan" >{{ l.lang }}</option>
                 </select>
@@ -272,7 +249,7 @@
             <h3 class="text-base font-bold text-right ">
               {{ $t("Type") }}
             </h3>
-                 <Dropdown id="pv_id_2" v-model="child.gender" :options="arr()" optionLabel="name" placeholder="Select a gender"  class="w-full  md:w-14rem focus:ring-0" />
+                 <Dropdown id="pv_id_2" v-model="child.gender" :options="arr()" optionLabel="name" :placeholder='$t("selectgender")'  class="w-full  md:w-14rem focus:ring-0" />
              </div>
         </div>
         <button
@@ -406,8 +383,9 @@ input::placeholder {
 }
 
 #calender input {
+  
   border: none;
-  border-bottom: 2px solid #818080;
+  border-bottom: 2px solid rgb(194, 188, 188);
   text-align: center;
   font-family: "Cairo", sans-serif;
   font-size: 20px;
@@ -421,8 +399,9 @@ input::placeholder {
   border-radius: 0;
 }
 #pv_id_2 {
+  
   border: none;
-  border-bottom: 2px solid #818080;
+  border-bottom: 2px solid rgb(194, 188, 188);
   text-align: center;
   font-family: "Cairo", sans-serif;
   font-size: 20px;

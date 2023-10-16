@@ -54,6 +54,7 @@ export default {
   follow_the_child: "follow the child",
   evaluation_result: "Evaluation result",
   Modify_profile: "Edite profile",
+  selectgender:"select a gender",
   sign_out: "sign out",
   Save_changes: "Save changes",
   sign_in: "Sing in",
