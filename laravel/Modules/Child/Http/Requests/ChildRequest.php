@@ -14,15 +14,15 @@ class ChildRequest extends FormRequest
     public function rules()
     {
         return [
-//            "parent_id" => "required|integer",
+            "parent_id" => "integer",
             "name" => "required|string",
-//            'gender' => ['required', 'in:0,1'],
-//            'lang' => ['required', 'string'],
-//            'nationalty' => ['required', 'string'],
-//            'national_id' => ['required', 'string'],
-            "birth_date" => ["required", "date"],
-//            'birth_place' => ['required', 'string'],
-//            'address' => ['required', 'string'],
+            'gender' => [ 'in:0,1'],
+            'lang' => [ 'string'],
+            'nationalty' => ['string'],
+            'national_id' => [ 'string'],
+            "birth_date" => [ 'required',"date"],
+            'birth_place' => [ 'string'],
+            'address' => [ 'string'],
 
         ];
     }
