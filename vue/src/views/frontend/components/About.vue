@@ -4,18 +4,25 @@
   >
     <div class="grid grid-row-3 md:grid-cols-3 p-10 gap-5">
       <div class="grid grid-row-4 gap-5 md:gap-0">
-        <p class="text-xl text-teal-800 font-bold hover:text-[#8B6D00]">
+        <router-link to="/web">
+          <p  class="text-xl cursor-pointer text-teal-800 font-bold hover:text-[#8B6D00]">
           {{ $t("home") }}
         </p>
-        <p class="text-xl text-teal-800 font-bold hover:text-[#8B6D00]">
+        </router-link>
+        
+        <router-link to="/web/AboutView">
+          <p class="text-xl text-teal-800 font-bold cursor-pointer hover:text-[#8B6D00]">
           {{ $t("about_us") }}
         </p>
-        <p class="text-xl text-teal-800 font-bold hover:text-[#8B6D00]">
-          {{ $t("File_a_complaint") }}
+        </router-link>
+
+        <router-link to="/web/contactus">
+          <p class="text-xl text-teal-800 cursor-pointer font-bold hover:text-[#8B6D00]">
+          {{ $t("connect_us") }}
         </p>
-        <p class="text-xl text-teal-800 font-bold hover:text-[#8B6D00]">
-          {{ $t("Adopt_us") }}
-        </p>
+        </router-link>
+       
+       
       </div>
 
       <div class="grid grid-row-5 gap-5 md:gap-0">
