@@ -42,7 +42,7 @@
                 fill="#fff"
               />
             </svg>
-            <p class="text-white px-2 text-xl m-auto">
+            <p  class="text-white hover:text-[red] px-2 text-xl m-auto" >
               {{ $t("latest_developments") }}
             </p>
           </div>
@@ -126,7 +126,7 @@
                 fill="#fff"
               />
             </svg>
-            <p class="text-white text-xl px-2">{{ $t("follow_the_child") }}</p>
+            <p :style="dynamicStyles" class="text-white text-xl px-2">{{ $t("follow_the_child") }}</p>
           </div>
           <div class="my-auto">
             <svg
@@ -174,9 +174,10 @@
                 fill="#fff"
               />
             </svg>
-            <p style="color: red;" class=" text-white text-xl m-auto px-2">
+            <p class=" text-white  hover:text-[red] text-xl m-auto px-2">
               {{ $t("evaluation_result") }}
             </p>
+            
           </div>
           <div class="my-auto">
             <svg
@@ -227,15 +228,26 @@
 </template>
 <script>
 import { useParentStore } from "@/stores/ParentStore.js";
+
 export default {
   props: {
     sole: true,
+    name:""
   },
   data() {
     return {
+      isBold: true,
+      isItalic: true,
       parentStore: useParentStore(),
     };
   },
+  watch: {
+    name() {
+     
+    },
+  },
+ 
+  
 };
 </script>
 <style scoped>
@@ -243,11 +255,13 @@ export default {
   scale: 1.03;
   transition: .1s;
 }
-.sid p{
-  color:red
+.sid p:hover{
+  color:#EB486D !important
 }
-.out{
-  color: red;
+
+.router-link-active p {
+  color:#EB486D  !important;
 }
+
 
 </style>

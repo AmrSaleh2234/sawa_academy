@@ -35,7 +35,7 @@
     </div>
   </div>
   <div class="relative max-w-full max-h-screen flex">
-    <sidbar :sole="showsider" />
+    <sidbar :sole="showsider" :name="routername" />
     <div class="flex-1">
      <div class="flex justify-between bg-white py-2  px-1 w-full text-[#6EB7BF] shadow ">
       <div
@@ -83,6 +83,7 @@ export default {
   data() {
     return {
       showsider: false,
+      routername:"",
       childs: [],
       parentStore: useParentStore(),
       errors: [],
@@ -120,6 +121,13 @@ export default {
     //       console.log(err);
     //     });
     // },
+  },
+  watch: {
+    '$route.name': function() {
+      // React to route name changes here
+      this.routername = $route.name
+      console.log(this.routername)
+    },
   },
 
   mounted() {

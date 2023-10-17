@@ -11,7 +11,7 @@
     <div class="relative flex selection max-h-full">
       <sidbar class="" :sole="showsider" />
       <div class="flex-1 space-y-10">
-        <div class="bg-white text-2xl text-[#6EB7BF] pt-6 text-center">
+        <div class="bg-white text-2xl font-bold  text-[#6EB7BF] py-4 px-2 ">
           <button class="font-bold">{{ $t("Modify_profile") }}</button>
         </div>
         <p
