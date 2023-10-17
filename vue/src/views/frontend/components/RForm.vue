@@ -330,13 +330,20 @@ export default {
       axios
         .post("/api/parent/child/create", this.child)
         .then((res) => {
+         
+          console.log("feweqf")
           this.errors = null;
           this.show_alert = true;
           this.alert_text = this.$t("child_added");
+          
+           
+            
+      
           Object.keys(this.child).forEach((key) => {
             this.child[key] = null;
           });
-          // this.$router.push({ name: "home" });
+          this.$router.push({name:"Following"});
+     
           console.log(res);
         })
         .catch((err) => {

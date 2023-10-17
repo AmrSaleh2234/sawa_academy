@@ -13,7 +13,7 @@
           :src="parentStore.parent.image ?? '/src/assets/img/Ellipse2.png'"
         />
       </div>
-      <p class="text-white text-center sid">
+      <p class="text-white text-center ">
         {{ parentStore.user.fname }} {{ parentStore.user.lname }}
       </p>
       <p class="sid text-center text-white">{{ parentStore.user.email }}</p>
@@ -150,7 +150,7 @@
       </div>
       <div class="sid">
         <router-link class="flex justify-between p-4" :to="{ name: 'Edit' }">
-          <div class="flex">
+          <div style="color: red;" class="flex">
             <svg
               class="m-auto"
               id="license-solid"
@@ -174,7 +174,7 @@
                 fill="#fff"
               />
             </svg>
-            <p class="text-white text-xl m-auto px-2">
+            <p style="color: red;" class=" text-white text-xl m-auto px-2">
               {{ $t("evaluation_result") }}
             </p>
           </div>
@@ -243,6 +243,11 @@ export default {
   scale: 1.03;
   transition: .1s;
 }
-
+.sid p{
+  color:red
+}
+.out{
+  color: red;
+}
 
 </style>
